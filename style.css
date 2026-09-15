@@ -127,6 +127,52 @@ body {
 
   transition:
     background 0.4s ease;
+
+  /* Keeps the silver shine contained inside the top bar */
+  overflow: hidden;
+}
+
+/* Silver shine that sweeps across the entire navbar on hover */
+.navbar::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -75%;
+
+  width: 45%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(255,255,255,0.08) 40%,
+    rgba(255,255,255,0.75) 50%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 75%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+
+  transition: opacity 0.2s ease;
+}
+
+.navbar:hover::after {
+
+  opacity: 1;
+
+  animation:
+    navbarSilverShine 0.9s ease-out forwards;
 }
 
 
@@ -144,6 +190,19 @@ body {
 
   100% {
     background-position: 0% 50%;
+  }
+
+}
+
+/* Smooth silver sweep used when hovering over the navbar */
+@keyframes navbarSilverShine {
+
+  0% {
+    left: -75%;
+  }
+
+  100% {
+    left: 130%;
   }
 
 }
