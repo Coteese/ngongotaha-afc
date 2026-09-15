@@ -1,0 +1,1621 @@
+/* =========================================================
+   NGONGOTAHĀ AFC WEBSITE
+   MASTER STYLESHEET
+   =========================================================
+
+   This file contains the shared styling for the entire
+   Ngongotahā AFC website.
+
+   Individual pages can use body classes such as:
+
+   page-home
+   page-juniors
+   page-seniors
+   page-womens
+   page-cr1
+   page-calendar
+   page-about
+   page-academy
+   page-registrations
+
+   Example:
+
+   <body class="page-juniors">
+
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: white;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.82)
+    ),
+    url("background.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-attachment: fixed;
+
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   SHARED COLOURS
+   ========================================================= */
+
+:root {
+
+  --orange-light: #ff914d;
+
+  --orange: #fe4300;
+
+  --orange-bright: #ff6a00;
+
+  --orange-soft: #ffb07a;
+
+  --black: #050505;
+
+  --dark: #0b0b0b;
+
+  --dark-panel: #111111;
+
+  --text: #eeeeee;
+
+  --text-muted: #bbbbbb;
+
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  min-height: 82px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 10px 30px;
+
+  background: linear-gradient(
+    110deg,
+    #ff914d,
+    #fe4300,
+    #ff6a00,
+    #fe4300
+  );
+
+  background-size: 300% 300%;
+
+  animation:
+    navbarGlow 15s ease infinite;
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,0.55),
+    0 0 25px rgba(254,67,0,0.25);
+
+  transition:
+    background 0.4s ease;
+}
+
+
+/* Navbar animation */
+
+@keyframes navbarGlow {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+
+/* =========================================================
+   NAVBAR LOGO
+   ========================================================= */
+
+.navbar-logo {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+}
+
+.navbar-logo img {
+
+  width: 65px;
+
+  height: 65px;
+
+  object-fit: contain;
+
+  display: block;
+
+  filter:
+    drop-shadow(
+      0 3px 6px rgba(0,0,0,0.55)
+    );
+
+  transition:
+    transform 0.25s ease;
+}
+
+.navbar-logo:hover img {
+
+  transform:
+    scale(1.06);
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+   ========================================================= */
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 7px;
+
+  width: 100%;
+
+  margin-left: 25px;
+}
+
+.nav-links a,
+.dropbtn {
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  padding: 13px 14px;
+
+  border-radius: 8px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-links a:hover,
+.dropbtn:hover {
+
+  background:
+    rgba(0,0,0,0.25);
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================================
+   DROPDOWN
+   ========================================================= */
+
+.dropdown {
+
+  position: relative;
+
+  display: inline-block;
+}
+
+.dropbtn {
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
+.dropdown-content {
+
+  display: none;
+
+  position: absolute;
+
+  top: calc(100% + 8px);
+
+  left: 0;
+
+  min-width: 190px;
+
+  background:
+    rgba(15,15,15,0.97);
+
+  border:
+    1px solid rgba(255,145,77,0.45);
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.6);
+
+  backdrop-filter:
+    blur(12px);
+}
+
+.dropdown-content a {
+
+  display: block;
+
+  padding: 13px 16px;
+
+  color: white;
+
+  border-radius: 0;
+
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(254,67,0,0.85),
+      rgba(255,145,77,0.65)
+    );
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+.dropdown:hover .dropdown-content {
+
+  display: block;
+}
+
+
+/* =========================================================
+   MAIN HERO
+   ========================================================= */
+
+.hero {
+
+  position: relative;
+
+  max-width: 1200px;
+
+  margin: 55px auto 35px;
+
+  padding: 65px 35px;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8,8,8,0.97),
+      rgba(25,12,7,0.96),
+      rgba(8,8,8,0.97)
+    );
+
+  border-radius: 24px;
+
+  border:
+    1px solid rgba(255,145,77,0.35);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.65),
+    inset 0 0 40px rgba(254,67,0,0.06);
+}
+
+
+/* Hero glow */
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+
+  left: -15%;
+
+  width: 130%;
+
+  height: 240px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,100,25,0.32) 0%,
+      rgba(254,67,0,0.12) 35%,
+      transparent 70%
+    );
+
+  transform:
+    rotate(-4deg);
+
+  pointer-events: none;
+}
+
+
+/* Hero bottom line */
+
+.hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 10%;
+
+  right: 10%;
+
+  bottom: 0;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #fe4300,
+      #ff914d,
+      #fe4300,
+      transparent
+    );
+
+  box-shadow:
+    0 0 18px rgba(254,67,0,0.8);
+
+  pointer-events: none;
+}
+
+.hero-content {
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   HERO SMALL LABEL
+   ========================================================= */
+
+.hero-small {
+
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  padding: 7px 16px;
+
+  border:
+    1px solid rgba(255,145,77,0.4);
+
+  border-radius: 30px;
+
+  color: #ffb07a;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  background:
+    rgba(254,67,0,0.08);
+
+  box-shadow:
+    0 0 20px rgba(254,67,0,0.08);
+}
+
+
+/* =========================================================
+   HERO HEADING
+   ========================================================= */
+
+.hero h1 {
+
+  margin: 0;
+
+  font-size:
+    clamp(38px, 6vw, 72px);
+
+  line-height: 0.95;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
+
+  text-transform: uppercase;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #ffffff 35%,
+      #ffb27e 60%,
+      #ff6a00 100%
+    );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  filter:
+    drop-shadow(
+      0 5px 12px rgba(0,0,0,0.55)
+    );
+}
+
+.hero h2 {
+
+  margin:
+    18px 0 0;
+
+  font-size:
+    clamp(20px, 3vw, 31px);
+
+  font-weight: 700;
+
+  color:
+    #ff914d;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.hero p {
+
+  max-width: 780px;
+
+  margin:
+    25px auto 0;
+
+  color:
+    #dddddd;
+
+  font-size: 17px;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.content {
+
+  max-width: 1200px;
+
+  margin:
+    0 auto 60px;
+
+  padding:
+    0 25px;
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+   ========================================================= */
+
+.section {
+
+  position: relative;
+
+  margin-bottom: 35px;
+
+  padding: 35px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10,10,10,0.92),
+      rgba(22,14,10,0.90)
+    );
+
+  border:
+    1px solid rgba(255,145,77,0.18);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,0.45);
+
+  backdrop-filter:
+    blur(10px);
+}
+
+.section h2 {
+
+  margin-top: 0;
+
+  margin-bottom: 20px;
+
+  font-size: 30px;
+
+  color:
+    #ff914d;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.section p {
+
+  color:
+    #eeeeee;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  margin-bottom: 16px;
+}
+
+.section p:last-child {
+
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+.gallery-section {
+
+  padding: 35px;
+}
+
+.gallery {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1050px;
+
+  margin:
+    0 auto;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background:
+    #050505;
+
+  border:
+    1px solid rgba(255,145,77,0.28);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.65);
+}
+
+.gallery-slides {
+
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio:
+    16 / 9;
+
+  overflow: hidden;
+}
+
+.gallery-slide {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease;
+
+  display: block;
+}
+
+.gallery-slide.active {
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   GALLERY CONTROLS
+   ========================================================= */
+
+.gallery-controls {
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 0;
+
+  width: 100%;
+
+  transform:
+    translateY(-50%);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding:
+    0 18px;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+.gallery-btn {
+
+  width: 55px;
+
+  height: 65px;
+
+  border:
+    1px solid rgba(255,255,255,0.35);
+
+  border-radius: 12px;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  color:
+    white;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  pointer-events: auto;
+
+  backdrop-filter:
+    blur(8px);
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,0.45);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.gallery-btn:hover {
+
+  background:
+    rgba(254,67,0,0.85);
+
+  border-color:
+    #ff914d;
+
+  transform:
+    scale(1.08);
+}
+
+.gallery-btn:active {
+
+  transform:
+    scale(0.95);
+}
+
+.gallery-caption {
+
+  text-align: center;
+
+  padding: 13px;
+
+  color:
+    #bbbbbb;
+
+  font-size: 13px;
+
+  background:
+    rgba(0,0,0,0.75);
+}
+
+
+/* =========================================================
+   DEVELOPMENT CARDS
+   ========================================================= */
+
+.development-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 22px;
+
+  margin-top: 25px;
+}
+
+.flip-card {
+
+  height: 330px;
+
+  perspective: 1200px;
+
+  cursor: pointer;
+}
+
+.flip-card-inner {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  text-align: center;
+
+  transition:
+    transform 0.75s cubic-bezier(.2,.7,.2,1);
+
+  transform-style:
+    preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+
+  transform:
+    rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+
+  border:
+    1px solid rgba(255,145,77,0.3);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.5);
+}
+
+
+/* =========================================================
+   FLIP CARD FRONT
+   ========================================================= */
+
+.flip-card-front {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #181818,
+      #0b0b0b
+    );
+}
+
+.flip-card-front::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 150px;
+
+  height: 150px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(254,67,0,0.08);
+
+  box-shadow:
+    0 0 80px rgba(254,67,0,0.12);
+}
+
+.flip-card-front h3 {
+
+  position: relative;
+
+  margin:
+    0 0 15px;
+
+  color:
+    #ff914d;
+
+  font-size: 23px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    1px;
+}
+
+.flip-card-front p {
+
+  position: relative;
+
+  margin: 0;
+
+  color:
+    #dddddd;
+
+  line-height:
+    1.6;
+
+  font-size:
+    15px;
+}
+
+
+/* =========================================================
+   FLIP ICON
+   ========================================================= */
+
+.flip-icon {
+
+  position: relative;
+
+  margin-bottom: 20px;
+
+  width: 58px;
+
+  height: 58px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 50%;
+
+  border:
+    2px solid #fe4300;
+
+  color:
+    #ff914d;
+
+  font-size:
+    25px;
+
+  box-shadow:
+    0 0 20px rgba(254,67,0,0.25);
+}
+
+
+/* =========================================================
+   FLIP CARD BACK
+   ========================================================= */
+
+.flip-card-back {
+
+  transform:
+    rotateY(180deg);
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+}
+
+.flip-card-back::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      transparent 25%,
+      rgba(0,0,0,0.92) 100%
+    );
+}
+
+.back-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  padding: 25px;
+
+  text-align: left;
+
+  width: 100%;
+}
+
+.back-content h3 {
+
+  margin:
+    0 0 8px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    23px;
+}
+
+.back-content p {
+
+  margin: 0;
+
+  color:
+    white;
+
+  line-height:
+    1.55;
+
+  font-size:
+    14px;
+}
+
+
+/* =========================================================
+   PAGE-SPECIFIC FLIP CARD IMAGES
+   =========================================================
+
+   JUNIOR PAGE
+
+   These are the current Junior page images.
+   ========================================================= */
+
+.page-juniors .player-development {
+
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-juniors .quality-environment {
+
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-juniors .future-pathway {
+
+  background-image:
+    url("mens.jpg");
+}
+
+
+/* =========================================================
+   FUTURE PAGE-SPECIFIC IMAGE AREAS
+   =========================================================
+
+   We can change these when building the other pages.
+
+   The important part is that changing one page will NOT
+   automatically change another page.
+   ========================================================= */
+
+
+/* HOME */
+
+.page-home .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* SENIOR TEAMS */
+
+.page-seniors .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* WOMEN'S TEAMS */
+
+.page-womens .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* CR1 */
+
+.page-cr1 .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* ACADEMY */
+
+.page-academy .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* =========================================================
+   REGISTRATION CTA
+   ========================================================= */
+
+.registration-box {
+
+  text-align:
+    center;
+
+  padding:
+    40px 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(254,67,0,0.14),
+      rgba(0,0,0,0.65)
+    );
+
+  border:
+    1px solid rgba(255,145,77,0.35);
+
+  border-radius:
+    18px;
+}
+
+.registration-box h2 {
+
+  margin-bottom:
+    12px;
+}
+
+.registration-box p {
+
+  max-width:
+    700px;
+
+  margin:
+    0 auto 25px;
+}
+
+.registration-button {
+
+  display:
+    inline-block;
+
+  padding:
+    15px 30px;
+
+  border-radius:
+    8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff914d,
+      #fe4300
+    );
+
+  color:
+    white;
+
+  text-decoration:
+    none;
+
+  font-weight:
+    bold;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    1px;
+
+  box-shadow:
+    0 8px 25px rgba(254,67,0,0.28);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.registration-button:hover {
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(254,67,0,0.45);
+}
+
+
+/* =========================================================
+   GENERAL BUTTON
+   ========================================================= */
+
+.orange-button {
+
+  display:
+    inline-block;
+
+  padding:
+    14px 28px;
+
+  border-radius:
+    8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff914d,
+      #fe4300
+    );
+
+  color:
+    white;
+
+  text-decoration:
+    none;
+
+  font-weight:
+    bold;
+
+  border:
+    none;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.orange-button:hover {
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(254,67,0,0.4);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+  width:
+    100%;
+
+  padding:
+    22px;
+
+  text-align:
+    center;
+
+  background:
+    linear-gradient(
+      110deg,
+      #ff914d,
+      #fe4300,
+      #ff6a00,
+      #fe4300
+    );
+
+  background-size:
+    300% 300%;
+
+  animation:
+    navbarGlow 15s ease infinite;
+
+  color:
+    white;
+
+  font-size:
+    14px;
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,0.35);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .navbar {
+
+    padding:
+      10px 15px;
+
+    flex-wrap:
+      wrap;
+  }
+
+  .navbar-logo img {
+
+    width:
+      58px;
+
+    height:
+      58px;
+  }
+
+  .nav-links {
+
+    margin-left:
+      10px;
+
+    gap:
+      2px;
+
+    flex-wrap:
+      wrap;
+  }
+
+  .nav-links a,
+  .dropbtn {
+
+    padding:
+      10px 8px;
+
+    font-size:
+      12px;
+  }
+
+  .hero {
+
+    margin:
+      30px 15px;
+
+    padding:
+      50px 20px;
+  }
+
+  .content {
+
+    padding:
+      0 15px;
+  }
+
+  .section {
+
+    padding:
+      25px 20px;
+  }
+
+  .development-grid {
+
+    grid-template-columns:
+      1fr;
+  }
+
+  .flip-card {
+
+    height:
+      300px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+
+    background-attachment:
+      scroll;
+  }
+
+  .navbar {
+
+    min-height:
+      auto;
+
+    justify-content:
+      center;
+  }
+
+  .navbar-logo {
+
+    width:
+      100%;
+
+    justify-content:
+      center;
+
+    margin-bottom:
+      8px;
+  }
+
+  .nav-links {
+
+    width:
+      100%;
+
+    margin-left:
+      0;
+
+    justify-content:
+      center;
+
+    gap:
+      3px;
+  }
+
+  .nav-links a,
+  .dropbtn {
+
+    padding:
+      8px 6px;
+
+    font-size:
+      10px;
+  }
+
+  .hero {
+
+    margin-top:
+      20px;
+
+    border-radius:
+      16px;
+  }
+
+  .hero h1 {
+
+    font-size:
+      40px;
+
+    letter-spacing:
+      -1px;
+  }
+
+  .hero h2 {
+
+    font-size:
+      18px;
+
+    letter-spacing:
+      1px;
+  }
+
+  .hero p {
+
+    font-size:
+      15px;
+  }
+
+  .section h2 {
+
+    font-size:
+      24px;
+  }
+
+  .section p {
+
+    font-size:
+      15px;
+  }
+
+  .gallery-section {
+
+    padding:
+      20px 15px;
+  }
+
+  .gallery-controls {
+
+    padding:
+      0 8px;
+  }
+
+  .gallery-btn {
+
+    width:
+      42px;
+
+    height:
+      52px;
+
+    font-size:
+      30px;
+
+    border-radius:
+      9px;
+  }
+
+  .flip-card {
+
+    height:
+      285px;
+  }
+
+  .flip-card:hover .flip-card-inner {
+
+    transform:
+      none;
+  }
+
+  .flip-card.flipped .flip-card-inner {
+
+    transform:
+      rotateY(180deg);
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICE DROPDOWN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .dropdown.mobile-open .dropdown-content {
+
+    display:
+      block;
+  }
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+   ========================================================= */
+
+/*
+   Keep animations smooth on slower devices.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+
+    scroll-behavior:
+      auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+
+  }
