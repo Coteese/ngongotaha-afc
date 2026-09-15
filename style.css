@@ -127,52 +127,6 @@ body {
 
   transition:
     background 0.4s ease;
-
-  /* Keeps the silver shine contained inside the top bar */
-  overflow: hidden;
-}
-
-/* Silver shine that sweeps across the entire navbar on hover */
-.navbar::after {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-
-  left: -75%;
-
-  width: 45%;
-
-  height: 100%;
-
-  pointer-events: none;
-
-  opacity: 0;
-
-  background: linear-gradient(
-    110deg,
-    transparent 0%,
-    transparent 25%,
-    rgba(255,255,255,0.08) 40%,
-    rgba(255,255,255,0.75) 50%,
-    rgba(255,255,255,0.08) 60%,
-    transparent 75%,
-    transparent 100%
-  );
-
-  transform: skewX(-20deg);
-
-  transition: opacity 0.2s ease;
-}
-
-.navbar:hover::after {
-
-  opacity: 1;
-
-  animation:
-    navbarSilverShine 0.9s ease-out forwards;
 }
 
 
@@ -190,19 +144,6 @@ body {
 
   100% {
     background-position: 0% 50%;
-  }
-
-}
-
-/* Smooth silver sweep used when hovering over the navbar */
-@keyframes navbarSilverShine {
-
-  0% {
-    left: -75%;
-  }
-
-  100% {
-    left: 130%;
   }
 
 }
@@ -271,6 +212,10 @@ body {
 .nav-links a,
 .dropbtn {
 
+  position: relative;
+
+  overflow: hidden;
+
   color: white;
 
   text-decoration: none;
@@ -289,6 +234,51 @@ body {
     box-shadow 0.25s ease;
 }
 
+/* Silver light attached to each individual navigation button */
+.nav-links a::after,
+.dropbtn::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -25%;
+
+  left: -90%;
+
+  width: 55%;
+
+  height: 150%;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255,255,255,0.10) 40%,
+    rgba(255,255,255,0.90) 50%,
+    rgba(220,220,220,0.45) 55%,
+    rgba(255,255,255,0.08) 65%,
+    transparent 75%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+
+  opacity: 0;
+}
+
+/* Desktop hover: a fresh silver sweep every time */
+.nav-links a:hover::after,
+.dropbtn:hover::after {
+
+  opacity: 1;
+
+  animation:
+    navButtonSilverShine 0.65s ease-out forwards;
+}
+
 .nav-links a:hover,
 .dropbtn:hover {
 
@@ -299,7 +289,41 @@ body {
     translateY(-2px);
 
   box-shadow:
-    0 5px 15px rgba(0,0,0,0.25);
+    0 5px 15px rgba(0,0,0,0.25),
+    0 0 12px rgba(255,255,255,0.18);
+}
+
+/* Silver sweep animation */
+@keyframes navButtonSilverShine {
+
+  0% {
+    left: -90%;
+  }
+
+  100% {
+    left: 145%;
+  }
+
+}
+
+/* Touch/phone support */
+.nav-links a:active::after,
+.dropbtn:active::after,
+.nav-links a:focus-visible::after,
+.dropbtn:focus-visible::after {
+
+  opacity: 1;
+
+  animation:
+    navButtonSilverShine 0.65s ease-out forwards;
+}
+
+.nav-links a:active,
+.dropbtn:active {
+
+  transform:
+    translateY(-1px) scale(0.98);
+
 }
 
 
