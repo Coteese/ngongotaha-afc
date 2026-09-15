@@ -838,6 +838,15 @@ body {
       #181818,
       #0b0b0b
     );
+
+  transform:
+    rotateY(0deg);
+
+  z-index: 2;
+}
+
+.flip-card.flipped .flip-card-front {
+  z-index: 0;
 }
 
 .flip-card-front::before {
@@ -938,11 +947,20 @@ body {
   background-position:
     center;
 
+  background-repeat:
+    no-repeat;
+
   display:
     flex;
 
   align-items:
     flex-end;
+
+  z-index: 1;
+}
+
+.flip-card.flipped .flip-card-back {
+  z-index: 2;
 }
 
 .flip-card-back::before {
