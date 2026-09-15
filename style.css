@@ -1,1002 +1,541 @@
 /* =========================================================
-   NGONGOTAHĀ AFC - MASTER STYLESHEET
+   DEVELOPMENT CARDS
    ========================================================= */
-
-:root {
-    --orange: #f58220;
-    --dark: #111111;
-    --dark-grey: #1b1b1b;
-    --grey: #2a2a2a;
-    --light-grey: #f4f4f4;
-    --white: #ffffff;
-    --text: #222222;
-}
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--text);
-    background: #ffffff;
-    line-height: 1.6;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-
-.navbar {
-    width: 100%;
-    min-height: 80px;
-    background: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 30px;
-    position: relative;
-    z-index: 1000;
-}
-
-.navbar-logo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.navbar-logo img {
-    width: 65px;
-    height: 65px;
-    object-fit: contain;
-}
-
-.navbar-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-}
-
-.navbar-links > a,
-.dropdown > button {
-    color: var(--white);
-    background: transparent;
-    border: none;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.25s ease, background 0.25s ease;
-    font-family: inherit;
-}
-
-.navbar-links > a:hover,
-.dropdown > button:hover {
-    color: var(--orange);
-}
-
-/* =========================================================
-   DROPDOWN
-   ========================================================= */
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    min-width: 190px;
-    background: var(--dark);
-    border-top: 3px solid var(--orange);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-}
-
-.dropdown-content a {
-    display: block;
-    color: var(--white);
-    padding: 12px 16px;
-    font-size: 14px;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-content a:hover {
-    background: var(--orange);
-    color: var(--white);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown.mobile-open .dropdown-content {
-    display: block;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-    min-height: 430px;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
-        url("Jr1.jpg") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--white);
-    padding: 60px 20px;
-}
-
-.hero-small {
-    min-height: 360px;
-}
-
-.hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.hero h1 {
-    margin: 0 0 10px;
-    font-size: clamp(42px, 7vw, 72px);
-    line-height: 1.05;
-    font-weight: 800;
-}
-
-.hero h2 {
-    margin: 0 0 20px;
-    color: var(--orange);
-    font-size: clamp(22px, 4vw, 34px);
-    line-height: 1.2;
-}
-
-.hero p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-/* =========================================================
-   CONTENT
-   ========================================================= */
-
-.content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 70px 25px;
-}
-
-.content h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--dark);
-    font-size: 36px;
-    line-height: 1.2;
-}
-
-.content h2::after {
-    content: "";
-    display: block;
-    width: 65px;
-    height: 4px;
-    background: var(--orange);
-    margin-top: 10px;
-}
-
-.content p {
-    font-size: 17px;
-    line-height: 1.8;
-}
-
-/* =========================================================
-   GALLERY
-   ========================================================= */
-
-.gallery {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin: 50px auto;
-    overflow: hidden;
-    border-radius: 14px;
-    background: #111111;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-}
-
-.gallery-container {
-    position: relative;
-    width: 100%;
-}
-
-.gallery-slide {
-    display: none;
-    width: 100%;
-}
-
-.gallery-slide.active {
-    display: block;
-}
-
-.gallery-slide img {
-    width: 100%;
-    height: 520px;
-    object-fit: cover;
-}
-
-.gallery-caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.72);
-    color: var(--white);
-    padding: 14px 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.gallery-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.65);
-    color: var(--white);
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 5;
-    transition: background 0.25s ease, transform 0.25s ease;
-}
-
-.gallery-control:hover {
-    background: var(--orange);
-}
-
-.gallery-control.prev {
-    left: 15px;
-}
-
-.gallery-control.next {
-    right: 15px;
-}
-
-/* =========================================================
-   DEVELOPMENT SECTION
-   ========================================================= */
-
-.development-section {
-    margin-top: 70px;
-}
-
-.development-intro {
-    max-width: 900px;
-    margin: 0 auto 40px;
-    text-align: center;
-}
 
 .development-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 40px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 22px;
+
+  margin-top: 25px;
 }
 
-/* =========================================================
-   FLIP CARDS
-   ========================================================= */
-
 .flip-card {
-    height: 330px;
-    perspective: 1000px;
-    cursor: pointer;
-    position: relative;
+
+  height: 330px;
+
+  perspective: 1200px;
+
+  cursor: pointer;
 }
 
 .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.65s ease;
-    transform-style: preserve-3d;
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  text-align: center;
+
+  transition:
+    transform 0.75s cubic-bezier(.2,.7,.2,1);
+
+  transform-style:
+    preserve-3d;
 }
 
 .flip-card:hover .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
+
+  transform:
+    rotateY(180deg);
 }
 
 .flip-card-front,
 .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 14px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+
+  border:
+    1px solid rgba(255,145,77,0.3);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.5);
 }
+
 
 /* =========================================================
    FLIP CARD FRONT
    ========================================================= */
 
 .flip-card-front {
-    color: var(--white);
-    background: var(--dark-grey);
-    border: 3px solid var(--orange);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  background-repeat:
+    no-repeat;
 }
+
+
+/* Dark overlay over front image */
 
 .flip-card-front::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.32);
-    z-index: 0;
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(0,0,0,0.35);
+
+  z-index: 1;
+
+  pointer-events: none;
 }
+
+
+/* Front content stays above image overlay */
 
 .flip-card-front > * {
-    position: relative;
-    z-index: 2;
+
+  position: relative;
+
+  z-index: 2;
 }
 
-.flip-card-front .card-icon {
-    font-size: 45px;
-    margin-bottom: 12px;
+
+/* =========================================================
+   FRONT CARD IMAGES
+   ========================================================= */
+
+/* Player Development = J1 */
+
+.player-development-image {
+
+  background-image:
+    url("J1.jpg");
 }
+
+
+/* Quality Environment = J2 */
+
+.quality-environment-image {
+
+  background-image:
+    url("J2.jpg");
+}
+
+
+/* Future Pathway = J3 */
+
+.future-pathway-image {
+
+  background-image:
+    url("J3.jpg");
+}
+
+
+/* =========================================================
+   FRONT WRITING PANELS
+   ========================================================= */
 
 .flip-card-front h3 {
-    margin: 0 0 10px;
-    font-size: 26px;
-    line-height: 1.2;
+
+  position: relative;
+
+  z-index: 3;
+
+  margin:
+    0;
+
+  padding:
+    12px 18px 7px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    23px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    1px;
+
+  background:
+    rgba(5,5,5,0.92);
+
+  border-radius:
+    10px 10px 0 0;
 }
 
 .flip-card-front p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.6;
+
+  position: relative;
+
+  z-index: 3;
+
+  margin:
+    0;
+
+  padding:
+    7px 18px 15px;
+
+  color:
+    #eeeeee;
+
+  line-height:
+    1.6;
+
+  font-size:
+    15px;
+
+  background:
+    rgba(5,5,5,0.92);
+
+  border-radius:
+    0 0 10px 10px;
 }
+
 
 /* =========================================================
-   CARD FRONT IMAGES
-   These are overridden/page-controlled where necessary.
+   FLIP ICON
    ========================================================= */
 
-.player-development-image {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J1.jpg") center/cover no-repeat;
+.flip-icon {
+
+  position: relative;
+
+  z-index: 3;
+
+  margin-bottom:
+    20px;
+
+  width:
+    58px;
+
+  height:
+    58px;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  border-radius:
+    50%;
+
+  border:
+    2px solid #fe4300;
+
+  color:
+    #ff914d;
+
+  font-size:
+    25px;
+
+  background:
+    rgba(5,5,5,0.88);
+
+  box-shadow:
+    0 0 20px rgba(254,67,0,0.25);
 }
 
-.quality-environment-image {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J2.jpg") center/cover no-repeat;
-}
-
-.future-pathway-image {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J3.jpg") center/cover no-repeat;
-}
 
 /* =========================================================
    FLIP CARD BACK
    ========================================================= */
 
 .flip-card-back {
-    transform: rotateY(180deg);
-    color: var(--white);
-    border: 3px solid var(--orange);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+  transform:
+    rotateY(180deg);
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  background-repeat:
+    no-repeat;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    20px;
 }
 
-/*
-   The back images are deliberately defined here as well,
-   so both sides use the same photograph.
-*/
+
+/* Dark overlay over back image */
+
+.flip-card-back::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(0,0,0,0.38);
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BACK CARD IMAGES
+   ========================================================= */
+
+/* Player Development = same J1 image */
 
 .flip-card-back.player-development {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J1.jpg") center/cover no-repeat;
+
+  background-image:
+    url("J1.jpg");
 }
+
+
+/* Quality Environment = same J2 image */
 
 .flip-card-back.quality-environment {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J2.jpg") center/cover no-repeat;
+
+  background-image:
+    url("J2.jpg");
 }
+
+
+/* Future Pathway = same J3 image */
 
 .flip-card-back.future-pathway {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.55)),
-        url("J3.jpg") center/cover no-repeat;
+
+  background-image:
+    url("J3.jpg");
 }
 
+
+/* =========================================================
+   BACK WRITING PANEL
+   ========================================================= */
+
 .back-content {
-    width: calc(100% - 40px);
-    background: rgba(5, 5, 5, 0.90);
-    padding: 22px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 2;
+
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  width:
+    100%;
+
+  padding:
+    25px;
+
+  text-align:
+    left;
+
+  background:
+    rgba(5,5,5,0.92);
+
+  border:
+    1px solid rgba(255,145,77,0.25);
+
+  border-radius:
+    12px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.45);
+}
+
+.back-content h3 {
+
+  margin:
+    0 0 8px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    23px;
 }
 
 .back-content p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.7;
+
+  margin:
+    0;
+
+  color:
+    white;
+
+  line-height:
+    1.55;
+
+  font-size:
+    14px;
 }
 
-/* =========================================================
-   SOLID TEXT PANELS ON FRONT OF FLIP CARDS
-   ========================================================= */
-
-.flip-card-front > h3 {
-    background: rgba(5, 5, 5, 0.90);
-    margin: 0 20px;
-    padding: 12px 18px 6px;
-    border-radius: 10px 10px 0 0;
-    position: relative;
-    z-index: 2;
-}
-
-.flip-card-front > p {
-    background: rgba(5, 5, 5, 0.90);
-    margin: 0 20px;
-    padding: 6px 18px 16px;
-    border-radius: 0 0 10px 10px;
-    position: relative;
-    z-index: 2;
-}
 
 /* =========================================================
    CLICKABLE FUTURE PATHWAY CARD
    ========================================================= */
 
 .flip-card-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
 
-.flip-card-link .flip-card {
-    cursor: pointer;
+  display:
+    block;
+
+  color:
+    inherit;
+
+  text-decoration:
+    none;
 }
 
 .flip-card-link:focus {
-    outline: none;
+
+  outline:
+    none;
 }
 
 .flip-card-link:focus-visible .flip-card {
-    outline: 3px solid var(--orange);
-    outline-offset: 4px;
+
+  outline:
+    3px solid #ff914d;
+
+  outline-offset:
+    4px;
 }
+
 
 /* =========================================================
-   REGISTRATION BOX
-   ========================================================= */
-
-.registration-box {
-    margin-top: 80px;
-    padding: 50px 30px;
-    text-align: center;
-    background: var(--dark);
-    color: var(--white);
-    border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-}
-
-.registration-box h2 {
-    color: var(--white);
-    margin-bottom: 20px;
-}
-
-.registration-box h2::after {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.registration-box p {
-    max-width: 750px;
-    margin: 0 auto 30px;
-}
-
-/* =========================================================
-   REGISTRATION FLIP BUTTON
-   ========================================================= */
-
-.registration-flip {
-    display: inline-block;
-    width: 220px;
-    height: 58px;
-    perspective: 800px;
-}
-
-.registration-flip-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.55s ease;
-    transform-style: preserve-3d;
-}
-
-.registration-flip:hover .registration-flip-inner,
-.registration-flip:focus .registration-flip-inner {
-    transform: rotateY(180deg);
-}
-
-.registration-flip-front,
-.registration-flip-back {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: bold;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.registration-flip-front {
-    background: var(--orange);
-    color: var(--white);
-}
-
-.registration-flip-back {
-    background: #555555;
-    color: var(--white);
-    transform: rotateY(180deg);
-}
-
-/* =========================================================
-   GENERAL BUTTON
-   ========================================================= */
-
-.button {
-    display: inline-block;
-    background: var(--orange);
-    color: var(--white);
-    padding: 13px 25px;
-    border-radius: 7px;
-    font-weight: bold;
-    transition: background 0.25s ease, transform 0.25s ease;
-}
-
-.button:hover {
-    background: #d96d13;
-    transform: translateY(-2px);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    position: relative;
-    overflow: hidden;
-    background: var(--orange);
-    color: var(--white);
-    text-align: center;
-    padding: 25px 20px;
-    margin-top: 0;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* =========================================================
-   TABLES
-   ========================================================= */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 30px 0;
-}
-
-th,
-td {
-    padding: 13px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background: var(--dark);
-    color: var(--white);
-}
-
-tr:nth-child(even) {
-    background: #f7f7f7;
-}
-
-/* =========================================================
-   FORMS
-   ========================================================= */
-
-form {
-    width: 100%;
-}
-
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-input,
-textarea,
-select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 16px;
-}
-
-textarea {
-    min-height: 140px;
-    resize: vertical;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    outline: 2px solid var(--orange);
-    outline-offset: 1px;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 1100px) {
-
-    .navbar {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .navbar-links {
-        gap: 2px;
-    }
-
-    .navbar-links > a,
-    .dropdown > button {
-        padding-left: 8px;
-        padding-right: 8px;
-        font-size: 13px;
-    }
-
-    .development-grid {
-        gap: 20px;
-    }
-}
-
-/* =========================================================
-   TABLET
+   MOBILE FLIP CARDS
    ========================================================= */
 
 @media (max-width: 900px) {
 
-    .navbar {
-        min-height: 75px;
-        padding: 8px 15px;
-    }
+  .development-grid {
 
-    .navbar-logo img {
-        width: 58px;
-        height: 58px;
-    }
+    grid-template-columns:
+      1fr;
+  }
 
-    .navbar-links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
+  .flip-card {
 
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
+    height:
+      300px;
+  }
 
-    .dropdown.mobile-open .dropdown-content {
-        display: block;
-    }
-
-    .hero {
-        min-height: 380px;
-        padding: 50px 20px;
-    }
-
-    .hero-small {
-        min-height: 320px;
-    }
-
-    .gallery-slide img {
-        height: 430px;
-    }
-
-    .development-grid {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .flip-card {
-        height: 300px;
-    }
-
-    /*
-       On touch devices, hovering is not reliable.
-       The JavaScript .flipped class handles the card instead.
-    */
-
-    .flip-card:hover .flip-card-inner {
-        transform: none;
-    }
-
-    .flip-card.flipped .flip-card-inner {
-        transform: rotateY(180deg);
-    }
 }
 
+
 /* =========================================================
-   MOBILE
+   SMALL MOBILE FLIP CARDS
    ========================================================= */
 
 @media (max-width: 600px) {
 
-    .navbar {
-        align-items: flex-start;
-        min-height: auto;
-        padding: 10px 12px;
-    }
+  .flip-card {
 
-    .navbar-logo img {
-        width: 52px;
-        height: 52px;
-    }
+    height:
+      285px;
+  }
 
-    .navbar-links {
-        width: calc(100% - 65px);
-        gap: 0;
-    }
+  .flip-card:hover .flip-card-inner {
 
-    .navbar-links > a,
-    .dropdown > button {
-        padding: 7px 6px;
-        font-size: 11px;
-    }
+    transform:
+      none;
+  }
 
-    .dropdown-content {
-        right: 0;
-        min-width: 175px;
-    }
+  .flip-card.flipped .flip-card-inner {
 
-    .dropdown-content a {
-        font-size: 13px;
-        padding: 11px 14px;
-    }
+    transform:
+      rotateY(180deg);
+  }
 
-    .hero {
-        min-height: 340px;
-        padding: 45px 18px;
-    }
+  .flip-card-front {
 
-    .hero-small {
-        min-height: 290px;
-    }
+    padding:
+      20px;
+  }
 
-    .hero h1 {
-        font-size: 42px;
-    }
+  .flip-card-front h3 {
 
-    .hero h2 {
-        font-size: 23px;
-    }
+    font-size:
+      21px;
 
-    .hero p {
-        font-size: 16px;
-    }
+    padding:
+      10px 14px 6px;
+  }
 
-    .content {
-        padding: 50px 18px;
-    }
+  .flip-card-front p {
 
-    .content h2 {
-        font-size: 30px;
-    }
+    font-size:
+      14px;
 
-    .content p {
-        font-size: 16px;
-    }
+    padding:
+      6px 14px 12px;
+  }
 
-    .gallery {
-        margin-top: 35px;
-        margin-bottom: 35px;
-        border-radius: 10px;
-    }
+  .back-content {
 
-    .gallery-slide img {
-        height: 300px;
-    }
+    padding:
+      18px;
+  }
 
-    .gallery-control {
-        width: 40px;
-        height: 40px;
-        font-size: 22px;
-    }
+  .back-content h3 {
 
-    .gallery-control.prev {
-        left: 8px;
-    }
+    font-size:
+      20px;
+  }
 
-    .gallery-control.next {
-        right: 8px;
-    }
+  .back-content p {
 
-    .gallery-caption {
-        font-size: 13px;
-        padding: 10px 12px;
-    }
+    font-size:
+      14px;
+  }
 
-    .development-section {
-        margin-top: 50px;
-    }
-
-    .development-grid {
-        margin-top: 30px;
-        gap: 18px;
-    }
-
-    .flip-card {
-        height: 285px;
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-        padding: 20px;
-    }
-
-    .flip-card-front .card-icon {
-        font-size: 38px;
-        margin-bottom: 8px;
-    }
-
-    .flip-card-front h3 {
-        font-size: 22px;
-    }
-
-    .flip-card-front p,
-    .back-content p {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-    .flip-card-front > h3 {
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 10px 12px 5px;
-    }
-
-    .flip-card-front > p {
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 5px 12px 12px;
-    }
-
-    .back-content {
-        width: calc(100% - 20px);
-        padding: 16px;
-        margin: 10px;
-    }
-
-    .registration-box {
-        margin-top: 55px;
-        padding: 40px 18px;
-        border-radius: 10px;
-    }
-
-    .registration-box p {
-        font-size: 15px;
-    }
-
-    .registration-flip {
-        width: 200px;
-        height: 54px;
-    }
-
-    footer {
-        padding: 22px 15px;
-    }
-
-    footer p {
-        font-size: 13px;
-    }
-}
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 400px) {
-
-    .navbar-logo img {
-        width: 48px;
-        height: 48px;
-    }
-
-    .navbar-links > a,
-    .dropdown > button {
-        font-size: 10px;
-        padding: 6px 4px;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero h2 {
-        font-size: 20px;
-    }
-
-    .gallery-slide img {
-        height: 250px;
-    }
-
-    .flip-card {
-        height: 285px;
-    }
 }
