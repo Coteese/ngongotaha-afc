@@ -32,14 +32,18 @@
 
     /* =========================
        FLIP CARD IMAGE BACKGROUNDS
+       SAME IMAGE ON BOTH SIDES
     ========================= */
 
-    .flip-card-front.player-development-image {
+    /* PLAYER DEVELOPMENT */
+
+    .flip-card-front.player-development-image,
+    .flip-card-back.player-development {
 
       background-image:
         linear-gradient(
-          rgba(0, 0, 0, 0.48),
-          rgba(0, 0, 0, 0.62)
+          rgba(0, 0, 0, 0.38),
+          rgba(0, 0, 0, 0.55)
         ),
         url("J1.jpg");
 
@@ -49,12 +53,15 @@
     }
 
 
-    .flip-card-front.quality-environment-image {
+    /* QUALITY ENVIRONMENT */
+
+    .flip-card-front.quality-environment-image,
+    .flip-card-back.quality-environment {
 
       background-image:
         linear-gradient(
-          rgba(0, 0, 0, 0.48),
-          rgba(0, 0, 0, 0.62)
+          rgba(0, 0, 0, 0.38),
+          rgba(0, 0, 0, 0.55)
         ),
         url("J2.jpg");
 
@@ -64,17 +71,127 @@
     }
 
 
-    .flip-card-front.future-pathway-image {
+    /* FUTURE PATHWAY */
+
+    .flip-card-front.future-pathway-image,
+    .flip-card-back.future-pathway {
 
       background-image:
         linear-gradient(
-          rgba(0, 0, 0, 0.48),
-          rgba(0, 0, 0, 0.62)
+          rgba(0, 0, 0, 0.38),
+          rgba(0, 0, 0, 0.55)
         ),
         url("J3.jpg");
 
       background-size: cover;
       background-position: center;
+
+    }
+
+
+    /* =========================
+       SOLID TEXT PANELS
+    ========================= */
+
+    /*
+      These panels sit over the image.
+
+      The background is solid enough that
+      the image does not show through the
+      writing.
+    */
+
+    .flip-card-front > h3,
+    .flip-card-front > p {
+
+      background:
+        rgba(5, 5, 5, 0.90);
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+
+    /* FRONT HEADING */
+
+    .flip-card-front > h3 {
+
+      margin-left: 20px;
+      margin-right: 20px;
+
+      margin-bottom: 0;
+
+      padding:
+        12px
+        18px
+        6px;
+
+      border-radius:
+        10px
+        10px
+        0
+        0;
+
+    }
+
+
+    /* FRONT DESCRIPTION */
+
+    .flip-card-front > p {
+
+      margin-left: 20px;
+      margin-right: 20px;
+
+      margin-top: 0;
+
+      padding:
+        6px
+        18px
+        16px;
+
+      border-radius:
+        0
+        0
+        10px
+        10px;
+
+    }
+
+
+    /* =========================
+       BACK TEXT PANEL
+    ========================= */
+
+    .flip-card-back .back-content {
+
+      background:
+        rgba(5, 5, 5, 0.90);
+
+      padding: 22px;
+
+      margin: 20px;
+
+      border-radius: 10px;
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+
+    .flip-card-back .back-content h3 {
+
+      margin-top: 0;
+
+    }
+
+
+    .flip-card-back .back-content p {
+
+      margin-bottom: 0;
 
     }
 
