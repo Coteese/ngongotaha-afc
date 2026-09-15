@@ -14,32 +14,99 @@
 
 
   <!-- =========================
-       REGISTRATION BUTTON FLIP
+       JUNIOR PAGE EXTRA STYLES
   ========================= -->
 
   <style>
 
+    /* =========================
+       FUTURE PATHWAY LINK
+    ========================= */
+
+    .flip-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+
+    /* =========================
+       FLIP CARD IMAGE BACKGROUNDS
+    ========================= */
+
+    .flip-card-front.player-development-image {
+
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.48),
+          rgba(0, 0, 0, 0.62)
+        ),
+        url("J1.jpg");
+
+      background-size: cover;
+      background-position: center;
+
+    }
+
+
+    .flip-card-front.quality-environment-image {
+
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.48),
+          rgba(0, 0, 0, 0.62)
+        ),
+        url("J2.jpg");
+
+      background-size: cover;
+      background-position: center;
+
+    }
+
+
+    .flip-card-front.future-pathway-image {
+
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.48),
+          rgba(0, 0, 0, 0.62)
+        ),
+        url("J3.jpg");
+
+      background-size: cover;
+      background-position: center;
+
+    }
+
+
+    /* =========================
+       REGISTRATION BUTTON FLIP
+    ========================= */
+
     .registration-flip {
+
       perspective: 1000px;
+
       display: inline-block;
 
-      /* Button size */
       width: 236px;
       height: 52px;
 
-      /* Remove the original button styling
-         from style.css so it does not sit
-         behind the flip faces */
       padding: 0 !important;
+
       background: transparent !important;
+
       box-shadow: none !important;
 
       text-decoration: none;
+
       color: inherit;
+
     }
 
 
     .registration-flip-inner {
+
       position: relative;
 
       display: block;
@@ -51,21 +118,26 @@
 
       transition:
         transform 0.6s ease;
+
     }
 
 
-    /* Flip the button when hovered */
+    /* Flip when hovered */
 
-    .registration-flip:hover .registration-flip-inner,
-    .registration-flip:focus-visible .registration-flip-inner {
+    .registration-flip:hover
+    .registration-flip-inner,
 
-      transform: rotateY(180deg);
+    .registration-flip:focus-visible
+    .registration-flip-inner {
+
+      transform:
+        rotateY(180deg);
 
     }
 
 
     /* =========================
-       FRONT + BACK
+       REGISTRATION FRONT + BACK
     ========================= */
 
     .registration-flip-front,
@@ -90,10 +162,12 @@
 
       border-radius: 8px;
 
-      /* IMPORTANT:
-         Each side has its own solid
-         background so text cannot show
-         through from the other side. */
+      /*
+        Each face has its own solid
+        background so the other side
+        cannot show through.
+      */
+
       background:
         linear-gradient(
           90deg,
@@ -110,16 +184,17 @@
       letter-spacing: 1px;
 
       box-shadow:
-        0 8px 25px rgba(254,67,0,0.28);
+        0 8px 25px
+        rgba(254,67,0,0.28);
 
-      /* Hide the reverse side */
       backface-visibility: hidden;
+
       -webkit-backface-visibility: hidden;
 
     }
 
 
-    /* FRONT */
+    /* Front */
 
     .registration-flip-front {
 
@@ -129,7 +204,7 @@
     }
 
 
-    /* BACK */
+    /* Back */
 
     .registration-flip-back {
 
@@ -137,6 +212,7 @@
         rotateY(180deg);
 
     }
+
 
   </style>
 
@@ -152,7 +228,11 @@
 
   <nav class="navbar">
 
-    <a href="index.html" class="navbar-logo">
+
+    <a
+      href="index.html"
+      class="navbar-logo"
+    >
 
       <img
         src="logo.png"
@@ -182,29 +262,37 @@
 
       <div class="dropdown">
 
+
         <button
           class="dropbtn"
           type="button"
         >
+
           Ngongotahā Teams ▾
+
         </button>
 
 
         <div class="dropdown-content">
 
+
           <a href="senior-teams.html">
             Senior Teams
           </a>
+
 
           <a href="junior-teams.html">
             Junior Teams
           </a>
 
+
           <a href="womens-teams.html">
             Women's Teams
           </a>
 
+
         </div>
+
 
       </div>
 
@@ -226,6 +314,7 @@
 
     </div>
 
+
   </nav>
 
 
@@ -235,6 +324,7 @@
   ========================= -->
 
   <section class="hero">
+
 
     <div class="hero-content">
 
@@ -261,6 +351,7 @@
 
 
     </div>
+
 
   </section>
 
@@ -367,7 +458,9 @@
 
 
 
-        <!-- GALLERY CONTROLS -->
+        <!-- =========================
+             GALLERY CONTROLS
+        ========================= -->
 
         <div class="gallery-controls">
 
@@ -378,7 +471,9 @@
             aria-label="Previous photo"
             type="button"
           >
+
             &#10094;
+
           </button>
 
 
@@ -388,7 +483,9 @@
             aria-label="Next photo"
             type="button"
           >
+
             &#10095;
+
           </button>
 
 
@@ -397,7 +494,9 @@
 
 
         <div class="gallery-caption">
+
           Ngongotahā AFC Junior Football
+
         </div>
 
 
@@ -432,7 +531,7 @@
 
 
         <!-- =========================
-             PLAYER DEVELOPMENT
+             PLAYER DEVELOPMENT CARD
         ========================= -->
 
         <div
@@ -447,7 +546,9 @@
           <div class="flip-card-inner">
 
 
-            <div class="flip-card-front">
+            <div
+              class="flip-card-front player-development-image"
+            >
 
 
               <div class="flip-icon">
@@ -470,7 +571,9 @@
 
 
 
-            <div class="flip-card-back player-development">
+            <div
+              class="flip-card-back player-development"
+            >
 
 
               <div class="back-content">
@@ -502,7 +605,7 @@
 
 
         <!-- =========================
-             QUALITY ENVIRONMENT
+             QUALITY ENVIRONMENT CARD
         ========================= -->
 
         <div
@@ -517,7 +620,9 @@
           <div class="flip-card-inner">
 
 
-            <div class="flip-card-front">
+            <div
+              class="flip-card-front quality-environment-image"
+            >
 
 
               <div class="flip-icon">
@@ -540,7 +645,9 @@
 
 
 
-            <div class="flip-card-back quality-environment">
+            <div
+              class="flip-card-back quality-environment"
+            >
 
 
               <div class="back-content">
@@ -572,17 +679,12 @@
 
 
         <!-- =========================
-             FUTURE PATHWAY
+             FUTURE PATHWAY CARD
         ========================= -->
 
         <a
           href="senior-teams.html"
           class="flip-card-link"
-          style="
-            text-decoration: none;
-            color: inherit;
-            display: block;
-          "
         >
 
 
@@ -598,7 +700,9 @@
             <div class="flip-card-inner">
 
 
-              <div class="flip-card-front">
+              <div
+                class="flip-card-front future-pathway-image"
+              >
 
 
                 <div class="flip-icon">
@@ -621,7 +725,9 @@
 
 
 
-              <div class="flip-card-back future-pathway">
+              <div
+                class="flip-card-back future-pathway"
+              >
 
 
                 <div class="back-content">
@@ -685,8 +791,7 @@
         REGISTRATION STATUS
         ==========================================
 
-        CURRENTLY CLOSED:
-
+        CURRENT STATUS:
         Registrations Closed
 
 
@@ -705,8 +810,8 @@
 
         DO NOT CHANGE THE HREF.
 
-        The registration link stays the same
-        regardless of the status.
+        The registration link stays exactly
+        the same either way.
       -->
 
 
@@ -722,17 +827,26 @@
         <span class="registration-flip-inner">
 
 
-          <!-- FRONT OF BUTTON -->
+          <!-- =========================
+               FRONT OF BUTTON
+          ========================= -->
 
           <span class="registration-flip-front">
+
             Register Now
+
           </span>
 
 
-          <!-- BACK OF BUTTON -->
+
+          <!-- =========================
+               BACK OF BUTTON
+          ========================= -->
 
           <span class="registration-flip-back">
+
             Registrations Closed
+
           </span>
 
 
@@ -784,17 +898,23 @@
 
 
       if (slides.length === 0) {
+
         return;
+
       }
 
 
       if (index >= slides.length) {
+
         slideIndex = 0;
+
       }
 
 
       if (index < 0) {
+
         slideIndex = slides.length - 1;
+
       }
 
 
@@ -807,15 +927,19 @@
 
       slides[slideIndex].classList.add("active");
 
+
     }
 
 
 
     function changeSlide(direction) {
 
+
       slideIndex += direction;
 
+
       showSlide(slideIndex);
+
 
     }
 
@@ -827,9 +951,12 @@
 
     setInterval(function() {
 
+
       slideIndex++;
 
+
       showSlide(slideIndex);
+
 
     }, 8000);
 
@@ -841,7 +968,9 @@
 
     function flipCard(card) {
 
+
       card.classList.toggle("flipped");
+
 
     }
 
@@ -872,6 +1001,7 @@
 
 
             }
+
 
           }
         );
