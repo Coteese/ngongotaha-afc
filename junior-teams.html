@@ -12,51 +12,130 @@
   <!-- MAIN WEBSITE STYLESHEET -->
   <link rel="stylesheet" href="style.css">
 
-  <style>
 
-    /* =========================
+  <!-- =========================
        REGISTRATION BUTTON FLIP
-    ========================= */
+  ========================= -->
+
+  <style>
 
     .registration-flip {
       perspective: 1000px;
       display: inline-block;
+
+      /* Button size */
+      width: 236px;
+      height: 52px;
+
+      /* Remove the original button styling
+         from style.css so it does not sit
+         behind the flip faces */
+      padding: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+
       text-decoration: none;
       color: inherit;
     }
 
+
     .registration-flip-inner {
       position: relative;
+
       display: block;
+
+      width: 100%;
+      height: 52px;
+
       transform-style: preserve-3d;
-      transition: transform 0.6s ease;
+
+      transition:
+        transform 0.6s ease;
     }
+
+
+    /* Flip the button when hovered */
 
     .registration-flip:hover .registration-flip-inner,
     .registration-flip:focus-visible .registration-flip-inner {
+
       transform: rotateY(180deg);
+
     }
+
+
+    /* =========================
+       FRONT + BACK
+    ========================= */
 
     .registration-flip-front,
     .registration-flip-back {
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 52px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      min-width: 180px;
-      min-height: 52px;
+
       box-sizing: border-box;
+
+      padding: 15px 30px;
+
+      border-radius: 8px;
+
+      /* IMPORTANT:
+         Each side has its own solid
+         background so text cannot show
+         through from the other side. */
+      background:
+        linear-gradient(
+          90deg,
+          #ff914d,
+          #fe4300
+        );
+
+      color: white;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      box-shadow:
+        0 8px 25px rgba(254,67,0,0.28);
+
+      /* Hide the reverse side */
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+
     }
+
+
+    /* FRONT */
 
     .registration-flip-front {
-      position: relative;
+
+      transform:
+        rotateY(0deg);
+
     }
 
+
+    /* BACK */
+
     .registration-flip-back {
-      position: absolute;
-      inset: 0;
-      transform: rotateY(180deg);
+
+      transform:
+        rotateY(180deg);
+
     }
 
   </style>
@@ -74,44 +153,81 @@
   <nav class="navbar">
 
     <a href="index.html" class="navbar-logo">
-      <img src="logo.png" alt="Ngongotahā AFC Logo">
+
+      <img
+        src="logo.png"
+        alt="Ngongotahā AFC Logo"
+      >
+
     </a>
+
 
     <div class="nav-links">
 
-      <a href="index.html">Home</a>
 
-      <a href="registrations.html">Registrations</a>
+      <a href="index.html">
+        Home
+      </a>
 
-      <a href="cr1.html">CR1 Project</a>
+
+      <a href="registrations.html">
+        Registrations
+      </a>
+
+
+      <a href="cr1.html">
+        CR1 Project
+      </a>
+
 
       <div class="dropdown">
 
-        <button class="dropbtn" type="button">
+        <button
+          class="dropbtn"
+          type="button"
+        >
           Ngongotahā Teams ▾
         </button>
 
+
         <div class="dropdown-content">
 
-          <a href="senior-teams.html">Senior Teams</a>
+          <a href="senior-teams.html">
+            Senior Teams
+          </a>
 
-          <a href="junior-teams.html">Junior Teams</a>
+          <a href="junior-teams.html">
+            Junior Teams
+          </a>
 
-          <a href="womens-teams.html">Women's Teams</a>
+          <a href="womens-teams.html">
+            Women's Teams
+          </a>
 
         </div>
 
       </div>
 
-      <a href="calendar.html">Calendar</a>
 
-      <a href="aboutus.html">About Us</a>
+      <a href="calendar.html">
+        Calendar
+      </a>
 
-      <a href="academy.html">Academy</a>
+
+      <a href="aboutus.html">
+        About Us
+      </a>
+
+
+      <a href="academy.html">
+        Academy
+      </a>
+
 
     </div>
 
   </nav>
+
 
 
   <!-- =========================
@@ -122,26 +238,32 @@
 
     <div class="hero-content">
 
+
       <div class="hero-small">
         Ngongotahā AFC
       </div>
+
 
       <h1>
         Junior Football
       </h1>
 
+
       <h2>
         Youth Registrations &amp; Development
       </h2>
+
 
       <p>
         Developing confident players, building strong teams and creating a pathway
         for the next generation of Ngongotahā footballers.
       </p>
 
+
     </div>
 
   </section>
+
 
 
   <!-- =========================
@@ -157,14 +279,17 @@
 
     <section class="section">
 
+
       <h2>
         Our Ambition
       </h2>
+
 
       <p>
         Ngongotahā AFC is serious about the future of junior football.
         We have big ambitions for our young players and for the future of the club.
       </p>
+
 
       <p>
         Over recent years we have made huge progress in the development of our
@@ -173,11 +298,13 @@
         the skills and confidence required to reach their potential.
       </p>
 
+
       <p>
         With excellent youth facilities, dedicated coaches and a strong football
         community behind them, our junior players have the opportunity to develop
         in a positive and ambitious environment.
       </p>
+
 
       <p>
         Our commitment is simple: we want Ngongotahā to be a club where parents
@@ -185,7 +312,9 @@
         opportunities they need to grow as footballers and as people.
       </p>
 
+
     </section>
+
 
 
     <!-- =========================
@@ -194,13 +323,17 @@
 
     <section class="section gallery-section">
 
+
       <h2>
         Junior Football at Ngongotahā
       </h2>
 
+
       <div class="gallery">
 
+
         <div class="gallery-slides">
+
 
           <img
             src="Jr1.jpg"
@@ -208,11 +341,13 @@
             alt="Ngongotahā junior football"
           >
 
+
           <img
             src="Jr2.jpg"
             class="gallery-slide"
             alt="Ngongotahā junior football"
           >
+
 
           <img
             src="Jr3.jpg"
@@ -220,21 +355,22 @@
             alt="Ngongotahā junior football"
           >
 
+
           <img
             src="Jr4.jpg"
             class="gallery-slide"
             alt="Ngongotahā junior football"
           >
 
+
         </div>
 
 
-        <!--
-          Gallery arrows are deliberately positioned
-          over the photograph.
-        -->
+
+        <!-- GALLERY CONTROLS -->
 
         <div class="gallery-controls">
+
 
           <button
             class="gallery-btn"
@@ -245,6 +381,7 @@
             &#10094;
           </button>
 
+
           <button
             class="gallery-btn"
             onclick="changeSlide(1)"
@@ -254,16 +391,21 @@
             &#10095;
           </button>
 
+
         </div>
+
 
 
         <div class="gallery-caption">
           Ngongotahā AFC Junior Football
         </div>
 
+
       </div>
 
+
     </section>
+
 
 
     <!-- =========================
@@ -272,9 +414,11 @@
 
     <section class="section">
 
+
       <h2>
         Our Development Focus
       </h2>
+
 
       <p>
         We are focused on more than simply getting children onto the pitch.
@@ -283,10 +427,13 @@
       </p>
 
 
+
       <div class="development-grid">
 
 
-        <!-- PLAYER DEVELOPMENT -->
+        <!-- =========================
+             PLAYER DEVELOPMENT
+        ========================= -->
 
         <div
           class="flip-card"
@@ -296,33 +443,43 @@
           aria-label="Player Development card"
         >
 
+
           <div class="flip-card-inner">
 
+
             <div class="flip-card-front">
+
 
               <div class="flip-icon">
                 ⚽
               </div>
 
+
               <h3>
                 Player Development
               </h3>
+
 
               <p>
                 Building technical ability, confidence, decision-making and
                 football intelligence through quality coaching.
               </p>
 
+
             </div>
+
 
 
             <div class="flip-card-back player-development">
 
+
               <div class="back-content">
+
 
                 <h3>
                   Player Development
                 </h3>
+
 
                 <p>
                   Every player should have the opportunity to improve.
@@ -330,16 +487,23 @@
                   stay with them throughout their football journey.
                 </p>
 
+
               </div>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
-        <!-- QUALITY ENVIRONMENT -->
+
+        <!-- =========================
+             QUALITY ENVIRONMENT
+        ========================= -->
 
         <div
           class="flip-card"
@@ -349,33 +513,43 @@
           aria-label="Quality Environment card"
         >
 
+
           <div class="flip-card-inner">
 
+
             <div class="flip-card-front">
+
 
               <div class="flip-icon">
                 ★
               </div>
 
+
               <h3>
                 Quality Environment
               </h3>
+
 
               <p>
                 Creating a positive, safe and ambitious environment where
                 young players can enjoy football and grow.
               </p>
 
+
             </div>
+
 
 
             <div class="flip-card-back quality-environment">
 
+
               <div class="back-content">
+
 
                 <h3>
                   Quality Environment
                 </h3>
+
 
                 <p>
                   Good facilities, equipment, coaching and organisation
@@ -383,21 +557,34 @@
                   they can be proud to be part of.
                 </p>
 
+
               </div>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
-        <!-- FUTURE PATHWAY -->
+
+        <!-- =========================
+             FUTURE PATHWAY
+        ========================= -->
 
         <a
           href="senior-teams.html"
           class="flip-card-link"
+          style="
+            text-decoration: none;
+            color: inherit;
+            display: block;
+          "
         >
+
 
           <div
             class="flip-card"
@@ -407,33 +594,43 @@
             aria-label="Future Pathway card"
           >
 
+
             <div class="flip-card-inner">
 
+
               <div class="flip-card-front">
+
 
                 <div class="flip-icon">
                   ↗
                 </div>
 
+
                 <h3>
                   Future Pathway
                 </h3>
+
 
                 <p>
                   Giving ambitious players a clear pathway through youth
                   football and towards senior football at Ngongotahā.
                 </p>
 
+
               </div>
+
 
 
               <div class="flip-card-back future-pathway">
 
+
                 <div class="back-content">
+
 
                   <h3>
                     Future Pathway
                   </h3>
+
 
                   <p>
                     Our long-term aim is to create a strong pathway from
@@ -441,20 +638,27 @@
                     into our senior teams.
                   </p>
 
+
                 </div>
+
 
               </div>
 
+
             </div>
 
+
           </div>
+
 
         </a>
 
 
       </div>
 
+
     </section>
+
 
 
     <!-- =========================
@@ -463,9 +667,11 @@
 
     <section class="section registration-box">
 
+
       <h2>
         Junior Registrations
       </h2>
+
 
       <p>
         Ready to become part of Ngongotahā AFC?
@@ -473,22 +679,36 @@
       </p>
 
 
-      <!--
-        ================================
-        REGISTRATION STATUS
-        ================================
 
-        CLOSED:
+      <!--
+        ==========================================
+        REGISTRATION STATUS
+        ==========================================
+
+        CURRENTLY CLOSED:
+
         Registrations Closed
 
-        OPEN:
+
+        WHEN REGISTRATIONS OPEN:
+
+        Simply change:
+
+        Registrations Closed
+
+        TO:
+
         Registrations Open
 
+
         IMPORTANT:
-        The href below stays exactly the same
-        regardless of whether registrations
-        are open or closed.
+
+        DO NOT CHANGE THE HREF.
+
+        The registration link stays the same
+        regardless of the status.
       -->
+
 
       <a
         href="YOUR_LINK_HERE"
@@ -498,25 +718,35 @@
         aria-label="Registrations Closed"
       >
 
+
         <span class="registration-flip-inner">
 
-          <!-- FRONT -->
+
+          <!-- FRONT OF BUTTON -->
+
           <span class="registration-flip-front">
             Register Now
           </span>
 
-          <!-- BACK -->
+
+          <!-- BACK OF BUTTON -->
+
           <span class="registration-flip-back">
             Registrations Closed
           </span>
 
+
         </span>
+
 
       </a>
 
+
     </section>
 
+
   </main>
+
 
 
   <!-- =========================
@@ -524,8 +754,11 @@
   ========================= -->
 
   <footer>
+
     © 2025 Ngongotahā Football Club | Contact Us
+
   </footer>
+
 
 
   <!-- =========================
@@ -541,23 +774,29 @@
 
     let slideIndex = 0;
 
+
     const slides =
       document.querySelectorAll(".gallery-slide");
 
 
+
     function showSlide(index) {
+
 
       if (slides.length === 0) {
         return;
       }
 
+
       if (index >= slides.length) {
         slideIndex = 0;
       }
 
+
       if (index < 0) {
         slideIndex = slides.length - 1;
       }
+
 
       slides.forEach(function(slide) {
 
@@ -565,9 +804,11 @@
 
       });
 
+
       slides[slideIndex].classList.add("active");
 
     }
+
 
 
     function changeSlide(direction) {
@@ -579,7 +820,9 @@
     }
 
 
+
     showSlide(slideIndex);
+
 
 
     setInterval(function() {
@@ -603,24 +846,38 @@
     }
 
 
-    document.querySelectorAll(".flip-card").forEach(function(card) {
 
-      card.addEventListener("keydown", function(event) {
+    document
+      .querySelectorAll(".flip-card")
+      .forEach(function(card) {
 
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
 
-          event.preventDefault();
+        card.addEventListener(
+          "keydown",
+          function(event) {
 
-          card.classList.toggle("flipped");
 
-        }
+            if (
+              event.key === "Enter" ||
+              event.key === " "
+            ) {
+
+
+              event.preventDefault();
+
+
+              card.classList.toggle(
+                "flipped"
+              );
+
+
+            }
+
+          }
+        );
+
 
       });
-
-    });
 
 
 
@@ -631,26 +888,40 @@
     const dropdownButton =
       document.querySelector(".dropbtn");
 
+
     const dropdown =
       document.querySelector(".dropdown");
 
 
-    if (dropdownButton && dropdown) {
+
+    if (
+      dropdownButton &&
+      dropdown
+    ) {
+
 
       dropdownButton.addEventListener(
         "click",
         function(event) {
 
+
           event.preventDefault();
 
-          dropdown.classList.toggle("mobile-open");
+
+          dropdown.classList.toggle(
+            "mobile-open"
+          );
+
 
         }
       );
 
+
     }
 
+
   </script>
+
 
 </body>
 
