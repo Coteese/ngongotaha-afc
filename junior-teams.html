@@ -1,22 +1,71 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Ngongotahā Football Club - Junior Teams</title>
 
   <!-- MAIN WEBSITE STYLESHEET -->
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .flip-card-link {
+
+    /* =========================
+       REGISTRATION BUTTON FLIP
+    ========================= */
+
+    .registration-flip {
+      perspective: 1000px;
+      display: inline-block;
       text-decoration: none;
       color: inherit;
-      display: block;
     }
+
+    .registration-flip-inner {
+      position: relative;
+      display: block;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .registration-flip:hover .registration-flip-inner,
+    .registration-flip:focus-visible .registration-flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .registration-flip-front,
+    .registration-flip-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      min-height: 52px;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .registration-flip-front {
+      position: relative;
+    }
+
+    .registration-flip-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+    }
+
   </style>
+
 </head>
 
+
 <body class="page-juniors">
+
 
   <!-- =========================
        NAVIGATION
@@ -100,6 +149,7 @@
   ========================= -->
 
   <main class="content">
+
 
     <!-- =========================
          AMBITION
@@ -344,7 +394,10 @@
 
         <!-- FUTURE PATHWAY -->
 
-        <a href="senior-teams.html" class="flip-card-link">
+        <a
+          href="senior-teams.html"
+          class="flip-card-link"
+        >
 
           <div
             class="flip-card"
@@ -419,13 +472,46 @@
         Register your child and join our growing junior football community.
       </p>
 
+
+      <!--
+        ================================
+        REGISTRATION STATUS
+        ================================
+
+        CLOSED:
+        Registrations Closed
+
+        OPEN:
+        Registrations Open
+
+        IMPORTANT:
+        The href below stays exactly the same
+        regardless of whether registrations
+        are open or closed.
+      -->
+
       <a
         href="YOUR_LINK_HERE"
-        class="registration-button"
+        class="registration-button registration-flip"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Registrations Closed"
       >
-        Register Now
+
+        <span class="registration-flip-inner">
+
+          <!-- FRONT -->
+          <span class="registration-flip-front">
+            Register Now
+          </span>
+
+          <!-- BACK -->
+          <span class="registration-flip-back">
+            Registrations Closed
+          </span>
+
+        </span>
+
       </a>
 
     </section>
@@ -447,6 +533,7 @@
   ========================= -->
 
   <script>
+
 
     /* =========================
        GALLERY
@@ -566,4 +653,5 @@
   </script>
 
 </body>
+
 </html>
