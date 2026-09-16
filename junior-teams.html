@@ -407,6 +407,39 @@
       font-size: 14px;
     }
 
+    .finder-teams {
+      margin-top: 18px;
+    }
+
+    .finder-teams-label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      color: #ff914d;
+    }
+
+    .finder-team-name {
+      display: inline-block;
+
+      margin: 4px;
+
+      padding: 7px 12px;
+
+      border-radius: 20px;
+
+      background: rgba(255, 145, 77, 0.14);
+      border: 1px solid rgba(255, 145, 77, 0.35);
+
+      color: #fff;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
 
     /* =========================
        MOBILE
@@ -459,6 +492,7 @@
 </head>
 
 <body class="page-juniors">
+
 
   <!-- =========================
        NAVIGATION
@@ -548,7 +582,6 @@
 
     <!-- =========================
          DEVELOPMENT FOCUS
-         ABOVE JUNIOR TEAMS
     ========================= -->
 
     <section class="section">
@@ -754,10 +787,7 @@
       <div class="team-list">
 
 
-        <!-- =========================
-             6TH GRADE
-             ORIGINAL 5TH GRADE
-        ========================= -->
+        <!-- 6TH GRADE -->
 
         <div class="team-row">
 
@@ -783,10 +813,7 @@
         </div>
 
 
-        <!-- =========================
-             7TH GRADE
-             ORIGINAL 6TH GRADE
-        ========================= -->
+        <!-- 7TH GRADE -->
 
         <div class="team-row">
 
@@ -884,10 +911,7 @@
         </div>
 
 
-        <!-- =========================
-             8TH GRADE
-             ORIGINAL 7TH GRADE
-        ========================= -->
+        <!-- 8TH GRADE -->
 
         <div class="team-row">
 
@@ -937,10 +961,7 @@
         </div>
 
 
-        <!-- =========================
-             9TH GRADE
-             ORIGINAL 8TH GRADE
-        ========================= -->
+        <!-- 9TH GRADE -->
 
         <div class="team-row">
 
@@ -990,10 +1011,7 @@
         </div>
 
 
-        <!-- =========================
-             10TH GRADE
-             ORIGINAL 9TH GRADE
-        ========================= -->
+        <!-- 10TH GRADE -->
 
         <div class="team-row">
 
@@ -1043,10 +1061,7 @@
         </div>
 
 
-        <!-- =========================
-             11TH GRADE
-             ORIGINAL 10TH GRADE
-        ========================= -->
+        <!-- 11TH GRADE -->
 
         <div class="team-row">
 
@@ -1096,12 +1111,7 @@
         </div>
 
 
-        <!-- =========================
-             12TH GRADE
-             ORIGINAL 11TH GRADE
-             KEEPS ORIGINAL 11TH
-             GRADE RULE FORMAT
-        ========================= -->
+        <!-- 12TH GRADE -->
 
         <div class="team-row">
 
@@ -1187,6 +1197,18 @@
           <p id="finderMessage">
             -
           </p>
+
+          <div class="finder-teams">
+
+            <span class="finder-teams-label">
+              Ngongotahā Teams:
+            </span>
+
+            <div id="finderTeams">
+              -
+            </div>
+
+          </div>
 
         </div>
 
@@ -1440,7 +1462,7 @@
 
       /*
         Display the game format
-        supplied for that age group.
+        for that team.
       */
 
       if (format && format.trim() !== "") {
@@ -1456,8 +1478,6 @@
 
       /*
         Display coach information.
-        If no coach has been supplied,
-        leave the field blank.
       */
 
       if (coach && coach.trim() !== "") {
@@ -1472,8 +1492,7 @@
 
 
       /*
-        Display email only when one
-        has actually been supplied.
+        Display email only when supplied.
       */
 
       if (email && email.trim() !== "") {
@@ -1561,6 +1580,14 @@
       const finderMessage =
         document.getElementById("finderMessage");
 
+      const finderTeams =
+        document.getElementById("finderTeams");
+
+
+      /*
+        Remove selected state from
+        all age buttons.
+      */
 
       document.querySelectorAll(".age-button").forEach(function(ageButton) {
 
@@ -1574,10 +1601,21 @@
 
       let grade;
 
+      let teams = [];
+
+
+      /*
+        Grade and team directory.
+
+        These are the grades displayed
+        on the website for next year.
+      */
 
       if (age === 5) {
 
         grade = "5th Grade";
+
+        teams = [];
 
       }
 
@@ -1585,11 +1623,22 @@
 
         grade = "6th Grade";
 
+        teams = [
+          "Breeze"
+        ];
+
       }
 
       else if (age === 7) {
 
         grade = "7th Grade";
+
+        teams = [
+          "Mermaids",
+          "Frost",
+          "Stars",
+          "Warriors"
+        ];
 
       }
 
@@ -1597,11 +1646,21 @@
 
         grade = "8th Grade";
 
+        teams = [
+          "Thunder",
+          "Earthquake"
+        ];
+
       }
 
       else if (age === 9) {
 
         grade = "9th Grade";
+
+        teams = [
+          "Tornado",
+          "Lightning"
+        ];
 
       }
 
@@ -1609,23 +1668,55 @@
 
         grade = "10th Grade";
 
+        teams = [
+          "Storm",
+          "Avalanche"
+        ];
+
       }
 
       else if (age === 11) {
 
         grade = "11th Grade";
 
+        teams = [
+          "Monsoon",
+          "Typhoon"
+        ];
+
       }
 
-      else if (age === 12 || age === 13) {
+      else if (age === 12) {
 
         grade = "12th Grade";
 
+        teams = [
+          "Blizzard"
+        ];
+
+      }
+
+      else if (age === 13) {
+
+        grade = "12th Grade";
+
+        teams = [
+          "Blizzard"
+        ];
+
       }
 
 
+      /*
+        Show the grade.
+      */
+
       finderGrade.textContent = grade;
 
+
+      /*
+        Show the normal age message.
+      */
 
       finderMessage.textContent =
         "If your child turns " +
@@ -1633,6 +1724,41 @@
         " during this calendar year, they are in " +
         grade +
         ".";
+
+
+      /*
+        Show the Ngongotahā teams
+        available in that grade.
+      */
+
+      finderTeams.innerHTML = "";
+
+
+      if (teams.length > 0) {
+
+        teams.forEach(function(team) {
+
+          const teamElement =
+            document.createElement("span");
+
+          teamElement.className =
+            "finder-team-name";
+
+          teamElement.textContent =
+            team;
+
+          finderTeams.appendChild(teamElement);
+
+        });
+
+      }
+
+      else {
+
+        finderTeams.textContent =
+          "No junior team currently listed for this grade.";
+
+      }
 
 
       finderResult.classList.add("active");
