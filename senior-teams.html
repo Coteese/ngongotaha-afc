@@ -105,30 +105,57 @@
 
     <!-- =======================================================
          FIRST TEAM / U23 OVERVIEW
+         VIDEO FEATURE
          ======================================================= -->
 
-    <section class="section">
+    <section class="senior-video-feature">
 
-      <span class="home-section-label">
-        Senior Football
-      </span>
+      <!-- Background video -->
 
-      <h2>
-        First Team & Under 23s
-      </h2>
+      <video
+        class="senior-video-background"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="training.mp4" type="video/mp4">
+      </video>
 
-      <p>
-        Our Men's First Team plays in the Southern Conference competition,
-        alongside the Under-23 development team. This is the highest level
-        available locally and provides a great opportunity for Rotorua
-        players to compete.
-      </p>
 
-      <p>
-        The squads are coached by head coach Marvin Koeppen
-        (UEFA B-Licensed), with Brendan Squibb taking over the U23 team
-        and George Oake as assistant coach.
-      </p>
+      <!-- Dark overlay -->
+
+      <div class="senior-video-overlay"></div>
+
+
+      <!-- Content over video -->
+
+      <div class="senior-video-content">
+
+        <span class="home-section-label">
+          Senior Football
+        </span>
+
+        <h2>
+          First Team & Under 23s
+        </h2>
+
+        <p>
+          Our Men's First Team plays in the Southern Conference competition,
+          alongside the Under-23 development team. This is the highest level
+          available locally and provides a great opportunity for Rotorua
+          players to compete.
+        </p>
+
+        <p>
+          The squads are coached by head coach Marvin Koeppen
+          (UEFA B-Licensed), with Brendan Squibb taking over the U23 team
+          and George Oake as assistant coach.
+        </p>
+
+      </div>
 
     </section>
 
@@ -562,10 +589,12 @@
 
 
   <!-- =========================================================
-       NAVBAR / MOBILE DROPDOWN
+       JAVASCRIPT
        ========================================================= -->
 
   <script>
+
+    /* Navbar scroll effect */
 
     const navbar = document.getElementById("navbar");
 
@@ -579,6 +608,8 @@
 
     });
 
+
+    /* Mobile team dropdown */
 
     const dropdown = document.querySelector(".dropdown");
     const dropButton = document.querySelector(".dropbtn");
