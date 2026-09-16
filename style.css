@@ -200,11 +200,6 @@ body {
 
 /* =========================================================
    SILKY DIAGONAL HOVER SHINE
-
-   The shine is contained completely inside each
-   individual navigation button.
-
-   It does not affect the orange navbar itself.
    ========================================================= */
 
 .nav-links a::after,
@@ -332,6 +327,8 @@ body {
 
   backdrop-filter:
     blur(12px);
+
+  z-index: 2000;
 }
 
 .dropdown-content a {
@@ -1826,7 +1823,7 @@ footer a {
 
 
 /* =========================================================
-   MOBILE
+   MOBILE / TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -1886,6 +1883,50 @@ footer a {
     font-size:
       12px;
   }
+
+
+  /* =======================================================
+     MOBILE DROPDOWN FIX
+
+     The navigation uses horizontal scrolling on narrow
+     screens. A normal absolute dropdown can therefore be
+     clipped by the scrolling .nav-links container.
+
+     Fixed positioning lets the dropdown escape that
+     scrolling container while remaining above the page.
+     ======================================================= */
+
+  .dropdown-content {
+    position:
+      fixed;
+
+    top:
+      82px;
+
+    left:
+      10px;
+
+    right:
+      auto;
+
+    min-width:
+      190px;
+
+    max-width:
+      calc(100vw - 20px);
+
+    z-index:
+      5000;
+
+    box-shadow:
+      0 15px 35px rgba(0,0,0,0.75);
+  }
+
+  .dropdown.mobile-open .dropdown-content {
+    display:
+      block;
+  }
+
 
   .hero {
     margin:
@@ -2018,6 +2059,29 @@ footer a {
     flex:
       0 0 auto;
   }
+
+
+  /* =======================================================
+     SMALL PHONE DROPDOWN POSITION
+
+     On phones the logo occupies its own row, so the
+     navigation sits lower in the navbar.
+     ======================================================= */
+
+  .dropdown-content {
+    top:
+      108px;
+
+    left:
+      10px;
+
+    min-width:
+      185px;
+
+    max-width:
+      calc(100vw - 20px);
+  }
+
 
   .hero {
     margin-top:
