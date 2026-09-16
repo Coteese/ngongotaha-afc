@@ -242,8 +242,7 @@ body {
 
   position: absolute;
 
-  /* FIXED: removes the gap that made the dropdown
-     disappear before its buttons could be clicked */
+  /* FIX: no gap between button and dropdown */
   top: 100%;
   left: 0;
 
@@ -752,11 +751,16 @@ body {
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3, minmax(0, 330px));
+
+  justify-content: center;
+
+  align-items: stretch;
 
   gap: 22px;
 
-  margin-top: 25px;
+  margin:
+    25px auto 0;
 }
 
 .flip-card {
@@ -1022,18 +1026,16 @@ body {
 
    JUNIOR PAGE
 
-   These are the current Junior page images.
-
    ========================================================= */
 
 .page-juniors .player-development {
   background-image:
-    url("Equipment.jpg");
+    url("cr2.jpg");
 }
 
 .page-juniors .quality-environment {
   background-image:
-    url("Equipment.jpg");
+    url("drone.jpg");
 }
 
 .page-juniors .future-pathway {
@@ -1333,6 +1335,9 @@ footer {
   .development-grid {
     grid-template-columns:
       1fr;
+
+    max-width:
+      420px;
   }
 
   .flip-card {
