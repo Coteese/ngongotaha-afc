@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,6 +135,7 @@
       </p>
 
       <div class="team-pathway-grid">
+
 
         <!-- SENIOR -->
 
@@ -282,8 +284,8 @@
       </h2>
 
       <p class="latest-news-intro">
-        Catch up with what has been happening around Ngongotahā AFC
-        as we head into a very special year for the club.
+        Catch up with what's happening around Ngongotahā AFC.
+        Click any story to read the full article.
       </p>
 
 
@@ -291,10 +293,14 @@
 
 
         <!-- =================================================
-             60 YEAR HISTORY FEATURE
+             60 YEAR HISTORY
              ================================================= -->
 
-        <article class="latest-news-card latest-history">
+        <button
+          type="button"
+          class="latest-news-card latest-history"
+          onclick="openNews('history')"
+        >
 
           <div class="latest-news-image">
 
@@ -325,72 +331,24 @@
               2026, and what a 60 years it has been.
             </p>
 
-            <p>
-              Founded in 1966, Ngongotahā Football Club has grown
-              alongside the community it represents. What began as a
-              local football club has developed into one of Rotorua's
-              longstanding football institutions, providing a place
-              for generations of players to learn the game, make
-              friendships and pull on the Ngongotahā colours.
-            </p>
-
-            <p>
-              Over the decades, the club has competed across the
-              regional and national football landscape. Ngongotahā
-              spent many years competing in the Northern League era,
-              including football as high as the second division.
-              The club has also enjoyed memorable cup and championship
-              campaigns, with the 2011 season bringing a Federation
-              Championship title and promotion.
-            </p>
-
-            <p>
-              In 2014, Ngongotahā reached the round of 16 in the
-              Chatham Cup, creating another memorable chapter in the
-              club's history. Two years later came another milestone
-              when the club claimed its first Waikato-Bay of Plenty
-              Federation Premiership title, completing an unbeaten
-              championship campaign.
-            </p>
-
-            <p>
-              But the story of Ngongotahā AFC is about much more than
-              league tables and trophies. It is about the volunteers
-              preparing the grounds, coaches giving their time,
-              families standing on the sideline, juniors discovering
-              football for the first time, and players returning to
-              the club year after year.
-            </p>
-
-            <p>
-              As the club celebrates 60 years in 2026, the focus is
-              both on remembering the people and moments that built
-              Ngongotahā AFC and looking forward to the next generation.
-              From Little Dribblers and junior football through to
-              senior, women's and community football, the next chapter
-              is already being written.
-            </p>
-
-            <div class="latest-news-footer">
-              <span>
-                60 years of football
-              </span>
-
-              <span>
-                1966 • 2026
-              </span>
-            </div>
+            <span class="read-story">
+              Read full story →
+            </span>
 
           </div>
 
-        </article>
+        </button>
 
 
         <!-- =================================================
              WALKING FOOTBALL
              ================================================= -->
 
-        <article class="latest-news-card">
+        <button
+          type="button"
+          class="latest-news-card"
+          onclick="openNews('walking')"
+        >
 
           <div class="latest-news-image">
 
@@ -422,30 +380,24 @@
               the game in a relaxed and welcoming environment.
             </p>
 
-            <p>
-              The programme is designed for the over-55 community and
-              offers a slower-paced version of football without running
-              or contact. It provides an accessible way to stay active,
-              meet people and continue enjoying the game regardless of
-              previous football experience or current fitness level.
-            </p>
-
-            <p>
-              The programme is being led by Head Coach Marvin Koeppen,
-              with sessions taking place in partnership with Parksyde
-              Community Centre.
-            </p>
+            <span class="read-story">
+              Read full story →
+            </span>
 
           </div>
 
-        </article>
+        </button>
 
 
         <!-- =================================================
              PRESEASON
              ================================================= -->
 
-        <article class="latest-news-card">
+        <button
+          type="button"
+          class="latest-news-card"
+          onclick="openNews('preseason')"
+        >
 
           <div class="latest-news-image">
 
@@ -476,28 +428,24 @@
               2026 season with preseason training at Stembridge Road.
             </p>
 
-            <p>
-              With another season ahead and plenty to build towards,
-              the club welcomed new players to join the group and
-              become part of the Ngongotahā senior football pathway.
-            </p>
-
-            <p>
-              The first session also included a club barbecue,
-              bringing players, coaches and the wider football
-              community together as the new season began.
-            </p>
+            <span class="read-story">
+              Read full story →
+            </span>
 
           </div>
 
-        </article>
+        </button>
 
 
         <!-- =================================================
              WHĀNAU DAYS
              ================================================= -->
 
-        <article class="latest-news-card">
+        <button
+          type="button"
+          class="latest-news-card"
+          onclick="openNews('whanau')"
+        >
 
           <div class="latest-news-image">
 
@@ -528,22 +476,13 @@
               a series of Fun Whānau Days across Rotorua.
             </p>
 
-            <p>
-              The club brought football stations, small goals, cones
-              and plenty of footballs to local parks, giving tamariki
-              and whānau the chance to get involved in a fun and
-              informal setting.
-            </p>
-
-            <p>
-              The events are part of the club's continued commitment
-              to making football accessible and welcoming for people
-              throughout the Rotorua community.
-            </p>
+            <span class="read-story">
+              Read full story →
+            </span>
 
           </div>
 
-        </article>
+        </button>
 
 
       </div>
@@ -655,7 +594,8 @@
 
         <div class="sponsors-track">
 
-          <!-- FIRST SPONSOR GROUP -->
+
+          <!-- FIRST GROUP -->
 
           <div class="sponsors-group">
 
@@ -697,7 +637,7 @@
           </div>
 
 
-          <!-- DUPLICATE GROUP FOR SEAMLESS LOOP -->
+          <!-- DUPLICATE GROUP -->
 
           <div class="sponsors-group">
 
@@ -742,6 +682,7 @@
             </div>
 
           </div>
+
 
         </div>
 
@@ -751,6 +692,70 @@
 
 
   </main>
+
+
+  <!-- =====================================================
+       NEWS POPUP
+       ===================================================== -->
+
+  <div
+    class="news-modal"
+    id="newsModal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="news-modal-backdrop"
+      onclick="closeNews()"
+    ></div>
+
+    <article
+      class="news-modal-window"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="newsModalTitle"
+    >
+
+      <button
+        type="button"
+        class="news-modal-close"
+        onclick="closeNews()"
+        aria-label="Close article"
+      >
+        ×
+      </button>
+
+      <div class="news-modal-image">
+
+        <img
+          id="newsModalImage"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+      <div class="news-modal-content">
+
+        <span
+          class="news-modal-kicker"
+          id="newsModalKicker"
+        ></span>
+
+        <span
+          class="news-modal-date"
+          id="newsModalDate"
+        ></span>
+
+        <h2 id="newsModalTitle"></h2>
+
+        <div id="newsModalStory"></div>
+
+      </div>
+
+    </article>
+
+  </div>
 
 
   <!-- =====================================================
@@ -774,12 +779,14 @@
 
   <script>
 
+
     /* =====================================================
        NAVBAR
        ===================================================== */
 
     const navbar =
       document.getElementById("navbar");
+
 
     window.addEventListener("scroll", function() {
 
@@ -805,6 +812,7 @@
 
     const dropdown =
       document.querySelector(".dropdown");
+
 
     if (dropdownButton && dropdown) {
 
@@ -852,6 +860,338 @@
 
 
     /* =====================================================
+       NEWS ARTICLES
+       ===================================================== */
+
+    const newsArticles = {
+
+      history: {
+
+        image: "drone.jpg",
+
+        kicker: "60 YEARS OF NGONGOTAHĀ AFC",
+
+        date: "1966 → 2026",
+
+        title:
+          "A Club Built on Football, Community and Generations",
+
+        story: `
+
+          <p>
+            Ngongotahā AFC is celebrating its 60th year jubilee in
+            2026, and what a 60 years it has been.
+          </p>
+
+          <p>
+            Founded in 1966, Ngongotahā Football Club has grown
+            alongside the community it represents. What began as a
+            local football club has developed into one of Rotorua's
+            longstanding football institutions, providing a place
+            for generations of players to learn the game, make
+            friendships and pull on the Ngongotahā colours.
+          </p>
+
+          <p>
+            Over the decades, the club has competed across the
+            regional and national football landscape. Ngongotahā
+            spent many years competing in the Northern League era,
+            including football as high as the second division.
+            The club has also enjoyed memorable cup and championship
+            campaigns, with the 2011 season bringing a Federation
+            Championship title and promotion.
+          </p>
+
+          <p>
+            In 2014, Ngongotahā reached the round of 16 in the
+            Chatham Cup, creating another memorable chapter in the
+            club's history. Two years later came another milestone
+            when the club claimed its first Waikato-Bay of Plenty
+            Federation Premiership title, completing an unbeaten
+            championship campaign.
+          </p>
+
+          <p>
+            But the story of Ngongotahā AFC is about much more than
+            league tables and trophies. It is about the volunteers
+            preparing the grounds, coaches giving their time,
+            families standing on the sideline, juniors discovering
+            football for the first time, and players returning to
+            the club year after year.
+          </p>
+
+          <p>
+            As the club celebrates 60 years in 2026, the focus is
+            both on remembering the people and moments that built
+            Ngongotahā AFC and looking forward to the next generation.
+            From Little Dribblers and junior football through to
+            senior, women's and community football, the next chapter
+            is already being written.
+          </p>
+
+        `
+
+      },
+
+
+      walking: {
+
+        image: "cr2.jpg",
+
+        kicker: "COMMUNITY FOOTBALL",
+
+        date: "8 MAY",
+
+        title:
+          "Walking Football Launches in Rotorua",
+
+        story: `
+
+          <p>
+            Ngongotahā AFC has helped launch Walking Football in
+            Rotorua, opening another pathway for people to enjoy
+            the game in a relaxed and welcoming environment.
+          </p>
+
+          <p>
+            The programme is designed for the over-55 community and
+            offers a slower-paced version of football without running
+            or contact.
+          </p>
+
+          <p>
+            It provides an accessible way to stay active, meet people
+            and continue enjoying the game regardless of previous
+            football experience or current fitness level.
+          </p>
+
+          <p>
+            The programme is being led by Head Coach Marvin Koeppen,
+            with sessions taking place in partnership with Parksyde
+            Community Centre.
+          </p>
+
+          <p>
+            It is another example of how football can provide a place
+            for people at different stages of life to stay connected
+            to the game and to their local community.
+          </p>
+
+        `
+
+      },
+
+
+      preseason: {
+
+        image: "mens.jpg",
+
+        kicker: "SENIOR FOOTBALL",
+
+        date: "9 JAN",
+
+        title:
+          "Preseason 2026 Gets Underway",
+
+        story: `
+
+          <p>
+            The First Team and U23s began preparations for the
+            2026 season with preseason training at Stembridge Road.
+          </p>
+
+          <p>
+            With another season ahead and plenty to build towards,
+            the club welcomed new players to join the group and
+            become part of the Ngongotahā senior football pathway.
+          </p>
+
+          <p>
+            The first training session marked the beginning of the
+            work towards the new season, with players and coaches
+            getting back together and preparing for the challenges
+            ahead.
+          </p>
+
+          <p>
+            The session also included a club barbecue, bringing
+            players, coaches and the wider football community together
+            as the new season began.
+          </p>
+
+          <p>
+            With the senior pathway continuing to grow, preseason
+            provides another opportunity for players to put their
+            hands up, become part of the group and help shape the
+            2026 season.
+          </p>
+
+        `
+
+      },
+
+
+      whanau: {
+
+        image: "cr1.jpg",
+
+        kicker: "COMMUNITY",
+
+        date: "30 JAN",
+
+        title:
+          "Football Meets the Community at Fun Whānau Days",
+
+        story: `
+
+          <p>
+            Ngongotahā AFC took football into the community during
+            a series of Fun Whānau Days across Rotorua.
+          </p>
+
+          <p>
+            The club brought football stations, small goals, cones
+            and plenty of footballs to local parks, giving tamariki
+            and whānau the chance to get involved in a fun and
+            informal setting.
+          </p>
+
+          <p>
+            The events included community sessions at Ngongotahā
+            Domain, Karenga Park in Te Koutu and Linton Park in
+            East Mangakakahi.
+          </p>
+
+          <p>
+            The focus was on making football accessible, welcoming
+            and enjoyable for everyone, with young players able to
+            get involved without the pressure of a formal training
+            environment.
+          </p>
+
+          <p>
+            The days are part of the club's continued commitment to
+            making football accessible throughout the Rotorua
+            community and helping more tamariki discover the game.
+          </p>
+
+        `
+
+      }
+
+    };
+
+
+    /* =====================================================
+       OPEN NEWS POPUP
+       ===================================================== */
+
+    const newsModal =
+      document.getElementById("newsModal");
+
+    const newsModalImage =
+      document.getElementById("newsModalImage");
+
+    const newsModalKicker =
+      document.getElementById("newsModalKicker");
+
+    const newsModalDate =
+      document.getElementById("newsModalDate");
+
+    const newsModalTitle =
+      document.getElementById("newsModalTitle");
+
+    const newsModalStory =
+      document.getElementById("newsModalStory");
+
+
+    function openNews(articleName) {
+
+      const article =
+        newsArticles[articleName];
+
+      if (!article) {
+        return;
+      }
+
+
+      newsModalImage.src =
+        article.image;
+
+      newsModalImage.alt =
+        article.title;
+
+      newsModalKicker.textContent =
+        article.kicker;
+
+      newsModalDate.textContent =
+        article.date;
+
+      newsModalTitle.textContent =
+        article.title;
+
+      newsModalStory.innerHTML =
+        article.story;
+
+
+      newsModal.classList.add("open");
+
+      newsModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.classList.add(
+        "news-modal-open"
+      );
+
+    }
+
+
+    /* =====================================================
+       CLOSE NEWS POPUP
+       ===================================================== */
+
+    function closeNews() {
+
+      newsModal.classList.remove("open");
+
+      newsModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      document.body.classList.remove(
+        "news-modal-open"
+      );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE KEY
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape" &&
+          newsModal.classList.contains("open")
+        ) {
+
+          closeNews();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
        GALLERY
        ===================================================== */
 
@@ -869,23 +1209,40 @@
         return;
       }
 
+
       if (index >= slides.length) {
+
         slideIndex = 0;
+
       }
+
 
       if (index < 0) {
-        slideIndex = slides.length - 1;
+
+        slideIndex =
+          slides.length - 1;
+
       }
 
-      slides.forEach(function(slide) {
 
-        slide.classList.remove("active");
+      slides.forEach(
+        function(slide) {
 
-      });
+          slide.classList.remove(
+            "active"
+          );
 
-      slides[slideIndex].classList.add("active");
+        }
+      );
+
+
+      slides[slideIndex].classList.add(
+        "active"
+      );
+
 
       clearTimeout(slideTimeout);
+
 
       slideTimeout =
         setTimeout(
@@ -920,13 +1277,20 @@
       "keydown",
       function(event) {
 
-        if (event.key === "ArrowLeft") {
+        if (
+          event.key === "ArrowLeft" &&
+          !newsModal.classList.contains("open")
+        ) {
 
           changeSlide(-1);
 
         }
 
-        if (event.key === "ArrowRight") {
+
+        if (
+          event.key === "ArrowRight" &&
+          !newsModal.classList.contains("open")
+        ) {
 
           changeSlide(1);
 
