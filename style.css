@@ -3,7 +3,10 @@
    MASTER STYLESHEET
    ========================================================= */
 
-/* GLOBAL */
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -33,7 +36,9 @@ body {
 }
 
 
-/* COLOURS */
+/* =========================================================
+   COLOURS
+   ========================================================= */
 
 :root {
   --orange-light: #ff914d;
@@ -83,9 +88,6 @@ body {
   box-shadow:
     0 4px 25px rgba(0,0,0,0.55),
     0 0 25px rgba(254,67,0,0.25);
-
-  transition:
-    background 0.4s ease;
 }
 
 
@@ -113,9 +115,7 @@ body {
 .navbar-logo {
   display: flex;
   align-items: center;
-
   flex-shrink: 0;
-
   text-decoration: none;
 }
 
@@ -124,7 +124,6 @@ body {
   height: 65px;
 
   object-fit: contain;
-
   display: block;
 
   filter:
@@ -137,8 +136,7 @@ body {
 }
 
 .navbar-logo:hover img {
-  transform:
-    scale(1.06);
+  transform: scale(1.06);
 }
 
 
@@ -154,18 +152,15 @@ body {
   gap: 7px;
 
   width: 100%;
-
   margin-left: 25px;
 }
 
 .nav-links a,
 .dropbtn {
   position: relative;
-
   overflow: hidden;
 
   color: white;
-
   text-decoration: none;
 
   font-size: 14px;
@@ -185,11 +180,12 @@ body {
 
 
 /* =========================================================
-   NAVBAR SHINE
+   NAV SHINE
    ========================================================= */
 
 .nav-links a::after,
 .nav-links .dropbtn::after {
+
   content: "";
 
   position: absolute;
@@ -221,12 +217,15 @@ body {
   pointer-events: none;
 }
 
+
 .nav-links a:hover::after,
 .nav-links .dropbtn:hover::after {
+
   opacity: 1;
 
   animation:
     navbarSilkyShine 0.7s ease-out forwards;
+
 }
 
 
@@ -249,6 +248,7 @@ body {
 
 .nav-links a:hover,
 .dropbtn:hover {
+
   background:
     rgba(0,0,0,0.25);
 
@@ -272,13 +272,12 @@ body {
 .dropbtn {
   border: none;
   background: transparent;
-
   cursor: pointer;
-
   font-family: inherit;
 }
 
 .dropdown-content {
+
   display: none;
 
   position: absolute;
@@ -308,6 +307,7 @@ body {
 }
 
 .dropdown-content a {
+
   display: block;
 
   padding: 13px 16px;
@@ -320,6 +320,7 @@ body {
 }
 
 .dropdown-content a:hover {
+
   background:
     linear-gradient(
       90deg,
@@ -342,13 +343,16 @@ body {
    ========================================================= */
 
 .hero {
+
   position: relative;
 
   max-width: 1200px;
 
-  margin: 55px auto 35px;
+  margin:
+    55px auto 35px;
 
-  padding: 65px 35px;
+  padding:
+    65px 35px;
 
   text-align: center;
 
@@ -374,6 +378,7 @@ body {
 
 
 .hero::before {
+
   content: "";
 
   position: absolute;
@@ -400,6 +405,7 @@ body {
 
 
 .hero::after {
+
   content: "";
 
   position: absolute;
@@ -435,18 +441,21 @@ body {
 
 
 .hero-small {
+
   display: inline-block;
 
   margin-bottom: 18px;
 
-  padding: 7px 16px;
+  padding:
+    7px 16px;
 
   border:
     1px solid rgba(255,145,77,0.4);
 
   border-radius: 30px;
 
-  color: #ffb07a;
+  color:
+    #ffb07a;
 
   font-size: 13px;
   font-weight: bold;
@@ -464,6 +473,7 @@ body {
 
 
 .hero h1 {
+
   margin: 0;
 
   font-size:
@@ -488,7 +498,6 @@ body {
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   background-clip: text;
 
   filter:
@@ -499,6 +508,7 @@ body {
 
 
 .hero h2 {
+
   margin:
     18px 0 0;
 
@@ -517,6 +527,7 @@ body {
 
 
 .hero p {
+
   max-width: 780px;
 
   margin:
@@ -531,11 +542,8 @@ body {
 }
 
 
-/* =========================================================
-   HOME HERO
-   ========================================================= */
-
 .page-home .home-hero {
+
   max-width: 1200px;
 
   margin-top: 48px;
@@ -556,6 +564,7 @@ body {
    ========================================================= */
 
 .content {
+
   max-width: 1200px;
 
   margin:
@@ -571,6 +580,7 @@ body {
    ========================================================= */
 
 .section {
+
   position: relative;
 
   margin-bottom: 35px;
@@ -596,7 +606,9 @@ body {
     blur(10px);
 }
 
+
 .section h2 {
+
   margin-top: 0;
 
   margin-bottom: 20px;
@@ -611,7 +623,9 @@ body {
   letter-spacing: 1px;
 }
 
+
 .section p {
+
   color:
     #eeeeee;
 
@@ -621,6 +635,7 @@ body {
 
   margin-bottom: 16px;
 }
+
 
 .section p:last-child {
   margin-bottom: 0;
@@ -632,6 +647,7 @@ body {
    ========================================================= */
 
 .home-section-label {
+
   display: inline-block;
 
   margin-bottom: 12px;
@@ -659,13 +675,14 @@ body {
    ========================================================= */
 
 .page-home .home-intro {
+
   border-left:
     3px solid rgba(254,67,0,0.75);
 }
 
+
 .page-home .home-intro h2 {
-  color:
-    #ffffff;
+  color: #ffffff;
 }
 
 
@@ -674,6 +691,7 @@ body {
    ========================================================= */
 
 .page-home .team-pathways {
+
   background:
     rgba(6,6,6,0.96);
 
@@ -681,13 +699,14 @@ body {
     1px solid rgba(255,145,77,0.20);
 }
 
+
 .team-pathways-intro {
-  margin-bottom:
-    25px !important;
+  margin-bottom: 25px !important;
 }
 
 
 .team-pathway-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -700,6 +719,7 @@ body {
 
 
 .team-pathway {
+
   position: relative;
 
   min-height: 310px;
@@ -724,11 +744,9 @@ body {
   background-repeat:
     no-repeat;
 
-  text-decoration:
-    none;
+  text-decoration: none;
 
-  color:
-    white;
+  color: white;
 
   box-shadow:
     0 12px 35px rgba(0,0,0,0.55);
@@ -745,10 +763,12 @@ body {
     url("mens.jpg");
 }
 
+
 .junior-pathway {
   background-image:
     url("cr1.jpg");
 }
+
 
 .womens-pathway {
   background-image:
@@ -757,6 +777,7 @@ body {
 
 
 .team-pathway-overlay {
+
   position: absolute;
 
   inset: 0;
@@ -775,6 +796,7 @@ body {
 
 
 .team-pathway:hover {
+
   transform:
     translateY(-5px);
 
@@ -787,6 +809,7 @@ body {
 
 
 .team-pathway:hover .team-pathway-overlay {
+
   background:
     linear-gradient(
       180deg,
@@ -798,6 +821,7 @@ body {
 
 
 .team-pathway-content {
+
   position: relative;
 
   z-index: 2;
@@ -809,6 +833,7 @@ body {
 
 
 .team-pathway-kicker {
+
   display: block;
 
   margin-bottom: 8px;
@@ -825,6 +850,7 @@ body {
 
 
 .team-pathway h3 {
+
   margin:
     0 0 18px;
 
@@ -834,15 +860,14 @@ body {
   font-size:
     29px;
 
-  line-height:
-    1.05;
+  line-height: 1.05;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
 
 
 .team-pathway-link {
+
   display: flex;
 
   align-items: center;
@@ -860,21 +885,19 @@ body {
   color:
     white;
 
-  font-size:
-    13px;
+  font-size: 13px;
 
-  font-weight:
-    bold;
+  font-weight: bold;
 
   letter-spacing:
     0.5px;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
 
 
 .team-pathway-link span {
+
   color:
     #ff914d;
 
@@ -887,6 +910,7 @@ body {
 
 
 .team-pathway:hover .team-pathway-link span {
+
   transform:
     translateX(5px);
 }
@@ -896,84 +920,90 @@ body {
    LATEST FROM THE CLUB
    ========================================================= */
 
-.page-home .latest-news-section {
+.latest-news-section {
+
   background:
     rgba(6,6,6,0.96);
-
-  border:
-    1px solid rgba(255,145,77,0.20);
 }
 
 
 .latest-news-intro {
-  max-width: 760px;
 
-  margin-bottom:
-    28px !important;
+  max-width: 850px;
 }
 
 
 .latest-news-grid {
+
   display: grid;
 
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
 
-  gap: 22px;
+  gap: 24px;
 
-  align-items: stretch;
+  margin-top: 28px;
 }
 
 
 .latest-news-card {
+
   overflow: hidden;
 
   background:
-    #0b0b0b;
+    linear-gradient(
+      145deg,
+      #161616,
+      #090909
+    );
 
   border:
-    1px solid rgba(255,145,77,0.20);
+    1px solid rgba(255,145,77,0.22);
 
-  border-radius: 14px;
+  border-radius: 16px;
 
   box-shadow:
-    0 12px 35px rgba(0,0,0,0.45);
+    0 15px 40px rgba(0,0,0,0.55);
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
 .latest-news-card:hover {
+
   transform:
     translateY(-4px);
 
   border-color:
-    rgba(255,145,77,0.50);
+    rgba(255,145,77,0.55);
 
   box-shadow:
-    0 18px 40px rgba(0,0,0,0.65);
+    0 20px 50px rgba(0,0,0,0.7);
 }
 
 
 .latest-news-image {
+
   position: relative;
 
   width: 100%;
 
-  height: 235px;
+  height: 260px;
 
   overflow: hidden;
 
   background:
-    #111111;
+    #050505;
 }
 
 
 .latest-news-image img {
+
   width: 100%;
+
   height: 100%;
 
   display: block;
@@ -981,174 +1011,178 @@ body {
   object-fit: cover;
 
   transition:
-    transform 0.4s ease;
+    transform 0.5s ease;
 }
 
 
-.latest-news-card:hover .latest-news-image img {
+.latest-news-card:hover
+.latest-news-image img {
+
   transform:
     scale(1.04);
 }
 
 
-.latest-news-image::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,0.02),
-      rgba(0,0,0,0.55)
-    );
-
-  pointer-events: none;
-}
-
-
 .latest-news-date {
+
   position: absolute;
 
   left: 18px;
-  bottom: 16px;
-
-  z-index: 2;
+  bottom: 18px;
 
   padding:
-    7px 11px;
+    8px 12px;
+
+  color:
+    white;
 
   background:
-    rgba(0,0,0,0.82);
+    rgba(0,0,0,0.78);
 
   border:
     1px solid rgba(255,145,77,0.45);
 
-  color:
-    #ffb07a;
+  border-radius: 7px;
 
-  font-size:
-    10px;
+  font-size: 11px;
 
-  font-weight:
-    800;
+  font-weight: 800;
 
-  letter-spacing:
-    1.5px;
-
-  text-transform:
-    uppercase;
+  letter-spacing: 1.5px;
 }
 
 
 .latest-news-content {
-  padding:
-    25px;
+
+  padding: 27px;
 }
 
 
-.latest-news-category {
-  display: inline-block;
+.latest-news-kicker {
 
-  margin-bottom:
-    9px;
+  display: block;
+
+  margin-bottom: 10px;
 
   color:
     #ff914d;
 
-  font-size:
-    10px;
+  font-size: 11px;
 
-  font-weight:
-    800;
+  font-weight: 800;
 
-  letter-spacing:
-    2px;
+  letter-spacing: 2px;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
 
 
 .latest-news-content h3 {
+
   margin:
-    0 0 15px;
+    0 0 18px;
 
   color:
-    #ffffff;
+    white;
 
   font-size:
-    24px;
+    25px;
 
-  line-height:
-    1.15;
+  line-height: 1.15;
 }
 
 
 .latest-news-content p {
+
+  margin-bottom:
+    15px;
+
   color:
-    #d7d7d7;
+    #dddddd;
 
   font-size:
     15px;
 
   line-height:
-    1.7;
-
-  margin-bottom:
-    14px;
+    1.75;
 }
 
 
 .latest-news-content p:last-child {
-  margin-bottom:
-    0;
+  margin-bottom: 0;
 }
 
 
 /* =========================================================
-   60 YEAR HISTORY FEATURE
+   FEATURED HISTORY ARTICLE
    ========================================================= */
 
 .latest-history {
+
   grid-column:
     1 / -1;
 
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
-    minmax(300px, 0.9fr)
-    minmax(0, 1.6fr);
+    minmax(320px, 0.9fr)
+    minmax(0, 1.1fr);
+
+  min-height: 500px;
 }
 
 
 .latest-history .latest-news-image {
-  height:
-    100%;
 
-  min-height:
-    520px;
+  height: 100%;
+
+  min-height: 500px;
 }
 
 
 .latest-history .latest-news-content {
+
   padding:
-    32px;
+    35px;
 }
 
 
 .latest-history .latest-news-content h3 {
+
   font-size:
     31px;
 }
 
 
-.latest-history .latest-news-content p {
+.latest-news-footer {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 25px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid rgba(255,145,77,0.25);
+
+  color:
+    #ff914d;
+
   font-size:
-    15.5px;
+    12px;
+
+  font-weight:
+    bold;
+
+  letter-spacing:
+    1px;
+
+  text-transform:
+    uppercase;
 }
 
 
@@ -1157,11 +1191,12 @@ body {
    ========================================================= */
 
 .gallery-section {
-  padding:
-    35px;
+  padding: 35px;
 }
 
+
 .gallery {
+
   position: relative;
 
   width: 100%;
@@ -1171,11 +1206,9 @@ body {
   margin:
     0 auto;
 
-  border-radius:
-    16px;
+  border-radius: 16px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
   background:
     #050505;
@@ -1189,6 +1222,7 @@ body {
 
 
 .gallery-slides {
+
   position: relative;
 
   width: 100%;
@@ -1201,6 +1235,7 @@ body {
 
 
 .gallery-slide {
+
   position: absolute;
 
   inset: 0;
@@ -1224,11 +1259,8 @@ body {
 }
 
 
-/* =========================================================
-   GALLERY CONTROLS
-   ========================================================= */
-
 .gallery-controls {
+
   position: absolute;
 
   top: 50%;
@@ -1255,6 +1287,7 @@ body {
 
 
 .gallery-btn {
+
   width: 55px;
   height: 65px;
 
@@ -1269,15 +1302,18 @@ body {
   color:
     white;
 
-  font-size: 38px;
+  font-size:
+    38px;
 
   line-height: 1;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   pointer-events: auto;
@@ -1296,6 +1332,7 @@ body {
 
 
 .gallery-btn:hover {
+
   background:
     rgba(254,67,0,0.85);
 
@@ -1308,26 +1345,215 @@ body {
 
 
 .gallery-btn:active {
+
   transform:
     scale(0.95);
 }
 
 
-.gallery-caption {
-  text-align:
-    center;
+/* =========================================================
+   SPONSORS
+   ========================================================= */
 
-  padding:
-    13px;
+.page-home .sponsors-section {
 
-  color:
-    #bbbbbb;
-
-  font-size:
-    13px;
+  overflow: hidden;
 
   background:
-    rgba(0,0,0,0.75);
+    rgba(6,6,6,0.96);
+
+  border:
+    1px solid rgba(255,145,77,0.18);
+}
+
+
+.sponsors-board {
+
+  width: 100%;
+
+  overflow: hidden;
+
+  margin-top: 30px;
+
+  border-top:
+    1px solid rgba(255,145,77,0.18);
+
+  border-bottom:
+    1px solid rgba(255,145,77,0.18);
+
+  background:
+    #050505;
+
+  position: relative;
+}
+
+
+.sponsors-track {
+
+  display: flex;
+
+  width: max-content;
+
+  animation:
+    sponsorsTrack 30s linear infinite;
+
+  /*
+    IMPORTANT:
+    The animation is explicitly running by default.
+    This prevents touch devices from getting stuck in
+    a paused hover state.
+  */
+
+  animation-play-state:
+    running;
+
+  will-change:
+    transform;
+}
+
+
+.sponsors-group {
+
+  display: flex;
+
+  flex-shrink: 0;
+
+  gap: 20px;
+
+  padding:
+    25px 10px;
+}
+
+
+.sponsor-item {
+
+  position: relative;
+
+  width: 220px;
+  height: 220px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background:
+    #111111;
+
+  border:
+    1px solid rgba(255,145,77,0.28);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.5);
+}
+
+
+.sponsor-item img {
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.sponsor-item:hover img {
+
+  transform:
+    scale(1.04);
+}
+
+
+.sponsor-item::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.04),
+      rgba(0,0,0,0.25)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SPONSOR MARQUEE
+   ========================================================= */
+
+@keyframes sponsorsTrack {
+
+  0% {
+
+    transform:
+      translateX(-50%);
+
+  }
+
+  100% {
+
+    transform:
+      translateX(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   PC ONLY:
+   PAUSE SPONSORS WHEN MOUSE HOVERS
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+  .sponsors-board:hover .sponsors-track {
+
+    animation-play-state:
+      paused;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE:
+   ALWAYS KEEP SPONSORS MOVING
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .sponsors-track {
+
+    animation-play-state:
+      running !important;
+
+  }
+
+  /*
+    Touch devices can sometimes retain :hover after a tap.
+    Explicitly overriding the hover pause keeps the marquee
+    moving on phones and tablets.
+  */
+
+  .sponsors-board:hover .sponsors-track {
+
+    animation-play-state:
+      running !important;
+
+  }
+
 }
 
 
@@ -1336,8 +1562,8 @@ body {
    ========================================================= */
 
 .development-grid {
-  display:
-    grid;
+
+  display: grid;
 
   grid-template-columns:
     repeat(3, minmax(0, 330px));
@@ -1348,8 +1574,7 @@ body {
   align-items:
     stretch;
 
-  gap:
-    22px;
+  gap: 22px;
 
   margin:
     25px auto 0;
@@ -1357,8 +1582,8 @@ body {
 
 
 .flip-card {
-  height:
-    330px;
+
+  height: 330px;
 
   perspective:
     1200px;
@@ -1369,16 +1594,13 @@ body {
 
 
 .flip-card-inner {
-  position:
-    relative;
 
-  width:
-    100%;
-  height:
-    100%;
+  position: relative;
 
-  text-align:
-    center;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
 
   transition:
     transform 0.75s cubic-bezier(.2,.7,.2,1);
@@ -1389,6 +1611,7 @@ body {
 
 
 .flip-card.flipped .flip-card-inner {
+
   transform:
     rotateY(180deg);
 }
@@ -1396,22 +1619,17 @@ body {
 
 .flip-card-front,
 .flip-card-back {
-  position:
-    absolute;
 
-  inset:
-    0;
+  position: absolute;
 
-  width:
-    100%;
-  height:
-    100%;
+  inset: 0;
 
-  border-radius:
-    16px;
+  width: 100%;
+  height: 100%;
 
-  overflow:
-    hidden;
+  border-radius: 16px;
+
+  overflow: hidden;
 
   backface-visibility:
     hidden;
@@ -1428,8 +1646,8 @@ body {
 
 
 .flip-card-front {
-  display:
-    flex;
+
+  display: flex;
 
   flex-direction:
     column;
@@ -1459,22 +1677,18 @@ body {
 
 
 .flip-card.flipped .flip-card-front {
-  z-index:
-    0;
+  z-index: 0;
 }
 
 
 .flip-card-front::before {
-  content:
-    "";
 
-  position:
-    absolute;
+  content: "";
 
-  width:
-    150px;
-  height:
-    150px;
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
 
   border-radius:
     50%;
@@ -1488,8 +1702,8 @@ body {
 
 
 .flip-card-front h3 {
-  position:
-    relative;
+
+  position: relative;
 
   margin:
     0 0 15px;
@@ -1509,8 +1723,8 @@ body {
 
 
 .flip-card-front p {
-  position:
-    relative;
+
+  position: relative;
 
   margin:
     0;
@@ -1527,19 +1741,16 @@ body {
 
 
 .flip-icon {
-  position:
-    relative;
+
+  position: relative;
 
   margin-bottom:
     20px;
 
-  width:
-    58px;
-  height:
-    58px;
+  width: 58px;
+  height: 58px;
 
-  display:
-    flex;
+  display: flex;
 
   justify-content:
     center;
@@ -1565,6 +1776,7 @@ body {
 
 
 .flip-card-back {
+
   transform:
     rotateY(180deg);
 
@@ -1589,20 +1801,17 @@ body {
 
 
 .flip-card.flipped .flip-card-back {
-  z-index:
-    2;
+  z-index: 2;
 }
 
 
 .flip-card-back::before {
-  content:
-    "";
 
-  position:
-    absolute;
+  content: "";
 
-  inset:
-    0;
+  position: absolute;
+
+  inset: 0;
 
   background:
     linear-gradient(
@@ -1613,8 +1822,8 @@ body {
 
 
 .back-content {
-  position:
-    relative;
+
+  position: relative;
 
   z-index:
     2;
@@ -1631,6 +1840,7 @@ body {
 
 
 .back-content h3 {
+
   margin:
     0 0 8px;
 
@@ -1643,6 +1853,7 @@ body {
 
 
 .back-content p {
+
   margin:
     0;
 
@@ -1658,7 +1869,7 @@ body {
 
 
 /* =========================================================
-   PAGE-SPECIFIC FLIP CARD IMAGES
+   PAGE-SPECIFIC IMAGES
    ========================================================= */
 
 .page-juniors .player-development {
@@ -1675,9 +1886,6 @@ body {
   background-image:
     url("mens.jpg");
 }
-
-
-/* OTHER PAGE-SPECIFIC IMAGE AREAS */
 
 .page-home .player-development {
   background-image:
@@ -1706,171 +1914,11 @@ body {
 
 
 /* =========================================================
-   SPONSORS SECTION
-   ========================================================= */
-
-.page-home .sponsors-section {
-  overflow:
-    hidden;
-
-  background:
-    rgba(6,6,6,0.96);
-
-  border:
-    1px solid rgba(255,145,77,0.18);
-}
-
-
-.sponsors-board {
-  width:
-    100%;
-
-  overflow:
-    hidden;
-
-  margin-top:
-    30px;
-
-  border-top:
-    1px solid rgba(255,145,77,0.18);
-
-  border-bottom:
-    1px solid rgba(255,145,77,0.18);
-
-  background:
-    #050505;
-
-  position:
-    relative;
-}
-
-
-.sponsors-track {
-  display:
-    flex;
-
-  width:
-    max-content;
-
-  animation:
-    sponsorsTrack 30s linear infinite;
-}
-
-
-.sponsors-group {
-  display:
-    flex;
-
-  flex-shrink:
-    0;
-
-  gap:
-    20px;
-
-  padding:
-    25px 10px;
-}
-
-
-.sponsor-item {
-  position:
-    relative;
-
-  width:
-    220px;
-
-  height:
-    220px;
-
-  flex-shrink:
-    0;
-
-  overflow:
-    hidden;
-
-  background:
-    #111111;
-
-  border:
-    1px solid rgba(255,145,77,0.28);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.5);
-}
-
-
-.sponsor-item img {
-  width:
-    100%;
-
-  height:
-    100%;
-
-  display:
-    block;
-
-  object-fit:
-    cover;
-
-  transition:
-    transform 0.4s ease;
-}
-
-
-.sponsor-item:hover img {
-  transform:
-    scale(1.04);
-}
-
-
-.sponsor-item::after {
-  content:
-    "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,0.04),
-      rgba(0,0,0,0.25)
-    );
-
-  pointer-events:
-    none;
-}
-
-
-@keyframes sponsorsTrack {
-
-  0% {
-    transform:
-      translateX(-50%);
-  }
-
-  100% {
-    transform:
-      translateX(0);
-  }
-
-}
-
-
-.sponsors-board:hover .sponsors-track {
-  animation-play-state:
-    paused;
-}
-
-
-/* =========================================================
-   REGISTRATION / GENERAL BUTTONS
+   REGISTRATION CTA
    ========================================================= */
 
 .registration-box {
+
   text-align:
     center;
 
@@ -1891,12 +1939,15 @@ body {
     18px;
 }
 
+
 .registration-box h2 {
   margin-bottom:
     12px;
 }
 
+
 .registration-box p {
+
   max-width:
     700px;
 
@@ -1904,7 +1955,9 @@ body {
     0 auto 25px;
 }
 
+
 .registration-button {
+
   display:
     inline-block;
 
@@ -1944,7 +1997,9 @@ body {
     box-shadow 0.25s ease;
 }
 
+
 .registration-button:hover {
+
   transform:
     translateY(-3px);
 
@@ -1953,7 +2008,12 @@ body {
 }
 
 
+/* =========================================================
+   GENERAL BUTTON
+   ========================================================= */
+
 .orange-button {
+
   display:
     inline-block;
 
@@ -1990,7 +2050,9 @@ body {
     box-shadow 0.25s ease;
 }
 
+
 .orange-button:hover {
+
   transform:
     translateY(-3px);
 
@@ -2004,6 +2066,7 @@ body {
    ========================================================= */
 
 footer {
+
   width:
     100%;
 
@@ -2038,7 +2101,9 @@ footer {
     0 -5px 25px rgba(0,0,0,0.35);
 }
 
+
 footer a {
+
   color:
     white;
 
@@ -2054,6 +2119,7 @@ footer a {
 @media (max-width: 900px) {
 
   .navbar {
+
     padding:
       10px 15px;
 
@@ -2061,7 +2127,9 @@ footer a {
       wrap;
   }
 
+
   .navbar-logo img {
+
     width:
       58px;
 
@@ -2069,7 +2137,9 @@ footer a {
       58px;
   }
 
+
   .nav-links {
+
     margin-left:
       10px;
 
@@ -2092,13 +2162,16 @@ footer a {
       none;
   }
 
+
   .nav-links::-webkit-scrollbar {
     display:
       none;
   }
 
+
   .nav-links a,
   .nav-links .dropbtn {
+
     flex:
       0 0 auto;
 
@@ -2113,6 +2186,7 @@ footer a {
   /* MOBILE DROPDOWN */
 
   .dropdown-content {
+
     position:
       fixed;
 
@@ -2138,13 +2212,16 @@ footer a {
       0 15px 35px rgba(0,0,0,0.75);
   }
 
+
   .dropdown.mobile-open .dropdown-content {
+
     display:
       block;
   }
 
 
   .hero {
+
     margin:
       30px 15px;
 
@@ -2152,20 +2229,25 @@ footer a {
       50px 20px;
   }
 
+
   .content {
+
     padding:
       0 15px;
   }
 
+
   .section {
+
     padding:
       25px 20px;
   }
 
 
-  /* TEAM PATHWAYS */
+  /* FIND YOUR TEAM */
 
   .team-pathway-grid {
+
     grid-template-columns:
       1fr;
 
@@ -2183,11 +2265,14 @@ footer a {
   /* LATEST NEWS */
 
   .latest-news-grid {
+
     grid-template-columns:
       1fr;
   }
 
+
   .latest-history {
+
     grid-column:
       auto;
 
@@ -2195,18 +2280,35 @@ footer a {
       block;
   }
 
+
   .latest-history .latest-news-image {
+
     height:
-      300px;
+      280px;
 
     min-height:
-      0;
+      280px;
+  }
+
+
+  .latest-history .latest-news-content {
+
+    padding:
+      27px;
+  }
+
+
+  .latest-history .latest-news-content h3 {
+
+    font-size:
+      27px;
   }
 
 
   /* DEVELOPMENT */
 
   .development-grid {
+
     grid-template-columns:
       1fr;
 
@@ -2214,7 +2316,9 @@ footer a {
       420px;
   }
 
+
   .flip-card {
+
     height:
       300px;
   }
@@ -2223,6 +2327,7 @@ footer a {
   /* SPONSORS */
 
   .sponsor-item {
+
     width:
       200px;
 
@@ -2230,12 +2335,36 @@ footer a {
       200px;
   }
 
+
   .sponsors-group {
+
     gap:
       15px;
 
     padding:
       20px 8px;
+  }
+
+
+  /*
+    MOBILE SPONSOR FIX
+
+    Explicitly keep the marquee running.
+    This also defeats mobile browsers that retain
+    :hover after a touch.
+  */
+
+  .sponsors-track {
+
+    animation-play-state:
+      running !important;
+  }
+
+
+  .sponsors-board:hover .sponsors-track {
+
+    animation-play-state:
+      running !important;
   }
 
 }
@@ -2252,7 +2381,9 @@ footer a {
       scroll;
   }
 
+
   .navbar {
+
     min-height:
       auto;
 
@@ -2260,7 +2391,9 @@ footer a {
       center;
   }
 
+
   .navbar-logo {
+
     width:
       100%;
 
@@ -2271,7 +2404,9 @@ footer a {
       8px;
   }
 
+
   .nav-links {
+
     width:
       100%;
 
@@ -2291,8 +2426,10 @@ footer a {
       nowrap;
   }
 
+
   .nav-links a,
   .dropbtn {
+
     padding:
       8px 7px;
 
@@ -2304,9 +2441,8 @@ footer a {
   }
 
 
-  /* SMALL PHONE DROPDOWN */
-
   .dropdown-content {
+
     top:
       108px;
 
@@ -2322,6 +2458,7 @@ footer a {
 
 
   .hero {
+
     margin-top:
       20px;
 
@@ -2329,7 +2466,9 @@ footer a {
       16px;
   }
 
+
   .hero h1 {
+
     font-size:
       40px;
 
@@ -2337,7 +2476,9 @@ footer a {
       -1px;
   }
 
+
   .hero h2 {
+
     font-size:
       18px;
 
@@ -2345,68 +2486,44 @@ footer a {
       1px;
   }
 
+
   .hero p {
+
     font-size:
       15px;
   }
 
+
   .section h2 {
+
     font-size:
       24px;
   }
 
+
   .section p {
+
     font-size:
       15px;
   }
 
 
-  /* LATEST NEWS */
-
-  .latest-news-image {
-    height:
-      220px;
-  }
-
-  .latest-news-content {
-    padding:
-      21px;
-  }
-
-  .latest-news-content h3 {
-    font-size:
-      22px;
-  }
-
-  .latest-history .latest-news-image {
-    height:
-      240px;
-  }
-
-  .latest-history .latest-news-content {
-    padding:
-      21px;
-  }
-
-  .latest-history .latest-news-content h3 {
-    font-size:
-      25px;
-  }
-
-
-  /* GALLERY */
-
   .gallery-section {
+
     padding:
       20px 15px;
   }
 
+
   .gallery-controls {
+
     padding:
       0 8px;
   }
 
+
   .gallery-btn {
+
     width:
       42px;
 
@@ -2421,35 +2538,84 @@ footer a {
   }
 
 
-  /* FLIP CARDS */
-
   .flip-card {
+
     height:
       285px;
   }
 
 
-  /* HOME TEAM CARDS */
-
   .team-pathway {
+
     min-height:
       260px;
   }
 
+
   .team-pathway-content {
+
     padding:
       20px;
   }
 
+
   .team-pathway h3 {
+
     font-size:
       25px;
   }
 
 
-  /* SQUARE SPONSOR BOXES */
+  .latest-news-image {
+
+    height:
+      220px;
+  }
+
+
+  .latest-history .latest-news-image {
+
+    height:
+      230px;
+
+    min-height:
+      230px;
+  }
+
+
+  .latest-news-content {
+
+    padding:
+      22px;
+  }
+
+
+  .latest-history .latest-news-content {
+
+    padding:
+      22px;
+  }
+
+
+  .latest-history .latest-news-content h3 {
+
+    font-size:
+      24px;
+  }
+
+
+  .latest-news-footer {
+
+    flex-direction:
+      column;
+
+    gap:
+      8px;
+  }
+
 
   .sponsor-item {
+
     width:
       170px;
 
@@ -2457,7 +2623,9 @@ footer a {
       170px;
   }
 
+
   .sponsors-group {
+
     gap:
       12px;
 
@@ -2465,25 +2633,48 @@ footer a {
       15px 6px;
   }
 
-}
+
+  /* Keep sponsors moving on phones */
+
+  .sponsors-track {
+
+    animation-play-state:
+      running !important;
+  }
 
 
-/* =========================================================
-   TOUCH DEVICE DROPDOWN
-   ========================================================= */
+  .sponsors-board:hover .sponsors-track {
 
-@media (max-width: 900px) {
-
-  .dropdown.mobile-open .dropdown-content {
-    display:
-      block;
+    animation-play-state:
+      running !important;
   }
 
 }
 
 
 /* =========================================================
-   PERFORMANCE
+   TOUCH DEVICE SPONSOR SAFETY
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+  .sponsors-track {
+
+    animation-play-state:
+      running !important;
+  }
+
+  .sponsors-board:hover .sponsors-track {
+
+    animation-play-state:
+      running !important;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2505,6 +2696,25 @@ footer a {
 
     transition-duration:
       0.01ms !important;
+  }
+
+  /*
+    Keep the sponsor strip available on mobile.
+    Desktop reduced-motion users will still receive
+    the browser's reduced-motion behaviour.
+  */
+
+  @media (max-width: 900px) {
+
+    .sponsors-track {
+
+      animation:
+        sponsorsTrack 30s linear infinite !important;
+
+      animation-play-state:
+        running !important;
+    }
+
   }
 
 }
