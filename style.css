@@ -1,15 +1,9 @@
 /* =========================================================
    NGONGOTAHĀ AFC WEBSITE
    MASTER STYLESHEET
-
-   Shared styling for the entire Ngongotahā AFC website.
-
    ========================================================= */
 
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
+/* GLOBAL */
 
 * {
   box-sizing: border-box;
@@ -21,9 +15,7 @@ html {
 
 body {
   margin: 0;
-
   font-family: Arial, Helvetica, sans-serif;
-
   color: white;
 
   background-image:
@@ -41,9 +33,7 @@ body {
 }
 
 
-/* =========================================================
-   SHARED COLOURS
-   ========================================================= */
+/* COLOURS */
 
 :root {
   --orange-light: #ff914d;
@@ -98,10 +88,6 @@ body {
     background 0.4s ease;
 }
 
-
-/* =========================================================
-   NAVBAR ANIMATION
-   ========================================================= */
 
 @keyframes navbarGlow {
 
@@ -199,7 +185,7 @@ body {
 
 
 /* =========================================================
-   SILKY DIAGONAL HOVER SHINE
+   NAVBAR SHINE
    ========================================================= */
 
 .nav-links a::after,
@@ -235,11 +221,6 @@ body {
   pointer-events: none;
 }
 
-
-/* =========================================================
-   SHINE SWEEP
-   ========================================================= */
-
 .nav-links a:hover::after,
 .nav-links .dropbtn:hover::after {
   opacity: 1;
@@ -266,13 +247,8 @@ body {
 }
 
 
-/* =========================================================
-   NAVIGATION HOVER
-   ========================================================= */
-
 .nav-links a:hover,
 .dropbtn:hover {
-
   background:
     rgba(0,0,0,0.25);
 
@@ -344,7 +320,6 @@ body {
 }
 
 .dropdown-content a:hover {
-
   background:
     linear-gradient(
       90deg,
@@ -363,7 +338,7 @@ body {
 
 
 /* =========================================================
-   MAIN HERO
+   HERO
    ========================================================= */
 
 .hero {
@@ -398,10 +373,6 @@ body {
 }
 
 
-/* =========================================================
-   HERO GLOW
-   ========================================================= */
-
 .hero::before {
   content: "";
 
@@ -427,10 +398,6 @@ body {
   pointer-events: none;
 }
 
-
-/* =========================================================
-   HERO BOTTOM LINE
-   ========================================================= */
 
 .hero::after {
   content: "";
@@ -460,15 +427,12 @@ body {
   pointer-events: none;
 }
 
+
 .hero-content {
   position: relative;
   z-index: 2;
 }
 
-
-/* =========================================================
-   HERO SMALL LABEL
-   ========================================================= */
 
 .hero-small {
   display: inline-block;
@@ -498,10 +462,6 @@ body {
     0 0 20px rgba(254,67,0,0.08);
 }
 
-
-/* =========================================================
-   HERO HEADING
-   ========================================================= */
 
 .hero h1 {
   margin: 0;
@@ -537,6 +497,7 @@ body {
     );
 }
 
+
 .hero h2 {
   margin:
     18px 0 0;
@@ -553,6 +514,7 @@ body {
 
   text-transform: uppercase;
 }
+
 
 .hero p {
   max-width: 780px;
@@ -701,703 +663,9 @@ body {
     3px solid rgba(254,67,0,0.75);
 }
 
-.page-home .home-intro h2,
-.page-home .home-mission h2 {
+.page-home .home-intro h2 {
   color:
     #ffffff;
-}
-
-
-/* =========================================================
-   HOME MISSION
-   ========================================================= */
-
-.page-home .home-mission {
-  background:
-    rgba(8,8,8,0.94);
-
-  border:
-    1px solid rgba(255,255,255,0.10);
-}
-
-
-/* =========================================================
-   GALLERY
-   ========================================================= */
-
-.gallery-section {
-  padding: 35px;
-}
-
-.gallery {
-  position: relative;
-
-  width: 100%;
-
-  max-width: 1050px;
-
-  margin:
-    0 auto;
-
-  border-radius: 16px;
-
-  overflow: hidden;
-
-  background:
-    #050505;
-
-  border:
-    1px solid rgba(255,145,77,0.28);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.65);
-}
-
-.gallery-slides {
-  position: relative;
-
-  width: 100%;
-
-  aspect-ratio:
-    16 / 9;
-
-  overflow: hidden;
-}
-
-.gallery-slide {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  opacity: 0;
-
-  transition:
-    opacity 0.5s ease;
-
-  display: block;
-}
-
-.gallery-slide.active {
-  opacity: 1;
-}
-
-
-/* =========================================================
-   GALLERY CONTROLS
-   ========================================================= */
-
-.gallery-controls {
-  position: absolute;
-
-  top: 50%;
-  left: 0;
-
-  width: 100%;
-
-  transform:
-    translateY(-50%);
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding:
-    0 18px;
-
-  pointer-events: none;
-
-  z-index: 20;
-}
-
-.gallery-btn {
-  width: 55px;
-  height: 65px;
-
-  border:
-    1px solid rgba(255,255,255,0.35);
-
-  border-radius: 12px;
-
-  background:
-    rgba(0,0,0,0.55);
-
-  color:
-    white;
-
-  font-size: 38px;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  pointer-events: auto;
-
-  backdrop-filter:
-    blur(8px);
-
-  box-shadow:
-    0 5px 20px rgba(0,0,0,0.45);
-
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.gallery-btn:hover {
-
-  background:
-    rgba(254,67,0,0.85);
-
-  border-color:
-    #ff914d;
-
-  transform:
-    scale(1.08);
-}
-
-.gallery-btn:active {
-
-  transform:
-    scale(0.95);
-}
-
-.gallery-caption {
-  text-align: center;
-
-  padding: 13px;
-
-  color:
-    #bbbbbb;
-
-  font-size: 13px;
-
-  background:
-    rgba(0,0,0,0.75);
-}
-
-
-/* =========================================================
-   DEVELOPMENT CARDS
-   ========================================================= */
-
-.development-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 330px));
-
-  justify-content: center;
-
-  align-items: stretch;
-
-  gap: 22px;
-
-  margin:
-    25px auto 0;
-}
-
-.flip-card {
-  height: 330px;
-
-  perspective: 1200px;
-
-  cursor: pointer;
-}
-
-.flip-card-inner {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-
-  text-align: center;
-
-  transition:
-    transform 0.75s cubic-bezier(.2,.7,.2,1);
-
-  transform-style:
-    preserve-3d;
-}
-
-
-/* =========================================================
-   FLIP CARD CLICK / TAP ONLY
-   ========================================================= */
-
-.flip-card.flipped .flip-card-inner {
-  transform:
-    rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  border-radius: 16px;
-
-  overflow: hidden;
-
-  backface-visibility:
-    hidden;
-
-  -webkit-backface-visibility:
-    hidden;
-
-  border:
-    1px solid rgba(255,145,77,0.3);
-
-  box-shadow:
-    0 12px 35px rgba(0,0,0,0.5);
-}
-
-
-/* =========================================================
-   FLIP CARD FRONT
-   ========================================================= */
-
-.flip-card-front {
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 30px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #181818,
-      #0b0b0b
-    );
-
-  transform:
-    rotateY(0deg);
-
-  z-index: 2;
-}
-
-.flip-card.flipped .flip-card-front {
-  z-index: 0;
-}
-
-.flip-card-front::before {
-  content: "";
-
-  position: absolute;
-
-  width: 150px;
-  height: 150px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(254,67,0,0.08);
-
-  box-shadow:
-    0 0 80px rgba(254,67,0,0.12);
-}
-
-.flip-card-front h3 {
-  position: relative;
-
-  margin:
-    0 0 15px;
-
-  color:
-    #ff914d;
-
-  font-size: 23px;
-
-  text-transform:
-    uppercase;
-
-  letter-spacing:
-    1px;
-}
-
-.flip-card-front p {
-  position: relative;
-
-  margin: 0;
-
-  color:
-    #dddddd;
-
-  line-height:
-    1.6;
-
-  font-size:
-    15px;
-}
-
-
-/* =========================================================
-   FLIP ICON
-   ========================================================= */
-
-.flip-icon {
-  position: relative;
-
-  margin-bottom: 20px;
-
-  width: 58px;
-  height: 58px;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  border:
-    2px solid #fe4300;
-
-  color:
-    #ff914d;
-
-  font-size:
-    25px;
-
-  box-shadow:
-    0 0 20px rgba(254,67,0,0.25);
-}
-
-
-/* =========================================================
-   FLIP CARD BACK
-   ========================================================= */
-
-.flip-card-back {
-  transform:
-    rotateY(180deg);
-
-  background-size:
-    cover;
-
-  background-position:
-    center;
-
-  background-repeat:
-    no-repeat;
-
-  display:
-    flex;
-
-  align-items:
-    flex-end;
-
-  z-index: 1;
-}
-
-.flip-card.flipped .flip-card-back {
-  z-index: 2;
-}
-
-.flip-card-back::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      transparent 25%,
-      rgba(0,0,0,0.92) 100%
-    );
-}
-
-.back-content {
-  position: relative;
-
-  z-index: 2;
-
-  padding: 25px;
-
-  text-align: left;
-
-  width: 100%;
-}
-
-.back-content h3 {
-  margin:
-    0 0 8px;
-
-  color:
-    #ff914d;
-
-  font-size:
-    23px;
-}
-
-.back-content p {
-  margin: 0;
-
-  color:
-    white;
-
-  line-height:
-    1.55;
-
-  font-size:
-    14px;
-}
-
-
-/* =========================================================
-   PAGE-SPECIFIC FLIP CARD IMAGES
-   ========================================================= */
-
-
-/* JUNIOR PAGE */
-
-.page-juniors .player-development {
-  background-image:
-    url("cr2.jpg");
-}
-
-.page-juniors .quality-environment {
-  background-image:
-    url("drone.jpg");
-}
-
-.page-juniors .future-pathway {
-  background-image:
-    url("mens.jpg");
-}
-
-
-/* =========================================================
-   OTHER PAGE-SPECIFIC IMAGE AREAS
-   ========================================================= */
-
-
-/* HOME */
-
-.page-home .player-development {
-  background-image:
-    url("Equipment.jpg");
-}
-
-
-/* SENIOR TEAMS */
-
-.page-seniors .player-development {
-  background-image:
-    url("Equipment.jpg");
-}
-
-
-/* WOMEN'S TEAMS */
-
-.page-womens .player-development {
-  background-image:
-    url("Equipment.jpg");
-}
-
-
-/* CR1 */
-
-.page-cr1 .player-development {
-  background-image:
-    url("Equipment.jpg");
-}
-
-
-/* ACADEMY */
-
-.page-academy .player-development {
-  background-image:
-    url("Equipment.jpg");
-}
-
-
-/* =========================================================
-   SPONSORS SECTION
-   ========================================================= */
-
-.page-home .sponsors-section {
-  overflow: hidden;
-
-  background:
-    rgba(6,6,6,0.96);
-
-  border:
-    1px solid rgba(255,145,77,0.18);
-}
-
-
-/* =========================================================
-   SPONSOR BOARD
-   ========================================================= */
-
-.sponsors-board {
-  width: 100%;
-
-  overflow: hidden;
-
-  margin-top: 30px;
-
-  border-top:
-    1px solid rgba(255,145,77,0.18);
-
-  border-bottom:
-    1px solid rgba(255,145,77,0.18);
-
-  background:
-    #050505;
-
-  position: relative;
-}
-
-
-/* =========================================================
-   SPONSOR TRACK
-   ========================================================= */
-
-.sponsors-track {
-  display: flex;
-
-  width: max-content;
-
-  animation:
-    sponsorsTrack 30s linear infinite;
-}
-
-
-/* =========================================================
-   SPONSOR GROUP
-   ========================================================= */
-
-.sponsors-group {
-  display: flex;
-
-  flex-shrink: 0;
-
-  gap: 20px;
-
-  padding:
-    25px 10px;
-}
-
-
-/* =========================================================
-   SPONSOR ITEM
-   ========================================================= */
-
-.sponsor-item {
-  position: relative;
-
-  width: 220px;
-  height: 220px;
-
-  flex-shrink: 0;
-
-  overflow: hidden;
-
-  background:
-    #111111;
-
-  border:
-    1px solid rgba(255,145,77,0.28);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.5);
-}
-
-
-/* =========================================================
-   SPONSOR IMAGE
-   ========================================================= */
-
-.sponsor-item img {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-
-  transition:
-    transform 0.4s ease;
-}
-
-.sponsor-item:hover img {
-  transform:
-    scale(1.04);
-}
-
-
-/* =========================================================
-   SPONSOR IMAGE OVERLAY
-   ========================================================= */
-
-.sponsor-item::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,0.04),
-      rgba(0,0,0,0.25)
-    );
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   SPONSOR MARQUEE
-   ========================================================= */
-
-@keyframes sponsorsTrack {
-
-  0% {
-    transform:
-      translateX(-50%);
-  }
-
-  100% {
-    transform:
-      translateX(0);
-  }
-
-}
-
-
-/* =========================================================
-   PAUSE SPONSORS ON HOVER
-   ========================================================= */
-
-.sponsors-board:hover .sponsors-track {
-  animation-play-state:
-    paused;
 }
 
 
@@ -1419,10 +687,6 @@ body {
 }
 
 
-/* =========================================================
-   TEAM PATHWAY GRID
-   ========================================================= */
-
 .team-pathway-grid {
   display: grid;
 
@@ -1434,10 +698,6 @@ body {
   margin-top: 28px;
 }
 
-
-/* =========================================================
-   TEAM PATHWAY CARD
-   ========================================================= */
 
 .team-pathway {
   position: relative;
@@ -1480,10 +740,6 @@ body {
 }
 
 
-/* =========================================================
-   TEAM PATHWAY IMAGES
-   ========================================================= */
-
 .senior-pathway {
   background-image:
     url("mens.jpg");
@@ -1499,10 +755,6 @@ body {
     url("womens.jpg");
 }
 
-
-/* =========================================================
-   TEAM PATHWAY OVERLAY
-   ========================================================= */
 
 .team-pathway-overlay {
   position: absolute;
@@ -1521,6 +773,7 @@ body {
     background 0.3s ease;
 }
 
+
 .team-pathway:hover {
   transform:
     translateY(-5px);
@@ -1531,6 +784,7 @@ body {
   box-shadow:
     0 18px 45px rgba(0,0,0,0.7);
 }
+
 
 .team-pathway:hover .team-pathway-overlay {
   background:
@@ -1543,10 +797,6 @@ body {
 }
 
 
-/* =========================================================
-   TEAM PATHWAY CONTENT
-   ========================================================= */
-
 .team-pathway-content {
   position: relative;
 
@@ -1556,6 +806,7 @@ body {
 
   padding: 25px;
 }
+
 
 .team-pathway-kicker {
   display: block;
@@ -1571,6 +822,7 @@ body {
 
   letter-spacing: 2px;
 }
+
 
 .team-pathway h3 {
   margin:
@@ -1588,6 +840,7 @@ body {
   text-transform:
     uppercase;
 }
+
 
 .team-pathway-link {
   display: flex;
@@ -1620,6 +873,7 @@ body {
     uppercase;
 }
 
+
 .team-pathway-link span {
   color:
     #ff914d;
@@ -1631,6 +885,7 @@ body {
     transform 0.25s ease;
 }
 
+
 .team-pathway:hover .team-pathway-link span {
   transform:
     translateX(5px);
@@ -1638,7 +893,981 @@ body {
 
 
 /* =========================================================
-   REGISTRATION CTA
+   LATEST FROM THE CLUB
+   ========================================================= */
+
+.page-home .latest-news-section {
+  background:
+    rgba(6,6,6,0.96);
+
+  border:
+    1px solid rgba(255,145,77,0.20);
+}
+
+
+.latest-news-intro {
+  max-width: 760px;
+
+  margin-bottom:
+    28px !important;
+}
+
+
+.latest-news-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+
+  align-items: stretch;
+}
+
+
+.latest-news-card {
+  overflow: hidden;
+
+  background:
+    #0b0b0b;
+
+  border:
+    1px solid rgba(255,145,77,0.20);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.45);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.latest-news-card:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(255,145,77,0.50);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.65);
+}
+
+
+.latest-news-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 235px;
+
+  overflow: hidden;
+
+  background:
+    #111111;
+}
+
+
+.latest-news-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.latest-news-card:hover .latest-news-image img {
+  transform:
+    scale(1.04);
+}
+
+
+.latest-news-image::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.02),
+      rgba(0,0,0,0.55)
+    );
+
+  pointer-events: none;
+}
+
+
+.latest-news-date {
+  position: absolute;
+
+  left: 18px;
+  bottom: 16px;
+
+  z-index: 2;
+
+  padding:
+    7px 11px;
+
+  background:
+    rgba(0,0,0,0.82);
+
+  border:
+    1px solid rgba(255,145,77,0.45);
+
+  color:
+    #ffb07a;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    1.5px;
+
+  text-transform:
+    uppercase;
+}
+
+
+.latest-news-content {
+  padding:
+    25px;
+}
+
+
+.latest-news-category {
+  display: inline-block;
+
+  margin-bottom:
+    9px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    2px;
+
+  text-transform:
+    uppercase;
+}
+
+
+.latest-news-content h3 {
+  margin:
+    0 0 15px;
+
+  color:
+    #ffffff;
+
+  font-size:
+    24px;
+
+  line-height:
+    1.15;
+}
+
+
+.latest-news-content p {
+  color:
+    #d7d7d7;
+
+  font-size:
+    15px;
+
+  line-height:
+    1.7;
+
+  margin-bottom:
+    14px;
+}
+
+
+.latest-news-content p:last-child {
+  margin-bottom:
+    0;
+}
+
+
+/* =========================================================
+   60 YEAR HISTORY FEATURE
+   ========================================================= */
+
+.latest-history {
+  grid-column:
+    1 / -1;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(300px, 0.9fr)
+    minmax(0, 1.6fr);
+}
+
+
+.latest-history .latest-news-image {
+  height:
+    100%;
+
+  min-height:
+    520px;
+}
+
+
+.latest-history .latest-news-content {
+  padding:
+    32px;
+}
+
+
+.latest-history .latest-news-content h3 {
+  font-size:
+    31px;
+}
+
+
+.latest-history .latest-news-content p {
+  font-size:
+    15.5px;
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+.gallery-section {
+  padding:
+    35px;
+}
+
+.gallery {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1050px;
+
+  margin:
+    0 auto;
+
+  border-radius:
+    16px;
+
+  overflow:
+    hidden;
+
+  background:
+    #050505;
+
+  border:
+    1px solid rgba(255,145,77,0.28);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.65);
+}
+
+
+.gallery-slides {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio:
+    16 / 9;
+
+  overflow: hidden;
+}
+
+
+.gallery-slide {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease;
+
+  display: block;
+}
+
+
+.gallery-slide.active {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   GALLERY CONTROLS
+   ========================================================= */
+
+.gallery-controls {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+
+  width: 100%;
+
+  transform:
+    translateY(-50%);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding:
+    0 18px;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+
+.gallery-btn {
+  width: 55px;
+  height: 65px;
+
+  border:
+    1px solid rgba(255,255,255,0.35);
+
+  border-radius: 12px;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  color:
+    white;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: auto;
+
+  backdrop-filter:
+    blur(8px);
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,0.45);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+.gallery-btn:hover {
+  background:
+    rgba(254,67,0,0.85);
+
+  border-color:
+    #ff914d;
+
+  transform:
+    scale(1.08);
+}
+
+
+.gallery-btn:active {
+  transform:
+    scale(0.95);
+}
+
+
+.gallery-caption {
+  text-align:
+    center;
+
+  padding:
+    13px;
+
+  color:
+    #bbbbbb;
+
+  font-size:
+    13px;
+
+  background:
+    rgba(0,0,0,0.75);
+}
+
+
+/* =========================================================
+   DEVELOPMENT CARDS
+   ========================================================= */
+
+.development-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 330px));
+
+  justify-content:
+    center;
+
+  align-items:
+    stretch;
+
+  gap:
+    22px;
+
+  margin:
+    25px auto 0;
+}
+
+
+.flip-card {
+  height:
+    330px;
+
+  perspective:
+    1200px;
+
+  cursor:
+    pointer;
+}
+
+
+.flip-card-inner {
+  position:
+    relative;
+
+  width:
+    100%;
+  height:
+    100%;
+
+  text-align:
+    center;
+
+  transition:
+    transform 0.75s cubic-bezier(.2,.7,.2,1);
+
+  transform-style:
+    preserve-3d;
+}
+
+
+.flip-card.flipped .flip-card-inner {
+  transform:
+    rotateY(180deg);
+}
+
+
+.flip-card-front,
+.flip-card-back {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+  height:
+    100%;
+
+  border-radius:
+    16px;
+
+  overflow:
+    hidden;
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+
+  border:
+    1px solid rgba(255,145,77,0.3);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.5);
+}
+
+
+.flip-card-front {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  padding:
+    30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #181818,
+      #0b0b0b
+    );
+
+  transform:
+    rotateY(0deg);
+
+  z-index:
+    2;
+}
+
+
+.flip-card.flipped .flip-card-front {
+  z-index:
+    0;
+}
+
+
+.flip-card-front::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  width:
+    150px;
+  height:
+    150px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(254,67,0,0.08);
+
+  box-shadow:
+    0 0 80px rgba(254,67,0,0.12);
+}
+
+
+.flip-card-front h3 {
+  position:
+    relative;
+
+  margin:
+    0 0 15px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    23px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    1px;
+}
+
+
+.flip-card-front p {
+  position:
+    relative;
+
+  margin:
+    0;
+
+  color:
+    #dddddd;
+
+  line-height:
+    1.6;
+
+  font-size:
+    15px;
+}
+
+
+.flip-icon {
+  position:
+    relative;
+
+  margin-bottom:
+    20px;
+
+  width:
+    58px;
+  height:
+    58px;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  border-radius:
+    50%;
+
+  border:
+    2px solid #fe4300;
+
+  color:
+    #ff914d;
+
+  font-size:
+    25px;
+
+  box-shadow:
+    0 0 20px rgba(254,67,0,0.25);
+}
+
+
+.flip-card-back {
+  transform:
+    rotateY(180deg);
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  background-repeat:
+    no-repeat;
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  z-index:
+    1;
+}
+
+
+.flip-card.flipped .flip-card-back {
+  z-index:
+    2;
+}
+
+
+.flip-card-back::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background:
+    linear-gradient(
+      transparent 25%,
+      rgba(0,0,0,0.92) 100%
+    );
+}
+
+
+.back-content {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  padding:
+    25px;
+
+  text-align:
+    left;
+
+  width:
+    100%;
+}
+
+
+.back-content h3 {
+  margin:
+    0 0 8px;
+
+  color:
+    #ff914d;
+
+  font-size:
+    23px;
+}
+
+
+.back-content p {
+  margin:
+    0;
+
+  color:
+    white;
+
+  line-height:
+    1.55;
+
+  font-size:
+    14px;
+}
+
+
+/* =========================================================
+   PAGE-SPECIFIC FLIP CARD IMAGES
+   ========================================================= */
+
+.page-juniors .player-development {
+  background-image:
+    url("cr2.jpg");
+}
+
+.page-juniors .quality-environment {
+  background-image:
+    url("drone.jpg");
+}
+
+.page-juniors .future-pathway {
+  background-image:
+    url("mens.jpg");
+}
+
+
+/* OTHER PAGE-SPECIFIC IMAGE AREAS */
+
+.page-home .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-seniors .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-womens .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-cr1 .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+.page-academy .player-development {
+  background-image:
+    url("Equipment.jpg");
+}
+
+
+/* =========================================================
+   SPONSORS SECTION
+   ========================================================= */
+
+.page-home .sponsors-section {
+  overflow:
+    hidden;
+
+  background:
+    rgba(6,6,6,0.96);
+
+  border:
+    1px solid rgba(255,145,77,0.18);
+}
+
+
+.sponsors-board {
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  margin-top:
+    30px;
+
+  border-top:
+    1px solid rgba(255,145,77,0.18);
+
+  border-bottom:
+    1px solid rgba(255,145,77,0.18);
+
+  background:
+    #050505;
+
+  position:
+    relative;
+}
+
+
+.sponsors-track {
+  display:
+    flex;
+
+  width:
+    max-content;
+
+  animation:
+    sponsorsTrack 30s linear infinite;
+}
+
+
+.sponsors-group {
+  display:
+    flex;
+
+  flex-shrink:
+    0;
+
+  gap:
+    20px;
+
+  padding:
+    25px 10px;
+}
+
+
+.sponsor-item {
+  position:
+    relative;
+
+  width:
+    220px;
+
+  height:
+    220px;
+
+  flex-shrink:
+    0;
+
+  overflow:
+    hidden;
+
+  background:
+    #111111;
+
+  border:
+    1px solid rgba(255,145,77,0.28);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.5);
+}
+
+
+.sponsor-item img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  display:
+    block;
+
+  object-fit:
+    cover;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.sponsor-item:hover img {
+  transform:
+    scale(1.04);
+}
+
+
+.sponsor-item::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.04),
+      rgba(0,0,0,0.25)
+    );
+
+  pointer-events:
+    none;
+}
+
+
+@keyframes sponsorsTrack {
+
+  0% {
+    transform:
+      translateX(-50%);
+  }
+
+  100% {
+    transform:
+      translateX(0);
+  }
+
+}
+
+
+.sponsors-board:hover .sponsors-track {
+  animation-play-state:
+    paused;
+}
+
+
+/* =========================================================
+   REGISTRATION / GENERAL BUTTONS
    ========================================================= */
 
 .registration-box {
@@ -1723,10 +1952,6 @@ body {
     0 12px 30px rgba(254,67,0,0.45);
 }
 
-
-/* =========================================================
-   GENERAL BUTTON
-   ========================================================= */
 
 .orange-button {
   display:
@@ -1885,16 +2110,7 @@ footer a {
   }
 
 
-  /* =======================================================
-     MOBILE DROPDOWN FIX
-
-     The navigation uses horizontal scrolling on narrow
-     screens. A normal absolute dropdown can therefore be
-     clipped by the scrolling .nav-links container.
-
-     Fixed positioning lets the dropdown escape that
-     scrolling container while remaining above the page.
-     ======================================================= */
+  /* MOBILE DROPDOWN */
 
   .dropdown-content {
     position:
@@ -1946,19 +2162,6 @@ footer a {
       25px 20px;
   }
 
-  .development-grid {
-    grid-template-columns:
-      1fr;
-
-    max-width:
-      420px;
-  }
-
-  .flip-card {
-    height:
-      300px;
-  }
-
 
   /* TEAM PATHWAYS */
 
@@ -1974,6 +2177,46 @@ footer a {
 
     margin-right:
       auto;
+  }
+
+
+  /* LATEST NEWS */
+
+  .latest-news-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .latest-history {
+    grid-column:
+      auto;
+
+    display:
+      block;
+  }
+
+  .latest-history .latest-news-image {
+    height:
+      300px;
+
+    min-height:
+      0;
+  }
+
+
+  /* DEVELOPMENT */
+
+  .development-grid {
+    grid-template-columns:
+      1fr;
+
+    max-width:
+      420px;
+  }
+
+  .flip-card {
+    height:
+      300px;
   }
 
 
@@ -2061,12 +2304,7 @@ footer a {
   }
 
 
-  /* =======================================================
-     SMALL PHONE DROPDOWN POSITION
-
-     On phones the logo occupies its own row, so the
-     navigation sits lower in the navbar.
-     ======================================================= */
+  /* SMALL PHONE DROPDOWN */
 
   .dropdown-content {
     top:
@@ -2122,6 +2360,42 @@ footer a {
       15px;
   }
 
+
+  /* LATEST NEWS */
+
+  .latest-news-image {
+    height:
+      220px;
+  }
+
+  .latest-news-content {
+    padding:
+      21px;
+  }
+
+  .latest-news-content h3 {
+    font-size:
+      22px;
+  }
+
+  .latest-history .latest-news-image {
+    height:
+      240px;
+  }
+
+  .latest-history .latest-news-content {
+    padding:
+      21px;
+  }
+
+  .latest-history .latest-news-content h3 {
+    font-size:
+      25px;
+  }
+
+
+  /* GALLERY */
+
   .gallery-section {
     padding:
       20px 15px;
@@ -2145,6 +2419,9 @@ footer a {
     border-radius:
       9px;
   }
+
+
+  /* FLIP CARDS */
 
   .flip-card {
     height:
