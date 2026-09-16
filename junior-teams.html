@@ -1,1706 +1,3158 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ngongotahā Football Club - Junior Teams</title>
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-
-    /* =========================
-       JUNIOR TEAM DIRECTORY
-    ========================= */
-
-    .junior-teams-section {
-      margin-top: 20px;
-    }
-
-    .teams-intro {
-      max-width: 850px;
-      margin: 0 auto 35px;
-      text-align: center;
-    }
-
-    .teams-intro p {
-      margin-bottom: 0;
-    }
-
-    .team-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .team-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-
-      padding: 22px 24px;
-
-      background: rgba(0, 0, 0, 0.72);
-      border: 1px solid rgba(255, 145, 77, 0.28);
-      border-radius: 12px;
-
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .team-row:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 145, 77, 0.7);
-      background: rgba(15, 15, 15, 0.9);
-    }
-
-    .team-information {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .team-number {
-      min-width: 48px;
-      height: 48px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: rgba(255, 145, 77, 0.12);
-      border: 1px solid rgba(255, 145, 77, 0.45);
-
-      color: #ff914d;
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .team-information h3 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
-
-    .team-information p {
-      margin: 0;
-      font-size: 14px;
-      opacity: 0.72;
-    }
-
-    .team-profile-button {
-      border: none;
-      background: #ff914d;
-      color: #111;
-
-      padding: 11px 17px;
-
-      border-radius: 7px;
-
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.6px;
-
-      cursor: pointer;
-      white-space: nowrap;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .team-profile-button:hover {
-      background: #ffb07a;
-      transform: scale(1.04);
-    }
-
-
-    /* =========================
-       TEAM PROFILE MODAL
-    ========================= */
-
-    .team-modal {
-      display: none;
-
-      position: fixed;
-      z-index: 9999;
-
-      inset: 0;
-
-      background: rgba(0, 0, 0, 0.78);
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-    }
-
-    .team-modal.active {
-      display: flex;
-    }
-
-    .team-modal-box {
-      position: relative;
-
-      width: 100%;
-      max-width: 520px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(28, 28, 28, 0.98),
-          rgba(5, 5, 5, 0.98)
-        );
-
-      border: 1px solid rgba(255, 145, 77, 0.45);
-      border-radius: 16px;
-
-      padding: 32px;
-
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
-
-      animation: teamModalOpen 0.25s ease;
-    }
-
-    @keyframes teamModalOpen {
-
-      from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.97);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-    }
-
-    .team-modal-close {
-      position: absolute;
-
-      top: 12px;
-      right: 15px;
-
-      width: 35px;
-      height: 35px;
-
-      border: none;
-      border-radius: 50%;
-
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-
-      font-size: 22px;
-
-      cursor: pointer;
-
-      transition: background 0.2s ease;
-    }
-
-    .team-modal-close:hover {
-      background: rgba(255, 145, 77, 0.25);
-    }
-
-    .team-modal-label {
-      color: #ff914d;
-
-      font-size: 12px;
-      font-weight: 700;
-
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-
-      margin-bottom: 8px;
-    }
-
-    .team-modal-box h2 {
-      margin: 0 0 25px;
-      font-size: 30px;
-    }
-
-    .team-detail {
-      display: flex;
-      gap: 14px;
-
-      padding: 15px 0;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-    }
-
-    .team-detail:last-child {
-      border-bottom: none;
-    }
-
-    .team-detail-icon {
-      width: 30px;
-      flex-shrink: 0;
-
-      font-size: 19px;
-    }
-
-    .team-detail-content strong {
-      display: block;
-
-      margin-bottom: 4px;
-
-      font-size: 13px;
-      color: #ff914d;
-    }
-
-    .team-detail-content span,
-    .team-detail-content a {
-      font-size: 15px;
-      color: #fff;
-
-      text-decoration: none;
-    }
-
-    .team-detail-content a:hover {
-      color: #ff914d;
-      text-decoration: underline;
-    }
-
-
-    /* =========================
-       FIND YOUR TEAM
-    ========================= */
-
-    .find-team-section {
-      margin-top: 20px;
-    }
-
-    .find-team-box {
-      max-width: 900px;
-      margin: 0 auto;
-
-      padding: 35px;
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(25, 25, 25, 0.95),
-          rgba(0, 0, 0, 0.88)
-        );
-
-      border: 1px solid rgba(255, 145, 77, 0.35);
-      border-radius: 16px;
-
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-    }
-
-    .find-team-label {
-      color: #ff914d;
-
-      font-size: 13px;
-      font-weight: 700;
-
-      letter-spacing: 1.5px;
-
-      margin-bottom: 8px;
-    }
-
-    .find-team-box h2 {
-      margin-bottom: 12px;
-    }
-
-    .find-team-box > p {
-      max-width: 650px;
-      margin: 0 auto 28px;
-    }
-
-    .age-selector {
-      display: flex;
-
-      flex-wrap: wrap;
-      justify-content: center;
-
-      gap: 10px;
-
-      margin: 25px auto;
-    }
-
-    .age-button {
-      width: 52px;
-      height: 52px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(255, 145, 77, 0.4);
-
-      background: rgba(255, 255, 255, 0.04);
-      color: white;
-
-      font-size: 16px;
-      font-weight: 700;
-
-      cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .age-button:hover {
-      background: rgba(255, 145, 77, 0.15);
-      border-color: #ff914d;
-      transform: translateY(-2px);
-    }
-
-    .age-button.selected {
-      background: #ff914d;
-      color: #111;
-      border-color: #ff914d;
-    }
-
-    .finder-result {
-      display: none;
-
-      margin: 25px auto 0;
-
-      padding: 22px;
-
-      max-width: 500px;
-
-      border-radius: 10px;
-
-      background: rgba(255, 145, 77, 0.1);
-      border: 1px solid rgba(255, 145, 77, 0.35);
-    }
-
-    .finder-result.active {
-      display: block;
-    }
-
-    .finder-result small {
-      display: block;
-
-      margin-bottom: 6px;
-
-      opacity: 0.7;
-    }
-
-    .finder-result strong {
-      display: block;
-
-      font-size: 27px;
-
-      color: #ff914d;
-    }
-
-    .finder-result p {
-      margin: 8px 0 0;
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 700px) {
-
-      .team-list {
-        grid-template-columns: 1fr;
-      }
-
-      .team-row {
-        padding: 18px;
-      }
-
-      .team-information {
-        gap: 12px;
-      }
-
-      .team-number {
-        min-width: 42px;
-        height: 42px;
-      }
-
-      .team-information h3 {
-        font-size: 17px;
-      }
-
-      .team-profile-button {
-        padding: 9px 11px;
-        font-size: 11px;
-      }
-
-      .team-modal-box {
-        padding: 27px 22px;
-      }
-
-      .team-modal-box h2 {
-        font-size: 25px;
-      }
-
-      .find-team-box {
-        padding: 28px 18px;
-      }
-
-    }
-
-  </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ngongotahā AFC | Junior Teams</title>
+
+    <meta name="description" content="Ngongotahā AFC Junior Football Teams">
+    <meta name="theme-color" content="#087f3f">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7f5;
+            color: #1d2b21;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 54, 27, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #087f3f;
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #7ee29f;
+        }
+
+        .nav-button {
+            background: #ffffff;
+            color: #087f3f !important;
+            padding: 9px 17px;
+            border-radius: 25px;
+        }
+
+        .nav-button:hover {
+            background: #dff7e7;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 520px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(2, 43, 20, 0.92) 0%,
+                    rgba(2, 72, 30, 0.80) 45%,
+                    rgba(2, 43, 20, 0.45) 100%
+                ),
+                linear-gradient(
+                    135deg,
+                    #0b7538,
+                    #064c25
+                );
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 75% 25%,
+                    rgba(255,255,255,0.10),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(255,255,255,0.07),
+                    transparent 30%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 70px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-kicker {
+            display: inline-block;
+            color: #8be5a7;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.95;
+            font-weight: 900;
+            max-width: 850px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #8be5a7;
+        }
+
+        .hero-text {
+            max-width: 650px;
+            margin-top: 25px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.15rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .hero-button {
+            padding: 13px 23px;
+            border-radius: 30px;
+            font-weight: 800;
+            display: inline-block;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-button.primary {
+            background: white;
+            color: #087f3f;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .hero-button.secondary {
+            border: 2px solid rgba(255,255,255,0.8);
+            color: white;
+        }
+
+        /* =========================
+           DEVELOPMENT FOCUS
+        ========================= */
+
+        .development-section {
+            background: white;
+            padding: 80px 25px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading .eyebrow {
+            color: #087f3f;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            color: #123a22;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #657168;
+            font-size: 1.05rem;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .focus-card {
+            background: #f3f8f4;
+            border-radius: 18px;
+            padding: 30px 24px;
+            border: 1px solid #e1ebe4;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 70, 30, 0.10);
+        }
+
+        .focus-icon {
+            width: 52px;
+            height: 52px;
+            background: #087f3f;
+            color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .focus-card h3 {
+            color: #123a22;
+            margin-bottom: 9px;
+            font-size: 1.2rem;
+        }
+
+        .focus-card p {
+            color: #657168;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           JUNIOR TEAMS
+        ========================= */
+
+        .teams-section {
+            padding: 90px 25px;
+            background: #f5f7f5;
+        }
+
+        .teams-intro {
+            max-width: 800px;
+            margin: -25px auto 45px;
+            text-align: center;
+            color: #657168;
+        }
+
+        .grade-section {
+            margin-bottom: 55px;
+        }
+
+        .grade-heading {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .grade-heading h3 {
+            color: #123a22;
+            font-size: 1.8rem;
+            white-space: nowrap;
+        }
+
+        .grade-line {
+            flex: 1;
+            height: 2px;
+            background: #dce6df;
+        }
+
+        .grade-format {
+            background: #087f3f;
+            color: white;
+            border-radius: 20px;
+            padding: 6px 13px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .team-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 18px;
+            padding: 27px;
+            border: 1px solid #e1e8e3;
+            box-shadow: 0 7px 20px rgba(0, 50, 20, 0.05);
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #e8f7ed;
+            right: -45px;
+            top: -45px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: #7dcc98;
+            box-shadow: 0 15px 30px rgba(0, 80, 35, 0.12);
+        }
+
+        .team-grade {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #087f3f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .team-card h4 {
+            color: #123a22;
+            font-size: 1.45rem;
+            margin-bottom: 8px;
+        }
+
+        .team-coach {
+            color: #657168;
+            min-height: 27px;
+            font-size: 0.92rem;
+        }
+
+        .team-coach strong {
+            color: #284b35;
+        }
+
+        .view-team {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #087f3f;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .view-team span {
+            transition: transform 0.2s ease;
+        }
+
+        .team-card:hover .view-team span {
+            transform: translateX(4px);
+        }
+
+        /* =========================
+           GAME FORMATS
+        ========================= */
+
+        .formats-section {
+            background: #073c20;
+            color: white;
+            padding: 85px 25px;
+        }
+
+        .formats-section .section-heading h2 {
+            color: white;
+        }
+
+        .formats-section .section-heading p {
+            color: rgba(255,255,255,0.72);
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .format-card {
+            background: white;
+            color: #163a22;
+            border-radius: 20px;
+            padding: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .format-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .format-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .format-badge {
+            background: #087f3f;
+            color: white;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .format-number {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: #087f3f;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .format-details {
+            display: grid;
+            gap: 13px;
+        }
+
+        .format-detail {
+            padding-bottom: 13px;
+            border-bottom: 1px solid #e5ebe6;
+        }
+
+        .format-detail:last-child {
+            border-bottom: none;
+        }
+
+        .format-detail strong {
+            display: block;
+            color: #31543c;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 2px;
+        }
+
+        .format-detail span {
+            color: #5d6c62;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .find-team-section {
+            padding: 80px 25px;
+            background: white;
+        }
+
+        .find-team-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #eaf7ee;
+            border-radius: 25px;
+            padding: 45px;
+            text-align: center;
+            border: 1px solid #d4ebda;
+        }
+
+        .find-team-box h2 {
+            color: #123a22;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .find-team-box p {
+            color: #657168;
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: #087f3f;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-weight: 800;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .contact-button:hover {
+            background: #065e2e;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #062e18;
+            color: white;
+            padding: 50px 25px 25px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-brand h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.65);
+            max-width: 430px;
+        }
+
+        .footer-column h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #8be5a7;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* =========================
+           TEAM MODAL
+        ========================= */
+
+        .team-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 20, 10, 0.72);
+            padding: 25px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+
+            animation: modalIn 0.2s ease;
+        }
+
+        @keyframes modalIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        .modal-header {
+            background: #087f3f;
+            color: white;
+            padding: 30px;
+            position: relative;
+        }
+
+        .modal-header .modal-grade {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            opacity: 0.8;
+        }
+
+        .modal-header h2 {
+            font-size: 2.2rem;
+            margin-top: 4px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 18px;
+
+            width: 38px;
+            height: 38px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.15);
+            color: white;
+
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info-item {
+            padding: 18px;
+            border-radius: 13px;
+            background: #f4f8f5;
+        }
+
+        .info-item small {
+            display: block;
+            color: #087f3f;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .info-item strong,
+        .info-item a {
+            color: #193c25;
+            font-size: 1rem;
+        }
+
+        .info-item a:hover {
+            color: #087f3f;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .focus-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .format-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                padding: 12px 18px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 3.1rem;
+            }
+
+            .hero-text {
+                font-size: 1rem;
+            }
+
+            .development-section,
+            .teams-section,
+            .formats-section,
+            .find-team-section {
+                padding: 60px 18px;
+            }
+
+            .focus-grid,
+            .team-list {
+                grid-template-columns: 1fr;
+            }
+
+            .grade-heading {
+                flex-wrap: wrap;
+            }
+
+            .grade-heading h3 {
+                font-size: 1.5rem;
+            }
+
+            .grade-line {
+                display: none;
+            }
+
+            .grade-format {
+                margin-left: auto;
+            }
+
+            .find-team-box {
+                padding: 30px 22px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .hero h1 {
+                font-size: 2.65rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-button {
+                text-align: center;
+            }
+
+            .grade-format {
+                margin-left: 0;
+            }
+
+            .format-card {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
 </head>
 
-<body class="page-juniors">
+<body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-  <nav class="navbar">
+    <header class="navbar">
 
-```
-<a href="index.html" class="navbar-logo">
-  <img src="logo.png" alt="Ngongotahā AFC Logo">
-</a>
+        <div class="nav-container">
 
-<div class="nav-links">
+            <a href="#" class="logo">
 
-  <a href="index.html">Home</a>
+                <div class="logo-mark">
+                    NAFC
+                </div>
 
-  <a href="registrations.html">Registrations</a>
+                <span>
+                    Ngongotahā AFC
+                </span>
 
-  <a href="cr1.html">CR1 Project</a>
+            </a>
 
-  <div class="dropdown">
+            <nav>
 
-    <button class="dropbtn" type="button">
-      Ngongotahā Teams ▾
-    </button>
+                <ul class="nav-links">
 
-    <div class="dropdown-content">
+                    <li>
+                        <a href="#development">
+                            Development
+                        </a>
+                    </li>
 
-      <a href="senior-teams.html">Senior Teams</a>
+                    <li>
+                        <a href="#teams">
+                            Junior Teams
+                        </a>
+                    </li>
 
-      <a href="junior-teams.html">Junior Teams</a>
+                    <li>
+                        <a href="#formats">
+                            Game Formats
+                        </a>
+                    </li>
 
-      <a href="womens-teams.html">Women's Teams</a>
+                    <li>
+                        <a href="#contact" class="nav-button">
+                            Contact Us
+                        </a>
+                    </li>
 
-    </div>
+                </ul>
 
-  </div>
-
-  <a href="calendar.html">Calendar</a>
-
-  <a href="aboutus.html">About Us</a>
-
-  <a href="academy.html">Academy</a>
-
-</div>
-```
-
-  </nav>
-
-  <!-- =========================
-       HERO
-  ========================= -->
-
-  <section class="hero">
-
-```
-<div class="hero-content">
-
-  <div class="hero-small">
-    Ngongotahā AFC
-  </div>
-
-  <h1>
-    Junior Football
-  </h1>
-
-  <h2>
-    Youth Registrations &amp; Development
-  </h2>
-
-  <p>
-    Junior football at Ngongotahā is about giving kids a place to play,
-    improve and make friends. From our youngest players through to youth
-    football, our teams train locally, compete across Rotorua and form
-    the foundation of the club's future.
-  </p>
-
-</div>
-```
-
-  </section>
-
-  <!-- =========================
-       MAIN CONTENT
-  ========================= -->
-
-  <main class="content">
-
-```
-<!-- =========================
-     DEVELOPMENT FOCUS
-     MOVED ABOVE JUNIOR TEAMS
-========================= -->
-
-<section class="section">
-
-  <h2>
-    Our Development Focus
-  </h2>
-
-  <p>
-    We are focused on giving children a good place to play football,
-    learn the game and enjoy being part of a team.
-  </p>
-
-
-  <div class="development-grid">
-
-
-    <!-- PLAYER DEVELOPMENT -->
-
-    <div
-      class="flip-card"
-      onclick="flipCard(this)"
-      tabindex="0"
-      role="button"
-      aria-label="Player Development card"
-    >
-
-      <div class="flip-card-inner">
-
-        <div class="flip-card-front">
-
-          <div class="flip-icon">
-            ⚽
-          </div>
-
-          <h3>
-            Player Development
-          </h3>
-
-          <p>
-            Helping players improve their football skills,
-            confidence and understanding of the game.
-          </p>
+            </nav>
 
         </div>
 
+    </header>
 
-        <div class="flip-card-back player-development">
 
-          <div class="back-content">
+    <!-- =========================
+         HERO
+    ========================= -->
 
-            <h3>
-              Player Development
-            </h3>
+    <section class="hero">
 
-            <p>
-              Every player should have the opportunity to improve.
-              We want our young footballers to develop skills that
-              will stay with them throughout their football journey.
+        <div class="hero-content">
+
+            <div class="hero-kicker">
+                Ngongotahā AFC Junior Football
+            </div>
+
+            <h1>
+                Junior<br>
+                <span>Teams</span>
+            </h1>
+
+            <p class="hero-text">
+                Welcome to Ngongotahā AFC Junior Football.
+                Our junior teams are built around development, enjoyment,
+                teamwork and creating a positive football environment
+                for every player.
             </p>
 
-          </div>
+            <div class="hero-buttons">
+
+                <a
+                    href="#teams"
+                    class="hero-button primary"
+                >
+                    View Our Teams
+                </a>
+
+                <a
+                    href="#development"
+                    class="hero-button secondary"
+                >
+                    Our Development Focus
+                </a>
+
+            </div>
 
         </div>
 
-      </div>
-
-    </div>
+    </section>
 
 
-    <!-- QUALITY ENVIRONMENT -->
+    <!-- =========================
+         DEVELOPMENT FOCUS
+         BELOW HERO
+         ABOVE TEAMS
+    ========================= -->
 
-    <div
-      class="flip-card"
-      onclick="flipCard(this)"
-      tabindex="0"
-      role="button"
-      aria-label="Quality Environment card"
+    <section
+        class="development-section"
+        id="development"
     >
 
-      <div class="flip-card-inner">
+        <div class="section-container">
 
-        <div class="flip-card-front">
+            <div class="section-heading">
 
-          <div class="flip-icon">
-            ★
-          </div>
+                <div class="eyebrow">
+                    Developing Young Players
+                </div>
 
-          <h3>
-            Quality Environment
-          </h3>
+                <h2>
+                    Our Development Focus
+                </h2>
 
-          <p>
-            A positive place where young players can enjoy football,
-            meet people and develop their skills.
-          </p>
+                <p>
+                    At Ngongotahā AFC, our junior football programme
+                    is about helping players grow both on and off
+                    the pitch.
+                </p>
+
+            </div>
+
+
+            <div class="focus-grid">
+
+                <div class="focus-card">
+
+                    <div class="focus-icon">
+                        ⚽
+                    </div>
+
+                    <h3>
+                        Football Development
+                    </h3>
+
+                    <p>
+                        Building strong football fundamentals while
+                        helping players develop their confidence,
+                        creativity and understanding of the game.
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Teamwork
+                    </h3>
+
+                    <p>
+                        Teaching players how to work together,
+                        communicate, support their teammates and
+                        enjoy being part of a team.
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-icon">
+                        🌱
+                    </div>
+
+                    <h3>
+                        Player Growth
+                    </h3>
+
+                    <p>
+                        Creating an environment where every player
+                        can develop at their own pace while being
+                        encouraged to keep learning.
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-icon">
+                        😊
+                    </div>
+
+                    <h3>
+                        Enjoyment
+                    </h3>
+
+                    <p>
+                        Keeping football fun and positive so our
+                        young players build a lasting love for
+                        the game.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <div class="flip-card-back quality-environment">
 
-          <div class="back-content">
+    <!-- =========================
+         JUNIOR TEAMS
+    ========================= -->
 
-            <h3>
-              Quality Environment
-            </h3>
+    <section
+        class="teams-section"
+        id="teams"
+    >
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    Upcoming Season
+                </div>
+
+                <h2>
+                    Our Junior Teams
+                </h2>
+
+                <p>
+                    Our teams have moved up one grade for the
+                    upcoming season. The game formats remain based
+                    on the football rules for each age group.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 6TH GRADE
+                 OLD 5TH GRADE
+                 FIRST KICKS
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        6th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        First Kicks • 3v3
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Breeze')"
+                    >
+
+                        <span class="team-grade">
+                            6th Grade
+                        </span>
+
+                        <h4>
+                            Breeze
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 7TH GRADE
+                 OLD 6TH GRADE
+                 FIRST KICKS
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        7th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        First Kicks • 3v3
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Mermaids')"
+                    >
+
+                        <span class="team-grade">
+                            7th Grade
+                        </span>
+
+                        <h4>
+                            Mermaids
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Frost')"
+                    >
+
+                        <span class="team-grade">
+                            7th Grade
+                        </span>
+
+                        <h4>
+                            Frost
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Stars')"
+                    >
+
+                        <span class="team-grade">
+                            7th Grade
+                        </span>
+
+                        <h4>
+                            Stars
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Warriors')"
+                    >
+
+                        <span class="team-grade">
+                            7th Grade
+                        </span>
+
+                        <h4>
+                            Warriors
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 8TH GRADE
+                 OLD 7TH GRADE
+                 FUN FOOTBALL
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        8th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        Fun Football • 5v5
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Thunder')"
+                    >
+
+                        <span class="team-grade">
+                            8th Grade
+                        </span>
+
+                        <h4>
+                            Thunder
+                        </h4>
+
+                        <div class="team-coach">
+                            <strong>Coach:</strong>
+                            Kyle Hetherington
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Earthquake')"
+                    >
+
+                        <span class="team-grade">
+                            8th Grade
+                        </span>
+
+                        <h4>
+                            Earthquake
+                        </h4>
+
+                        <div class="team-coach">
+                            <strong>Coach:</strong>
+                            Kyle Hetherington
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 9TH GRADE
+                 OLD 8TH GRADE
+                 FUN FOOTBALL
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        9th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        Fun Football • 5v5
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Tornado')"
+                    >
+
+                        <span class="team-grade">
+                            9th Grade
+                        </span>
+
+                        <h4>
+                            Tornado
+                        </h4>
+
+                        <div class="team-coach">
+                            <strong>Coach:</strong>
+                            Shaun Kaupa
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Lightning')"
+                    >
+
+                        <span class="team-grade">
+                            9th Grade
+                        </span>
+
+                        <h4>
+                            Lightning
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 10TH GRADE
+                 OLD 9TH GRADE
+                 MINI FOOTBALL
+                 7v7
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        10th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        Mini Football • 7v7
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Storm')"
+                    >
+
+                        <span class="team-grade">
+                            10th Grade
+                        </span>
+
+                        <h4>
+                            Storm
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Avalanche')"
+                    >
+
+                        <span class="team-grade">
+                            10th Grade
+                        </span>
+
+                        <h4>
+                            Avalanche
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 11TH GRADE
+                 OLD 10TH GRADE
+                 MINI FOOTBALL
+                 7v7
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        11th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        Mini Football • 7v7
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Monsoon')"
+                    >
+
+                        <span class="team-grade">
+                            11th Grade
+                        </span>
+
+                        <h4>
+                            Monsoon
+                        </h4>
+
+                        <div class="team-coach">
+                            <strong>Coach:</strong>
+                            Kyle Hetherington
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Typhoon')"
+                    >
+
+                        <span class="team-grade">
+                            11th Grade
+                        </span>
+
+                        <h4>
+                            Typhoon
+                        </h4>
+
+                        <div class="team-coach">
+                            Coach information to be confirmed
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 12TH GRADE
+                 OLD 11TH GRADE
+                 MINI FOOTBALL
+                 9v9
+                 
+                 IMPORTANT:
+                 The 12/13 GRADE RULES STAY
+                 WITH THIS TEAM.
+            ========================= -->
+
+            <div class="grade-section">
+
+                <div class="grade-heading">
+
+                    <h3>
+                        12th Grade
+                    </h3>
+
+                    <div class="grade-line"></div>
+
+                    <div class="grade-format">
+                        Mini Football • 9v9
+                    </div>
+
+                </div>
+
+
+                <div class="team-list">
+
+                    <div
+                        class="team-card"
+                        onclick="openTeamProfile('Blizzard')"
+                    >
+
+                        <span class="team-grade">
+                            12th Grade
+                        </span>
+
+                        <h4>
+                            Blizzard
+                        </h4>
+
+                        <div class="team-coach">
+                            <strong>Coach:</strong>
+                            Te Wehi
+                        </div>
+
+                        <div class="view-team">
+                            View Team
+                            <span>→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GAME FORMATS
+         
+         THESE RULES DO NOT MOVE
+         WITH THE TEAM NAMES.
+         
+         They remain based on the
+         original age-group formats
+         supplied in the images.
+    ========================= -->
+
+    <section
+        class="formats-section"
+        id="formats"
+    >
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    Football Rules
+                </div>
+
+                <h2>
+                    Game Formats
+                </h2>
+
+                <p>
+                    The game formats below remain unchanged.
+                    Teams move up a grade for the upcoming season,
+                    but the applicable football format remains tied
+                    to the relevant age-group rules.
+                </p>
+
+            </div>
+
+
+            <div class="format-grid">
+
+
+                <!-- =========================
+                     FIRST KICKS
+                     6TH & 7TH GRADE
+                ========================= -->
+
+                <div class="format-card">
+
+                    <div class="format-card-header">
+
+                        <h3>
+                            First Kicks
+                        </h3>
+
+                        <span class="format-badge">
+                            6th & 7th Grade
+                        </span>
+
+                    </div>
+
+
+                    <div class="format-number">
+                        3v3
+                    </div>
+
+
+                    <div class="format-details">
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Grades
+                            </strong>
+
+                            <span>
+                                6th and 7th Grade
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Format
+                            </strong>
+
+                            <span>
+                                3v3
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goalkeeper
+                            </strong>
+
+                            <span>
+                                No goalkeeper
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Time
+                            </strong>
+
+                            <span>
+                                3 × 8 minute games
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Pitch Size
+                            </strong>
+
+                            <span>
+                                20m × 15m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goal Size
+                            </strong>
+
+                            <span>
+                                Range: 1.5m × 0.9m
+                                to 2m × 1m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Ball Size
+                            </strong>
+
+                            <span>
+                                Size 3
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Tables & Results
+                            </strong>
+
+                            <span>
+                                No recorded results or table keeping
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Substitutions
+                            </strong>
+
+                            <span>
+                                0–1 rolling substitute
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Retreating Line
+                            </strong>
+
+                            <span>
+                                Halfway
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Offsides
+                            </strong>
+
+                            <span>
+                                No offsides
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Penalties
+                            </strong>
+
+                            <span>
+                                No penalties
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Corners
+                            </strong>
+
+                            <span>
+                                No corners
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Equipment
+                            </strong>
+
+                            <span>
+                                Minimum: covered shoes.
+                                Optimal: boots and shinpads.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     FUN FOOTBALL
+                     8TH & 9TH GRADE
+                ========================= -->
+
+                <div class="format-card">
+
+                    <div class="format-card-header">
+
+                        <h3>
+                            Fun Football
+                        </h3>
+
+                        <span class="format-badge">
+                            8th & 9th Grade
+                        </span>
+
+                    </div>
+
+
+                    <div class="format-number">
+                        5v5
+                    </div>
+
+
+                    <div class="format-details">
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Grades
+                            </strong>
+
+                            <span>
+                                8th and 9th Grade
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Format
+                            </strong>
+
+                            <span>
+                                5v5
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goalkeeper
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Time
+                            </strong>
+
+                            <span>
+                                2 × 20 minute games
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Pitch Size
+                            </strong>
+
+                            <span>
+                                Optimal: 35m × 25m
+                                <br>
+                                Range: 30m × 20m
+                                to 40m × 30m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Penalty Area
+                            </strong>
+
+                            <span>
+                                15m × 6m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goal Size
+                            </strong>
+
+                            <span>
+                                Range: 3m × 2m
+                                to 4m × 2m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Ball Size
+                            </strong>
+
+                            <span>
+                                8th Grade: Size 3
+                                <br>
+                                9th Grade: Size 4
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Tables & Results
+                            </strong>
+
+                            <span>
+                                No results recorded.
+                                No table keeping.
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Substitutions
+                            </strong>
+
+                            <span>
+                                2–3 rolling substitutions
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Retreating Line
+                            </strong>
+
+                            <span>
+                                Halfway
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Offsides
+                            </strong>
+
+                            <span>
+                                No offsides
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Corners
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Equipment
+                            </strong>
+
+                            <span>
+                                Boots and shinpads
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     MINI FOOTBALL
+                     10TH & 11TH GRADE
+                     7v7
+                ========================= -->
+
+                <div class="format-card">
+
+                    <div class="format-card-header">
+
+                        <h3>
+                            Mini Football
+                        </h3>
+
+                        <span class="format-badge">
+                            10th & 11th Grade
+                        </span>
+
+                    </div>
+
+
+                    <div class="format-number">
+                        7v7
+                    </div>
+
+
+                    <div class="format-details">
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Grades
+                            </strong>
+
+                            <span>
+                                10th and 11th Grade
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Format
+                            </strong>
+
+                            <span>
+                                7v7
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goalkeeper
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Time
+                            </strong>
+
+                            <span>
+                                2 × 25 minute halves
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Pitch Size
+                            </strong>
+
+                            <span>
+                                Optimal: 50m × 30m
+                                <br>
+                                Range: 45m × 30m
+                                to 55m × 35m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Penalty Area
+                            </strong>
+
+                            <span>
+                                20m × 8m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goal Size
+                            </strong>
+
+                            <span>
+                                4m × 2m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Ball Size
+                            </strong>
+
+                            <span>
+                                Size 4
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Tables & Results
+                            </strong>
+
+                            <span>
+                                Results recorded for grading
+                                purposes only.
+                                No table keeping.
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Substitutions
+                            </strong>
+
+                            <span>
+                                2–3 rolling substitutions
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Retreating Line
+                            </strong>
+
+                            <span>
+                                30% of the field from the goal line
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Offsides
+                            </strong>
+
+                            <span>
+                                Yes, retreating line
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Corners
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Equipment
+                            </strong>
+
+                            <span>
+                                Boots and shinpads
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     MINI FOOTBALL
+                     12TH GRADE
+                     FORMER 12/13 RULES
+                     9v9
+                ========================= -->
+
+                <div class="format-card">
+
+                    <div class="format-card-header">
+
+                        <h3>
+                            Mini Football
+                        </h3>
+
+                        <span class="format-badge">
+                            12th Grade
+                        </span>
+
+                    </div>
+
+
+                    <div class="format-number">
+                        9v9
+                    </div>
+
+
+                    <div class="format-details">
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Grade
+                            </strong>
+
+                            <span>
+                                12th Grade
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Format
+                            </strong>
+
+                            <span>
+                                9v9
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goalkeeper
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Game Time
+                            </strong>
+
+                            <span>
+                                2 × 30 minute halves
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Pitch Size
+                            </strong>
+
+                            <span>
+                                Optimal: 70m × 50m
+                                <br>
+                                Range: 60m × 45m
+                                to 75m × 50m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Penalty Area
+                            </strong>
+
+                            <span>
+                                26m × 10m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Goal Size
+                            </strong>
+
+                            <span>
+                                Optimal: 5m × 2m
+                                <br>
+                                Range: 5m × 2m
+                                to 6.4m × 2.2m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Ball Size
+                            </strong>
+
+                            <span>
+                                Size 4
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Tables & Results
+                            </strong>
+
+                            <span>
+                                Results recorded for grading
+                                purposes only.
+                                No table keeping.
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Substitutions
+                            </strong>
+
+                            <span>
+                                2–3 rolling substitutions
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Retreating Line
+                            </strong>
+
+                            <span>
+                                30% of the field from the goal line
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Offsides
+                            </strong>
+
+                            <span>
+                                Yes, halfway
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Penalties
+                            </strong>
+
+                            <span>
+                                8m
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Free Kicks
+                            </strong>
+
+                            <span>
+                                Direct or indirect.
+                                Opposition 5m away.
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Corners
+                            </strong>
+
+                            <span>
+                                Yes
+                            </span>
+
+                        </div>
+
+
+                        <div class="format-detail">
+
+                            <strong>
+                                Equipment
+                            </strong>
+
+                            <span>
+                                Boots and shinpads
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section
+        class="find-team-section"
+        id="contact"
+    >
+
+        <div class="find-team-box">
+
+            <h2>
+                Have a Question About a Team?
+            </h2>
 
             <p>
-              Good facilities, equipment, coaching and organisation
-              all contribute to giving our juniors an environment
-              they can be proud to be part of.
+                If you would like more information about one of
+                our junior teams, coaching opportunities,
+                registrations or the upcoming season, get in
+                touch with Ngongotahā AFC.
             </p>
 
-          </div>
+            <a
+                href="mailto:info@ngongotahafc.co.nz"
+                class="contact-button"
+            >
+                Contact Ngongotahā AFC
+            </a>
 
         </div>
 
-      </div>
-
-    </div>
+    </section>
 
 
-    <!-- FUTURE PATHWAY -->
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    Ngongotahā AFC
+                </h2>
+
+                <p>
+                    Supporting young players through football,
+                    teamwork, development and enjoyment.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Junior Football
+                </h3>
+
+                <a href="#development">
+                    Development Focus
+                </a>
+
+                <a href="#teams">
+                    Junior Teams
+                </a>
+
+                <a href="#formats">
+                    Game Formats
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <a href="#contact">
+                    Contact Us
+                </a>
+
+                <a href="#teams">
+                    Find Your Team
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            ©
+            <span id="currentYear"></span>
+            Ngongotahā AFC. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         TEAM MODAL
+    ========================= -->
 
     <div
-      class="flip-card"
-      onclick="flipCard(this)"
-      tabindex="0"
-      role="button"
-      aria-label="Future Pathway card"
+        class="team-modal"
+        id="teamModal"
+        onclick="closeModalOutside(event)"
     >
 
-      <div class="flip-card-inner">
+        <div class="modal-content">
 
-        <div class="flip-card-front">
+            <div class="modal-header">
 
-          <div class="flip-icon">
-            ↗
-          </div>
+                <button
+                    class="close-modal"
+                    onclick="closeTeamProfile()"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
 
-          <h3>
-            Future Pathway
-          </h3>
+                <div
+                    class="modal-grade"
+                    id="modalGrade"
+                >
+                    Junior Team
+                </div>
 
-          <p>
-            Players can continue through youth football and
-            eventually into senior football at Ngongotahā.
-          </p>
+                <h2 id="modalTeamName">
+                    Team
+                </h2>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="modal-info">
+
+
+                    <div class="info-item">
+
+                        <small>
+                            Coach
+                        </small>
+
+                        <strong id="modalCoach">
+                            Coach information to be confirmed
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <small>
+                            Email
+                        </small>
+
+                        <a
+                            id="modalEmail"
+                            href="#"
+                            style="display:none;"
+                        ></a>
+
+                        <strong
+                            id="modalEmailBlank"
+                            style="display:block;"
+                        >
+                            Email information to be confirmed
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <small>
+                            Game Format
+                        </small>
+
+                        <strong id="modalFormat">
+                            Football
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
 
         </div>
 
-
-        <div class="flip-card-back future-pathway">
-
-          <div class="back-content">
-
-            <h3>
-              Future Pathway
-            </h3>
-
-            <p>
-              Our long-term aim is to create a strong pathway from
-              junior football through youth football and ultimately
-              into our senior teams.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
     </div>
 
 
-  </div>
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /*
+         * TEAM INFORMATION
+         *
+         * Team grades have moved up one grade.
+         *
+         * The football format does NOT automatically move
+         * with the team. The format has been assigned according
+         * to the supplied football rules.
+         *
+         * 6th & 7th = First Kicks 3v3
+         * 8th & 9th = Fun Football 5v5
+         * 10th & 11th = Mini Football 7v7
+         * 12th = Mini Football 9v9
+         *
+         * Aurora has been removed.
+         */
+
+        const teams = {
+
+            Breeze: {
+                grade: "6th Grade",
+                coach: "",
+                email: "",
+                format: "First Kicks • 3v3"
+            },
+
+            Mermaids: {
+                grade: "7th Grade",
+                coach: "",
+                email: "",
+                format: "First Kicks • 3v3"
+            },
+
+            Frost: {
+                grade: "7th Grade",
+                coach: "",
+                email: "",
+                format: "First Kicks • 3v3"
+            },
+
+            Stars: {
+                grade: "7th Grade",
+                coach: "",
+                email: "",
+                format: "First Kicks • 3v3"
+            },
+
+            Warriors: {
+                grade: "7th Grade",
+                coach: "",
+                email: "",
+                format: "First Kicks • 3v3"
+            },
+
+            Thunder: {
+                grade: "8th Grade",
+                coach: "Kyle Hetherington",
+                email: "kyle2006878@gmail.com",
+                format: "Fun Football • 5v5"
+            },
+
+            Earthquake: {
+                grade: "8th Grade",
+                coach: "Kyle Hetherington",
+                email: "kyle2006878@gmail.com",
+                format: "Fun Football • 5v5"
+            },
+
+            Tornado: {
+                grade: "9th Grade",
+                coach: "Shaun Kaupa",
+                email: "",
+                format: "Fun Football • 5v5"
+            },
+
+            Lightning: {
+                grade: "9th Grade",
+                coach: "",
+                email: "",
+                format: "Fun Football • 5v5"
+            },
+
+            Storm: {
+                grade: "10th Grade",
+                coach: "",
+                email: "",
+                format: "Mini Football • 7v7"
+            },
+
+            Avalanche: {
+                grade: "10th Grade",
+                coach: "",
+                email: "",
+                format: "Mini Football • 7v7"
+            },
 
-</section>
+            Monsoon: {
+                grade: "11th Grade",
+                coach: "Kyle Hetherington",
+                email: "kyle2006878@gmail.com",
+                format: "Mini Football • 7v7"
+            },
 
+            Typhoon: {
+                grade: "11th Grade",
+                coach: "",
+                email: "",
+                format: "Mini Football • 7v7"
+            },
 
-<!-- =========================
-     JUNIOR TEAMS
-========================= -->
+            Blizzard: {
+                grade: "12th Grade",
+                coach: "Te Wehi",
+                email: "",
+                format: "Mini Football • 9v9"
+            }
 
-<section class="section junior-teams-section">
+        };
 
-  <h2>
-    Our Junior Teams
-  </h2>
 
-  <div class="teams-intro">
+        /* =========================
+           OPEN TEAM PROFILE
+        ========================= */
 
-    <p>
-      Ngongotahā AFC has junior teams from 5th Grade through to
-      12/13th Grade. Select a team below to see their training
-      details and contact information.
-    </p>
+        function openTeamProfile(teamName) {
 
-  </div>
+            const team = teams[teamName];
 
+            if (!team) {
+                return;
+            }
 
-  <div class="team-list">
 
+            const modal =
+                document.getElementById("teamModal");
 
-    <!-- 5TH GRADE -->
+            const modalTeamName =
+                document.getElementById("modalTeamName");
 
-    <div class="team-row">
+            const modalGrade =
+                document.getElementById("modalGrade");
 
-      <div class="team-information">
+            const modalCoach =
+                document.getElementById("modalCoach");
 
-        <div class="team-number">01</div>
+            const modalEmail =
+                document.getElementById("modalEmail");
 
-        <div>
-          <h3>Breeze</h3>
-          <p>5th Grade • Team 1</p>
-        </div>
+            const modalEmailBlank =
+                document.getElementById("modalEmailBlank");
 
-      </div>
+            const modalFormat =
+                document.getElementById("modalFormat");
 
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Breeze', '5th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
 
-    </div>
+            modalTeamName.textContent =
+                teamName;
 
+            modalGrade.textContent =
+                team.grade;
 
-    <div class="team-row">
+            modalFormat.textContent =
+                team.format;
 
-      <div class="team-information">
 
-        <div class="team-number">02</div>
+            /* Coach */
 
-        <div>
-          <h3>&nbsp;</h3>
-          <p>5th Grade • Team 2</p>
-        </div>
+            if (team.coach) {
 
-      </div>
+                modalCoach.textContent =
+                    team.coach;
 
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('', '5th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
+            } else {
 
-    </div>
+                modalCoach.textContent =
+                    "Coach information to be confirmed";
 
+            }
 
-    <!-- 6TH GRADE -->
 
-    <div class="team-row">
+            /* Email */
 
-      <div class="team-information">
+            if (team.email) {
 
-        <div class="team-number">03</div>
+                modalEmail.textContent =
+                    team.email;
 
-        <div>
-          <h3>Mermaids</h3>
-          <p>6th Grade • Team 1</p>
-        </div>
+                modalEmail.href =
+                    "mailto:" + team.email;
 
-      </div>
+                modalEmail.style.display =
+                    "inline";
 
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Mermaids', '6th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
+                modalEmailBlank.style.display =
+                    "none";
 
-    </div>
+            } else {
 
+                modalEmail.textContent =
+                    "";
 
-    <div class="team-row">
+                modalEmail.href =
+                    "#";
 
-      <div class="team-information">
+                modalEmail.style.display =
+                    "none";
 
-        <div class="team-number">04</div>
+                modalEmailBlank.style.display =
+                    "block";
 
-        <div>
-          <h3>Frost</h3>
-          <p>6th Grade • Team 2</p>
-        </div>
+            }
 
-      </div>
 
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Frost', '6th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
+            modal.classList.add("active");
 
-    </div>
+            document.body.style.overflow =
+                "hidden";
+        }
 
 
-    <div class="team-row">
+        /* =========================
+           CLOSE TEAM PROFILE
+        ========================= */
 
-      <div class="team-information">
+        function closeTeamProfile() {
 
-        <div class="team-number">05</div>
+            const modal =
+                document.getElementById("teamModal");
 
-        <div>
-          <h3>Stars</h3>
-          <p>6th Grade • Team 3</p>
-        </div>
+            modal.classList.remove("active");
 
-      </div>
+            document.body.style.overflow =
+                "";
+        }
 
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Stars', '6th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
 
-    </div>
+        /* =========================
+           CLOSE WHEN CLICKING
+           OUTSIDE MODAL
+        ========================= */
 
+        function closeModalOutside(event) {
 
-    <div class="team-row">
+            if (
+                event.target.id ===
+                "teamModal"
+            ) {
 
-      <div class="team-information">
+                closeTeamProfile();
 
-        <div class="team-number">06</div>
-
-        <div>
-          <h3>Warriors</h3>
-          <p>6th Grade • Team 4</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Warriors', '6th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 7TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">07</div>
-
-        <div>
-          <h3>Thunder</h3>
-          <p>7th Grade • Team 1 • Coach: Kyle Hetherington</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Thunder', '7th Grade', 'Kyle Hetherington', 'kyle2006878@gmail.com')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">08</div>
-
-        <div>
-          <h3>Earthquake</h3>
-          <p>7th Grade • Team 2 • Coach: Kyle Hetherington</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Earthquake', '7th Grade', 'Kyle Hetherington', 'kyle2006878@gmail.com')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 8TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">09</div>
-
-        <div>
-          <h3>Tornado</h3>
-          <p>8th Grade • Team 1 • Coach: Shaun Kaupa</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Tornado', '8th Grade', 'Shaun Kaupa', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">10</div>
-
-        <div>
-          <h3>Lightning</h3>
-          <p>8th Grade • Team 2</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Lightning', '8th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 9TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">11</div>
-
-        <div>
-          <h3>Storm</h3>
-          <p>9th Grade • Team 1</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Storm', '9th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">12</div>
-
-        <div>
-          <h3>Avalanche</h3>
-          <p>9th Grade • Team 2</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Avalanche', '9th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 10TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">13</div>
-
-        <div>
-          <h3>Monsoon</h3>
-          <p>10th Grade • Team 1 • Coach: Kyle Hetherington</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Monsoon', '10th Grade', 'Kyle Hetherington', 'kyle2006878@gmail.com')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">14</div>
-
-        <div>
-          <h3>Typhoon</h3>
-          <p>10th Grade • Team 2</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Typhoon', '10th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 11TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">15</div>
-
-        <div>
-          <h3>Blizzard</h3>
-          <p>11th Grade • Team 1 • Coach: Te Wehi</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Blizzard', '11th Grade', 'Te Wehi')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-    <!-- 12/13TH GRADE -->
-
-    <div class="team-row">
-
-      <div class="team-information">
-
-        <div class="team-number">16</div>
-
-        <div>
-          <h3>Aurora</h3>
-          <p>12/13th Grade • Team 1</p>
-        </div>
-
-      </div>
-
-      <button
-        class="team-profile-button"
-        type="button"
-        onclick="openTeamProfile('Aurora', '12/13th Grade', '')"
-      >
-        VIEW TEAM
-      </button>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FIND YOUR TEAM
-========================= -->
-
-<section class="section find-team-section">
-
-  <div class="find-team-box">
-
-    <div class="find-team-label">
-      NEW TO NGONGOTAHĀ?
-    </div>
-
-    <h2>
-      ⚽ FIND YOUR TEAM
-    </h2>
-
-    <p>
-      Not sure which grade your child belongs in?
-      Select the age they turn during this calendar year.
-      This is based on the age they turn during the year,
-      regardless of which month their birthday falls in.
-    </p>
-
-
-    <div class="age-selector">
-
-      <button class="age-button" onclick="findTeam(5, this)" type="button">5</button>
-      <button class="age-button" onclick="findTeam(6, this)" type="button">6</button>
-      <button class="age-button" onclick="findTeam(7, this)" type="button">7</button>
-      <button class="age-button" onclick="findTeam(8, this)" type="button">8</button>
-      <button class="age-button" onclick="findTeam(9, this)" type="button">9</button>
-      <button class="age-button" onclick="findTeam(10, this)" type="button">10</button>
-      <button class="age-button" onclick="findTeam(11, this)" type="button">11</button>
-      <button class="age-button" onclick="findTeam(12, this)" type="button">12</button>
-      <button class="age-button" onclick="findTeam(13, this)" type="button">13</button>
-
-    </div>
-
-
-    <div
-      class="finder-result"
-      id="finderResult"
-    >
-
-      <small>
-        Based on the age they turn this year:
-      </small>
-
-      <strong id="finderGrade">
-        -
-      </strong>
-
-      <p id="finderMessage">
-        -
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     REGISTRATION
-========================= -->
-
-<section class="section registration-box">
-
-  <h2>
-    Junior Registrations
-  </h2>
-
-  <p>
-    Ready to become part of Ngongotahā AFC?
-    Register your child and join our junior football community.
-  </p>
-
-  <a
-    href="YOUR_LINK_HERE"
-    class="registration-button"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Register Now
-  </a>
-
-</section>
-```
-
-  </main>
-
-  <!-- =========================
-       TEAM PROFILE POPUP
-  ========================= -->
-
-  <div
-    class="team-modal"
-    id="teamModal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="teamModalTitle"
-  >
-
-```
-<div class="team-modal-box">
-
-  <button
-    class="team-modal-close"
-    type="button"
-    onclick="closeTeamProfile()"
-    aria-label="Close team profile"
-  >
-    ×
-  </button>
-
-
-  <div class="team-modal-label">
-    Ngongotahā AFC Junior Football
-  </div>
-
-
-  <h2 id="teamModalTitle">
-    Team Profile
-  </h2>
-
-
-  <div class="team-detail">
-
-    <div class="team-detail-icon">
-      📅
-    </div>
-
-    <div class="team-detail-content">
-
-      <strong>
-        Training
-      </strong>
-
-      <span>
-        Tuesday &amp; Thursday
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="team-detail">
-
-    <div class="team-detail-icon">
-      📍
-    </div>
-
-    <div class="team-detail-content">
-
-      <strong>
-        Location
-      </strong>
-
-      <span>
-        Ngongotahā Domain
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="team-detail">
-
-    <div class="team-detail-icon">
-      ⚽
-    </div>
-
-    <div class="team-detail-content">
-
-      <strong>
-        Format
-      </strong>
-
-      <span>
-        9-a-side
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="team-detail">
-
-    <div class="team-detail-icon">
-      👤
-    </div>
-
-    <div class="team-detail-content">
-
-      <strong>
-        Coach
-      </strong>
-
-      <span id="teamCoach">
-        -
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div
-    class="team-detail"
-    id="teamContactDetail"
-  >
-
-    <div class="team-detail-icon">
-      ✉️
-    </div>
-
-    <div class="team-detail-content">
-
-      <strong>
-        Contact
-      </strong>
-
-      <a
-        id="teamContact"
-        href="#"
-      >
-        -
-      </a>
-
-    </div>
-
-  </div>
-
-
-</div>
-```
-
-  </div>
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-    © 2025 Ngongotahā Football Club | Contact Us
-  </footer>
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
-  <script>
-
-
-    /* =========================
-       TEAM PROFILE POPUP
-    ========================= */
-
-    const teamModal =
-      document.getElementById("teamModal");
-
-    const teamModalTitle =
-      document.getElementById("teamModalTitle");
-
-    const teamCoach =
-      document.getElementById("teamCoach");
-
-    const teamContact =
-      document.getElementById("teamContact");
-
-    const teamContactDetail =
-      document.getElementById("teamContactDetail");
-
-
-    function openTeamProfile(teamName, grade, coach, email) {
-
-      /*
-        If a team has a name, show it.
-        Otherwise show the grade/team profile.
-      */
-
-      if (teamName && teamName.trim() !== "") {
-
-        teamModalTitle.textContent = teamName;
-
-      } else {
-
-        teamModalTitle.textContent =
-          grade + " Team";
-
-      }
-
-
-      /*
-        Display coach information.
-        If no coach has been supplied yet,
-        leave the field blank.
-      */
-
-      if (coach && coach.trim() !== "") {
-
-        teamCoach.textContent = coach;
-
-      } else {
-
-        teamCoach.textContent = "";
-
-      }
-
-
-      /*
-        Display email only when one has
-        actually been supplied.
-      */
-
-      if (email && email.trim() !== "") {
-
-        teamContact.textContent = email;
-
-        teamContact.href = "mailto:" + email;
-
-        teamContactDetail.style.display = "flex";
-
-      } else {
-
-        teamContact.textContent = "";
-
-        teamContact.removeAttribute("href");
-
-        teamContactDetail.style.display = "none";
-
-      }
-
-
-      teamModal.classList.add("active");
-
-      document.body.style.overflow = "hidden";
-
-    }
-
-
-    function closeTeamProfile() {
-
-      teamModal.classList.remove("active");
-
-      document.body.style.overflow = "";
-
-    }
-
-
-    /*
-      Close when clicking outside
-      the profile box.
-    */
-
-    teamModal.addEventListener("click", function(event) {
-
-      if (event.target === teamModal) {
-
-        closeTeamProfile();
-
-      }
-
-    });
-
-
-    /*
-      Close popup with Escape.
-    */
-
-    document.addEventListener("keydown", function(event) {
-
-      if (
-        event.key === "Escape" &&
-        teamModal.classList.contains("active")
-      ) {
-
-        closeTeamProfile();
-
-      }
-
-    });
-
-
-    /* =========================
-       FIND YOUR TEAM
-    ========================= */
-
-    function findTeam(age, button) {
-
-      const finderResult =
-        document.getElementById("finderResult");
-
-      const finderGrade =
-        document.getElementById("finderGrade");
-
-      const finderMessage =
-        document.getElementById("finderMessage");
-
-
-      document.querySelectorAll(".age-button").forEach(function(ageButton) {
-
-        ageButton.classList.remove("selected");
-
-      });
-
-
-      button.classList.add("selected");
-
-
-      let grade;
-
-
-      if (age === 5) {
-
-        grade = "5th Grade";
-
-      }
-
-      else if (age === 6) {
-
-        grade = "6th Grade";
-
-      }
-
-      else if (age === 7) {
-
-        grade = "7th Grade";
-
-      }
-
-      else if (age === 8) {
-
-        grade = "8th Grade";
-
-      }
-
-      else if (age === 9) {
-
-        grade = "9th Grade";
-
-      }
-
-      else if (age === 10) {
-
-        grade = "10th Grade";
-
-      }
-
-      else if (age === 11) {
-
-        grade = "11th Grade";
-
-      }
-
-      else if (age === 12 || age === 13) {
-
-        grade = "12/13th Grade";
-
-      }
-
-
-      finderGrade.textContent = grade;
-
-
-      finderMessage.textContent =
-        "If your child turns " +
-        age +
-        " during this calendar year, they are in " +
-        grade +
-        ".";
-
-
-      finderResult.classList.add("active");
-
-    }
-
-
-    /* =========================
-       FLIP CARDS
-    ========================= */
-
-    function flipCard(card) {
-
-      card.classList.toggle("flipped");
-
-    }
-
-
-    document.querySelectorAll(".flip-card").forEach(function(card) {
-
-      card.addEventListener("keydown", function(event) {
-
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
-
-          event.preventDefault();
-
-          card.classList.toggle("flipped");
+            }
 
         }
 
-      });
 
-    });
+        /* =========================
+           ESCAPE KEY
+        ========================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeTeamProfile();
+
+                }
+
+            }
+        );
 
 
-    /* =========================
-       DROPDOWN FOR TOUCH DEVICES
-    ========================= */
+        /* =========================
+           CURRENT YEAR
+        ========================= */
 
-    const dropdownButton =
-      document.querySelector(".dropbtn");
+        document.getElementById(
+            "currentYear"
+        ).textContent =
+            new Date().getFullYear();
 
-    const dropdown =
-      document.querySelector(".dropdown");
-
-
-    if (dropdownButton && dropdown) {
-
-      dropdownButton.addEventListener(
-        "click",
-        function(event) {
-
-          event.preventDefault();
-
-          dropdown.classList.toggle("mobile-open");
-
-        }
-      );
-
-    }
-
-  </script>
+    </script>
 
 </body>
 </html>
