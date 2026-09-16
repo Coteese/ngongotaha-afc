@@ -1,14 +1,31 @@
 /* =========================================================
-NGONGOTAHĀ AFC WEBSITE
-MASTER STYLESHEET
+   NGONGOTAHĀ AFC WEBSITE
+   MASTER STYLESHEET
 
-Shared styling for the Ngongotahā AFC website.
-========================================================= */
+   This file contains the shared styling for the entire
+   Ngongotahā AFC website.
+
+   Individual pages can use body classes such as:
+
+   page-home
+   page-juniors
+   page-seniors
+   page-womens
+   page-cr1
+   page-calendar
+   page-about
+   page-academy
+   page-registrations
+
+   Example:
+   <body class="page-juniors">
+
+   ========================================================= */
 
 
 /* =========================================================
-GLOBAL
-========================================================= */
+   GLOBAL
+   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -41,8 +58,8 @@ body {
 
 
 /* =========================================================
-SHARED COLOURS
-========================================================= */
+   SHARED COLOURS
+   ========================================================= */
 
 :root {
   --orange-light: #ff914d;
@@ -60,8 +77,8 @@ SHARED COLOURS
 
 
 /* =========================================================
-NAVBAR
-========================================================= */
+   NAVBAR
+   ========================================================= */
 
 .navbar {
   position: sticky;
@@ -92,8 +109,13 @@ NAVBAR
   box-shadow:
     0 4px 25px rgba(0,0,0,0.55),
     0 0 25px rgba(254,67,0,0.25);
+
+  transition:
+    background 0.4s ease;
 }
 
+
+/* Navbar animation */
 
 @keyframes navbarGlow {
 
@@ -113,8 +135,8 @@ NAVBAR
 
 
 /* =========================================================
-NAVBAR LOGO
-========================================================= */
+   NAVBAR LOGO
+   ========================================================= */
 
 .navbar-logo {
   display: flex;
@@ -143,13 +165,14 @@ NAVBAR LOGO
 }
 
 .navbar-logo:hover img {
-  transform: scale(1.06);
+  transform:
+    scale(1.06);
 }
 
 
 /* =========================================================
-NAVIGATION LINKS
-========================================================= */
+   NAVIGATION LINKS
+   ========================================================= */
 
 .nav-links {
   display: flex;
@@ -184,9 +207,12 @@ NAVIGATION LINKS
 
 .nav-links a:hover,
 .dropbtn:hover {
-  background: rgba(0,0,0,0.25);
 
-  transform: translateY(-2px);
+  background:
+    rgba(0,0,0,0.25);
+
+  transform:
+    translateY(-2px);
 
   box-shadow:
     0 5px 15px rgba(0,0,0,0.25);
@@ -194,8 +220,8 @@ NAVIGATION LINKS
 
 
 /* =========================================================
-DROPDOWN
-========================================================= */
+   DROPDOWN
+   ========================================================= */
 
 .dropdown {
   position: relative;
@@ -204,7 +230,6 @@ DROPDOWN
 
 .dropbtn {
   border: none;
-
   background: transparent;
 
   cursor: pointer;
@@ -217,7 +242,9 @@ DROPDOWN
 
   position: absolute;
 
-  top: calc(100% + 8px);
+  /* FIXED: removes the gap that made the dropdown
+     disappear before its buttons could be clicked */
+  top: 100%;
   left: 0;
 
   min-width: 190px;
@@ -239,10 +266,6 @@ DROPDOWN
     blur(12px);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 .dropdown-content a {
   display: block;
 
@@ -253,15 +276,10 @@ DROPDOWN
   border-radius: 0;
 
   font-size: 14px;
-
-  background: transparent;
-
-  transform: none;
-
-  box-shadow: none;
 }
 
 .dropdown-content a:hover {
+
   background:
     linear-gradient(
       90deg,
@@ -274,14 +292,14 @@ DROPDOWN
   box-shadow: none;
 }
 
-.dropdown.mobile-open .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
 
 /* =========================================================
-MAIN HERO
-========================================================= */
+   MAIN HERO
+   ========================================================= */
 
 .hero {
   position: relative;
@@ -315,6 +333,8 @@ MAIN HERO
 }
 
 
+/* Hero glow */
+
 .hero::before {
   content: "";
 
@@ -340,6 +360,8 @@ MAIN HERO
   pointer-events: none;
 }
 
+
+/* Hero bottom line */
 
 .hero::after {
   content: "";
@@ -376,8 +398,8 @@ MAIN HERO
 
 
 /* =========================================================
-HERO SMALL LABEL
-========================================================= */
+   HERO SMALL LABEL
+   ========================================================= */
 
 .hero-small {
   display: inline-block;
@@ -409,8 +431,8 @@ HERO SMALL LABEL
 
 
 /* =========================================================
-HERO HEADING
-========================================================= */
+   HERO HEADING
+   ========================================================= */
 
 .hero h1 {
   margin: 0;
@@ -479,8 +501,8 @@ HERO HEADING
 
 
 /* =========================================================
-MAIN CONTENT
-========================================================= */
+   MAIN CONTENT
+   ========================================================= */
 
 .content {
   max-width: 1200px;
@@ -494,8 +516,8 @@ MAIN CONTENT
 
 
 /* =========================================================
-GENERAL SECTION
-========================================================= */
+   GENERAL SECTION
+   ========================================================= */
 
 .section {
   position: relative;
@@ -549,14 +571,14 @@ GENERAL SECTION
   margin-bottom: 16px;
 }
 
-.section > p:last-child {
+.section p:last-child {
   margin-bottom: 0;
 }
 
 
 /* =========================================================
-GALLERY
-========================================================= */
+   GALLERY
+   ========================================================= */
 
 .gallery-section {
   padding: 35px;
@@ -621,8 +643,8 @@ GALLERY
 
 
 /* =========================================================
-GALLERY CONTROLS
-========================================================= */
+   GALLERY CONTROLS
+   ========================================================= */
 
 .gallery-controls {
   position: absolute;
@@ -638,6 +660,7 @@ GALLERY CONTROLS
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
   padding:
@@ -689,6 +712,7 @@ GALLERY CONTROLS
 }
 
 .gallery-btn:hover {
+
   background:
     rgba(254,67,0,0.85);
 
@@ -697,6 +721,12 @@ GALLERY CONTROLS
 
   transform:
     scale(1.08);
+}
+
+.gallery-btn:active {
+
+  transform:
+    scale(0.95);
 }
 
 .gallery-caption {
@@ -715,43 +745,26 @@ GALLERY CONTROLS
 
 
 /* =========================================================
-DEVELOPMENT CARDS
-========================================================= */
+   DEVELOPMENT CARDS
+   ========================================================= */
 
 .development-grid {
   display: grid;
 
   grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+    repeat(3, 1fr);
 
   gap: 22px;
 
-  width: 100%;
-
-  max-width: 1050px;
-
-  margin: 30px auto 0;
-
-  justify-content: center;
-
-  align-items: stretch;
+  margin-top: 25px;
 }
 
-
-/* =========================================================
-FLIP CARD
-========================================================= */
-
 .flip-card {
-  width: 100%;
-
   height: 330px;
 
   perspective: 1200px;
 
   cursor: pointer;
-
-  margin: 0 auto;
 }
 
 .flip-card-inner {
@@ -771,18 +784,13 @@ FLIP CARD
 
 
 /* =========================================================
-FLIP CARD CLICK / TAP
-========================================================= */
+   FLIP CARD CLICK / TAP ONLY
+   ========================================================= */
 
 .flip-card.flipped .flip-card-inner {
   transform:
     rotateY(180deg);
 }
-
-
-/* =========================================================
-FLIP CARD FRONT + BACK
-========================================================= */
 
 .flip-card-front,
 .flip-card-back {
@@ -812,8 +820,8 @@ FLIP CARD FRONT + BACK
 
 
 /* =========================================================
-FLIP CARD FRONT
-========================================================= */
+   FLIP CARD FRONT
+   ========================================================= */
 
 .flip-card-front {
   display: flex;
@@ -858,8 +866,6 @@ FLIP CARD FRONT
 
   box-shadow:
     0 0 80px rgba(254,67,0,0.12);
-
-  pointer-events: none;
 }
 
 .flip-card-front h3 {
@@ -897,8 +903,8 @@ FLIP CARD FRONT
 
 
 /* =========================================================
-FLIP ICON
-========================================================= */
+   FLIP ICON
+   ========================================================= */
 
 .flip-icon {
   position: relative;
@@ -930,8 +936,8 @@ FLIP ICON
 
 
 /* =========================================================
-FLIP CARD BACK
-========================================================= */
+   FLIP CARD BACK
+   ========================================================= */
 
 .flip-card-back {
   transform:
@@ -952,16 +958,12 @@ FLIP CARD BACK
   align-items:
     flex-end;
 
-  z-index:
-    1;
+  z-index: 1;
 }
 
 .flip-card.flipped .flip-card-back {
   z-index: 2;
 }
-
-
-/* Dark overlay over photos */
 
 .flip-card-back::before {
   content: "";
@@ -972,20 +974,10 @@ FLIP CARD BACK
 
   background:
     linear-gradient(
-      transparent 20%,
-      rgba(0,0,0,0.35) 45%,
-      rgba(0,0,0,0.94) 100%
+      transparent 25%,
+      rgba(0,0,0,0.92) 100%
     );
-
-  z-index: 1;
-
-  pointer-events: none;
 }
-
-
-/* =========================================================
-BACK CONTENT
-========================================================= */
 
 .back-content {
   position: relative;
@@ -1025,17 +1017,23 @@ BACK CONTENT
 
 
 /* =========================================================
-JUNIOR PAGE CARD IMAGES
-========================================================= */
+   PAGE-SPECIFIC FLIP CARD IMAGES
+   =========================================================
+
+   JUNIOR PAGE
+
+   These are the current Junior page images.
+
+   ========================================================= */
 
 .page-juniors .player-development {
   background-image:
-    url("cr2.jpg");
+    url("Equipment.jpg");
 }
 
 .page-juniors .quality-environment {
   background-image:
-    url("drone.jpg");
+    url("Equipment.jpg");
 }
 
 .page-juniors .future-pathway {
@@ -1045,28 +1043,49 @@ JUNIOR PAGE CARD IMAGES
 
 
 /* =========================================================
-OTHER PAGE-SPECIFIC IMAGE AREAS
-========================================================= */
+   FUTURE PAGE-SPECIFIC IMAGE AREAS
+
+   We can change these when building the other pages.
+
+   The important part is that changing one page will NOT
+   automatically change another page.
+
+   ========================================================= */
+
+
+/* HOME */
 
 .page-home .player-development {
   background-image:
     url("Equipment.jpg");
 }
 
+
+/* SENIOR TEAMS */
+
 .page-seniors .player-development {
   background-image:
     url("Equipment.jpg");
 }
+
+
+/* WOMEN'S TEAMS */
 
 .page-womens .player-development {
   background-image:
     url("Equipment.jpg");
 }
 
+
+/* CR1 */
+
 .page-cr1 .player-development {
   background-image:
     url("Equipment.jpg");
 }
+
+
+/* ACADEMY */
 
 .page-academy .player-development {
   background-image:
@@ -1075,8 +1094,8 @@ OTHER PAGE-SPECIFIC IMAGE AREAS
 
 
 /* =========================================================
-REGISTRATION CTA
-========================================================= */
+   REGISTRATION CTA
+   ========================================================= */
 
 .registration-box {
   text-align:
@@ -1162,8 +1181,8 @@ REGISTRATION CTA
 
 
 /* =========================================================
-GENERAL BUTTON
-========================================================= */
+   GENERAL BUTTON
+   ========================================================= */
 
 .orange-button {
   display:
@@ -1212,8 +1231,8 @@ GENERAL BUTTON
 
 
 /* =========================================================
-FOOTER
-========================================================= */
+   FOOTER
+   ========================================================= */
 
 footer {
   width:
@@ -1252,8 +1271,8 @@ footer {
 
 
 /* =========================================================
-MOBILE
-========================================================= */
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -1311,32 +1330,12 @@ MOBILE
       25px 20px;
   }
 
-  /* Center all three cards */
-
   .development-grid {
     grid-template-columns:
       1fr;
-
-    max-width:
-      500px;
-
-    margin-left:
-      auto;
-
-    margin-right:
-      auto;
   }
 
   .flip-card {
-    width:
-      100%;
-
-    max-width:
-      500px;
-
-    margin:
-      0 auto;
-
     height:
       300px;
   }
@@ -1345,8 +1344,8 @@ MOBILE
 
 
 /* =========================================================
-SMALL MOBILE
-========================================================= */
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 600px) {
 
@@ -1460,18 +1459,7 @@ SMALL MOBILE
       9px;
   }
 
-  .development-grid {
-    width:
-      100%;
-
-    max-width:
-      400px;
-  }
-
   .flip-card {
-    width:
-      100%;
-
     height:
       285px;
   }
@@ -1480,8 +1468,8 @@ SMALL MOBILE
 
 
 /* =========================================================
-TOUCH DEVICE DROPDOWN
-========================================================= */
+   TOUCH DEVICE DROPDOWN
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -1494,8 +1482,12 @@ TOUCH DEVICE DROPDOWN
 
 
 /* =========================================================
-PERFORMANCE
-========================================================= */
+   PERFORMANCE
+   ========================================================= */
+
+/*
+   Keep animations smooth on slower devices.
+*/
 
 @media (prefers-reduced-motion: reduce) {
 
