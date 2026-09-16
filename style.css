@@ -1,536 +1,1486 @@
-<!DOCTYPE html>
+/* =========================================================
+NGONGOTAHĀ AFC WEBSITE
+MASTER STYLESHEET
 
-<html lang="en">
+This file contains the shared styling for the entire
+Ngongotahā AFC website.
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+Individual pages can use body classes such as:
 
-  <title>Ngongotahā Football Club | Rotorua Football</title>
+page-home
+page-juniors
+page-seniors
+page-womens
+page-cr1
+page-calendar
+page-about
+page-academy
+page-registrations
 
-  <!-- MASTER WEBSITE STYLESHEET -->
+Example:
 
-  <link rel="stylesheet" href="style.css">
-</head>
+   <body class="page-juniors">
 
-<body class="page-home">
+========================================================= */
 
-  <!-- =====================================================
-       NAVBAR
-       ===================================================== -->
+/* =========================================================
+GLOBAL
+========================================================= */
 
-  <nav class="navbar" id="navbar">
+{
+box-sizing: border-box;
+}
 
-```
-<!-- Club Logo -->
-<a href="index.html" class="navbar-logo">
-  <img src="logo.png" alt="Ngongotahā Football Club Logo">
-</a>
+html {
+scroll-behavior: smooth;
+}
 
-<!-- Navigation -->
-<div class="nav-links">
+body {
+margin: 0;
 
-  <a href="index.html">Home</a>
+font-family: Arial, Helvetica, sans-serif;
 
-  <a href="registrations.html">Registrations</a>
+color: white;
 
-  <a href="cr1.html">CR1 Project</a>
+background-image:
+linear-gradient(
+rgba(0,0,0,0.72),
+rgba(0,0,0,0.82)
+),
+url("background.jpg");
 
-  <div class="dropdown">
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
 
-    <button class="dropbtn" type="button">
-      Ngongotahā Teams ▼
-    </button>
+min-height: 100vh;
+}
 
-    <div class="dropdown-content">
+/* =========================================================
+SHARED COLOURS
+========================================================= */
 
-      <a href="senior-teams.html">
-        Senior Teams
-      </a>
+ {
+--orange-light: #ff914d;
+--orange: #fe4300;
+--orange-bright: #ff6a00;
+--orange-soft: #ffb07a;
 
-      <a href="junior-teams.html">
-        Junior Teams
-      </a>
+--black: #050505;
+--dark: #0b0b0b;
+--dark-panel: #111111;
 
-      <a href="womens-teams.html">
-        Women's Teams
-      </a>
+--text: #eeeeee;
+--text-muted: #bbbbbb;
+}
 
-    </div>
+/* =========================================================
+NAVBAR
+========================================================= */
 
-  </div>
+.navbar {
+position: sticky;
+top: 0;
+z-index: 1000;
 
-  <a href="calendar.html">Calendar</a>
+min-height: 82px;
 
-  <a href="aboutus.html">About Us</a>
+display: flex;
+align-items: center;
 
-  <a href="academy.html">Academy</a>
+padding: 10px 30px;
 
-</div>
-```
+background:
+linear-gradient(
+110deg,
+#ff914d,
+#fe4300,
+#ff6a00,
+#fe4300
+);
 
-  </nav>
+background-size: 300% 300%;
 
-  <!-- =====================================================
-       HERO
-       ===================================================== -->
+animation:
+navbarGlow 15s ease infinite;
 
-  <main>
+box-shadow:
+0 4px 25px rgba(0,0,0,0.55),
+0 0 25px rgba(254,67,0,0.25);
 
-```
-<section class="hero">
+transition:
+background 0.4s ease;
+}
 
-  <div class="hero-content">
+/* Navbar animation */
 
-    <div class="hero-small">
-      NGONGOTAHĀ FOOTBALL CLUB
-    </div>
+@keyframes navbarGlow {
 
-    <h1>
-      Football Starts Here
-    </h1>
+0% {
+background-position: 0% 50%;
+}
 
-    <h2>
-      Rotorua's Home of Football
-    </h2>
+50% {
+background-position: 100% 50%;
+}
 
-    <p>
-      Ngongotahā AFC is Rotorua's premier football club,
-      providing opportunities for players of all ages and
-      abilities to play, develop and belong.
-    </p>
+100% {
+background-position: 0% 50%;
+}
 
-  </div>
+}
 
-</section>
+/* =========================================================
+NAVBAR LOGO
+========================================================= */
 
+.navbar-logo {
+display: flex;
+align-items: center;
 
-<!-- =====================================================
-     WELCOME
-     ===================================================== -->
+flex-shrink: 0;
 
-<div class="content">
+text-decoration: none;
+}
 
-  <section class="section">
+.navbar-logo img {
+width: 65px;
+height: 65px;
 
-    <h2>
-      Welcome to Ngongotahā Football Club
-    </h2>
+object-fit: contain;
 
-    <p>
-      Ngongotahā AFC is Rotorua's premier football club —
-      proudly offering opportunities for players of all
-      ages and abilities.
-    </p>
+display: block;
 
-    <p>
-      From our youngest Little Dribblers through to our
-      junior, youth and senior teams, everyone is welcome
-      to play, learn and grow with us here in Rotorua.
-    </p>
+filter:
+drop-shadow(
+0 3px 6px rgba(0,0,0,0.55)
+);
 
-    <p>
-      Our First Team competes in the LOTTO NRFL Southern
-      Conference, providing talented players with the
-      opportunity to perform at a high level while staying
-      connected to their community roots.
-    </p>
+transition:
+transform 0.25s ease;
+}
 
-    <p>
-      At Ngongotahā AFC, we're passionate about growing
-      football in Rotorua — whether you're taking your
-      first kick, returning to the pitch, or looking for
-      a friendly, family-oriented club to call home.
-    </p>
+.navbar-logo img {
+transform:
+scale(1.06);
+}
 
-  </section>
+/* =========================================================
+NAVIGATION LINKS
+========================================================= */
 
+.nav-links {
+display: flex;
+align-items: center;
+justify-content: flex-end;
 
-  <!-- =====================================================
-       OUR MISSION
-       ===================================================== -->
+gap: 7px;
 
-  <section class="section">
+width: 100%;
 
-    <h2>
-      Our Mission
-    </h2>
+margin-left: 25px;
+}
 
-    <p>
-      We believe football is more than just a sport.
-      It is a way to bring people together, build lifelong
-      friendships and develop important values such as
-      teamwork, respect and perseverance.
-    </p>
+.nav-links a,
+.dropbtn {
+color: white;
 
-    <p>
-      Our goal is to create an environment where players
-      can enjoy football, develop their ability and become
-      confident members of the Ngongotahā community.
-    </p>
+text-decoration: none;
 
-  </section>
+font-size: 14px;
+font-weight: bold;
 
+padding: 13px 14px;
 
-  <!-- =====================================================
-       GALLERY
-       ===================================================== -->
+border-radius: 8px;
 
-  <section class="section gallery-section">
+transition:
+background 0.25s ease,
+transform 0.25s ease,
+box-shadow 0.25s ease;
+}
 
-    <h2>
-      Life at Ngongotahā
-    </h2>
+.nav-links a,
+.dropbtn {
 
-    <div class="gallery">
+background:
+rgba(0,0,0,0.25);
 
-      <div class="gallery-slides">
+transform:
+translateY(-2px);
 
-        <img
-          src="image1.jpg"
-          alt="Ngongotahā Football Club"
-          class="gallery-slide active"
-          loading="eager"
-        >
-
-        <img
-          src="image2.jpg"
-          alt="Ngongotahā Football Club players"
-          class="gallery-slide"
-          loading="lazy"
-        >
-
-        <img
-          src="image3.jpg"
-          alt="Ngongotahā Football Club football action"
-          class="gallery-slide"
-          loading="lazy"
-        >
-
-        <img
-          src="image4.jpg"
-          alt="Ngongotahā Football Club community"
-          class="gallery-slide"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <!-- Gallery Controls -->
+box-shadow:
+0 5px 15px rgba(0,0,0,0.25);
+}
 
-      <div class="gallery-controls">
-
-        <button
-          class="gallery-btn"
-          type="button"
-          onclick="changeSlide(-1)"
-          aria-label="Previous image"
-        >
-          ❮
-        </button>
-
-        <button
-          class="gallery-btn"
-          type="button"
-          onclick="changeSlide(1)"
-          aria-label="Next image"
-        >
-          ❯
-        </button>
-
-      </div>
-
-      <div class="gallery-caption">
-        Ngongotahā Football Club
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       UPCOMING EVENTS
-       ===================================================== -->
-
-  <section class="section">
-
-    <h2>
-      Upcoming Events
-    </h2>
-
-    <div
-      id="events-container"
-      style="
-        display:flex;
-        flex-wrap:wrap;
-        gap:20px;
-      "
-    >
-
-      <!-- Event 1 -->
-
-      <div
-        class="event-day"
-        style="
-          flex:1 1 300px;
-          padding:20px;
-          border:1px solid rgba(255,145,77,0.25);
-          border-radius:12px;
-          background:rgba(254,67,0,0.08);
-        "
-      >
-
-        <h3
-          style="
-            color:#ff914d;
-            margin-top:0;
-          "
-        >
-          Monday, Nov 4
-        </h3>
-
-        <ul
-          style="
-            list-style:none;
-            padding:0;
-            margin:0;
-            color:#eeeeee;
-            line-height:1.8;
-          "
-        >
-
-          <li>
-            <strong>8:00 AM</strong>
-            – Team Meeting at Clubhouse
-          </li>
-
-          <li>
-            <strong>5:00 PM</strong>
-            – Youth Training
-          </li>
-
-        </ul>
-
-      </div>
-
-
-      <!-- Event 2 -->
-
-      <div
-        class="event-day"
-        style="
-          flex:1 1 300px;
-          padding:20px;
-          border:1px solid rgba(255,145,77,0.25);
-          border-radius:12px;
-          background:rgba(254,67,0,0.08);
-        "
-      >
-
-        <h3
-          style="
-            color:#ff914d;
-            margin-top:0;
-          "
-        >
-          Tuesday, Nov 5
-        </h3>
+/* =========================================================
+DROPDOWN
+========================================================= */
 
-        <ul
-          style="
-            list-style:none;
-            padding:0;
-            margin:0;
-            color:#eeeeee;
-            line-height:1.8;
-          "
-        >
+.dropdown {
+position: relative;
+display: inline-block;
+}
 
-          <li>
-            <strong>6:00 PM</strong>
-            – Senior Team Training
-          </li>
+.dropbtn {
+border: none;
+background: transparent;
 
-        </ul>
+cursor: pointer;
 
-      </div>
+font-family: inherit;
+}
 
-    </div>
+.dropdown-content {
+display: none;
 
-  </section>
+position: absolute;
 
+top: calc(100% + 8px);
+left: 0;
 
-  <!-- =====================================================
-       REGISTRATION CTA
-       ===================================================== -->
+min-width: 190px;
 
-  <section class="section registration-box">
+background:
+rgba(15,15,15,0.97);
 
-    <h2>
-      Ready to Join Ngongotahā?
-    </h2>
+border:
+1px solid rgba(255,145,77,0.45);
 
-    <p>
-      Whether you're a young player starting your football
-      journey, an experienced player looking for a club,
-      or a parent looking for a positive football environment,
-      there is a place for you at Ngongotahā.
-    </p>
+border-radius: 10px;
 
-    <a
-      href="registrations.html"
-      class="registration-button"
-    >
-      Register With Us
-    </a>
+overflow: hidden;
 
-  </section>
+box-shadow:
+0 12px 30px rgba(0,0,0,0.6);
 
-</div>
-```
+backdrop-filter:
+blur(12px);
+}
 
-  </main>
+.dropdown-content a {
+display: block;
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
+padding: 13px 16px;
 
-  <footer>
+color: white;
 
-```
-© 2026 Ngongotahā Football Club |
-<a href="mailto:info@ngongotahafootball.co.nz">
-  Contact Us
-</a>
-```
+border-radius: 0;
 
-  </footer>
+font-size: 14px;
+}
 
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
+.dropdown-content a {
 
-  <script>
+background:
+linear-gradient(
+90deg,
+rgba(254,67,0,0.85),
+rgba(255,145,77,0.65)
+);
 
-    /* =====================================================
-       NAVBAR
-       ===================================================== */
+transform: none;
 
-    const navbar = document.getElementById("navbar");
+box-shadow: none;
+}
 
-    window.addEventListener("scroll", function () {
+.dropdown .dropdown-content {
+display: block;
+}
 
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+/* =========================================================
+MAIN HERO
+========================================================= */
 
-    });
+.hero {
+position: relative;
 
+max-width: 1200px;
 
-    /* =====================================================
-       MOBILE DROPDOWN
-       ===================================================== */
+margin: 55px auto 35px;
 
-    const dropdown = document.querySelector(".dropdown");
-    const dropbtn = document.querySelector(".dropbtn");
+padding: 65px 35px;
 
-    if (dropbtn && dropdown) {
+text-align: center;
 
-      dropbtn.addEventListener("click", function (event) {
+overflow: hidden;
 
-        event.preventDefault();
+background:
+linear-gradient(
+135deg,
+rgba(8,8,8,0.97),
+rgba(25,12,7,0.96),
+rgba(8,8,8,0.97)
+);
 
-        dropdown.classList.toggle("mobile-open");
+border-radius: 24px;
 
-      });
+border:
+1px solid rgba(255,145,77,0.35);
 
-    }
+box-shadow:
+0 20px 60px rgba(0,0,0,0.65),
+inset 0 0 40px rgba(254,67,0,0.06);
+}
 
+/* Hero glow */
 
-    /* =====================================================
-       GALLERY
-       ===================================================== */
+.hero::before {
+content: "";
 
-    let slideIndex = 0;
+position: absolute;
 
-    const slides =
-      document.querySelectorAll(".gallery-slide");
+top: -120px;
+left: -15%;
 
-    let slideTimeout;
+width: 130%;
+height: 240px;
 
+background:
+radial-gradient(
+ellipse,
+rgba(255,100,25,0.32) 0%,
+rgba(254,67,0,0.12) 35%,
+transparent 70%
+);
 
-    function showSlide(index) {
+transform:
+rotate(-4deg);
 
-      if (!slides.length) {
-        return;
-      }
+pointer-events: none;
+}
 
-      if (index >= slides.length) {
-        slideIndex = 0;
-      }
+/* Hero bottom line */
 
-      if (index < 0) {
-        slideIndex = slides.length - 1;
-      }
+.hero::after {
+content: "";
 
-      slides.forEach(function (slide) {
+position: absolute;
 
-        slide.classList.remove("active");
+left: 10%;
+right: 10%;
 
-      });
+bottom: 0;
 
-      slides[slideIndex].classList.add("active");
+height: 3px;
 
+background:
+linear-gradient(
+90deg,
+transparent,
+#fe4300,
+#ff914d,
+#fe4300,
+transparent
+);
 
-      /* Restart automatic slideshow */
+box-shadow:
+0 0 18px rgba(254,67,0,0.8);
 
-      clearTimeout(slideTimeout);
+pointer-events: none;
+}
 
-      slideTimeout = setTimeout(function () {
+.hero-content {
+position: relative;
+z-index: 2;
+}
 
-        changeSlide(1);
+/* =========================================================
+HERO SMALL LABEL
+========================================================= */
 
-      }, 8000);
+.hero-small {
+display: inline-block;
 
-    }
+margin-bottom: 18px;
 
+padding: 7px 16px;
 
-    function changeSlide(direction) {
+border:
+1px solid rgba(255,145,77,0.4);
 
-      slideIndex += direction;
+border-radius: 30px;
 
-      showSlide(slideIndex);
+color: #ffb07a;
 
-    }
+font-size: 13px;
+font-weight: bold;
 
+letter-spacing: 3px;
 
-    /* Start gallery */
+text-transform: uppercase;
 
-    showSlide(slideIndex);
+background:
+rgba(254,67,0,0.08);
 
+box-shadow:
+0 0 20px rgba(254,67,0,0.08);
+}
 
-    /* =====================================================
-       CLOSE MOBILE DROPDOWN WHEN CLICKING ELSEWHERE
-       ===================================================== */
+/* =========================================================
+HERO HEADING
+========================================================= */
 
-    document.addEventListener("click", function (event) {
+.hero h1 {
+margin: 0;
 
-      if (
-        dropdown &&
-        !dropdown.contains(event.target)
-      ) {
+font-size:
+clamp(38px, 6vw, 72px);
 
-        dropdown.classList.remove("mobile-open");
+line-height: 0.95;
 
-      }
+font-weight: 900;
 
-    });
+letter-spacing: -2px;
 
-  </script>
+text-transform: uppercase;
 
-</body>
-</html>
+background:
+linear-gradient(
+90deg,
+#ffffff 0%,
+#ffffff 35%,
+#ffb27e 60%,
+#ff6a00 100%
+);
+
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+background-clip: text;
+
+filter:
+drop-shadow(
+0 5px 12px rgba(0,0,0,0.55)
+);
+}
+
+.hero h2 {
+margin:
+18px 0 0;
+
+font-size:
+clamp(20px, 3vw, 31px);
+
+font-weight: 700;
+
+color:
+#ff914d;
+
+letter-spacing: 2px;
+
+text-transform: uppercase;
+}
+
+.hero p {
+max-width: 780px;
+
+margin:
+25px auto 0;
+
+color:
+#dddddd;
+
+font-size: 17px;
+
+line-height: 1.75;
+}
+
+/* =========================================================
+MAIN CONTENT
+========================================================= */
+
+.content {
+max-width: 1200px;
+
+margin:
+0 auto 60px;
+
+padding:
+0 25px;
+}
+
+/* =========================================================
+GENERAL SECTION
+========================================================= */
+
+.section {
+position: relative;
+
+margin-bottom: 35px;
+
+padding: 35px;
+
+background:
+linear-gradient(
+135deg,
+rgba(10,10,10,0.92),
+rgba(22,14,10,0.90)
+);
+
+border:
+1px solid rgba(255,145,77,0.18);
+
+border-radius: 18px;
+
+box-shadow:
+0 15px 45px rgba(0,0,0,0.45);
+
+backdrop-filter:
+blur(10px);
+}
+
+.section h2 {
+margin-top: 0;
+
+margin-bottom: 20px;
+
+font-size: 30px;
+
+color:
+#ff914d;
+
+text-transform: uppercase;
+
+letter-spacing: 1px;
+}
+
+.section p {
+color:
+#eeeeee;
+
+font-size: 16px;
+
+line-height: 1.8;
+
+margin-bottom: 16px;
+}
+
+.section p {
+margin-bottom: 0;
+}
+
+/* =========================================================
+GALLERY
+========================================================= */
+
+.gallery-section {
+padding: 35px;
+}
+
+.gallery {
+position: relative;
+
+width: 100%;
+
+max-width: 1050px;
+
+margin:
+0 auto;
+
+border-radius: 16px;
+
+overflow: hidden;
+
+background:
+#050505;
+
+border:
+1px solid rgba(255,145,77,0.28);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.65);
+}
+
+.gallery-slides {
+position: relative;
+
+width: 100%;
+
+aspect-ratio:
+16 / 9;
+
+overflow: hidden;
+}
+
+.gallery-slide {
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+object-fit: cover;
+
+opacity: 0;
+
+transition:
+opacity 0.5s ease;
+
+display: block;
+}
+
+.gallery-slide.active {
+opacity: 1;
+}
+
+/* =========================================================
+GALLERY CONTROLS
+========================================================= */
+
+.gallery-controls {
+position: absolute;
+
+top: 50%;
+left: 0;
+
+width: 100%;
+
+transform:
+translateY(-50%);
+
+display: flex;
+
+justify-content: space-between;
+align-items: center;
+
+padding:
+0 18px;
+
+pointer-events: none;
+
+z-index: 20;
+}
+
+.gallery-btn {
+width: 55px;
+height: 65px;
+
+border:
+1px solid rgba(255,255,255,0.35);
+
+border-radius: 12px;
+
+background:
+rgba(0,0,0,0.55);
+
+color:
+white;
+
+font-size: 38px;
+
+line-height: 1;
+
+cursor: pointer;
+
+display: flex;
+
+justify-content: center;
+align-items: center;
+
+pointer-events: auto;
+
+backdrop-filter:
+blur(8px);
+
+box-shadow:
+0 5px 20px rgba(0,0,0,0.45);
+
+transition:
+background 0.25s ease,
+transform 0.25s ease,
+border-color 0.25s ease;
+}
+
+.gallery-btn {
+
+background:
+rgba(254,67,0,0.85);
+
+border-color:
+#ff914d;
+
+transform:
+scale(1.08);
+}
+
+.gallery-btn {
+
+transform:
+scale(0.95);
+}
+
+.gallery-caption {
+text-align: center;
+
+padding: 13px;
+
+color:
+#bbbbbb;
+
+font-size: 13px;
+
+background:
+rgba(0,0,0,0.75);
+}
+
+/* =========================================================
+DEVELOPMENT CARDS
+========================================================= */
+
+.development-grid {
+display: grid;
+
+grid-template-columns:
+repeat(3, 1fr);
+
+gap: 22px;
+
+margin-top: 25px;
+}
+
+.flip-card {
+height: 330px;
+
+perspective: 1200px;
+
+cursor: pointer;
+}
+
+.flip-card-inner {
+position: relative;
+
+width: 100%;
+height: 100%;
+
+text-align: center;
+
+transition:
+transform 0.75s cubic-bezier(.2,.7,.2,1);
+
+transform-style:
+preserve-3d;
+}
+
+/* =========================================================
+FLIP CARD CLICK / TAP ONLY
+========================================================= */
+
+.flip-card.flipped .flip-card-inner {
+transform:
+rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+border-radius: 16px;
+
+overflow: hidden;
+
+backface-visibility:
+hidden;
+
+-webkit-backface-visibility:
+hidden;
+
+border:
+1px solid rgba(255,145,77,0.3);
+
+box-shadow:
+0 12px 35px rgba(0,0,0,0.5);
+}
+
+/* =========================================================
+FLIP CARD FRONT
+========================================================= */
+
+.flip-card-front {
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+align-items: center;
+
+padding: 30px;
+
+background:
+linear-gradient(
+145deg,
+#181818,
+#0b0b0b
+);
+
+transform:
+rotateY(0deg);
+
+z-index: 2;
+}
+
+.flip-card.flipped .flip-card-front {
+z-index: 0;
+}
+
+.flip-card-front::before {
+content: "";
+
+position: absolute;
+
+width: 150px;
+height: 150px;
+
+border-radius: 50%;
+
+background:
+rgba(254,67,0,0.08);
+
+box-shadow:
+0 0 80px rgba(254,67,0,0.12);
+}
+
+.flip-card-front h3 {
+position: relative;
+
+margin:
+0 0 15px;
+
+color:
+#ff914d;
+
+font-size: 23px;
+
+text-transform:
+uppercase;
+
+letter-spacing:
+1px;
+}
+
+.flip-card-front p {
+position: relative;
+
+margin: 0;
+
+color:
+#dddddd;
+
+line-height:
+1.6;
+
+font-size:
+15px;
+}
+
+/* =========================================================
+FLIP ICON
+========================================================= */
+
+.flip-icon {
+position: relative;
+
+margin-bottom: 20px;
+
+width: 58px;
+height: 58px;
+
+display: flex;
+
+justify-content: center;
+align-items: center;
+
+border-radius: 50%;
+
+border:
+2px solid #fe4300;
+
+color:
+#ff914d;
+
+font-size:
+25px;
+
+box-shadow:
+0 0 20px rgba(254,67,0,0.25);
+}
+
+/* =========================================================
+FLIP CARD BACK
+========================================================= */
+
+.flip-card-back {
+transform:
+rotateY(180deg);
+
+background-size:
+cover;
+
+background-position:
+center;
+
+background-repeat:
+no-repeat;
+
+display:
+flex;
+
+align-items:
+flex-end;
+
+z-index: 1;
+}
+
+.flip-card.flipped .flip-card-back {
+z-index: 2;
+}
+
+.flip-card-back::before {
+content: "";
+
+position: absolute;
+
+inset: 0;
+
+background:
+linear-gradient(
+transparent 25%,
+rgba(0,0,0,0.92) 100%
+);
+}
+
+.back-content {
+position: relative;
+
+z-index: 2;
+
+padding: 25px;
+
+text-align: left;
+
+width: 100%;
+}
+
+.back-content h3 {
+margin:
+0 0 8px;
+
+color:
+#ff914d;
+
+font-size:
+23px;
+}
+
+.back-content p {
+margin: 0;
+
+color:
+white;
+
+line-height:
+1.55;
+
+font-size:
+14px;
+}
+
+JUNIOR PAGE
+
+These are the current Junior page images.
+
+========================================================= */
+
+.page-juniors .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+.page-juniors .quality-environment {
+background-image:
+url("Equipment.jpg");
+}
+
+.page-juniors .future-pathway {
+background-image:
+url("mens.jpg");
+}
+
+/* =========================================================
+FUTURE PAGE-SPECIFIC IMAGE AREAS
+
+We can change these when building the other pages.
+
+The important part is that changing one page will NOT
+automatically change another page.
+
+========================================================= */
+
+/* HOME */
+
+.page-home .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+/* SENIOR TEAMS */
+
+.page-seniors .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+/* WOMEN'S TEAMS */
+
+.page-womens .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+/* CR1 */
+
+.page-cr1 .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+/* ACADEMY */
+
+.page-academy .player-development {
+background-image:
+url("Equipment.jpg");
+}
+
+/* =========================================================
+REGISTRATION CTA
+========================================================= */
+
+.registration-box {
+text-align:
+center;
+
+padding:
+40px 25px;
+
+background:
+linear-gradient(
+135deg,
+rgba(254,67,0,0.14),
+rgba(0,0,0,0.65)
+);
+
+border:
+1px solid rgba(255,145,77,0.35);
+
+border-radius:
+18px;
+}
+
+.registration-box h2 {
+margin-bottom:
+12px;
+}
+
+.registration-box p {
+max-width:
+700px;
+
+margin:
+0 auto 25px;
+}
+
+.registration-button {
+display:
+inline-block;
+
+padding:
+15px 30px;
+
+border-radius:
+8px;
+
+background:
+linear-gradient(
+90deg,
+#ff914d,
+#fe4300
+);
+
+color:
+white;
+
+text-decoration:
+none;
+
+font-weight:
+bold;
+
+text-transform:
+uppercase;
+
+letter-spacing:
+1px;
+
+box-shadow:
+0 8px 25px rgba(254,67,0,0.28);
+
+transition:
+transform 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.registration-button {
+transform:
+translateY(-3px);
+
+box-shadow:
+0 12px 30px rgba(254,67,0,0.45);
+}
+
+/* =========================================================
+GENERAL BUTTON
+========================================================= */
+
+.orange-button {
+display:
+inline-block;
+
+padding:
+14px 28px;
+
+border-radius:
+8px;
+
+background:
+linear-gradient(
+90deg,
+#ff914d,
+#fe4300
+);
+
+color:
+white;
+
+text-decoration:
+none;
+
+font-weight:
+bold;
+
+border:
+none;
+
+cursor:
+pointer;
+
+transition:
+transform 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.orange-button {
+transform:
+translateY(-3px);
+
+box-shadow:
+0 10px 25px rgba(254,67,0,0.4);
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer {
+width:
+100%;
+
+padding:
+22px;
+
+text-align:
+center;
+
+background:
+linear-gradient(
+110deg,
+#ff914d,
+#fe4300,
+#ff6a00,
+#fe4300
+);
+
+background-size:
+300% 300%;
+
+animation:
+navbarGlow 15s ease infinite;
+
+color:
+white;
+
+font-size:
+14px;
+
+box-shadow:
+0 -5px 25px rgba(0,0,0,0.35);
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+.navbar {
+padding:
+10px 15px;
+
+flex-wrap:
+  wrap;
+
+}
+
+.navbar-logo img {
+width:
+58px;
+
+height:
+  58px;
+
+}
+
+.nav-links {
+margin-left:
+10px;
+
+gap:
+  2px;
+
+flex-wrap:
+  wrap;
+
+}
+
+.nav-links a,
+.dropbtn {
+padding:
+10px 8px;
+
+font-size:
+  12px;
+
+}
+
+.hero {
+margin:
+30px 15px;
+
+padding:
+  50px 20px;
+
+}
+
+.content {
+padding:
+0 15px;
+}
+
+.section {
+padding:
+25px 20px;
+}
+
+.development-grid {
+grid-template-columns:
+1fr;
+}
+
+.flip-card {
+height:
+300px;
+}
+
+}
+
+/* =========================================================
+SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+body {
+background-attachment:
+scroll;
+}
+
+.navbar {
+min-height:
+auto;
+
+justify-content:
+  center;
+
+}
+
+.navbar-logo {
+width:
+100%;
+
+justify-content:
+  center;
+
+margin-bottom:
+  8px;
+
+}
+
+.nav-links {
+width:
+100%;
+
+margin-left:
+  0;
+
+justify-content:
+  center;
+
+gap:
+  3px;
+
+}
+
+.nav-links a,
+.dropbtn {
+padding:
+8px 6px;
+
+font-size:
+  10px;
+
+}
+
+.hero {
+margin-top:
+20px;
+
+border-radius:
+  16px;
+
+}
+
+.hero h1 {
+font-size:
+40px;
+
+letter-spacing:
+  -1px;
+
+}
+
+.hero h2 {
+font-size:
+18px;
+
+letter-spacing:
+  1px;
+
+}
+
+.hero p {
+font-size:
+15px;
+}
+
+.section h2 {
+font-size:
+24px;
+}
+
+.section p {
+font-size:
+15px;
+}
+
+.gallery-section {
+padding:
+20px 15px;
+}
+
+.gallery-controls {
+padding:
+0 8px;
+}
+
+.gallery-btn {
+width:
+42px;
+
+height:
+  52px;
+
+font-size:
+  30px;
+
+border-radius:
+  9px;
+
+}
+
+.flip-card {
+height:
+285px;
+}
+
+}
+
+/* =========================================================
+TOUCH DEVICE DROPDOWN
+========================================================= */
+
+@media (max-width: 900px) {
+
+.dropdown.mobile-open .dropdown-content {
+display:
+block;
+}
+
+}
+
+/* =========================================================
+PERFORMANCE
+========================================================= */
+
+/*
+Keep animations smooth on slower devices.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+html {
+scroll-behavior:
+auto;
+}
+
+*,
+*::before,
+*::after {
+
+animation-duration:
+  0.01ms !important;
+
+animation-iteration-count:
+  1 !important;
+
+transition-duration:
+  0.01ms !important;
+
+}
+
+}
