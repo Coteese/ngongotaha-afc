@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ChildRen First (CR1) Project - Ngongotahā Football Club</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("background.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes orangeFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(to right, #ff914d, #fe4300);
+      background-size: 200% 200%;
+      animation: orangeFlow 12s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.5s ease, backdrop-filter 0.5s ease, opacity 0.5s ease;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    .logo-container {
+      flex: 0 0 auto;
+    }
+
+    .club-logo {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar a, .dropbtn {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      border: none;
+      outline: none;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.9);
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #555;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Content */
+    .content {
+      background-color: rgba(255, 255, 255, 0.9);
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h1, h2, h3, p {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* Gallery */
+    .gallery-container {
+      max-width: 900px;
+      margin: 40px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .gallery-slide {
+      display: none;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: opacity 0.5s ease;
+    }
+
+    .gallery-container button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    .gallery-container button:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* Events Calendar */
+    .events-calendar {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      padding: 20px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .event-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .event-item:last-child { border-bottom: none; }
+
+    .event-date {
+      font-weight: bold;
+      color: #fe4300;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #fff;
+      margin-top: 60px;
+      padding: 20px;
+      background: linear-gradient(to right, #ff914d, #fe4300);
+      background-size: 200% 200%;
+      animation: orangeFlow 12s ease infinite;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 850px) {
+      .nav-links { flex-direction: column; }
+      .gallery-slide { height: 250px; }
+      .event-item { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="logo.png" alt="Ngongotahā AFC Logo" class="club-logo">
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="registrations.html">Registrations</a>
+      <a href="cr1.html">CR1 Project</a>
+      <div class="dropdown">
+        <button class="dropbtn">Ngongotahā Teams ▼</button>
+        <div class="dropdown-content">
+          <a href="senior-teams.html">Senior Teams</a>
+          <a href="junior-teams.html">Junior Teams</a>
+          <a href="womens-teams.html">Women's Teams</a>
+        </div>
+      </div>
+      <a href="calendar.html">Calendar</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="academy.html">Academy</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>The ChildRen First (CR1) Project</h1>
+    <h2>Supporting Children in Rotorua</h2>
+    <p>Children in Rotorua face numerous challenges, including poverty, limited access to education, and fewer opportunities for personal development. Rotorua football can play a vital role in helping children build confidence, teamwork skills, and a sense of belonging.</p>
+    <p>Ngongotaha AFC’s CR1 Project addresses these challenges by providing a free football programme for children from low-income families. Through football, we aim to foster physical, mental, and educational development, giving every child a chance to thrive.</p>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-container">
+    <img class="gallery-slide" src="cr1.jpg" alt="CR1 Image 1">
+    <img class="gallery-slide" src="cr2.jpg" alt="CR1 Image 2">
+    <img class="gallery-slide" src="cr3.jpg" alt="CR1 Image 3">
+    <img class="gallery-slide" src="cr4.jpg" alt="CR1 Image 4">
+    <img class="gallery-slide" src="cr5.jpg" alt="CR1 Image 5">
+    <img class="gallery-slide" src="cr6.jpg" alt="CR1 Image 6">
+    <img class="gallery-slide" src="cr7.jpg" alt="CR1 Image 7">
+    <img class="gallery-slide" src="cr8.jpg" alt="CR1 Image 8">
+    <img class="gallery-slide" src="cr9.jpg" alt="CR1 Image 9">
+    <img class="gallery-slide" src="cr10.jpg" alt="CR1 Image 10">
+
+    <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+    <button class="next" onclick="plusSlides(1)">&#10095;</button>
+  </div>
+
+  <!-- Community Effort Text -->
+  <div class="content">
+    <h2>A Community Effort</h2>
+    <p>Together with our community, we plan to create a brighter future for Rotorua’s children. This programme gives all young people the opportunity to get involved in football while learning valuable life skills that can set them up for a prosperous future.</p>
+    <p>We are extremely grateful to Aaron Lawrence and Trevor Johnston for helping to get this programme off the ground, and to the New Zealand Community Trust (NZCT) for their generous grant of $21,060 to support the project.</p>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="events-calendar">
+    <h2>Upcoming Events</h2>
+    <div class="event-item">
+      <span class="event-date">Nov 10, 2025</span>
+      <span class="event-name">CR1 Project Training Session</span>
+    </div>
+    <div class="event-item">
+      <span class="event-date">Nov 17, 2025</span>
+      <span class="event-name">Community Football Day</span>
+    </div>
+    <div class="event-item">
+      <span class="event-date">Nov 24, 2025</span>
+      <span class="event-name">CR1 Tournament & Showcase</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Ngongotahā Football Club | 
+    <a href="mailto:info@ngongotahafootball.co.nz">Contact Us</a>
+  </footer>
+
+  <script>
+    // Navbar scroll transparency
+    window.addEventListener("scroll", function() {
+      const navbar = document.getElementById("navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Gallery script
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("gallery-slide");
+
+    function showSlides(n) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[n].style.display = "block";
+    }
+
+    function plusSlides(n) {
+      slideIndex += n;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      if (slideIndex < 0) slideIndex = slides.length - 1;
+      showSlides(slideIndex);
+    }
+
+    function autoSlide() {
+      slideIndex++;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      showSlides(slideIndex);
+      setTimeout(autoSlide, 8000);
+    }
+
+    // Initialize
+    showSlides(slideIndex);
+    setTimeout(autoSlide, 8000);
+  </script>
+
+</body>
+</html>
