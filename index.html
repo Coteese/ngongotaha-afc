@@ -1,346 +1,584 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Ngongotahā Football Club</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url("background.jpg");
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      color: #222;
-      scroll-behavior: smooth;
-    }
+  <!-- MASTER WEBSITE STYLESHEET -->
 
-    @keyframes orangeFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Navbar */
-    .navbar {
-      background: linear-gradient(to right, #ff914d, #fe4300);
-      background-size: 200% 200%;
-      animation: orangeFlow 12s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background-color 0.5s ease, backdrop-filter 0.5s ease, opacity 0.5s ease;
-    }
-
-    .navbar.scrolled {
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
-    }
-
-    .logo-container {
-      flex: 0 0 auto;
-    }
-
-    .club-logo {
-      height: 50px;
-      width: auto;
-      display: block;
-    }
-
-    .nav-links {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .navbar a, .dropbtn {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.3s, color 0.3s;
-      cursor: pointer;
-    }
-
-    .navbar a:hover, .dropdown:hover .dropbtn {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: #fff;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      border: none;
-      outline: none;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.9);
-      min-width: 160px;
-      z-index: 1;
-      border-radius: 0 0 6px 6px;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #555;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .content {
-      background-color: rgba(255, 255, 255, 0.9);
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    h1, h2 {
-      text-align: center;
-    }
-
-    p {
-      line-height: 1.6;
-    }
-
-    /* Gallery */
-    .gallery-container {
-      max-width: 900px;
-      margin: 40px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      background-color: rgba(255,255,255,0.9);
-      position: relative;
-    }
-
-    .gallery-slide {
-      display: none;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .gallery-slide.active {
-      display: block;
-      opacity: 1;
-      position: relative;
-    }
-
-    .gallery-slide img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
-    }
-
-    .gallery-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 18px;
-      user-select: none;
-      z-index: 2;
-    }
-
-    .gallery-btn:hover {
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    /* Event Schedule */
-    .event-day h3 {
-      margin-top: 0;
-      color: #006400;
-    }
-    .event-day ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .event-day ul li {
-      margin: 5px 0;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      color: #fff;
-      margin-top: 60px;
-      padding: 20px;
-      background: linear-gradient(to right, #ff914d, #fe4300);
-      background-size: 200% 200%;
-      animation: orangeFlow 12s ease infinite;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <!-- Navbar -->
-  <div class="navbar" id="navbar">
-    <div class="logo-container">
-      <a href="index.html">
-        <img src="logo.png" alt="Ngongotahā AFC Logo" class="club-logo">
+<body class="page-home">
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
+  <nav class="navbar" id="navbar">
+
+```
+<!-- CLUB LOGO -->
+<a href="index.html" class="navbar-logo">
+  <img
+    src="logo.png"
+    alt="Ngongotahā AFC Logo"
+  >
+</a>
+
+
+<!-- NAVIGATION LINKS -->
+<div class="nav-links">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="registrations.html">
+    Registrations
+  </a>
+
+  <a href="cr1.html">
+    CR1 Project
+  </a>
+
+
+  <!-- NGONGOTAHĀ TEAMS DROPDOWN -->
+  <div class="dropdown">
+
+    <button
+      class="dropbtn"
+      type="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Ngongotahā Teams ▾
+    </button>
+
+    <div class="dropdown-content">
+
+      <a href="senior-teams.html">
+        Senior Teams
       </a>
+
+      <a href="junior-teams.html">
+        Junior Teams
+      </a>
+
+      <a href="womens-teams.html">
+        Women's Teams
+      </a>
+
     </div>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="registrations.html">Registrations</a>
-      <a href="cr1.html">CR1 Project</a>
-      <div class="dropdown">
-        <button class="dropbtn">Ngongotahā Teams ▼</button>
-        <div class="dropdown-content">
-          <a href="senior-teams.html">Senior Teams</a>
-          <a href="junior-teams.html">Junior Teams</a>
-          <a href="womens-teams.html">Women's Teams</a>
-        </div>
-      </div>
-      <a href="calendar.html">Calendar</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="academy.html">Academy</a>
+  </div>
+
+
+  <a href="calendar.html">
+    Calendar
+  </a>
+
+  <a href="aboutus.html">
+    About Us
+  </a>
+
+  <a href="academy.html">
+    Academy
+  </a>
+
+</div>
+```
+
+  </nav>
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="hero">
+
+```
+<div class="hero-content">
+
+  <div class="hero-small">
+    Ngongotahā AFC
+  </div>
+
+  <h1>
+    Football Starts Here
+  </h1>
+
+  <h2>
+    Rotorua's Home of Football
+  </h2>
+
+  <p>
+    Ngongotahā Football Club is a community-focused football club
+    providing opportunities for players of all ages and abilities.
+    From our youngest Little Dribblers through to our junior,
+    youth and senior teams, football starts here.
+  </p>
+
+</div>
+```
+
+  </section>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+
+  <main class="content">
+
+```
+<!-- =========================================================
+     WELCOME
+     ========================================================= -->
+
+<section class="section">
+
+  <h2>
+    Welcome to Ngongotahā Football Club
+  </h2>
+
+  <p>
+    Ngongotahā AFC is Rotorua's premier football club — proudly
+    offering opportunities for players of all ages and abilities.
+  </p>
+
+  <p>
+    From our youngest Little Dribblers through to our junior,
+    youth and senior teams, everyone is welcome to play, learn
+    and grow with us here in Rotorua.
+  </p>
+
+  <p>
+    Our First Team competes in the LOTTO NRFL Southern Conference,
+    providing talented players with the opportunity to compete at
+    a high level while remaining connected to their community roots.
+  </p>
+
+  <p>
+    Whether you're taking your first kick, returning to the pitch,
+    developing your game or looking for a club to call home,
+    Ngongotahā Football Club is built around football,
+    community and development.
+  </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     OUR MISSION
+     ========================================================= -->
+
+<section class="section">
+
+  <h2>
+    Our Mission
+  </h2>
+
+  <p>
+    We believe football is more than just a sport. It is a way
+    to bring people together, build lifelong friendships and
+    develop important values such as teamwork, respect,
+    discipline and perseverance.
+  </p>
+
+  <p>
+    Our aim is to create an environment where players can enjoy
+    football, develop their abilities and continue progressing
+    through the club at every stage of their football journey.
+  </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     CLUB GALLERY
+     ========================================================= -->
+
+<section class="section gallery-section">
+
+  <h2>
+    Life at Ngongotahā
+  </h2>
+
+  <p>
+    A look at the people, football and community that make
+    Ngongotahā Football Club what it is.
+  </p>
+
+
+  <div class="gallery">
+
+    <div class="gallery-slides">
+
+      <img
+        src="image1.jpg"
+        alt="Ngongotahā Football Club"
+        class="gallery-slide active"
+        loading="eager"
+      >
+
+      <img
+        src="image2.jpg"
+        alt="Ngongotahā Football Club football"
+        class="gallery-slide"
+        loading="lazy"
+      >
+
+      <img
+        src="image3.jpg"
+        alt="Ngongotahā Football Club players"
+        class="gallery-slide"
+        loading="lazy"
+      >
+
+      <img
+        src="image4.jpg"
+        alt="Ngongotahā Football Club community"
+        class="gallery-slide"
+        loading="lazy"
+      >
+
     </div>
-  </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    <h1>Welcome to Ngongotahā Football Club</h1>
-    <p>Ngongotahā AFC is Rotorua’s premier football club — proudly offering opportunities for players of all ages and abilities.</p>
-    <p>From our youngest Little Dribblers through to our junior, youth, and senior teams, everyone is welcome to play, learn, and grow with us here in Rotorua.</p>
-    <p>Our First Team competes in the LOTTO NRFL Southern Conference, the highest local football competition, providing talented players the chance to perform at an elite level while staying connected to their community roots.</p>
-    <p>At Ngongotahā AFC, we’re passionate about growing the beautiful game in Rotorua — whether you’re taking your first kick, returning to the pitch, or looking for a friendly, family-oriented club to call home.</p>
-  </div>
 
-  <div class="content">
-    <h2>Our Mission</h2>
-    <p>We believe football is more than just a sport; it’s a way to bring people together, build lifelong friendships, and teach important values like teamwork, respect, and perseverance.</p>
-  </div>
+    <!-- GALLERY CONTROLS -->
 
-  <!-- Gallery -->
-  <div class="gallery-container">
-    <div class="gallery-slide active"><img src="image1.jpg" alt="Gallery Image 1" loading="lazy"></div>
-    <div class="gallery-slide"><img src="image2.jpg" alt="Gallery Image 2" loading="lazy"></div>
-    <div class="gallery-slide"><img src="image3.jpg" alt="Gallery Image 3" loading="lazy"></div>
-    <div class="gallery-slide"><img src="image4.jpg" alt="Gallery Image 4" loading="lazy"></div>
+    <div class="gallery-controls">
 
-    <button class="gallery-btn prev" onclick="changeSlide(-1)">❮</button>
-    <button class="gallery-btn next" onclick="changeSlide(1)">❯</button>
-  </div>
+      <button
+        class="gallery-btn"
+        type="button"
+        onclick="changeSlide(-1)"
+        aria-label="Previous image"
+      >
+        ❮
+      </button>
 
-  <!-- Upcoming Events Schedule -->
-  <div class="content" style="background-color: rgba(255,255,255,0.85);">
-    <h2>Upcoming Events</h2>
-    <div id="events-container" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
-      <!-- Example Day Box -->
-      <div class="event-day" style="flex: 1 1 300px; background-color: rgba(0,128,0,0.1); border-radius: 10px; padding: 10px;">
-        <h3>Monday, Nov 4</h3>
-        <ul>
-          <li><strong>8:00 AM</strong> – Team Meeting at Clubhouse</li>
-          <li><strong>5:00 PM</strong> – Youth Training</li>
-        </ul>
-      </div>
+      <button
+        class="gallery-btn"
+        type="button"
+        onclick="changeSlide(1)"
+        aria-label="Next image"
+      >
+        ❯
+      </button>
 
-      <div class="event-day" style="flex: 1 1 300px; background-color: rgba(0,128,0,0.1); border-radius: 10px; padding: 10px;">
-        <h3>Tuesday, Nov 5</h3>
-        <ul>
-          <li><strong>6:00 PM</strong> – Senior Team Training</li>
-        </ul>
-      </div>
-
-      <!-- Add more day boxes as needed -->
     </div>
+
   </div>
 
-  <!-- Footer -->
+</section>
+
+
+
+<!-- =========================================================
+     UPCOMING EVENTS
+     ========================================================= -->
+
+<section class="section">
+
+  <h2>
+    Upcoming Events
+  </h2>
+
+  <p>
+    Keep up with what's happening around Ngongotahā Football Club.
+  </p>
+
+
+  <div id="events-container">
+
+    <div class="event-day">
+
+      <h3>
+        Monday, Nov 4
+      </h3>
+
+      <ul>
+
+        <li>
+          <strong>8:00 AM</strong>
+          – Team Meeting at Clubhouse
+        </li>
+
+        <li>
+          <strong>5:00 PM</strong>
+          – Youth Training
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="event-day">
+
+      <h3>
+        Tuesday, Nov 5
+      </h3>
+
+      <ul>
+
+        <li>
+          <strong>6:00 PM</strong>
+          – Senior Team Training
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     REGISTRATION CTA
+     ========================================================= -->
+
+<section class="section registration-box">
+
+  <h2>
+    Become Part of Ngongotahā
+  </h2>
+
+  <p>
+    Whether you're registering a young player, joining one of
+    our senior teams or simply looking to get involved,
+    there's a place for you at Ngongotahā Football Club.
+  </p>
+
+  <a
+    href="registrations.html"
+    class="registration-button"
+  >
+    View Registrations
+  </a>
+
+</section>
+```
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
   <footer>
-    © 2025 Ngongotahā Football Club | 
-    <a href="mailto:info@ngongotahafootball.co.nz">Contact Us</a>
+
+```
+© 2025 Ngongotahā Football Club |
+<a href="mailto:info@ngongotahafootball.co.nz">
+  Contact Us
+</a>
+```
+
   </footer>
 
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+
   <script>
-    // Navbar scroll transparency
+
+
+    /* =========================================================
+       NAVBAR SCROLL EFFECT
+       ========================================================= */
+
+    const navbar =
+      document.getElementById("navbar");
+
+
     window.addEventListener("scroll", function() {
-      const navbar = document.getElementById("navbar");
+
       if (window.scrollY > 50) {
+
         navbar.classList.add("scrolled");
+
       } else {
+
         navbar.classList.remove("scrolled");
+
       }
+
     });
 
-    // Gallery slideshow
+
+
+    /* =========================================================
+       MOBILE / TOUCH DROPDOWN
+       ========================================================= */
+
+    const dropdownButton =
+      document.querySelector(".dropbtn");
+
+    const dropdown =
+      document.querySelector(".dropdown");
+
+
+    if (dropdownButton && dropdown) {
+
+      dropdownButton.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+          const isOpen =
+            dropdown.classList.toggle("mobile-open");
+
+          dropdownButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================================================
+       CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+       ========================================================= */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          dropdown &&
+          dropdownButton &&
+          !dropdown.contains(event.target)
+        ) {
+
+          dropdown.classList.remove("mobile-open");
+
+          dropdownButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       GALLERY SLIDESHOW
+       ========================================================= */
+
     let slideIndex = 0;
-    const slides = document.getElementsByClassName("gallery-slide");
+
+    const slides =
+      document.querySelectorAll(".gallery-slide");
+
     let slideTimeout;
 
-    function showSlide(n) {
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
 
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
+    function showSlide(index) {
+
+      if (!slides.length) {
+        return;
       }
+
+
+      if (index >= slides.length) {
+
+        slideIndex = 0;
+
+      }
+
+
+      if (index < 0) {
+
+        slideIndex =
+          slides.length - 1;
+
+      }
+
+
+      slides.forEach(function(slide) {
+
+        slide.classList.remove("active");
+
+      });
+
 
       slides[slideIndex].classList.add("active");
 
+
       clearTimeout(slideTimeout);
-      slideTimeout = setTimeout(() => { changeSlide(1); }, 8000);
+
+
+      slideTimeout = setTimeout(
+        function() {
+
+          changeSlide(1);
+
+        },
+        8000
+      );
+
     }
 
-    function changeSlide(n) {
-      slideIndex += n;
+
+
+    function changeSlide(amount) {
+
+      slideIndex += amount;
+
       showSlide(slideIndex);
+
     }
+
+
+
+    /* START GALLERY */
 
     showSlide(slideIndex);
+
+
+
+    /* =========================================================
+       KEYBOARD GALLERY CONTROLS
+       ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "ArrowLeft") {
+
+          changeSlide(-1);
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+          changeSlide(1);
+
+        }
+
+      }
+    );
+
 
   </script>
 
