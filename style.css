@@ -200,8 +200,11 @@ body {
 
 /* =========================================================
    SILKY DIAGONAL HOVER SHINE
-   Applies ONLY to navbar buttons and links.
-   The orange navbar itself is not affected.
+
+   The shine is contained completely inside each
+   individual navigation button.
+
+   It does not affect the orange navbar itself.
    ========================================================= */
 
 .nav-links a::after,
@@ -210,45 +213,44 @@ body {
 
   position: absolute;
 
-  top: -80%;
-  left: -75%;
+  top: -100%;
+  left: -35%;
 
-  width: 45%;
-  height: 260%;
+  width: 24px;
+  height: 300%;
 
   background:
     linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255,255,255,0.04) 25%,
-      rgba(255,255,255,0.20) 48%,
-      rgba(255,255,255,0.42) 50%,
-      rgba(255,255,255,0.20) 52%,
-      rgba(255,255,255,0.04) 75%,
+      rgba(255,255,255,0.04) 20%,
+      rgba(255,255,255,0.20) 42%,
+      rgba(255,255,255,0.55) 50%,
+      rgba(255,255,255,0.20) 58%,
+      rgba(255,255,255,0.04) 80%,
       transparent 100%
     );
 
   transform:
     rotate(25deg)
-    translateX(-180%);
+    translateX(-120px);
 
   opacity: 0;
 
   pointer-events: none;
-
-  transition:
-    opacity 0.15s ease;
 }
 
 
-/* Shine sweep */
+/* =========================================================
+   SHINE SWEEP
+   ========================================================= */
 
 .nav-links a:hover::after,
 .nav-links .dropbtn:hover::after {
   opacity: 1;
 
   animation:
-    navbarSilkyShine 0.75s ease-out forwards;
+    navbarSilkyShine 0.7s ease-out forwards;
 }
 
 
@@ -257,13 +259,13 @@ body {
   0% {
     transform:
       rotate(25deg)
-      translateX(-180%);
+      translateX(-120px);
   }
 
   100% {
     transform:
       rotate(25deg)
-      translateX(520%);
+      translateX(300px);
   }
 
 }
@@ -357,12 +359,6 @@ body {
 
   box-shadow: none;
 }
-
-
-/*
-   The dropdown itself does not trigger the shine.
-   Only the top-level navigation buttons/links do.
-*/
 
 .dropdown:hover .dropdown-content {
   display: block;
