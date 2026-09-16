@@ -4,18 +4,6 @@
 
    Shared styling for the entire Ngongotahā AFC website.
 
-   Individual pages can use body classes such as:
-
-   page-home
-   page-juniors
-   page-seniors
-   page-womens
-   page-cr1
-   page-calendar
-   page-about
-   page-academy
-   page-registrations
-
    ========================================================= */
 
 
@@ -186,6 +174,10 @@ body {
 
 .nav-links a,
 .dropbtn {
+  position: relative;
+
+  overflow: hidden;
+
   color: white;
 
   text-decoration: none;
@@ -204,6 +196,82 @@ body {
 
   white-space: nowrap;
 }
+
+
+/* =========================================================
+   SILKY DIAGONAL HOVER SHINE
+   Applies ONLY to navbar buttons and links.
+   The orange navbar itself is not affected.
+   ========================================================= */
+
+.nav-links a::after,
+.nav-links .dropbtn::after {
+  content: "";
+
+  position: absolute;
+
+  top: -80%;
+  left: -75%;
+
+  width: 45%;
+  height: 260%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.04) 25%,
+      rgba(255,255,255,0.20) 48%,
+      rgba(255,255,255,0.42) 50%,
+      rgba(255,255,255,0.20) 52%,
+      rgba(255,255,255,0.04) 75%,
+      transparent 100%
+    );
+
+  transform:
+    rotate(25deg)
+    translateX(-180%);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.15s ease;
+}
+
+
+/* Shine sweep */
+
+.nav-links a:hover::after,
+.nav-links .dropbtn:hover::after {
+  opacity: 1;
+
+  animation:
+    navbarSilkyShine 0.75s ease-out forwards;
+}
+
+
+@keyframes navbarSilkyShine {
+
+  0% {
+    transform:
+      rotate(25deg)
+      translateX(-180%);
+  }
+
+  100% {
+    transform:
+      rotate(25deg)
+      translateX(520%);
+  }
+
+}
+
+
+/* =========================================================
+   NAVIGATION HOVER
+   ========================================================= */
 
 .nav-links a:hover,
 .dropbtn:hover {
@@ -289,6 +357,12 @@ body {
 
   box-shadow: none;
 }
+
+
+/*
+   The dropdown itself does not trigger the shine.
+   Only the top-level navigation buttons/links do.
+*/
 
 .dropdown:hover .dropdown-content {
   display: block;
@@ -1238,9 +1312,6 @@ body {
 
 /* =========================================================
    SPONSOR ITEM
-
-   Square box.
-   The width remains substantial while height matches it.
    ========================================================= */
 
 .sponsor-item {
@@ -1310,9 +1381,6 @@ body {
 
 /* =========================================================
    SPONSOR MARQUEE
-
-   Track begins shifted left and travels towards the right,
-   creating the requested left-to-right movement.
    ========================================================= */
 
 @keyframes sponsorsTrack {
