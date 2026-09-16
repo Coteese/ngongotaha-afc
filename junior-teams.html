@@ -9,9 +9,502 @@
 
   <!-- MAIN WEBSITE STYLESHEET -->
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================
+       JUNIOR TEAM DIRECTORY
+    ========================= */
+
+    .junior-teams-section {
+      margin-top: 20px;
+    }
+
+    .teams-intro {
+      max-width: 850px;
+      margin: 0 auto 35px;
+      text-align: center;
+    }
+
+    .teams-intro p {
+      margin-bottom: 0;
+    }
+
+
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+
+    .team-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 22px 24px;
+
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 145, 77, 0.28);
+      border-radius: 12px;
+
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .team-row:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 145, 77, 0.7);
+      background: rgba(15, 15, 15, 0.9);
+    }
+
+
+    .team-information {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+
+    .team-number {
+      min-width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: rgba(255, 145, 77, 0.12);
+      border: 1px solid rgba(255, 145, 77, 0.45);
+
+      color: #ff914d;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+
+    .team-information h3 {
+      margin: 0 0 5px;
+      font-size: 20px;
+    }
+
+
+    .team-information p {
+      margin: 0;
+      font-size: 14px;
+      opacity: 0.72;
+    }
+
+
+    .team-profile-button {
+      border: none;
+      background: #ff914d;
+      color: #111;
+
+      padding: 11px 17px;
+
+      border-radius: 7px;
+
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+
+    .team-profile-button:hover {
+      background: #ffb07a;
+      transform: scale(1.04);
+    }
+
+
+    /* =========================
+       TEAM PROFILE MODAL
+    ========================= */
+
+    .team-modal {
+      display: none;
+
+      position: fixed;
+      z-index: 9999;
+
+      inset: 0;
+
+      background: rgba(0, 0, 0, 0.78);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+
+    .team-modal.active {
+      display: flex;
+    }
+
+
+    .team-modal-box {
+      position: relative;
+
+      width: 100%;
+      max-width: 520px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(28, 28, 28, 0.98),
+          rgba(5, 5, 5, 0.98)
+        );
+
+      border: 1px solid rgba(255, 145, 77, 0.45);
+      border-radius: 16px;
+
+      padding: 32px;
+
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+
+      animation: teamModalOpen 0.25s ease;
+    }
+
+
+    @keyframes teamModalOpen {
+
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+    }
+
+
+    .team-modal-close {
+      position: absolute;
+
+      top: 12px;
+      right: 15px;
+
+      width: 35px;
+      height: 35px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      transition: background 0.2s ease;
+    }
+
+
+    .team-modal-close:hover {
+      background: rgba(255, 145, 77, 0.25);
+    }
+
+
+    .team-modal-label {
+      color: #ff914d;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+
+      margin-bottom: 8px;
+    }
+
+
+    .team-modal-box h2 {
+      margin: 0 0 25px;
+      font-size: 30px;
+    }
+
+
+    .team-detail {
+      display: flex;
+      gap: 14px;
+
+      padding: 15px 0;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+
+    .team-detail:last-child {
+      border-bottom: none;
+    }
+
+
+    .team-detail-icon {
+      width: 30px;
+      flex-shrink: 0;
+
+      font-size: 19px;
+    }
+
+
+    .team-detail-content strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 13px;
+      color: #ff914d;
+    }
+
+
+    .team-detail-content span,
+    .team-detail-content a {
+      font-size: 15px;
+      color: #fff;
+
+      text-decoration: none;
+    }
+
+
+    .team-detail-content a:hover {
+      color: #ff914d;
+      text-decoration: underline;
+    }
+
+
+    /* =========================
+       FIND YOUR TEAM
+    ========================= */
+
+    .find-team-section {
+      margin-top: 20px;
+    }
+
+
+    .find-team-box {
+      max-width: 900px;
+      margin: 0 auto;
+
+      padding: 35px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(25, 25, 25, 0.95),
+          rgba(0, 0, 0, 0.88)
+        );
+
+      border: 1px solid rgba(255, 145, 77, 0.35);
+      border-radius: 16px;
+
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+
+    .find-team-label {
+      color: #ff914d;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .find-team-box h2 {
+      margin-bottom: 12px;
+    }
+
+
+    .find-team-box > p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+    }
+
+
+    .age-selector {
+      display: flex;
+
+      flex-wrap: wrap;
+      justify-content: center;
+
+      gap: 10px;
+
+      margin: 25px auto;
+    }
+
+
+    .age-button {
+      width: 52px;
+      height: 52px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255, 145, 77, 0.4);
+
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+
+    .age-button:hover {
+      background: rgba(255, 145, 77, 0.15);
+      border-color: #ff914d;
+      transform: translateY(-2px);
+    }
+
+
+    .age-button.selected {
+      background: #ff914d;
+      color: #111;
+      border-color: #ff914d;
+    }
+
+
+    .finder-result {
+      display: none;
+
+      margin: 25px auto 0;
+
+      padding: 22px;
+
+      max-width: 500px;
+
+      border-radius: 10px;
+
+      background: rgba(255, 145, 77, 0.1);
+      border: 1px solid rgba(255, 145, 77, 0.35);
+    }
+
+
+    .finder-result.active {
+      display: block;
+    }
+
+
+    .finder-result small {
+      display: block;
+
+      margin-bottom: 6px;
+
+      opacity: 0.7;
+    }
+
+
+    .finder-result strong {
+      display: block;
+
+      font-size: 27px;
+
+      color: #ff914d;
+    }
+
+
+    .finder-result p {
+      margin: 8px 0 0;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .team-list {
+        grid-template-columns: 1fr;
+      }
+
+
+      .team-row {
+        padding: 18px;
+      }
+
+
+      .team-information {
+        gap: 12px;
+      }
+
+
+      .team-number {
+        min-width: 42px;
+        height: 42px;
+      }
+
+
+      .team-information h3 {
+        font-size: 17px;
+      }
+
+
+      .team-profile-button {
+        padding: 9px 11px;
+        font-size: 11px;
+      }
+
+
+      .team-modal-box {
+        padding: 27px 22px;
+      }
+
+
+      .team-modal-box h2 {
+        font-size: 25px;
+      }
+
+
+      .find-team-box {
+        padding: 28px 18px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
+
 <body class="page-juniors">
+
 
   <!-- =========================
        NAVIGATION
@@ -81,8 +574,10 @@
       </h2>
 
       <p>
-        Developing confident players, building strong teams and creating a pathway
-        for the next generation of Ngongotahā footballers.
+        Junior football at Ngongotahā is about giving kids a place to play,
+        improve and make friends. From our youngest players through to youth
+        football, our teams train locally, compete across Rotorua and form
+        the foundation of the club's future.
       </p>
 
     </div>
@@ -98,113 +593,507 @@
 
 
     <!-- =========================
-         AMBITION
+         JUNIOR TEAMS
     ========================= -->
 
-    <section class="section">
+    <section class="section junior-teams-section">
 
       <h2>
-        Our Ambition
+        Our Junior Teams
       </h2>
 
-      <p>
-        Ngongotahā AFC is serious about the future of junior football.
-        We have big ambitions for our young players and for the future of the club.
-      </p>
+      <div class="teams-intro">
 
-      <p>
-        Over recent years we have made huge progress in the development of our
-        junior football programme. Our goal is to continue building an environment
-        where young players can enjoy football, challenge themselves and develop
-        the skills and confidence required to reach their potential.
-      </p>
+        <p>
+          Ngongotahā AFC has junior teams from 5th Grade through to 12/13th Grade.
+          Select a team below to see their training details and contact information.
+        </p>
 
-      <p>
-        With excellent youth facilities, dedicated coaches and a strong football
-        community behind them, our junior players have the opportunity to develop
-        in a positive and ambitious environment.
-      </p>
+      </div>
 
-      <p>
-        Our commitment is simple: we want Ngongotahā to be a club where parents
-        feel confident their children are receiving the support, coaching and
-        opportunities they need to grow as footballers and as people.
-      </p>
+
+      <div class="team-list">
+
+
+        <!-- 5TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              01
+            </div>
+
+            <div>
+              <h3>5th Grade Team 1</h3>
+              <p>5th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('5th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 5TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              02
+            </div>
+
+            <div>
+              <h3>5th Grade Team 2</h3>
+              <p>5th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('5th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 6TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              03
+            </div>
+
+            <div>
+              <h3>6th Grade Team 1</h3>
+              <p>6th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('6th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 6TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              04
+            </div>
+
+            <div>
+              <h3>6th Grade Team 2</h3>
+              <p>6th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('6th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 7TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              05
+            </div>
+
+            <div>
+              <h3>7th Grade Team 1</h3>
+              <p>7th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('7th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 7TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              06
+            </div>
+
+            <div>
+              <h3>7th Grade Team 2</h3>
+              <p>7th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('7th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 8TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              07
+            </div>
+
+            <div>
+              <h3>8th Grade Team 1</h3>
+              <p>8th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('8th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 8TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              08
+            </div>
+
+            <div>
+              <h3>8th Grade Team 2</h3>
+              <p>8th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('8th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 9TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              09
+            </div>
+
+            <div>
+              <h3>9th Grade Team 1</h3>
+              <p>9th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('9th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 9TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              10
+            </div>
+
+            <div>
+              <h3>9th Grade Team 2</h3>
+              <p>9th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('9th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 10TH GRADE TEAM 1 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              11
+            </div>
+
+            <div>
+              <h3>10th Grade Team 1</h3>
+              <p>10th Grade • 1 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('10th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 10TH GRADE TEAM 2 -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              12
+            </div>
+
+            <div>
+              <h3>10th Grade Team 2</h3>
+              <p>10th Grade • 2 of 2 teams</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('10th Grade Team 2')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 11TH GRADE -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              13
+            </div>
+
+            <div>
+              <h3>11th Grade Team 1</h3>
+              <p>11th Grade • 1 team</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('11th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+        <!-- 12/13TH GRADE -->
+
+        <div class="team-row">
+
+          <div class="team-information">
+
+            <div class="team-number">
+              14
+            </div>
+
+            <div>
+              <h3>12/13th Grade Team 1</h3>
+              <p>12/13th Grade • 1 team</p>
+            </div>
+
+          </div>
+
+          <button
+            class="team-profile-button"
+            type="button"
+            onclick="openTeamProfile('12/13th Grade Team 1')"
+          >
+            VIEW TEAM
+          </button>
+
+        </div>
+
+
+      </div>
 
     </section>
 
 
     <!-- =========================
-         GALLERY
+         FIND YOUR TEAM
     ========================= -->
 
-    <section class="section gallery-section">
+    <section class="section find-team-section">
 
-      <h2>
-        Junior Football at Ngongotahā
-      </h2>
+      <div class="find-team-box">
 
-      <div class="gallery">
-
-        <div class="gallery-slides">
-
-          <img
-            src="Jr1.jpg"
-            class="gallery-slide active"
-            alt="Ngongotahā junior football"
-          >
-
-          <img
-            src="Jr2.jpg"
-            class="gallery-slide"
-            alt="Ngongotahā junior football"
-          >
-
-          <img
-            src="Jr3.jpg"
-            class="gallery-slide"
-            alt="Ngongotahā junior football"
-          >
-
-          <img
-            src="Jr4.jpg"
-            class="gallery-slide"
-            alt="Ngongotahā junior football"
-          >
-
+        <div class="find-team-label">
+          NEW TO NGONGOTAHĀ?
         </div>
 
+        <h2>
+          ⚽ FIND YOUR TEAM
+        </h2>
 
-        <!--
-          Gallery arrows are deliberately positioned
-          over the photograph.
-        -->
+        <p>
+          Not sure which grade your child belongs in?
+          Select the age they turn during this calendar year.
+          This is based on the age they turn during the year, regardless
+          of which month their birthday falls in.
+        </p>
 
-        <div class="gallery-controls">
 
-          <button
-            class="gallery-btn"
-            onclick="changeSlide(-1)"
-            aria-label="Previous photo"
-            type="button"
-          >
-            &#10094;
+        <div class="age-selector">
+
+          <button class="age-button" onclick="findTeam(5, this)" type="button">
+            5
           </button>
 
-          <button
-            class="gallery-btn"
-            onclick="changeSlide(1)"
-            aria-label="Next photo"
-            type="button"
-          >
-            &#10095;
+          <button class="age-button" onclick="findTeam(6, this)" type="button">
+            6
+          </button>
+
+          <button class="age-button" onclick="findTeam(7, this)" type="button">
+            7
+          </button>
+
+          <button class="age-button" onclick="findTeam(8, this)" type="button">
+            8
+          </button>
+
+          <button class="age-button" onclick="findTeam(9, this)" type="button">
+            9
+          </button>
+
+          <button class="age-button" onclick="findTeam(10, this)" type="button">
+            10
+          </button>
+
+          <button class="age-button" onclick="findTeam(11, this)" type="button">
+            11
+          </button>
+
+          <button class="age-button" onclick="findTeam(12, this)" type="button">
+            12
+          </button>
+
+          <button class="age-button" onclick="findTeam(13, this)" type="button">
+            13
           </button>
 
         </div>
 
 
-        <div class="gallery-caption">
-          Ngongotahā AFC Junior Football
+        <div
+          class="finder-result"
+          id="finderResult"
+        >
+
+          <small>
+            Based on the age they turn this year:
+          </small>
+
+          <strong id="finderGrade">
+            -
+          </strong>
+
+          <p id="finderMessage">
+            -
+          </p>
+
         </div>
 
       </div>
@@ -213,7 +1102,7 @@
 
 
     <!-- =========================
-         PLAYER DEVELOPMENT
+         DEVELOPMENT FOCUS
     ========================= -->
 
     <section class="section">
@@ -223,9 +1112,8 @@
       </h2>
 
       <p>
-        We are focused on more than simply getting children onto the pitch.
-        Our junior programme is designed to help players develop technically,
-        physically and mentally while enjoying their football.
+        We are focused on giving children a good place to play football,
+        learn the game and enjoy being part of a team.
       </p>
 
 
@@ -255,8 +1143,8 @@
               </h3>
 
               <p>
-                Building technical ability, confidence, decision-making and
-                football intelligence through quality coaching.
+                Helping players improve their football skills,
+                confidence and understanding of the game.
               </p>
 
             </div>
@@ -272,8 +1160,8 @@
 
                 <p>
                   Every player should have the opportunity to improve.
-                  We want our young footballers to develop skills that will
-                  stay with them throughout their football journey.
+                  We want our young footballers to develop skills that
+                  will stay with them throughout their football journey.
                 </p>
 
               </div>
@@ -308,8 +1196,8 @@
               </h3>
 
               <p>
-                Creating a positive, safe and ambitious environment where
-                young players can enjoy football and grow.
+                A positive place where young players can enjoy football,
+                meet people and develop their skills.
               </p>
 
             </div>
@@ -361,8 +1249,8 @@
               </h3>
 
               <p>
-                Giving ambitious players a clear pathway through youth
-                football and towards senior football at Ngongotahā.
+                Players can continue through youth football and
+                eventually into senior football at Ngongotahā.
               </p>
 
             </div>
@@ -408,7 +1296,7 @@
 
       <p>
         Ready to become part of Ngongotahā AFC?
-        Register your child and join our growing junior football community.
+        Register your child and join our junior football community.
       </p>
 
       <a
@@ -427,6 +1315,150 @@
 
 
   <!-- =========================
+       TEAM PROFILE POPUP
+  ========================= -->
+
+  <div
+    class="team-modal"
+    id="teamModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="teamModalTitle"
+  >
+
+    <div class="team-modal-box">
+
+      <button
+        class="team-modal-close"
+        type="button"
+        onclick="closeTeamProfile()"
+        aria-label="Close team profile"
+      >
+        ×
+      </button>
+
+
+      <div class="team-modal-label">
+        Ngongotahā AFC Junior Football
+      </div>
+
+
+      <h2 id="teamModalTitle">
+        Team Profile
+      </h2>
+
+
+      <div class="team-detail">
+
+        <div class="team-detail-icon">
+          📅
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Training
+          </strong>
+
+          <span>
+            Tuesday &amp; Thursday
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="team-detail">
+
+        <div class="team-detail-icon">
+          📍
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Location
+          </strong>
+
+          <span>
+            Ngongotahā Domain
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="team-detail">
+
+        <div class="team-detail-icon">
+          ⚽
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Format
+          </strong>
+
+          <span>
+            9-a-side
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="team-detail">
+
+        <div class="team-detail-icon">
+          👤
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Coach
+          </strong>
+
+          <span>
+            John Smith
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="team-detail">
+
+        <div class="team-detail-icon">
+          ✉️
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Contact
+          </strong>
+
+          <a href="mailto:ExampleColoredSoEveryoneKnowsItsAEmail@gmail.com">
+            ExampleColoredSoEveryoneKnowsItsAEmail@gmail.com
+          </a>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
        FOOTER
   ========================= -->
 
@@ -441,56 +1473,193 @@
 
   <script>
 
+
     /* =========================
-       GALLERY
+       TEAM PROFILE POPUP
     ========================= */
 
-    let slideIndex = 0;
+    const teamModal =
+      document.getElementById("teamModal");
 
-    const slides =
-      document.querySelectorAll(".gallery-slide");
+    const teamModalTitle =
+      document.getElementById("teamModalTitle");
 
 
-    function showSlide(index) {
+    function openTeamProfile(teamName) {
 
-      if (slides.length === 0) {
-        return;
+      /*
+        The team name is passed from the individual
+        VIEW TEAM button that was clicked.
+
+        This means every team gets its own profile,
+        even though the website reuses the same
+        popup window.
+      */
+
+      teamModalTitle.textContent = teamName;
+
+      teamModal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeTeamProfile() {
+
+      teamModal.classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    /*
+      Close when clicking the dark area outside
+      the team profile.
+    */
+
+    teamModal.addEventListener("click", function(event) {
+
+      if (event.target === teamModal) {
+
+        closeTeamProfile();
+
       }
 
-      if (index >= slides.length) {
-        slideIndex = 0;
+    });
+
+
+    /*
+      Close popup with Escape key.
+    */
+
+    document.addEventListener("keydown", function(event) {
+
+      if (
+        event.key === "Escape" &&
+        teamModal.classList.contains("active")
+      ) {
+
+        closeTeamProfile();
+
       }
 
-      if (index < 0) {
-        slideIndex = slides.length - 1;
-      }
+    });
 
-      slides.forEach(function(slide) {
-        slide.classList.remove("active");
+
+    /* =========================
+       FIND YOUR TEAM
+    ========================= */
+
+    function findTeam(age, button) {
+
+      const finderResult =
+        document.getElementById("finderResult");
+
+      const finderGrade =
+        document.getElementById("finderGrade");
+
+      const finderMessage =
+        document.getElementById("finderMessage");
+
+
+      /*
+        Remove selected state from every age button.
+      */
+
+      document.querySelectorAll(".age-button").forEach(function(ageButton) {
+
+        ageButton.classList.remove("selected");
+
       });
 
-      slides[slideIndex].classList.add("active");
+
+      /*
+        Highlight the selected age.
+      */
+
+      button.classList.add("selected");
+
+
+      let grade;
+
+
+      /*
+        The grade is based on the age the child
+        turns during the calendar year.
+
+        Example:
+
+        Child is 7 on January 1st
+        Child turns 8 in December
+
+        They are placed into 8th Grade.
+      */
+
+      if (age === 5) {
+
+        grade = "5th Grade";
+
+      }
+
+      else if (age === 6) {
+
+        grade = "6th Grade";
+
+      }
+
+      else if (age === 7) {
+
+        grade = "7th Grade";
+
+      }
+
+      else if (age === 8) {
+
+        grade = "8th Grade";
+
+      }
+
+      else if (age === 9) {
+
+        grade = "9th Grade";
+
+      }
+
+      else if (age === 10) {
+
+        grade = "10th Grade";
+
+      }
+
+      else if (age === 11) {
+
+        grade = "11th Grade";
+
+      }
+
+      else if (age === 12 || age === 13) {
+
+        grade = "12/13th Grade";
+
+      }
+
+
+      finderGrade.textContent = grade;
+
+
+      finderMessage.textContent =
+        "If your child turns " +
+        age +
+        " during this calendar year, they are in " +
+        grade +
+        ".";
+
+
+      finderResult.classList.add("active");
+
     }
-
-
-    function changeSlide(direction) {
-
-      slideIndex += direction;
-
-      showSlide(slideIndex);
-    }
-
-
-    showSlide(slideIndex);
-
-
-    setInterval(function() {
-
-      slideIndex++;
-
-      showSlide(slideIndex);
-
-    }, 8000);
 
 
     /* =========================
@@ -551,6 +1720,7 @@
     }
 
   </script>
+
 
 </body>
 </html>
