@@ -1,25 +1,13 @@
-```css
 /* =========================================================
-   NGONGOTAHĀ AFC WEBSITE
-   MASTER STYLESHEET
+NGONGOTAHĀ AFC WEBSITE
+MASTER STYLESHEET
 
-   Shared styling for the entire Ngongotahā AFC website.
-
-   Page classes:
-   page-home
-   page-juniors
-   page-seniors
-   page-womens
-   page-cr1
-   page-calendar
-   page-about
-   page-academy
-   page-registrations
+Shared styling for the Ngongotahā AFC website.
 ========================================================= */
 
 
 /* =========================================================
-   GLOBAL
+GLOBAL
 ========================================================= */
 
 * {
@@ -39,8 +27,8 @@ body {
 
   background-image:
     linear-gradient(
-      rgba(0, 0, 0, 0.72),
-      rgba(0, 0, 0, 0.82)
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.82)
     ),
     url("background.jpg");
 
@@ -53,7 +41,7 @@ body {
 
 
 /* =========================================================
-   SHARED COLOURS
+SHARED COLOURS
 ========================================================= */
 
 :root {
@@ -72,7 +60,7 @@ body {
 
 
 /* =========================================================
-   NAVBAR
+NAVBAR
 ========================================================= */
 
 .navbar {
@@ -102,17 +90,10 @@ body {
     navbarGlow 15s ease infinite;
 
   box-shadow:
-    0 4px 25px rgba(0, 0, 0, 0.55),
-    0 0 25px rgba(254, 67, 0, 0.25);
-
-  transition:
-    background 0.4s ease;
+    0 4px 25px rgba(0,0,0,0.55),
+    0 0 25px rgba(254,67,0,0.25);
 }
 
-
-/* =========================================================
-   NAVBAR ANIMATION
-========================================================= */
 
 @keyframes navbarGlow {
 
@@ -132,7 +113,7 @@ body {
 
 
 /* =========================================================
-   NAVBAR LOGO
+NAVBAR LOGO
 ========================================================= */
 
 .navbar-logo {
@@ -154,20 +135,20 @@ body {
 
   filter:
     drop-shadow(
-      0 3px 6px rgba(0, 0, 0, 0.55)
+      0 3px 6px rgba(0,0,0,0.55)
     );
 
   transition:
     transform 0.25s ease;
 }
 
-.navbar-logo img:hover {
+.navbar-logo:hover img {
   transform: scale(1.06);
 }
 
 
 /* =========================================================
-   NAVIGATION LINKS
+NAVIGATION LINKS
 ========================================================= */
 
 .nav-links {
@@ -182,7 +163,7 @@ body {
   margin-left: 25px;
 }
 
-.nav-links > a,
+.nav-links a,
 .dropbtn {
   color: white;
 
@@ -199,32 +180,21 @@ body {
     background 0.25s ease,
     transform 0.25s ease,
     box-shadow 0.25s ease;
-
-  background:
-    rgba(0, 0, 0, 0.25);
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-.nav-links > a:hover,
+.nav-links a:hover,
 .dropbtn:hover {
-  background:
-    rgba(0, 0, 0, 0.38);
+  background: rgba(0,0,0,0.25);
 
-  transform:
-    translateY(-3px);
+  transform: translateY(-2px);
 
   box-shadow:
-    0 7px 18px rgba(0, 0, 0, 0.3);
+    0 5px 15px rgba(0,0,0,0.25);
 }
 
 
 /* =========================================================
-   DROPDOWN
+DROPDOWN
 ========================================================= */
 
 .dropdown {
@@ -232,22 +202,15 @@ body {
   display: inline-block;
 }
 
-
-/* Dropdown button */
-
 .dropbtn {
   border: none;
 
-  background:
-    rgba(0, 0, 0, 0.25);
+  background: transparent;
 
   cursor: pointer;
 
   font-family: inherit;
 }
-
-
-/* Dropdown menu */
 
 .dropdown-content {
   display: none;
@@ -260,26 +223,25 @@ body {
   min-width: 190px;
 
   background:
-    rgba(15, 15, 15, 0.97);
+    rgba(15,15,15,0.97);
 
   border:
-    1px solid rgba(255, 145, 77, 0.45);
+    1px solid rgba(255,145,77,0.45);
 
   border-radius: 10px;
 
   overflow: hidden;
 
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.6);
+    0 12px 30px rgba(0,0,0,0.6);
 
   backdrop-filter:
     blur(12px);
-
-  z-index: 2000;
 }
 
-
-/* Dropdown links */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 .dropdown-content a {
   display: block;
@@ -292,62 +254,33 @@ body {
 
   font-size: 14px;
 
-  text-decoration: none;
-
-  background:
-    transparent;
+  background: transparent;
 
   transform: none;
 
   box-shadow: none;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
 }
-
-
-/* Dropdown hover */
 
 .dropdown-content a:hover {
   background:
     linear-gradient(
       90deg,
-      rgba(254, 67, 0, 0.85),
-      rgba(255, 145, 77, 0.65)
+      rgba(254,67,0,0.85),
+      rgba(255,145,77,0.65)
     );
-
-  color: white;
 
   transform: none;
 
   box-shadow: none;
 }
 
-
-/* =========================================================
-   DESKTOP DROPDOWN
-========================================================= */
-
-/*
-   IMPORTANT:
-   The dropdown is NOT permanently display:block.
-
-   It only opens when the user hovers over
-   the Ngongotahā Teams menu.
-*/
-
-@media (min-width: 901px) {
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
+.dropdown.mobile-open .dropdown-content {
+  display: block;
 }
 
 
 /* =========================================================
-   MAIN HERO
+MAIN HERO
 ========================================================= */
 
 .hero {
@@ -366,25 +299,21 @@ body {
   background:
     linear-gradient(
       135deg,
-      rgba(8, 8, 8, 0.97),
-      rgba(25, 12, 7, 0.96),
-      rgba(8, 8, 8, 0.97)
+      rgba(8,8,8,0.97),
+      rgba(25,12,7,0.96),
+      rgba(8,8,8,0.97)
     );
 
   border-radius: 24px;
 
   border:
-    1px solid rgba(255, 145, 77, 0.35);
+    1px solid rgba(255,145,77,0.35);
 
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.65),
-    inset 0 0 40px rgba(254, 67, 0, 0.06);
+    0 20px 60px rgba(0,0,0,0.65),
+    inset 0 0 40px rgba(254,67,0,0.06);
 }
 
-
-/* =========================================================
-   HERO GLOW
-========================================================= */
 
 .hero::before {
   content: "";
@@ -400,8 +329,8 @@ body {
   background:
     radial-gradient(
       ellipse,
-      rgba(255, 100, 25, 0.32) 0%,
-      rgba(254, 67, 0, 0.12) 35%,
+      rgba(255,100,25,0.32) 0%,
+      rgba(254,67,0,0.12) 35%,
       transparent 70%
     );
 
@@ -411,10 +340,6 @@ body {
   pointer-events: none;
 }
 
-
-/* =========================================================
-   HERO BOTTOM LINE
-========================================================= */
 
 .hero::after {
   content: "";
@@ -439,7 +364,7 @@ body {
     );
 
   box-shadow:
-    0 0 18px rgba(254, 67, 0, 0.8);
+    0 0 18px rgba(254,67,0,0.8);
 
   pointer-events: none;
 }
@@ -451,7 +376,7 @@ body {
 
 
 /* =========================================================
-   HERO SMALL LABEL
+HERO SMALL LABEL
 ========================================================= */
 
 .hero-small {
@@ -462,7 +387,7 @@ body {
   padding: 7px 16px;
 
   border:
-    1px solid rgba(255, 145, 77, 0.4);
+    1px solid rgba(255,145,77,0.4);
 
   border-radius: 30px;
 
@@ -476,15 +401,15 @@ body {
   text-transform: uppercase;
 
   background:
-    rgba(254, 67, 0, 0.08);
+    rgba(254,67,0,0.08);
 
   box-shadow:
-    0 0 20px rgba(254, 67, 0, 0.08);
+    0 0 20px rgba(254,67,0,0.08);
 }
 
 
 /* =========================================================
-   HERO HEADING
+HERO HEADING
 ========================================================= */
 
 .hero h1 {
@@ -517,7 +442,7 @@ body {
 
   filter:
     drop-shadow(
-      0 5px 12px rgba(0, 0, 0, 0.55)
+      0 5px 12px rgba(0,0,0,0.55)
     );
 }
 
@@ -554,7 +479,7 @@ body {
 
 
 /* =========================================================
-   MAIN CONTENT
+MAIN CONTENT
 ========================================================= */
 
 .content {
@@ -569,7 +494,7 @@ body {
 
 
 /* =========================================================
-   GENERAL SECTION
+GENERAL SECTION
 ========================================================= */
 
 .section {
@@ -582,17 +507,17 @@ body {
   background:
     linear-gradient(
       135deg,
-      rgba(10, 10, 10, 0.92),
-      rgba(22, 14, 10, 0.90)
+      rgba(10,10,10,0.92),
+      rgba(22,14,10,0.90)
     );
 
   border:
-    1px solid rgba(255, 145, 77, 0.18);
+    1px solid rgba(255,145,77,0.18);
 
   border-radius: 18px;
 
   box-shadow:
-    0 15px 45px rgba(0, 0, 0, 0.45);
+    0 15px 45px rgba(0,0,0,0.45);
 
   backdrop-filter:
     blur(10px);
@@ -621,12 +546,16 @@ body {
 
   line-height: 1.8;
 
+  margin-bottom: 16px;
+}
+
+.section > p:last-child {
   margin-bottom: 0;
 }
 
 
 /* =========================================================
-   GALLERY
+GALLERY
 ========================================================= */
 
 .gallery-section {
@@ -651,10 +580,10 @@ body {
     #050505;
 
   border:
-    1px solid rgba(255, 145, 77, 0.28);
+    1px solid rgba(255,145,77,0.28);
 
   box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.65);
+    0 15px 40px rgba(0,0,0,0.65);
 }
 
 .gallery-slides {
@@ -692,7 +621,7 @@ body {
 
 
 /* =========================================================
-   GALLERY CONTROLS
+GALLERY CONTROLS
 ========================================================= */
 
 .gallery-controls {
@@ -724,12 +653,12 @@ body {
   height: 65px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.35);
+    1px solid rgba(255,255,255,0.35);
 
   border-radius: 12px;
 
   background:
-    rgba(0, 0, 0, 0.55);
+    rgba(0,0,0,0.55);
 
   color:
     white;
@@ -751,7 +680,7 @@ body {
     blur(8px);
 
   box-shadow:
-    0 5px 20px rgba(0, 0, 0, 0.45);
+    0 5px 20px rgba(0,0,0,0.45);
 
   transition:
     background 0.25s ease,
@@ -761,18 +690,13 @@ body {
 
 .gallery-btn:hover {
   background:
-    rgba(254, 67, 0, 0.85);
+    rgba(254,67,0,0.85);
 
   border-color:
     #ff914d;
 
   transform:
     scale(1.08);
-}
-
-.gallery-btn:active {
-  transform:
-    scale(0.95);
 }
 
 .gallery-caption {
@@ -786,31 +710,48 @@ body {
   font-size: 13px;
 
   background:
-    rgba(0, 0, 0, 0.75);
+    rgba(0,0,0,0.75);
 }
 
 
 /* =========================================================
-   DEVELOPMENT CARDS
+DEVELOPMENT CARDS
 ========================================================= */
 
 .development-grid {
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3, minmax(0, 1fr));
 
   gap: 22px;
 
-  margin-top: 25px;
+  width: 100%;
+
+  max-width: 1050px;
+
+  margin: 30px auto 0;
+
+  justify-content: center;
+
+  align-items: stretch;
 }
 
+
+/* =========================================================
+FLIP CARD
+========================================================= */
+
 .flip-card {
+  width: 100%;
+
   height: 330px;
 
   perspective: 1200px;
 
   cursor: pointer;
+
+  margin: 0 auto;
 }
 
 .flip-card-inner {
@@ -822,7 +763,7 @@ body {
   text-align: center;
 
   transition:
-    transform 0.75s cubic-bezier(.2, .7, .2, 1);
+    transform 0.75s cubic-bezier(.2,.7,.2,1);
 
   transform-style:
     preserve-3d;
@@ -830,13 +771,18 @@ body {
 
 
 /* =========================================================
-   FLIP CARD CLICK / TAP ONLY
+FLIP CARD CLICK / TAP
 ========================================================= */
 
 .flip-card.flipped .flip-card-inner {
   transform:
     rotateY(180deg);
 }
+
+
+/* =========================================================
+FLIP CARD FRONT + BACK
+========================================================= */
 
 .flip-card-front,
 .flip-card-back {
@@ -858,15 +804,15 @@ body {
     hidden;
 
   border:
-    1px solid rgba(255, 145, 77, 0.3);
+    1px solid rgba(255,145,77,0.3);
 
   box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.5);
+    0 12px 35px rgba(0,0,0,0.5);
 }
 
 
 /* =========================================================
-   FLIP CARD FRONT
+FLIP CARD FRONT
 ========================================================= */
 
 .flip-card-front {
@@ -908,10 +854,12 @@ body {
   border-radius: 50%;
 
   background:
-    rgba(254, 67, 0, 0.08);
+    rgba(254,67,0,0.08);
 
   box-shadow:
-    0 0 80px rgba(254, 67, 0, 0.12);
+    0 0 80px rgba(254,67,0,0.12);
+
+  pointer-events: none;
 }
 
 .flip-card-front h3 {
@@ -949,7 +897,7 @@ body {
 
 
 /* =========================================================
-   FLIP ICON
+FLIP ICON
 ========================================================= */
 
 .flip-icon {
@@ -977,12 +925,12 @@ body {
     25px;
 
   box-shadow:
-    0 0 20px rgba(254, 67, 0, 0.25);
+    0 0 20px rgba(254,67,0,0.25);
 }
 
 
 /* =========================================================
-   FLIP CARD BACK
+FLIP CARD BACK
 ========================================================= */
 
 .flip-card-back {
@@ -1004,12 +952,16 @@ body {
   align-items:
     flex-end;
 
-  z-index: 1;
+  z-index:
+    1;
 }
 
 .flip-card.flipped .flip-card-back {
   z-index: 2;
 }
+
+
+/* Dark overlay over photos */
 
 .flip-card-back::before {
   content: "";
@@ -1020,10 +972,20 @@ body {
 
   background:
     linear-gradient(
-      transparent 25%,
-      rgba(0, 0, 0, 0.92) 100%
+      transparent 20%,
+      rgba(0,0,0,0.35) 45%,
+      rgba(0,0,0,0.94) 100%
     );
+
+  z-index: 1;
+
+  pointer-events: none;
 }
+
+
+/* =========================================================
+BACK CONTENT
+========================================================= */
 
 .back-content {
   position: relative;
@@ -1063,17 +1025,17 @@ body {
 
 
 /* =========================================================
-   JUNIOR PAGE IMAGES
+JUNIOR PAGE CARD IMAGES
 ========================================================= */
 
 .page-juniors .player-development {
   background-image:
-    url("Equipment.jpg");
+    url("cr2.jpg");
 }
 
 .page-juniors .quality-environment {
   background-image:
-    url("Equipment.jpg");
+    url("drone.jpg");
 }
 
 .page-juniors .future-pathway {
@@ -1083,7 +1045,7 @@ body {
 
 
 /* =========================================================
-   FUTURE PAGE-SPECIFIC IMAGE AREAS
+OTHER PAGE-SPECIFIC IMAGE AREAS
 ========================================================= */
 
 .page-home .player-development {
@@ -1113,7 +1075,7 @@ body {
 
 
 /* =========================================================
-   REGISTRATION CTA
+REGISTRATION CTA
 ========================================================= */
 
 .registration-box {
@@ -1126,12 +1088,12 @@ body {
   background:
     linear-gradient(
       135deg,
-      rgba(254, 67, 0, 0.14),
-      rgba(0, 0, 0, 0.65)
+      rgba(254,67,0,0.14),
+      rgba(0,0,0,0.65)
     );
 
   border:
-    1px solid rgba(255, 145, 77, 0.35);
+    1px solid rgba(255,145,77,0.35);
 
   border-radius:
     18px;
@@ -1183,7 +1145,7 @@ body {
     1px;
 
   box-shadow:
-    0 8px 25px rgba(254, 67, 0, 0.28);
+    0 8px 25px rgba(254,67,0,0.28);
 
   transition:
     transform 0.25s ease,
@@ -1195,12 +1157,12 @@ body {
     translateY(-3px);
 
   box-shadow:
-    0 12px 30px rgba(254, 67, 0, 0.45);
+    0 12px 30px rgba(254,67,0,0.45);
 }
 
 
 /* =========================================================
-   GENERAL BUTTON
+GENERAL BUTTON
 ========================================================= */
 
 .orange-button {
@@ -1245,12 +1207,12 @@ body {
     translateY(-3px);
 
   box-shadow:
-    0 10px 25px rgba(254, 67, 0, 0.4);
+    0 10px 25px rgba(254,67,0,0.4);
 }
 
 
 /* =========================================================
-   FOOTER
+FOOTER
 ========================================================= */
 
 footer {
@@ -1285,12 +1247,12 @@ footer {
     14px;
 
   box-shadow:
-    0 -5px 25px rgba(0, 0, 0, 0.35);
+    0 -5px 25px rgba(0,0,0,0.35);
 }
 
 
 /* =========================================================
-   TABLET
+MOBILE
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -1322,7 +1284,7 @@ footer {
       wrap;
   }
 
-  .nav-links > a,
+  .nav-links a,
   .dropbtn {
     padding:
       10px 8px;
@@ -1349,36 +1311,41 @@ footer {
       25px 20px;
   }
 
+  /* Center all three cards */
+
   .development-grid {
     grid-template-columns:
       1fr;
+
+    max-width:
+      500px;
+
+    margin-left:
+      auto;
+
+    margin-right:
+      auto;
   }
 
   .flip-card {
+    width:
+      100%;
+
+    max-width:
+      500px;
+
+    margin:
+      0 auto;
+
     height:
       300px;
-  }
-
-
-  /* =======================================================
-     TOUCH DROPDOWN
-  ======================================================= */
-
-  .dropdown:hover .dropdown-content {
-    display:
-      none;
-  }
-
-  .dropdown.mobile-open .dropdown-content {
-    display:
-      block;
   }
 
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -1421,7 +1388,7 @@ footer {
       3px;
   }
 
-  .nav-links > a,
+  .nav-links a,
   .dropbtn {
     padding:
       8px 6px;
@@ -1493,7 +1460,18 @@ footer {
       9px;
   }
 
+  .development-grid {
+    width:
+      100%;
+
+    max-width:
+      400px;
+  }
+
   .flip-card {
+    width:
+      100%;
+
     height:
       285px;
   }
@@ -1502,7 +1480,21 @@ footer {
 
 
 /* =========================================================
-   PERFORMANCE
+TOUCH DEVICE DROPDOWN
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .dropdown.mobile-open .dropdown-content {
+    display:
+      block;
+  }
+
+}
+
+
+/* =========================================================
+PERFORMANCE
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1515,6 +1507,7 @@ footer {
   *,
   *::before,
   *::after {
+
     animation-duration:
       0.01ms !important;
 
@@ -1526,4 +1519,3 @@ footer {
   }
 
 }
-```
