@@ -889,48 +889,84 @@
        MOBILE TEAM DROPDOWN
        ========================================================= */
 
-    const dropdown =
-      document.querySelector(".dropdown");
+    (function () {
 
-    const dropButton =
-      document.querySelector(".dropbtn");
+      function initialiseDropdown() {
 
+        const dropdown =
+          document.querySelector(".dropdown");
 
-    if (dropdown && dropButton) {
-
-      dropButton.addEventListener("click", function (event) {
-
-        event.preventDefault();
-
-        event.stopPropagation();
-
-        const isOpen =
-          dropdown.classList.toggle("mobile-open");
-
-        dropButton.setAttribute(
-          "aria-expanded",
-          isOpen ? "true" : "false"
-        );
-
-      });
+        const dropButton =
+          document.querySelector(".dropbtn");
 
 
-      document.addEventListener("click", function (event) {
-
-        if (!dropdown.contains(event.target)) {
-
-          dropdown.classList.remove("mobile-open");
-
-          dropButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
+        if (!dropdown || !dropButton) {
+          return;
         }
 
-      });
 
-    }
+        dropButton.addEventListener(
+          "click",
+          function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const isOpen =
+              dropdown.classList.toggle("mobile-open");
+
+
+            dropButton.setAttribute(
+              "aria-expanded",
+              isOpen ? "true" : "false"
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "click",
+          function (event) {
+
+            if (!dropdown.contains(event.target)) {
+
+              dropdown.classList.remove(
+                "mobile-open"
+              );
+
+              dropButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          }
+        );
+
+      }
+
+
+      if (
+        document.readyState ===
+        "loading"
+      ) {
+
+        document.addEventListener(
+          "DOMContentLoaded",
+          initialiseDropdown
+        );
+
+      } else {
+
+        initialiseDropdown();
+
+      }
+
+    })();
 
 
 
