@@ -14,6 +14,264 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <style>
+
+    /* =========================================================
+       CR1 MOBILE LAYOUT
+       Keeps desktop layout unchanged.
+       ========================================================= */
+
+    @media (max-width: 900px) {
+
+      /* Give the page proper usable width on mobile */
+
+      .page-cr1 .content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+
+      /* Make every section use the available width */
+
+      .page-cr1 .section {
+        width: 100%;
+        max-width: 100%;
+        padding: 28px 22px;
+      }
+
+
+      /* Prevent text from being squeezed */
+
+      .page-cr1 .section p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.75;
+        word-break: normal;
+        overflow-wrap: normal;
+      }
+
+
+      /* Stack cards underneath each other */
+
+      .page-cr1 .latest-news-grid {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+
+      .page-cr1 .latest-news-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+
+      .page-cr1 .latest-news-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px;
+      }
+
+
+      .page-cr1 .latest-news-content h3 {
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+
+      .page-cr1 .latest-news-content p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+
+      /* Gallery should use full available width */
+
+      .page-cr1 .gallery-section {
+        width: 100%;
+      }
+
+
+      .page-cr1 .gallery {
+        width: 100%;
+        max-width: 100%;
+      }
+
+
+      /* Better mobile hero */
+
+      .page-cr1 .hero {
+        width: auto;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+       ========================================================= */
+
+    @media (max-width: 600px) {
+
+      .page-cr1 .content {
+        padding: 0 12px;
+      }
+
+
+      .page-cr1 .section {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+      }
+
+
+      .page-cr1 .section h2 {
+        font-size: 24px;
+        line-height: 1.15;
+        margin-bottom: 18px;
+      }
+
+
+      .page-cr1 .section p {
+        font-size: 15px;
+        line-height: 1.75;
+        margin-bottom: 18px;
+      }
+
+
+      .page-cr1 .section p:last-child {
+        margin-bottom: 0;
+      }
+
+
+      /* Cards are definitely full width */
+
+      .page-cr1 .latest-news-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 18px;
+      }
+
+
+      .page-cr1 .latest-news-card {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+      }
+
+
+      .page-cr1 .latest-news-content {
+        padding: 21px;
+      }
+
+
+      .page-cr1 .latest-news-content h3 {
+        font-size: 21px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+
+
+      .page-cr1 .latest-news-content p {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+
+      .page-cr1 .registration-box {
+        padding: 30px 20px;
+      }
+
+
+      .page-cr1 .registration-box p {
+        max-width: 100%;
+      }
+
+
+      /* Gallery */
+
+      .page-cr1 .gallery-section {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+
+      .page-cr1 .gallery {
+        width: 100%;
+      }
+
+
+      .page-cr1 .gallery-controls {
+        padding: 0 10px;
+      }
+
+
+      .page-cr1 .gallery-btn {
+        width: 46px;
+        height: 55px;
+        font-size: 30px;
+      }
+
+    }
+
+
+    /* =========================================================
+       VERY SMALL PHONES
+       ========================================================= */
+
+    @media (max-width: 400px) {
+
+      .page-cr1 .content {
+        padding: 0 10px;
+      }
+
+
+      .page-cr1 .section {
+        padding: 23px 17px;
+      }
+
+
+      .page-cr1 .section h2 {
+        font-size: 22px;
+      }
+
+
+      .page-cr1 .section p {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+
+      .page-cr1 .latest-news-content {
+        padding: 19px;
+      }
+
+
+      .page-cr1 .latest-news-content h3 {
+        font-size: 20px;
+      }
+
+
+      .page-cr1 .latest-news-content p {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
@@ -27,10 +285,12 @@
   <nav class="navbar" id="navbar">
 
     <a href="index.html" class="navbar-logo">
+
       <img
         src="logo.png"
         alt="Ngongotahā Football Club Logo"
       >
+
     </a>
 
 
@@ -332,6 +592,7 @@
         Building More Than Players
       </h2>
 
+
       <div class="latest-news-grid">
 
 
@@ -586,6 +847,7 @@
   <footer>
 
     © 2026 Ngongotahā Football Club |
+
     <a href="mailto:info@ngongotahafootball.co.nz">
       Contact Us
     </a>
