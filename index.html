@@ -8,6 +8,47 @@
   <title>Ngongotahā Football Club</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =====================================================
+       SPONSOR BOARD - JAVASCRIPT CONTROLLED SLIDER
+       ===================================================== */
+
+    .sponsors-track {
+
+      animation:
+        none !important;
+
+      -webkit-animation:
+        none !important;
+
+      transform:
+        translateX(0);
+
+      -webkit-transform:
+        translateX(0);
+
+      transition:
+        transform 0.8s ease-in-out;
+
+      -webkit-transition:
+        -webkit-transform 0.8s ease-in-out;
+
+      will-change:
+        transform;
+
+    }
+
+    .sponsors-track .sponsors-group {
+
+      flex-shrink:
+        0;
+
+    }
+
+  </style>
+
 </head>
 
 <body class="page-home">
@@ -594,9 +635,8 @@
 
         <div class="sponsors-track">
 
-
           <!-- =================================================
-               FIRST GROUP
+               SPONSOR GROUP
                ================================================= -->
 
           <div class="sponsors-group">
@@ -677,103 +717,6 @@
             </div>
 
           </div>
-
-
-          <!-- =================================================
-               DUPLICATE GROUP
-               ================================================= -->
-
-          <div class="sponsors-group">
-
-
-            <!-- BEV & JASON WALLER -->
-
-            <a
-              href="https://www.arizto.co.nz/our-people/profile/bev-and-jason-waller/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-              aria-hidden="true"
-              tabindex="-1"
-            >
-
-              <img
-                src="sponsor1.jpg"
-                alt=""
-              >
-
-            </a>
-
-
-            <!-- MCDONALD'S -->
-
-            <a
-              href="https://www.mcdonalds.com/nz/en-nz.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-              aria-hidden="true"
-              tabindex="-1"
-            >
-
-              <img
-                src="sponsor2.jpg"
-                alt=""
-              >
-
-            </a>
-
-
-            <!-- VIP PLUMBING AND GASFITTINGS -->
-
-            <a
-              href="https://vipplumbing.co.nz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-              aria-hidden="true"
-              tabindex="-1"
-            >
-
-              <img
-                src="sponsor3.png"
-                alt=""
-              >
-
-            </a>
-
-
-            <!-- SPONSOR 4 -->
-
-            <div
-              class="sponsor-item"
-              aria-hidden="true"
-            >
-
-              <img
-                src="sponsor4.jpg"
-                alt=""
-              >
-
-            </div>
-
-
-            <!-- SPONSOR 5 -->
-
-            <div
-              class="sponsor-item"
-              aria-hidden="true"
-            >
-
-              <img
-                src="sponsor5.jpg"
-                alt=""
-              >
-
-            </div>
-
-          </div>
-
 
         </div>
 
@@ -1396,6 +1339,254 @@
           changeSlide(1);
 
         }
+
+      }
+    );
+
+
+    /* =====================================================
+       SPONSOR SLIDER
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        const sponsorBoard =
+          document.querySelector(".sponsors-board");
+
+        const sponsorTrack =
+          document.querySelector(".sponsors-track");
+
+        const sponsorGroup =
+          document.querySelector(".sponsors-group");
+
+        const sponsors =
+          sponsorGroup
+            ? sponsorGroup.querySelectorAll(".sponsor-item")
+            : [];
+
+
+        if (
+          !sponsorBoard ||
+          !sponsorTrack ||
+          !sponsorGroup ||
+          !sponsors.length
+        ) {
+
+          return;
+
+        }
+
+
+        let sponsorIndex = 0;
+
+        let sponsorDirection = 1;
+
+        let sponsorTimer;
+
+
+        function getSponsorPositions() {
+
+          const boardWidth =
+            sponsorBoard.clientWidth;
+
+          const groupWidth =
+            sponsorGroup.scrollWidth;
+
+          const maxMovement =
+            Math.max(
+              0,
+              groupWidth - boardWidth
+            );
+
+
+          const positions = [];
+
+
+          sponsors.forEach(
+            function(sponsor, index) {
+
+              let position =
+                sponsor.offsetLeft;
+
+              const sponsorWidth =
+                sponsor.offsetWidth;
+
+
+              /*
+               * Keep the sponsor visible within
+               * the board rather than moving it
+               * completely off-screen.
+               */
+
+              if (
+                position + sponsorWidth >
+                boardWidth
+              ) {
+
+                position =
+                  position +
+                  sponsorWidth -
+                  boardWidth;
+
+              }
+
+
+              position =
+                Math.max(
+                  0,
+                  Math.min(
+                    position,
+                    maxMovement
+                  )
+                );
+
+
+              positions.push(position);
+
+            }
+          );
+
+
+          return positions;
+
+        }
+
+
+        function moveSponsor() {
+
+          const positions =
+            getSponsorPositions();
+
+
+          if (!positions.length) {
+            return;
+          }
+
+
+          sponsorTrack.style.transform =
+            "translateX(-" +
+            positions[sponsorIndex] +
+            "px)";
+
+
+          sponsorTrack.style.webkitTransform =
+            "translateX(-" +
+            positions[sponsorIndex] +
+            "px)";
+
+        }
+
+
+        function nextSponsor() {
+
+          if (sponsorDirection === 1) {
+
+            if (
+              sponsorIndex >=
+              sponsors.length - 1
+            ) {
+
+              sponsorDirection = -1;
+
+              sponsorIndex =
+                Math.max(
+                  0,
+                  sponsorIndex - 1
+                );
+
+            } else {
+
+              sponsorIndex++;
+
+            }
+
+          } else {
+
+            if (sponsorIndex <= 0) {
+
+              sponsorDirection = 1;
+
+              sponsorIndex =
+                Math.min(
+                  sponsors.length - 1,
+                  sponsorIndex + 1
+                );
+
+            } else {
+
+              sponsorIndex--;
+
+            }
+
+          }
+
+
+          moveSponsor();
+
+        }
+
+
+        function startSponsorSlider() {
+
+          clearInterval(
+            sponsorTimer
+          );
+
+
+          sponsorTimer =
+            setInterval(
+              nextSponsor,
+              3000
+            );
+
+        }
+
+
+        /*
+         * Start at sponsor 1.
+         */
+
+        sponsorIndex = 0;
+
+        sponsorDirection = 1;
+
+        moveSponsor();
+
+        startSponsorSlider();
+
+
+        /*
+         * Recalculate positions if the phone
+         * changes orientation or the browser
+         * changes the page width.
+         */
+
+        let resizeTimer;
+
+
+        window.addEventListener(
+          "resize",
+          function() {
+
+            clearTimeout(
+              resizeTimer
+            );
+
+
+            resizeTimer =
+              setTimeout(
+                function() {
+
+                  moveSponsor();
+
+                },
+                150
+              );
+
+          }
+        );
 
       }
     );
