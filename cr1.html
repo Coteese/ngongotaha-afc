@@ -1,351 +1,775 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>The ChildRen First (CR1) Project - Ngongotahā Football Club</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url("background.jpg");
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      color: #222;
-      scroll-behavior: smooth;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    @keyframes orangeFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Navbar */
-    .navbar {
-      background: linear-gradient(to right, #ff914d, #fe4300);
-      background-size: 200% 200%;
-      animation: orangeFlow 12s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background-color 0.5s ease, backdrop-filter 0.5s ease, opacity 0.5s ease;
-    }
-
-    .navbar.scrolled {
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
-    }
-
-    .logo-container {
-      flex: 0 0 auto;
-    }
-
-    .club-logo {
-      height: 50px;
-      width: auto;
-      display: block;
-    }
-
-    .nav-links {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .navbar a, .dropbtn {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.3s, color 0.3s;
-      cursor: pointer;
-    }
-
-    .navbar a:hover, .dropdown:hover .dropbtn {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: #fff;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      border: none;
-      outline: none;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.9);
-      min-width: 160px;
-      z-index: 1;
-      border-radius: 0 0 6px 6px;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #555;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Content */
-    .content {
-      background-color: rgba(255, 255, 255, 0.9);
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    h1, h2, h3, p {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    p {
-      line-height: 1.6;
-    }
-
-    /* Gallery */
-    .gallery-container {
-      max-width: 900px;
-      margin: 40px auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .gallery-slide {
-      display: none;
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: opacity 0.5s ease;
-    }
-
-    .gallery-container button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 18px;
-      transition: background 0.3s;
-    }
-
-    .gallery-container button:hover {
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    /* Events Calendar */
-    .events-calendar {
-      max-width: 900px;
-      margin: 40px auto;
-      background-color: rgba(255,255,255,0.9);
-      border-radius: 10px;
-      padding: 20px 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .event-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    .event-item:last-child { border-bottom: none; }
-
-    .event-date {
-      font-weight: bold;
-      color: #fe4300;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      color: #fff;
-      margin-top: 60px;
-      padding: 20px;
-      background: linear-gradient(to right, #ff914d, #fe4300);
-      background-size: 200% 200%;
-      animation: orangeFlow 12s ease infinite;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 850px) {
-      .nav-links { flex-direction: column; }
-      .gallery-slide { height: 250px; }
-      .event-item { flex-direction: column; align-items: center; text-align: center; }
-    }
-
-  </style>
 </head>
-<body>
 
-  <!-- Navbar -->
-  <div class="navbar" id="navbar">
-    <div class="logo-container">
-      <a href="index.html">
-        <img src="logo.png" alt="Ngongotahā AFC Logo" class="club-logo">
-      </a>
-    </div>
+
+<body class="page-cr1">
+
+
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+
+  <nav class="navbar" id="navbar">
+
+    <a href="index.html" class="navbar-logo">
+      <img
+        src="logo.png"
+        alt="Ngongotahā Football Club Logo"
+      >
+    </a>
+
 
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="registrations.html">Registrations</a>
-      <a href="cr1.html">CR1 Project</a>
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="registrations.html">
+        Registrations
+      </a>
+
+      <a href="cr1.html">
+        CR1 Project
+      </a>
+
+
       <div class="dropdown">
-        <button class="dropbtn">Ngongotahā Teams ▼</button>
+
+        <button
+          class="dropbtn"
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          Ngongotahā Teams
+        </button>
+
+
         <div class="dropdown-content">
-          <a href="senior-teams.html">Senior Teams</a>
-          <a href="junior-teams.html">Junior Teams</a>
-          <a href="womens-teams.html">Women's Teams</a>
+
+          <a href="senior-teams.html">
+            Senior Teams
+          </a>
+
+          <a href="junior-teams.html">
+            Junior Teams
+          </a>
+
+          <a href="womens-teams.html">
+            Women's Teams
+          </a>
+
         </div>
+
       </div>
-      <a href="calendar.html">Calendar</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="academy.html">Academy</a>
+
+
+      <a href="calendar.html">
+        Calendar
+      </a>
+
+      <a href="aboutus.html">
+        About Us
+      </a>
+
+      <a href="academy.html">
+        Academy
+      </a>
+
     </div>
-  </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    <h1>The ChildRen First (CR1) Project</h1>
-    <h2>Supporting Children in Rotorua</h2>
-    <p>Children in Rotorua face numerous challenges, including poverty, limited access to education, and fewer opportunities for personal development. Rotorua football can play a vital role in helping children build confidence, teamwork skills, and a sense of belonging.</p>
-    <p>Ngongotaha AFC’s CR1 Project addresses these challenges by providing a free football programme for children from low-income families. Through football, we aim to foster physical, mental, and educational development, giving every child a chance to thrive.</p>
-  </div>
+  </nav>
 
-  <!-- Gallery -->
-  <div class="gallery-container">
-    <img class="gallery-slide" src="cr1.jpg" alt="CR1 Image 1">
-    <img class="gallery-slide" src="cr2.jpg" alt="CR1 Image 2">
-    <img class="gallery-slide" src="cr3.jpg" alt="CR1 Image 3">
-    <img class="gallery-slide" src="cr4.jpg" alt="CR1 Image 4">
-    <img class="gallery-slide" src="cr5.jpg" alt="CR1 Image 5">
-    <img class="gallery-slide" src="cr6.jpg" alt="CR1 Image 6">
-    <img class="gallery-slide" src="cr7.jpg" alt="CR1 Image 7">
-    <img class="gallery-slide" src="cr8.jpg" alt="CR1 Image 8">
-    <img class="gallery-slide" src="cr9.jpg" alt="CR1 Image 9">
-    <img class="gallery-slide" src="cr10.jpg" alt="CR1 Image 10">
 
-    <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-    <button class="next" onclick="plusSlides(1)">&#10095;</button>
-  </div>
 
-  <!-- Community Effort Text -->
-  <div class="content">
-    <h2>A Community Effort</h2>
-    <p>Together with our community, we plan to create a brighter future for Rotorua’s children. This programme gives all young people the opportunity to get involved in football while learning valuable life skills that can set them up for a prosperous future.</p>
-    <p>We are extremely grateful to Aaron Lawrence and Trevor Johnston for helping to get this programme off the ground, and to the New Zealand Community Trust (NZCT) for their generous grant of $21,060 to support the project.</p>
-  </div>
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
 
-  <!-- Upcoming Events -->
-  <div class="events-calendar">
-    <h2>Upcoming Events</h2>
-    <div class="event-item">
-      <span class="event-date">Nov 10, 2025</span>
-      <span class="event-name">CR1 Project Training Session</span>
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <span class="hero-small">
+        Community Football
+      </span>
+
+      <h1>
+        CR1 Project
+      </h1>
+
+      <h2>
+        The ChildRen First Project
+      </h2>
+
+      <p>
+        Supporting children in Rotorua through free football,
+        community connection and opportunities to grow.
+      </p>
+
     </div>
-    <div class="event-item">
-      <span class="event-date">Nov 17, 2025</span>
-      <span class="event-name">Community Football Day</span>
-    </div>
-    <div class="event-item">
-      <span class="event-date">Nov 24, 2025</span>
-      <span class="event-name">CR1 Tournament & Showcase</span>
-    </div>
-  </div>
 
-  <!-- Footer -->
+  </section>
+
+
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+
+  <main class="content">
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <span class="home-section-label">
+        The CR1 Project
+      </span>
+
+      <h2>
+        Supporting Children in Rotorua
+      </h2>
+
+      <p>
+        Children in Rotorua face numerous challenges, including
+        poverty, limited access to education, and fewer
+        opportunities for personal development. Football can play
+        a vital role in helping children build confidence,
+        teamwork skills, friendships and a sense of belonging.
+      </p>
+
+      <p>
+        Ngongotahā AFC's CR1 Project addresses these challenges
+        by providing a free football programme for children from
+        low-income families. Through football, we aim to support
+        physical, mental and educational development, giving every
+        child an opportunity to get involved, have fun and thrive.
+      </p>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         GALLERY
+         ======================================================= -->
+
+    <section class="section gallery-section">
+
+      <span class="home-section-label">
+        Inside CR1
+      </span>
+
+      <h2>
+        The CR1 Experience
+      </h2>
+
+      <p>
+        A look at the people, football and community behind the
+        ChildRen First Project.
+      </p>
+
+
+      <div class="gallery">
+
+        <div class="gallery-slides">
+
+          <img
+            class="gallery-slide active"
+            src="cr1.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr2.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr3.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr4.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr5.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr6.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr7.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr8.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr9.jpg"
+            alt="CR1 Project football activity"
+          >
+
+          <img
+            class="gallery-slide"
+            src="cr10.jpg"
+            alt="CR1 Project football activity"
+          >
+
+        </div>
+
+
+        <div class="gallery-controls">
+
+          <button
+            class="gallery-btn"
+            type="button"
+            onclick="changeCR1Slide(-1)"
+            aria-label="Previous CR1 photo"
+          >
+            &#10094;
+          </button>
+
+          <button
+            class="gallery-btn"
+            type="button"
+            onclick="changeCR1Slide(1)"
+            aria-label="Next CR1 photo"
+          >
+            &#10095;
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         COMMUNITY EFFORT
+         ======================================================= -->
+
+    <section class="section">
+
+      <span class="home-section-label">
+        Community
+      </span>
+
+      <h2>
+        A Community Effort
+      </h2>
+
+      <p>
+        Together with our community, we aim to create a brighter
+        future for Rotorua's children. The CR1 programme gives
+        young people the opportunity to get involved in football
+        while learning valuable life skills that can help set them
+        up for a positive future.
+      </p>
+
+      <p>
+        We are extremely grateful to Aaron Lawrence and Trevor
+        Johnston for helping to get this programme off the ground,
+        and to the New Zealand Community Trust (NZCT) for their
+        generous grant of $21,060 to support the project.
+      </p>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         WHAT CR1 PROVIDES
+         ======================================================= -->
+
+    <section class="section">
+
+      <span class="home-section-label">
+        More Than Football
+      </span>
+
+      <h2>
+        Building More Than Players
+      </h2>
+
+      <div class="latest-news-grid">
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Physical Development
+            </span>
+
+            <h3>
+              Get Active
+            </h3>
+
+            <p>
+              CR1 gives children a chance to stay active, learn
+              football skills and enjoy regular physical activity
+              in a positive environment.
+            </p>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Personal Development
+            </span>
+
+            <h3>
+              Build Confidence
+            </h3>
+
+            <p>
+              Football provides opportunities to develop
+              confidence, teamwork, communication, resilience and
+              friendships.
+            </p>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Community
+            </span>
+
+            <h3>
+              Belong
+            </h3>
+
+            <p>
+              CR1 is about creating an environment where children
+              can feel welcome, included and connected through
+              football and their local community.
+            </p>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Opportunity
+            </span>
+
+            <h3>
+              Have Fun
+            </h3>
+
+            <p>
+              At its heart, CR1 is about giving children the
+              opportunity to play football, enjoy themselves and
+              experience the positive impact sport can have.
+            </p>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         UPCOMING EVENTS
+         ======================================================= -->
+
+    <section class="section">
+
+      <span class="home-section-label">
+        What's Coming Up
+      </span>
+
+      <h2>
+        Upcoming CR1 Events
+      </h2>
+
+      <p>
+        Keep an eye on this section for upcoming CR1 football
+        sessions, community days and project events.
+      </p>
+
+
+      <div class="latest-news-grid">
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              CR1 Programme
+            </span>
+
+            <h3>
+              CR1 Project Training Session
+            </h3>
+
+            <p>
+              Upcoming CR1 football sessions will be added here
+              as dates are confirmed.
+            </p>
+
+            <span class="read-story">
+              Date To Be Confirmed
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Community Event
+            </span>
+
+            <h3>
+              Community Football Day
+            </h3>
+
+            <p>
+              Community football opportunities and special CR1
+              events will be listed here.
+            </p>
+
+            <span class="read-story">
+              Date To Be Confirmed
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="latest-news-card">
+
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              CR1 Showcase
+            </span>
+
+            <h3>
+              CR1 Tournament &amp; Showcase
+            </h3>
+
+            <p>
+              Future CR1 tournaments and showcase events will be
+              announced here once confirmed.
+            </p>
+
+            <span class="read-story">
+              Date To Be Confirmed
+            </span>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         CALL TO ACTION
+         ======================================================= -->
+
+    <section class="section registration-box">
+
+      <span class="home-section-label">
+        Ngongotahā Football Club
+      </span>
+
+      <h2>
+        Football For The Community
+      </h2>
+
+      <p>
+        The CR1 Project is part of Ngongotahā Football Club's
+        commitment to creating positive opportunities through
+        football and community.
+      </p>
+
+      <a
+        href="contact.html"
+        class="registration-button"
+      >
+        Get Involved
+      </a>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
   <footer>
-    © 2025 Ngongotahā Football Club | 
-    <a href="mailto:info@ngongotahafootball.co.nz">Contact Us</a>
+
+    © 2026 Ngongotahā Football Club |
+    <a href="mailto:info@ngongotahafootball.co.nz">
+      Contact Us
+    </a>
+
   </footer>
 
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+
   <script>
-    // Navbar scroll transparency
-    window.addEventListener("scroll", function() {
-      const navbar = document.getElementById("navbar");
-      if (window.scrollY > 50) {
+
+    /* =========================================================
+       NAVBAR SCROLL
+       ========================================================= */
+
+    window.addEventListener("scroll", function () {
+
+      const navbar =
+        document.getElementById("navbar");
+
+      if (window.scrollY > 30) {
+
         navbar.classList.add("scrolled");
+
       } else {
+
         navbar.classList.remove("scrolled");
+
       }
+
     });
 
-    // Gallery script
-    let slideIndex = 0;
-    const slides = document.getElementsByClassName("gallery-slide");
 
-    function showSlides(n) {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+
+    /* =========================================================
+       MOBILE TEAM DROPDOWN
+       ========================================================= */
+
+    const dropdown =
+      document.querySelector(".dropdown");
+
+    const dropButton =
+      document.querySelector(".dropbtn");
+
+
+    if (dropdown && dropButton) {
+
+      dropButton.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        const isOpen =
+          dropdown.classList.toggle("mobile-open");
+
+        dropButton.setAttribute(
+          "aria-expanded",
+          isOpen ? "true" : "false"
+        );
+
+      });
+
+
+      document.addEventListener("click", function (event) {
+
+        if (!dropdown.contains(event.target)) {
+
+          dropdown.classList.remove("mobile-open");
+
+          dropButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      });
+
+    }
+
+
+
+    /* =========================================================
+       CR1 GALLERY
+       ========================================================= */
+
+    let cr1SlideIndex = 0;
+
+    const cr1Slides =
+      document.querySelectorAll(".gallery-slide");
+
+
+    function showCR1Slide(index) {
+
+      if (!cr1Slides.length) {
+        return;
       }
-      slides[n].style.display = "block";
+
+
+      if (index >= cr1Slides.length) {
+
+        cr1SlideIndex = 0;
+
+      }
+
+
+      if (index < 0) {
+
+        cr1SlideIndex =
+          cr1Slides.length - 1;
+
+      }
+
+
+      cr1Slides.forEach(function (slide) {
+
+        slide.classList.remove("active");
+
+      });
+
+
+      cr1Slides[cr1SlideIndex]
+        .classList.add("active");
+
     }
 
-    function plusSlides(n) {
-      slideIndex += n;
-      if (slideIndex >= slides.length) slideIndex = 0;
-      if (slideIndex < 0) slideIndex = slides.length - 1;
-      showSlides(slideIndex);
+
+
+    function changeCR1Slide(direction) {
+
+      cr1SlideIndex += direction;
+
+      showCR1Slide(cr1SlideIndex);
+
+      resetCR1AutoSlide();
+
     }
 
-    function autoSlide() {
-      slideIndex++;
-      if (slideIndex >= slides.length) slideIndex = 0;
-      showSlides(slideIndex);
-      setTimeout(autoSlide, 8000);
+
+
+    let cr1AutoSlideTimer;
+
+
+    function startCR1AutoSlide() {
+
+      cr1AutoSlideTimer =
+        setInterval(function () {
+
+          cr1SlideIndex++;
+
+          showCR1Slide(cr1SlideIndex);
+
+        }, 8000);
+
     }
 
-    // Initialize
-    showSlides(slideIndex);
-    setTimeout(autoSlide, 8000);
+
+
+    function resetCR1AutoSlide() {
+
+      clearInterval(cr1AutoSlideTimer);
+
+      startCR1AutoSlide();
+
+    }
+
+
+
+    /* =========================================================
+       INITIALISE
+       ========================================================= */
+
+    showCR1Slide(cr1SlideIndex);
+
+    startCR1AutoSlide();
+
+
   </script>
 
+
 </body>
+
 </html>
