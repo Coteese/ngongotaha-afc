@@ -898,53 +898,63 @@
        MOBILE DROPDOWN
        ===================================================== */
 
-    const dropdownButton =
-      document.querySelector(".dropbtn");
-
-    const dropdown =
-      document.querySelector(".dropdown");
-
-
-    if (dropdownButton && dropdown) {
-
-      dropdownButton.addEventListener(
-        "click",
-        function(event) {
-
-          event.preventDefault();
-
-          const isOpen =
-            dropdown.classList.toggle("mobile-open");
-
-          dropdownButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
-
-        }
-      );
-
-    }
-
-
     document.addEventListener(
-      "click",
-      function(event) {
+      "DOMContentLoaded",
+      function() {
 
-        if (
-          dropdown &&
-          dropdownButton &&
-          !dropdown.contains(event.target)
-        ) {
+        const dropdownButton =
+          document.querySelector(".dropbtn");
 
-          dropdown.classList.remove("mobile-open");
+        const dropdown =
+          document.querySelector(".dropdown");
 
-          dropdownButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
 
+        if (!dropdownButton || !dropdown) {
+          return;
         }
+
+
+        dropdownButton.addEventListener(
+          "click",
+          function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const isOpen =
+              dropdown.classList.toggle("mobile-open");
+
+
+            dropdownButton.setAttribute(
+              "aria-expanded",
+              isOpen ? "true" : "false"
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "click",
+          function(event) {
+
+            if (!dropdown.contains(event.target)) {
+
+              dropdown.classList.remove(
+                "mobile-open"
+              );
+
+              dropdownButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          }
+        );
 
       }
     );
