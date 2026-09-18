@@ -2030,6 +2030,12 @@ SPONSORS
   animation-play-state:
     running;
 
+  -webkit-animation:
+    sponsorsTrack 30s linear infinite;
+
+  -webkit-animation-play-state:
+    running;
+
   will-change:
     transform;
 
@@ -2150,6 +2156,24 @@ SPONSOR CONTINUOUS MOVEMENT
 
 }
 
+@-webkit-keyframes sponsorsTrack {
+
+  0% {
+
+    -webkit-transform:
+      translateX(0);
+
+  }
+
+  100% {
+
+    -webkit-transform:
+      translateX(-50%);
+
+  }
+
+}
+
 /* =========================================================
 PC ONLY
 ========================================================= */
@@ -2159,6 +2183,9 @@ PC ONLY
   .sponsors-board:hover .sponsors-track {
 
     animation-play-state:
+      paused;
+
+    -webkit-animation-play-state:
       paused;
 
   }
@@ -2173,7 +2200,34 @@ MOBILE ALWAYS RUNNING
 
   .sponsors-track {
 
+    animation-name:
+      sponsorsTrack;
+
+    animation-duration:
+      30s;
+
+    animation-timing-function:
+      linear;
+
+    animation-iteration-count:
+      infinite;
+
     animation-play-state:
+      running !important;
+
+    -webkit-animation-name:
+      sponsorsTrack;
+
+    -webkit-animation-duration:
+      30s;
+
+    -webkit-animation-timing-function:
+      linear;
+
+    -webkit-animation-iteration-count:
+      infinite;
+
+    -webkit-animation-play-state:
       running !important;
 
   }
@@ -2181,6 +2235,9 @@ MOBILE ALWAYS RUNNING
   .sponsors-board:hover .sponsors-track {
 
     animation-play-state:
+      running !important;
+
+    -webkit-animation-play-state:
       running !important;
 
   }
@@ -3003,11 +3060,17 @@ SMALL MOBILE
     animation-play-state:
       running !important;
 
+    -webkit-animation-play-state:
+      running !important;
+
   }
 
   .sponsors-board:hover .sponsors-track {
 
     animation-play-state:
+      running !important;
+
+    -webkit-animation-play-state:
       running !important;
 
   }
@@ -3025,11 +3088,17 @@ TOUCH DEVICES
     animation-play-state:
       running !important;
 
+    -webkit-animation-play-state:
+      running !important;
+
   }
 
   .sponsors-board:hover .sponsors-track {
 
     animation-play-state:
+      running !important;
+
+    -webkit-animation-play-state:
       running !important;
 
   }
