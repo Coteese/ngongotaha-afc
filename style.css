@@ -291,15 +291,18 @@ DROPDOWN
 
 .dropdown {
 
-  position: relative;
+  position:
+    relative;
 
-  display: inline-block;
+  display:
+    inline-block;
 
 }
 
 .dropbtn {
 
-  border: none;
+  border:
+    none;
 
   background:
     transparent;
@@ -314,12 +317,14 @@ DROPDOWN
 
 .dropdown-content {
 
-  display: none;
+  display:
+    none;
 
-  position: absolute;
+  position:
+    absolute;
 
   top:
-    calc(100% + 6px);
+    100%;
 
   left:
     0;
@@ -409,11 +414,6 @@ DROPDOWN
 REMOVE UNWANTED NAVIGATION TABS
 ========================================================= */
 
-/*
-These three tabs are hidden globally on every page.
-The HTML links can remain in the pages.
-*/
-
 .nav-links a[href="academy.html"],
 .nav-links a[href="calendar.html"],
 .nav-links a[href="aboutus.html"] {
@@ -485,8 +485,7 @@ HERO
   transform:
     rotate(-4deg);
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
 }
 
@@ -516,8 +515,7 @@ HERO
   box-shadow:
     0 0 18px rgba(254,67,0,0.8);
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
 }
 
@@ -2480,10 +2478,13 @@ MOBILE / TABLET
       82px;
 
     left:
-      10px;
+      50%;
 
     right:
       auto;
+
+    transform:
+      translateX(-50%);
 
     width:
       190px;
@@ -2744,10 +2745,13 @@ SMALL MOBILE
       108px;
 
     left:
-      10px;
+      50%;
 
     right:
       auto;
+
+    transform:
+      translateX(-50%);
 
     width:
       185px;
