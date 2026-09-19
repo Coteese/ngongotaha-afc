@@ -538,7 +538,7 @@ HERO
     18px;
 
   padding:
-    7px 16px;
+    9px 20px;
 
   border:
     1px solid rgba(255,145,77,0.4);
@@ -550,10 +550,10 @@ HERO
     #ffb07a;
 
   font-size:
-    13px;
+    clamp(16px, 2.5vw, 22px);
 
   font-weight:
-    bold;
+    800;
 
   letter-spacing:
     3px;
@@ -563,6 +563,9 @@ HERO
 
   background:
     rgba(254,67,0,0.08);
+
+  text-shadow:
+    0 0 12px rgba(255,145,77,0.35);
 
 }
 
