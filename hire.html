@@ -1,0 +1,2597 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hire & Facilities | Ngongotahā Football Club</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================================================
+       HIRE PAGE
+       NGONGOTAHĀ FOOTBALL CLUB
+       ========================================================= */
+
+    .hire-page {
+      overflow-x: hidden;
+    }
+
+
+    /* =========================================================
+       HIRE HERO
+       ========================================================= */
+
+    .hire-hero {
+      max-width: 1200px;
+      margin: 50px auto 35px;
+      padding: 70px 35px;
+      position: relative;
+      overflow: hidden;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(5,5,5,0.98),
+          rgba(35,14,5,0.96),
+          rgba(8,8,8,0.98)
+        );
+
+      border:
+        1px solid rgba(255,145,77,0.45);
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.75),
+        0 0 40px rgba(254,67,0,0.12);
+    }
+
+
+    .hire-hero::before {
+      content: "";
+
+      position: absolute;
+
+      top: -180px;
+      left: -15%;
+
+      width: 130%;
+      height: 320px;
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255,100,25,0.38) 0%,
+          rgba(254,67,0,0.12) 40%,
+          transparent 72%
+        );
+
+      pointer-events: none;
+    }
+
+
+    .hire-hero::after {
+      content: "";
+
+      position: absolute;
+
+      left: 10%;
+      right: 10%;
+      bottom: 0;
+
+      height: 3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #fe4300,
+          #ff914d,
+          #fe4300,
+          transparent
+        );
+
+      box-shadow:
+        0 0 20px rgba(254,67,0,0.8);
+    }
+
+
+    .hire-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .hire-kicker {
+      display: inline-block;
+
+      padding: 9px 20px;
+      margin-bottom: 18px;
+
+      color: #ffb07a;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      border:
+        1px solid rgba(255,145,77,0.45);
+
+      border-radius: 30px;
+
+      background:
+        rgba(254,67,0,0.10);
+    }
+
+
+    .hire-hero h1 {
+      margin: 0;
+
+      font-size:
+        clamp(42px, 7vw, 82px);
+
+      line-height: 0.95;
+
+      font-weight: 900;
+
+      letter-spacing: -3px;
+
+      text-transform: uppercase;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 30%,
+          #ffb27e 62%,
+          #ff6a00 100%
+        );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      background-clip: text;
+
+      filter:
+        drop-shadow(
+          0 5px 12px rgba(0,0,0,0.6)
+        );
+    }
+
+
+    .hire-hero h2 {
+      margin: 20px 0 0;
+
+      color: #ff914d;
+
+      font-size:
+        clamp(19px, 3vw, 30px);
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+
+    .hire-hero p {
+      max-width: 800px;
+
+      margin: 25px auto 0;
+
+      color: #dddddd;
+
+      font-size: 17px;
+
+      line-height: 1.75;
+    }
+
+
+    /* =========================================================
+       HIRE OPTIONS
+       ========================================================= */
+
+    .hire-options {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 25px;
+
+      margin-top: 25px;
+    }
+
+
+    .hire-option {
+      position: relative;
+
+      min-height: 310px;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: flex-end;
+
+      border:
+        1px solid rgba(255,145,77,0.28);
+
+      border-radius: 18px;
+
+      background: #080808;
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.6);
+
+      cursor: pointer;
+
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+
+    .hire-option:hover {
+      transform: translateY(-5px);
+
+      border-color:
+        rgba(255,145,77,0.75);
+
+      box-shadow:
+        0 22px 50px rgba(0,0,0,0.75);
+    }
+
+
+    .hire-option-image {
+      position: absolute;
+      inset: 0;
+
+      background-size: cover;
+      background-position: center;
+
+      transition:
+        transform 0.5s ease;
+    }
+
+
+    .castle-option .hire-option-image {
+      background-image:
+        url("bounce.jpg");
+    }
+
+
+    .rooms-option .hire-option-image {
+      background-image:
+        url("background.jpg");
+    }
+
+
+    .hire-option:hover .hire-option-image {
+      transform: scale(1.05);
+    }
+
+
+    .hire-option-overlay {
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,0.05) 0%,
+          rgba(0,0,0,0.28) 40%,
+          rgba(0,0,0,0.94) 100%
+        );
+    }
+
+
+    .hire-option-content {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+
+      padding: 28px;
+    }
+
+
+    .hire-option-kicker {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #ffb07a;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+    }
+
+
+    .hire-option h3 {
+      margin: 0 0 10px;
+
+      color: white;
+
+      font-size: 32px;
+
+      line-height: 1;
+
+      text-transform: uppercase;
+    }
+
+
+    .hire-option p {
+      margin: 0;
+
+      color: #dddddd;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       BOOKING SECTION
+       ========================================================= */
+
+    .booking-section {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(7,7,7,0.97),
+          rgba(24,12,7,0.95)
+        );
+
+      border:
+        1px solid rgba(255,145,77,0.30);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.65);
+    }
+
+
+    .booking-intro {
+      max-width: 850px;
+      margin-bottom: 30px !important;
+    }
+
+
+    /* =========================================================
+       BOOKING TYPE BUTTONS
+       ========================================================= */
+
+    .booking-types {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 12px;
+
+      margin: 25px 0 35px;
+    }
+
+
+    .booking-type {
+      border: 1px solid rgba(255,145,77,0.30);
+
+      border-radius: 12px;
+
+      padding: 17px 12px;
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+
+    .booking-type:hover {
+      transform: translateY(-2px);
+
+      border-color:
+        rgba(255,145,77,0.70);
+    }
+
+
+    .booking-type.active {
+      background:
+        linear-gradient(
+          135deg,
+          #fe4300,
+          #ff914d
+        );
+
+      border-color:
+        #ffb07a;
+
+      box-shadow:
+        0 8px 25px rgba(254,67,0,0.28);
+    }
+
+
+    /* =========================================================
+       CASTLE SELECTOR
+       ========================================================= */
+
+    .booking-area {
+      display: none;
+    }
+
+
+    .booking-area.active {
+      display: block;
+    }
+
+
+    .castle-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 18px;
+
+      margin: 25px 0 35px;
+    }
+
+
+    .castle-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid rgba(255,145,77,0.25);
+
+      border-radius: 15px;
+
+      background:
+        #101010;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .castle-card:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(255,145,77,0.65);
+    }
+
+
+    .castle-card.selected {
+      border-color:
+        #ff6a00;
+
+      box-shadow:
+        0 0 0 2px rgba(255,106,0,0.25),
+        0 12px 30px rgba(0,0,0,0.55);
+    }
+
+
+    .castle-image {
+      width: 100%;
+      height: 175px;
+
+      background:
+        url("bounce.jpg")
+        center / cover no-repeat;
+    }
+
+
+    .castle-info {
+      padding: 18px;
+    }
+
+
+    .castle-info h3 {
+      margin: 0 0 7px;
+
+      color: white;
+
+      font-size: 20px;
+    }
+
+
+    .castle-info p {
+      margin: 0;
+
+      color: #bbbbbb;
+
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+
+    .castle-checkbox {
+      position: absolute;
+
+      top: 13px;
+      right: 13px;
+
+      width: 27px;
+      height: 27px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(0,0,0,0.75);
+
+      border:
+        1px solid rgba(255,255,255,0.35);
+
+      color: white;
+
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+
+    .castle-card.selected .castle-checkbox {
+      background: #fe4300;
+
+      border-color:
+        #ff914d;
+    }
+
+
+    /* =========================================================
+       FORM
+       ========================================================= */
+
+    .booking-form {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+
+    .form-group {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 8px;
+    }
+
+
+    .form-group.full {
+      grid-column:
+        1 / -1;
+    }
+
+
+    .form-group label {
+      color: #ffb07a;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+
+      width: 100%;
+
+      padding: 14px 15px;
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 15px;
+
+      background:
+        rgba(0,0,0,0.65);
+
+      border:
+        1px solid rgba(255,145,77,0.28);
+
+      border-radius: 10px;
+
+      outline: none;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+
+      border-color:
+        #ff914d;
+
+      box-shadow:
+        0 0 0 3px rgba(254,67,0,0.12);
+    }
+
+
+    .form-group select {
+      color-scheme: dark;
+    }
+
+
+    .form-group textarea {
+      min-height: 120px;
+
+      resize: vertical;
+    }
+
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #888888;
+    }
+
+
+    /* =========================================================
+       HALL INFORMATION
+       ========================================================= */
+
+    .rooms-preview {
+      display: grid;
+
+      grid-template-columns:
+        minmax(250px, 0.85fr)
+        minmax(0, 1.15fr);
+
+      gap: 25px;
+
+      align-items: center;
+
+      margin: 25px 0 35px;
+
+      padding: 18px;
+
+      border:
+        1px solid rgba(255,145,77,0.20);
+
+      border-radius: 16px;
+
+      background:
+        rgba(0,0,0,0.35);
+    }
+
+
+    .rooms-preview-image {
+      min-height: 250px;
+
+      border-radius: 12px;
+
+      background:
+        url("background.jpg")
+        center / cover no-repeat;
+    }
+
+
+    .rooms-preview-text h3 {
+      margin: 0 0 12px;
+
+      color: white;
+
+      font-size: 27px;
+    }
+
+
+    .rooms-preview-text p {
+      margin: 0 0 12px;
+
+      color: #cccccc;
+
+      font-size: 15px;
+
+      line-height: 1.7;
+    }
+
+
+    .rooms-preview-text p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================================
+       BOOKING SUMMARY
+       ========================================================= */
+
+    .booking-summary {
+      margin-top: 30px;
+
+      padding: 22px;
+
+      border:
+        1px solid rgba(255,145,77,0.30);
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(254,67,0,0.10),
+          rgba(0,0,0,0.35)
+        );
+    }
+
+
+    .booking-summary h3 {
+      margin: 0 0 15px;
+
+      color: #ff914d;
+
+      font-size: 19px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+    }
+
+
+    .summary-line {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 9px 0;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+      color: #dddddd;
+
+      font-size: 14px;
+    }
+
+
+    .summary-line:last-child {
+      border-bottom: none;
+    }
+
+
+    .summary-value {
+      color: white;
+
+      font-weight: 700;
+
+      text-align: right;
+    }
+
+
+    /* =========================================================
+       SUBMIT
+       ========================================================= */
+
+    .booking-submit-area {
+      margin-top: 30px;
+
+      text-align: center;
+    }
+
+
+    .booking-submit {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      min-width: 280px;
+
+      padding: 17px 30px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          110deg,
+          #ff914d,
+          #fe4300,
+          #ff6a00
+        );
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 15px;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 30px rgba(254,67,0,0.30);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .booking-submit:hover {
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 15px 40px rgba(254,67,0,0.45);
+    }
+
+
+    .booking-note {
+      max-width: 650px;
+
+      margin: 15px auto 0;
+
+      color: #999999;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       SMALL INFORMATION CARDS
+       ========================================================= */
+
+    .hire-info-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 18px;
+
+      margin-top: 25px;
+    }
+
+
+    .hire-info-card {
+      padding: 24px;
+
+      border:
+        1px solid rgba(255,145,77,0.18);
+
+      border-radius: 14px;
+
+      background:
+        rgba(0,0,0,0.35);
+
+      text-align: center;
+    }
+
+
+    .hire-info-icon {
+      font-size: 30px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .hire-info-card h3 {
+      margin: 0 0 8px;
+
+      color: white;
+
+      font-size: 17px;
+    }
+
+
+    .hire-info-card p {
+      margin: 0;
+
+      color: #aaaaaa;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .hire-hero {
+        margin: 30px 15px;
+
+        padding:
+          55px 20px;
+      }
+
+
+      .hire-options {
+        grid-template-columns: 1fr;
+      }
+
+
+      .booking-types {
+        grid-template-columns: 1fr;
+      }
+
+
+      .castle-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+
+      .rooms-preview {
+        grid-template-columns: 1fr;
+      }
+
+
+      .rooms-preview-image {
+        min-height: 210px;
+      }
+
+
+      .hire-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .hire-hero {
+        margin-top: 20px;
+
+        border-radius: 16px;
+
+        padding:
+          45px 18px;
+      }
+
+
+      .hire-hero h1 {
+        font-size: 42px;
+
+        letter-spacing: -1px;
+      }
+
+
+      .hire-hero h2 {
+        font-size: 18px;
+      }
+
+
+      .hire-hero p {
+        font-size: 15px;
+      }
+
+
+      .hire-option {
+        min-height: 270px;
+      }
+
+
+      .hire-option-content {
+        padding: 22px;
+      }
+
+
+      .hire-option h3 {
+        font-size: 27px;
+      }
+
+
+      .section {
+        padding:
+          25px 18px;
+      }
+
+
+      .castle-image {
+        height: 190px;
+      }
+
+
+      .booking-submit {
+        width: 100%;
+
+        min-width: 0;
+      }
+
+
+      .summary-line {
+        flex-direction: column;
+
+        gap: 4px;
+      }
+
+
+      .summary-value {
+        text-align: left;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="hire-page">
+
+
+  <!-- =====================================================
+       NAVIGATION
+       ===================================================== -->
+
+  <nav class="navbar" id="navbar">
+
+    <a href="index.html" class="navbar-logo">
+      <img src="logo.png" alt="Ngongotahā AFC Logo">
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+
+      <a href="registrations.html">
+        Registrations
+      </a>
+
+
+      <a href="cr1.html">
+        CR1 Project
+      </a>
+
+
+      <!-- HIRE PAGE -->
+
+      <a href="hire.html">
+        Hire & Facilities
+      </a>
+
+
+      <!-- TEAMS DROPDOWN -->
+
+      <div class="dropdown">
+
+        <button
+          class="dropbtn"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Ngongotahā Teams ▾
+        </button>
+
+
+        <div class="dropdown-content">
+
+          <a href="senior-teams.html">
+            Senior Teams
+          </a>
+
+          <a href="junior-teams.html">
+            Junior Teams
+          </a>
+
+          <a href="womens-teams.html">
+            Women's Teams
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <a href="calendar.html">
+        Calendar
+      </a>
+
+
+      <a href="aboutus.html">
+        About Us
+      </a>
+
+
+      <a href="academy.html">
+        Academy
+      </a>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section class="hire-hero">
+
+    <div class="hire-hero-content">
+
+      <div class="hire-kicker">
+        NGONGOTAHĀ FOOTBALL CLUB
+      </div>
+
+
+      <h1>
+        Hire & Facilities
+      </h1>
+
+
+      <h2>
+        Celebrate. Play. Bring People Together.
+      </h2>
+
+
+      <p>
+        Looking for a space for your next birthday, family event,
+        community gathering or celebration? Ngongotahā Football Club
+        has facilities available for hire, including our bouncy
+        castles and club rooms.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+
+  <main class="content">
+
+
+    <!-- ===================================================
+         HIRE OPTIONS
+         =================================================== -->
+
+    <section class="section">
+
+      <div class="home-section-label">
+        WHAT CAN YOU HIRE?
+      </div>
+
+
+      <h2>
+        Choose Your Hire
+      </h2>
+
+
+      <p>
+        Whether you're planning a kids' birthday party, a family
+        get-together or a larger event, you can hire our bouncy
+        castles, club rooms, or combine both.
+      </p>
+
+
+      <div class="hire-options">
+
+
+        <!-- BOUNCY CASTLES -->
+
+        <div class="hire-option castle-option">
+
+          <div class="hire-option-image"></div>
+
+          <div class="hire-option-overlay"></div>
+
+          <div class="hire-option-content">
+
+            <span class="hire-option-kicker">
+              KIDS & FAMILY EVENTS
+            </span>
+
+            <h3>
+              Bouncy Castle Hire
+            </h3>
+
+            <p>
+              Choose from our three bouncy castles and hire
+              one, two or all three for your event.
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- CLUB ROOMS -->
+
+        <div class="hire-option rooms-option">
+
+          <div class="hire-option-image"></div>
+
+          <div class="hire-option-overlay"></div>
+
+          <div class="hire-option-content">
+
+            <span class="hire-option-kicker">
+              EVENTS & FUNCTIONS
+            </span>
+
+            <h3>
+              Club Room Hire
+            </h3>
+
+            <p>
+              Hire the Ngongotahā Football Club rooms for
+              meetings, celebrations, functions and community events.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         BOOKING
+         =================================================== -->
+
+    <section class="section booking-section">
+
+      <div class="home-section-label">
+        BOOKING ENQUIRY
+      </div>
+
+
+      <h2>
+        Make A Booking Enquiry
+      </h2>
+
+
+      <p class="booking-intro">
+        Select what you would like to hire, choose your preferred
+        date and time, then send your enquiry to the club. We will
+        get back to you to confirm availability and finalise the booking.
+      </p>
+
+
+
+      <!-- BOOKING TYPE -->
+
+      <div class="booking-types">
+
+        <button
+          type="button"
+          class="booking-type active"
+          data-type="castles"
+        >
+          🏰 Bouncy Castles
+        </button>
+
+
+        <button
+          type="button"
+          class="booking-type"
+          data-type="rooms"
+        >
+          🏠 Club Rooms
+        </button>
+
+
+        <button
+          type="button"
+          class="booking-type"
+          data-type="both"
+        >
+          🎉 Castles + Rooms
+        </button>
+
+      </div>
+
+
+
+      <!-- =================================================
+           CASTLE SELECTION
+           ================================================= -->
+
+      <div
+        class="booking-area active"
+        id="castleArea"
+      >
+
+        <h3 style="color:#ff914d; margin-bottom:5px;">
+          Select Your Bouncy Castles
+        </h3>
+
+        <p style="color:#aaa; font-size:14px;">
+          You can select one, two or all three castles.
+        </p>
+
+
+        <div class="castle-grid">
+
+
+          <!-- CASTLE 1 -->
+
+          <div
+            class="castle-card"
+            data-castle="Bouncy Castle 1"
+          >
+
+            <div class="castle-image"></div>
+
+            <div class="castle-checkbox">
+              ✓
+            </div>
+
+            <div class="castle-info">
+
+              <h3>
+                Castle 1
+              </h3>
+
+              <p>
+                Bouncy castle hire option.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- CASTLE 2 -->
+
+          <div
+            class="castle-card"
+            data-castle="Bouncy Castle 2"
+          >
+
+            <div class="castle-image"></div>
+
+            <div class="castle-checkbox">
+              ✓
+            </div>
+
+            <div class="castle-info">
+
+              <h3>
+                Castle 2
+              </h3>
+
+              <p>
+                Bouncy castle hire option.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- CASTLE 3 -->
+
+          <div
+            class="castle-card"
+            data-castle="Bouncy Castle 3"
+          >
+
+            <div class="castle-image"></div>
+
+            <div class="castle-checkbox">
+              ✓
+            </div>
+
+            <div class="castle-info">
+
+              <h3>
+                Castle 3
+              </h3>
+
+              <p>
+                Bouncy castle hire option.
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           CLUB ROOM PREVIEW
+           ================================================= -->
+
+      <div
+        class="booking-area"
+        id="roomsArea"
+      >
+
+        <div class="rooms-preview">
+
+          <div class="rooms-preview-image"></div>
+
+
+          <div class="rooms-preview-text">
+
+            <h3>
+              Ngongotahā Club Rooms
+            </h3>
+
+            <p>
+              Our club rooms are available for functions,
+              celebrations, meetings and community events.
+            </p>
+
+            <p>
+              Tell us what you are planning in the booking
+              details below and we can discuss your requirements.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           BOOKING FORM
+           ================================================= -->
+
+      <form
+        class="booking-form"
+        id="bookingForm"
+      >
+
+
+        <!-- DATE -->
+
+        <div class="form-group">
+
+          <label for="bookingDate">
+            Booking Date
+          </label>
+
+          <input
+            type="date"
+            id="bookingDate"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- GUESTS -->
+
+        <div class="form-group">
+
+          <label for="guestCount">
+            Approx. Number of People
+          </label>
+
+          <input
+            type="number"
+            id="guestCount"
+            min="1"
+            placeholder="e.g. 30"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- START -->
+
+        <div class="form-group">
+
+          <label for="startTime">
+            Start Time
+          </label>
+
+          <input
+            type="time"
+            id="startTime"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- END -->
+
+        <div class="form-group">
+
+          <label for="endTime">
+            Finish Time
+          </label>
+
+          <input
+            type="time"
+            id="endTime"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label for="customerName">
+            Your Name
+          </label>
+
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Full name"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+          <label for="customerPhone">
+            Phone Number
+          </label>
+
+          <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Your phone number"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="customerEmail">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="customerEmail"
+            placeholder="you@example.com"
+            required
+          >
+
+        </div>
+
+
+
+        <!-- EVENT TYPE -->
+
+        <div class="form-group">
+
+          <label for="eventType">
+            Type Of Event
+          </label>
+
+          <select
+            id="eventType"
+            required
+          >
+
+            <option value="">
+              Select event type
+            </option>
+
+            <option>
+              Birthday Party
+            </option>
+
+            <option>
+              Family Event
+            </option>
+
+            <option>
+              Community Event
+            </option>
+
+            <option>
+              Club / Sports Event
+            </option>
+
+            <option>
+              Meeting
+            </option>
+
+            <option>
+              Function / Celebration
+            </option>
+
+            <option>
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <!-- NOTES -->
+
+        <div class="form-group full">
+
+          <label for="bookingNotes">
+            Additional Requirements
+          </label>
+
+          <textarea
+            id="bookingNotes"
+            placeholder="Tell us anything else we should know about your booking..."
+          ></textarea>
+
+        </div>
+
+
+      </form>
+
+
+
+      <!-- =================================================
+           BOOKING SUMMARY
+           ================================================= -->
+
+      <div class="booking-summary">
+
+        <h3>
+          Your Booking Request
+        </h3>
+
+
+        <div class="summary-line">
+
+          <span>
+            Hire Type
+          </span>
+
+          <span
+            class="summary-value"
+            id="summaryType"
+          >
+            Bouncy Castles
+          </span>
+
+        </div>
+
+
+        <div class="summary-line">
+
+          <span>
+            Castles Selected
+          </span>
+
+          <span
+            class="summary-value"
+            id="summaryCastles"
+          >
+            None selected
+          </span>
+
+        </div>
+
+
+        <div class="summary-line">
+
+          <span>
+            Date
+          </span>
+
+          <span
+            class="summary-value"
+            id="summaryDate"
+          >
+            Not selected
+          </span>
+
+        </div>
+
+
+        <div class="summary-line">
+
+          <span>
+            Time
+          </span>
+
+          <span
+            class="summary-value"
+            id="summaryTime"
+          >
+            Not selected
+          </span>
+
+        </div>
+
+
+        <div class="summary-line">
+
+          <span>
+            Guests
+          </span>
+
+          <span
+            class="summary-value"
+            id="summaryGuests"
+          >
+            Not selected
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           SUBMIT
+           ================================================= -->
+
+      <div class="booking-submit-area">
+
+        <button
+          type="button"
+          class="booking-submit"
+          id="submitBooking"
+        >
+          Send Booking Enquiry →
+        </button>
+
+
+        <p class="booking-note">
+
+          This is a booking enquiry only. Your booking is not
+          confirmed until Ngongotahā Football Club has checked
+          availability and confirmed the booking with you.
+
+        </p>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ===================================================
+         WHY HIRE WITH US
+         =================================================== -->
+
+    <section class="section">
+
+      <div class="home-section-label">
+        NGONGOTAHĀ AFC
+      </div>
+
+
+      <h2>
+        Hiring From The Club
+      </h2>
+
+
+      <p>
+        By hiring our facilities, you're helping support
+        Ngongotahā Football Club and the football and community
+        programmes we provide throughout the year.
+      </p>
+
+
+      <div class="hire-info-grid">
+
+
+        <div class="hire-info-card">
+
+          <div class="hire-info-icon">
+            🎈
+          </div>
+
+          <h3>
+            Great For Parties
+          </h3>
+
+          <p>
+            Bouncy castles provide an easy way to add some fun
+            to birthdays and family events.
+          </p>
+
+        </div>
+
+
+
+        <div class="hire-info-card">
+
+          <div class="hire-info-icon">
+            🏠
+          </div>
+
+          <h3>
+            Club Facilities
+          </h3>
+
+          <p>
+            Our club rooms provide a practical space for
+            functions, meetings and community events.
+          </p>
+
+        </div>
+
+
+
+        <div class="hire-info-card">
+
+          <div class="hire-info-icon">
+            ⚽
+          </div>
+
+          <h3>
+            Support The Club
+          </h3>
+
+          <p>
+            Your hire helps support the continued development
+            of Ngongotahā Football Club.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    © 2026 Ngongotahā Football Club |
+
+    <a href="mailto:info@ngongotahafootball.co.nz">
+      Contact Us
+    </a>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       NAVBAR
+       ===================================================== */
+
+    const navbar =
+      document.getElementById("navbar");
+
+
+    window.addEventListener(
+      "scroll",
+      function() {
+
+        if (window.scrollY > 50) {
+
+          navbar.classList.add("scrolled");
+
+        } else {
+
+          navbar.classList.remove("scrolled");
+
+        }
+
+      }
+    );
+
+
+
+    /* =====================================================
+       MOBILE DROPDOWN
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        const dropdownButton =
+          document.querySelector(".dropbtn");
+
+        const dropdown =
+          document.querySelector(".dropdown");
+
+
+        if (!dropdownButton || !dropdown) {
+          return;
+        }
+
+
+        dropdownButton.addEventListener(
+          "click",
+          function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const isOpen =
+              dropdown.classList.toggle(
+                "mobile-open"
+              );
+
+
+            dropdownButton.setAttribute(
+              "aria-expanded",
+              isOpen ? "true" : "false"
+            );
+
+          }
+        );
+
+
+        document.addEventListener(
+          "click",
+          function(event) {
+
+            if (!dropdown.contains(event.target)) {
+
+              dropdown.classList.remove(
+                "mobile-open"
+              );
+
+              dropdownButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /* =====================================================
+       BOOKING VARIABLES
+       ===================================================== */
+
+    let bookingType =
+      "Bouncy Castles";
+
+
+    const bookingTypes =
+      document.querySelectorAll(
+        ".booking-type"
+      );
+
+
+    const castleCards =
+      document.querySelectorAll(
+        ".castle-card"
+      );
+
+
+    const castleArea =
+      document.getElementById(
+        "castleArea"
+      );
+
+
+    const roomsArea =
+      document.getElementById(
+        "roomsArea"
+      );
+
+
+
+    /* =====================================================
+       BOOKING TYPE SELECTION
+       ===================================================== */
+
+    bookingTypes.forEach(
+      function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            bookingTypes.forEach(
+              function(item) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            const type =
+              button.dataset.type;
+
+
+            if (type === "castles") {
+
+              bookingType =
+                "Bouncy Castles";
+
+              castleArea.classList.add(
+                "active"
+              );
+
+              roomsArea.classList.remove(
+                "active"
+              );
+
+            }
+
+
+            if (type === "rooms") {
+
+              bookingType =
+                "Club Rooms";
+
+              castleArea.classList.remove(
+                "active"
+              );
+
+              roomsArea.classList.add(
+                "active"
+              );
+
+            }
+
+
+            if (type === "both") {
+
+              bookingType =
+                "Bouncy Castles + Club Rooms";
+
+              castleArea.classList.add(
+                "active"
+              );
+
+              roomsArea.classList.add(
+                "active"
+              );
+
+            }
+
+
+            document.getElementById(
+              "summaryType"
+            ).textContent =
+              bookingType;
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /* =====================================================
+       CASTLE SELECTION
+       ===================================================== */
+
+    castleCards.forEach(
+      function(card) {
+
+        card.addEventListener(
+          "click",
+          function() {
+
+            card.classList.toggle(
+              "selected"
+            );
+
+
+            updateCastleSummary();
+
+          }
+        );
+
+      }
+    );
+
+
+
+    function updateCastleSummary() {
+
+      const selected =
+        document.querySelectorAll(
+          ".castle-card.selected"
+        );
+
+
+      if (!selected.length) {
+
+        document.getElementById(
+          "summaryCastles"
+        ).textContent =
+          "None selected";
+
+        return;
+
+      }
+
+
+      const names = [];
+
+
+      selected.forEach(
+        function(card) {
+
+          names.push(
+            card.dataset.castle
+          );
+
+        }
+      );
+
+
+      document.getElementById(
+        "summaryCastles"
+      ).textContent =
+        names.join(", ");
+
+    }
+
+
+
+    /* =====================================================
+       DATE
+       ===================================================== */
+
+    const bookingDate =
+      document.getElementById(
+        "bookingDate"
+      );
+
+
+    const today =
+      new Date();
+
+
+    const year =
+      today.getFullYear();
+
+
+    const month =
+      String(
+        today.getMonth() + 1
+      ).padStart(2, "0");
+
+
+    const day =
+      String(
+        today.getDate()
+      ).padStart(2, "0");
+
+
+    bookingDate.min =
+      `${year}-${month}-${day}`;
+
+
+
+    /* =====================================================
+       LIVE SUMMARY
+       ===================================================== */
+
+    bookingDate.addEventListener(
+      "change",
+      updateSummary
+    );
+
+
+    document.getElementById(
+      "startTime"
+    ).addEventListener(
+      "change",
+      updateSummary
+    );
+
+
+    document.getElementById(
+      "endTime"
+    ).addEventListener(
+      "change",
+      updateSummary
+    );
+
+
+    document.getElementById(
+      "guestCount"
+    ).addEventListener(
+      "input",
+      updateSummary
+    );
+
+
+
+    function updateSummary() {
+
+      const date =
+        bookingDate.value;
+
+
+      const start =
+        document.getElementById(
+          "startTime"
+        ).value;
+
+
+      const end =
+        document.getElementById(
+          "endTime"
+        ).value;
+
+
+      const guests =
+        document.getElementById(
+          "guestCount"
+        ).value;
+
+
+      if (date) {
+
+        const dateObject =
+          new Date(
+            date + "T00:00:00"
+          );
+
+
+        document.getElementById(
+          "summaryDate"
+        ).textContent =
+          dateObject.toLocaleDateString(
+            "en-NZ",
+            {
+              weekday: "short",
+              day: "numeric",
+              month: "long",
+              year: "numeric"
+            }
+          );
+
+      } else {
+
+        document.getElementById(
+          "summaryDate"
+        ).textContent =
+          "Not selected";
+
+      }
+
+
+      if (start && end) {
+
+        document.getElementById(
+          "summaryTime"
+        ).textContent =
+          `${start} – ${end}`;
+
+      } else {
+
+        document.getElementById(
+          "summaryTime"
+        ).textContent =
+          "Not selected";
+
+      }
+
+
+      document.getElementById(
+        "summaryGuests"
+      ).textContent =
+        guests
+          ? guests
+          : "Not selected";
+
+    }
+
+
+
+    /* =====================================================
+       SUBMIT BOOKING ENQUIRY
+       ===================================================== */
+
+    document.getElementById(
+      "submitBooking"
+    ).addEventListener(
+      "click",
+      function() {
+
+
+        const form =
+          document.getElementById(
+            "bookingForm"
+          );
+
+
+        if (!form.checkValidity()) {
+
+          form.reportValidity();
+
+          return;
+
+        }
+
+
+        const selectedCastles =
+          Array.from(
+            document.querySelectorAll(
+              ".castle-card.selected"
+            )
+          ).map(
+            function(card) {
+
+              return card.dataset.castle;
+
+            }
+          );
+
+
+        if (
+          (
+            bookingType ===
+            "Bouncy Castles"
+            ||
+            bookingType ===
+            "Bouncy Castles + Club Rooms"
+          )
+          &&
+          selectedCastles.length === 0
+        ) {
+
+          alert(
+            "Please select at least one bouncy castle."
+          );
+
+          return;
+
+        }
+
+
+        const date =
+          document.getElementById(
+            "bookingDate"
+          ).value;
+
+
+        const start =
+          document.getElementById(
+            "startTime"
+          ).value;
+
+
+        const end =
+          document.getElementById(
+            "endTime"
+          ).value;
+
+
+        const guests =
+          document.getElementById(
+            "guestCount"
+          ).value;
+
+
+        const name =
+          document.getElementById(
+            "customerName"
+          ).value;
+
+
+        const phone =
+          document.getElementById(
+            "customerPhone"
+          ).value;
+
+
+        const email =
+          document.getElementById(
+            "customerEmail"
+          ).value;
+
+
+        const eventType =
+          document.getElementById(
+            "eventType"
+          ).value;
+
+
+        const notes =
+          document.getElementById(
+            "bookingNotes"
+          ).value;
+
+
+        let castleText =
+          selectedCastles.length
+            ? selectedCastles.join(", ")
+            : "Not required";
+
+
+        const subject =
+          encodeURIComponent(
+            "Ngongotahā AFC Hire Booking Enquiry"
+          );
+
+
+        const body =
+          encodeURIComponent(
+
+`NGONGOTAHĀ AFC HIRE BOOKING ENQUIRY
+
+Hire Type:
+${bookingType}
+
+Bouncy Castles:
+${castleText}
+
+Booking Date:
+${date}
+
+Time:
+${start} - ${end}
+
+Approx. Number of People:
+${guests}
+
+Name:
+${name}
+
+Phone:
+${phone}
+
+Email:
+${email}
+
+Event Type:
+${eventType}
+
+Additional Requirements:
+${notes || "None"}
+
+Please contact me to confirm availability and finalise the booking.
+
+This enquiry has been submitted through the Ngongotahā Football Club website.`
+          );
+
+
+        window.location.href =
+          `mailto:info@ngongotahafootball.co.nz?subject=${subject}&body=${body}`;
+
+      }
+    );
+
+
+    /* =====================================================
+       INITIAL SUMMARY
+       ===================================================== */
+
+    updateSummary();
+    updateCastleSummary();
+
+  </script>
+
+
+</body>
+
+</html>
+```
