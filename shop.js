@@ -9,7 +9,7 @@
    - No customer details are collected.
    - No real orders are created.
    - No emails are sent.
-   - The shopping bag is saved in the current browser session.
+   - The shopping bag is saved in browser storage.
 
    A secure server and payment integration will be needed for
    the live shop.
@@ -56,7 +56,7 @@
             name: "Club Football Socks",
             price: 18,
             image: "socks.jpg",
-            category: "matchwear",
+            category: "accessories",
             hasSize: true
         },
 
@@ -65,7 +65,7 @@
             name: "Club Hoodie",
             price: 65,
             image: "hoodie.jpg",
-            category: "merchandise",
+            category: "supporter-gear",
             hasSize: true
         },
 
@@ -74,7 +74,7 @@
             name: "Training Top",
             price: 40,
             image: "training-top.jpg",
-            category: "training",
+            category: "matchwear",
             hasSize: true
         },
 
@@ -83,7 +83,7 @@
             name: "Club Training Jacket",
             price: 80,
             image: "jacket.jpg",
-            category: "training",
+            category: "matchwear",
             hasSize: true
         },
 
@@ -92,7 +92,7 @@
             name: "Club Beanie",
             price: 25,
             image: "beanie.jpg",
-            category: "merchandise",
+            category: "supporter-gear",
             hasSize: false,
             defaultSize: "One Size"
         },
@@ -102,7 +102,7 @@
             name: "Supporter Scarf",
             price: 30,
             image: "scarf.jpg",
-            category: "merchandise",
+            category: "supporter-gear",
             hasSize: false,
             defaultSize: "One Size"
         },
@@ -112,7 +112,7 @@
             name: "Club Cap",
             price: 28,
             image: "cap.jpg",
-            category: "merchandise",
+            category: "supporter-gear",
             hasSize: false,
             defaultSize: "One Size"
         }
@@ -184,6 +184,18 @@
 
         heroFallback: document.getElementById(
             "shopHeroFallback"
+        ),
+
+        openSizeGuideButton: document.getElementById(
+            "shopOpenSizeGuide"
+        ),
+
+        sizeGuideModal: document.getElementById(
+            "shopSizeGuideModal"
+        ),
+
+        closeSizeGuideButton: document.getElementById(
+            "shopCloseSizeGuide"
         )
     };
 
@@ -273,14 +285,16 @@
        ============================================================ */
 
     /**
-     * Load the bag from sessionStorage.
+     * Load the bag from localStorage.
      *
-     * The bag remains available while the current browser tab's
-     * session is active. It is not an order or a server-side record.
+     * The bag remains saved in this browser after refreshing
+     * the page or returning to the shop later.
+     *
+     * It is not an order or a server-side record.
      */
     function loadCart() {
         try {
-            const saved = sessionStorage.getItem(STORAGE_KEY);
+            const saved = localStorage.getItem(STORAGE_KEY);
 
             if (!saved) {
                 return [];
@@ -349,11 +363,11 @@
 
 
     /**
-     * Save the current bag to the current browser session.
+     * Save the current bag in this browser for future visits.
      */
     function saveCart() {
         try {
-            sessionStorage.setItem(
+            localStorage.setItem(
                 STORAGE_KEY,
                 JSON.stringify(cart)
             );
@@ -386,7 +400,7 @@
             const category = card.dataset.category || "";
 
             const searchableText = (
-                card.dataset.search +
+                (card.dataset.search || "") +
                 " " +
                 card.textContent
             ).toLowerCase();
@@ -872,6 +886,14 @@
             return;
         }
 
+        if (!elements.checkoutModal) {
+            showToast(
+                "Checkout is not available yet."
+            );
+
+            return;
+        }
+
         closeCart();
 
         elements.checkoutModal.classList.add("open");
@@ -1136,11 +1158,110 @@
     }
 
 
+    /* ============================================================
+       SIZE GUIDE POPUP
+       ============================================================ */
+
     /**
-     * Escape key closes the topmost open panel.
+     * Open the size guide.
+     */
+    function openSizeGuide() {
+        if (!elements.sizeGuideModal) {
+            return;
+        }
+
+        elements.sizeGuideModal.classList.add("open");
+
+        elements.sizeGuideModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.style.overflow = "hidden";
+
+        if (elements.closeSizeGuideButton) {
+            elements.closeSizeGuideButton.focus();
+        }
+    }
+
+
+    /**
+     * Close the size guide.
+     */
+    function closeSizeGuide() {
+        if (!elements.sizeGuideModal) {
+            return;
+        }
+
+        elements.sizeGuideModal.classList.remove("open");
+
+        elements.sizeGuideModal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.style.overflow = "";
+
+        if (elements.openSizeGuideButton) {
+            elements.openSizeGuideButton.focus();
+        }
+    }
+
+
+    /**
+     * Open size guide button.
+     */
+    if (elements.openSizeGuideButton) {
+        elements.openSizeGuideButton.addEventListener(
+            "click",
+            openSizeGuide
+        );
+    }
+
+
+    /**
+     * Close size guide button.
+     */
+    if (elements.closeSizeGuideButton) {
+        elements.closeSizeGuideButton.addEventListener(
+            "click",
+            closeSizeGuide
+        );
+    }
+
+
+    /**
+     * Clicking outside the size guide closes it.
+     */
+    if (elements.sizeGuideModal) {
+        elements.sizeGuideModal.addEventListener(
+            "click",
+            function (event) {
+                if (event.target === elements.sizeGuideModal) {
+                    closeSizeGuide();
+                }
+            }
+        );
+    }
+
+
+    /* ============================================================
+       ESCAPE KEY
+       ============================================================ */
+
+    /**
+     * Escape closes the topmost open panel.
      */
     document.addEventListener("keydown", function (event) {
         if (event.key !== "Escape") {
+            return;
+        }
+
+        if (
+            elements.sizeGuideModal &&
+            elements.sizeGuideModal.classList.contains("open")
+        ) {
+            closeSizeGuide();
             return;
         }
 
@@ -1194,7 +1315,7 @@
 
         /*
          * The bag icon stays hidden when the bag is empty.
-         * If an item is already in the current browser session,
+         * If an item is already in browser storage,
          * renderCart() makes the icon visible.
          */
     }
