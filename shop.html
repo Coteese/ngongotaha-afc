@@ -1,1468 +1,1713 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#fe4300">
-
-    <meta name="description" content="The official Ngongotāhā AFC Club Shop. Browse playing kit, hire shirts and shorts, purchase football socks, and explore club merchandise.">
-
     <title>Club Shop | Ngongotāhā AFC</title>
+
+    <meta
+        name="description"
+        content="Shop official Ngongotāhā AFC football shirts, shorts, socks, hoodies and club merchandise."
+    >
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* =====================================================
-           NGONGOTAHĀ AFC CLUB SHOP
-           Demonstration storefront
-           ===================================================== */
+        /* =========================================================
+           NGONGOTĀHĀ AFC CLUB SHOP
+           Page-specific styles
+           ========================================================= */
 
-        .page-shop {
+        .shop-page {
             --shop-orange: #fe4300;
             --shop-orange-light: #ff914d;
-            --shop-panel: rgba(12, 12, 12, 0.96);
-            --shop-border: rgba(255, 145, 77, 0.23);
+            --shop-dark: #0b0b0b;
+            --shop-panel: rgba(17, 17, 17, 0.94);
+            --shop-border: rgba(255, 145, 77, 0.24);
+
+            color: #eeeeee;
+            min-height: 100vh;
         }
 
-        .page-shop button,
-        .page-shop input,
-        .page-shop select {
+        .shop-page *,
+        .shop-page *::before,
+        .shop-page *::after {
+            box-sizing: border-box;
+        }
+
+        .shop-page button,
+        .shop-page input,
+        .shop-page select {
             font: inherit;
         }
 
-        .page-shop button {
-            -webkit-tap-highlight-color: transparent;
+        .shop-page button {
+            cursor: pointer;
         }
 
-        .page-shop a,
-        .page-shop button {
-            touch-action: manipulation;
+        .shop-container {
+            width: min(1240px, 92%);
+            margin: 0 auto;
         }
 
-        .page-shop button:focus-visible,
-        .page-shop a:focus-visible,
-        .page-shop input:focus-visible,
-        .page-shop select:focus-visible {
-            outline: 3px solid #ffb07a;
-            outline-offset: 3px;
+        /* =========================================================
+           NAVIGATION ADDITIONS
+           ========================================================= */
+
+        .shop-page .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* DEMONSTRATION NOTICE */
-
-        .shop-demo-notice {
+        .shop-page .shop-nav-actions {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 11px 18px;
-            background: rgba(254, 67, 0, 0.12);
-            border-bottom: 1px solid rgba(255, 145, 77, 0.3);
-            color: #ffe0cc;
-            font-size: 12px;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .shop-demo-notice strong {
-            color: #ffad78;
-        }
-
-        /* SHOP HERO */
-
-        .shop-hero {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            max-width: 1320px;
-            min-height: 355px;
-            margin: 35px auto 28px;
-            padding: 65px 45px;
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 22px;
-            background:
-                linear-gradient(
-                    100deg,
-                    rgba(0, 0, 0, 0.98) 0%,
-                    rgba(12, 8, 6, 0.94) 58%,
-                    rgba(60, 19, 5, 0.78) 100%
-                );
-            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.6);
-        }
-
-        .shop-hero::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: -120px;
-            right: -80px;
-            width: 420px;
-            height: 420px;
-            border: 1px solid rgba(255, 145, 77, 0.15);
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 35px rgba(255, 145, 77, 0.025),
-                0 0 0 75px rgba(255, 145, 77, 0.02);
-        }
-
-        .shop-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 780px;
-        }
-
-        .shop-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 18px;
-            padding: 9px 14px;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 30px;
-            background: rgba(254, 67, 0, 0.09);
-            color: #ffb07a;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .shop-eyebrow-dot {
-            width: 7px;
-            height: 7px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            background: #ff6a00;
-            box-shadow: 0 0 12px rgba(255, 106, 0, 0.8);
-        }
-
-        .shop-hero h1 {
-            margin: 0;
-            color: #fff;
-            font-size: clamp(38px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 0.98;
-            letter-spacing: -2px;
-            text-transform: uppercase;
-        }
-
-        .shop-hero h1 span {
-            display: block;
-            margin-top: 8px;
-            background: linear-gradient(90deg, #ffb27e, #fe4300);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .shop-hero p {
-            max-width: 620px;
-            margin: 23px 0 0;
-            color: #dedede;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .shop-hero-actions {
-            display: flex;
-            flex-wrap: wrap;
+            justify-content: flex-end;
             gap: 12px;
-            margin-top: 28px;
+            margin-left: auto;
         }
 
-        .shop-primary-button,
-        .shop-secondary-button {
-            min-height: 48px;
-            display: inline-flex;
+        .shop-page .shop-nav-bag {
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 9px;
-            padding: 13px 20px;
-            border-radius: 8px;
-            font-size: 13px;
+
+            position: relative;
+
+            min-height: 44px;
+            padding: 10px 16px;
+
+            color: #ffffff;
+            background: linear-gradient(
+                135deg,
+                #fe4300,
+                #ff6a00
+            );
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+
             font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
+            white-space: nowrap;
+
+            box-shadow: 0 4px 18px rgba(254, 67, 0, 0.25);
+
             transition:
                 transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .shop-page .shop-nav-bag.visible {
+            display: inline-flex;
+        }
+
+        .shop-page .shop-nav-bag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 24px rgba(254, 67, 0, 0.4);
+        }
+
+        .shop-page .shop-bag-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .shop-page .shop-bag-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 23px;
+            height: 23px;
+            padding: 0 5px;
+
+            background: #ffffff;
+            color: #fe4300;
+
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .shop-page .shop-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            min-height: 550px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 65px 0 70px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5, 5, 5, 0.92) 0%,
+                    rgba(5, 5, 5, 0.74) 45%,
+                    rgba(5, 5, 5, 0.24) 100%
+                ),
+                url("background.jpg") center center / cover no-repeat;
+        }
+
+        .shop-page .shop-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+
+            background:
+                linear-gradient(
+                    0deg,
+                    rgba(5, 5, 5, 0.9) 0%,
+                    transparent 25%,
+                    transparent 80%,
+                    rgba(5, 5, 5, 0.28) 100%
+                );
+
+            pointer-events: none;
+        }
+
+        .shop-page .shop-hero-inner {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 15px;
+
+            width: min(1340px, 94%);
+            margin: 0 auto;
+        }
+
+        .shop-page .shop-hero-copy {
+            position: relative;
+            z-index: 3;
+            max-width: 520px;
+            padding: 25px 0;
+        }
+
+        .shop-page .shop-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 20px;
+
+            color: #ffad78;
+
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .shop-page .shop-eyebrow::before {
+            content: "";
+            display: block;
+
+            width: 30px;
+            height: 3px;
+
+            background: #fe4300;
+            border-radius: 5px;
+        }
+
+        .shop-page .shop-hero h1 {
+            margin: 0 0 22px;
+
+            color: #ffffff;
+
+            font-size: clamp(42px, 5.5vw, 76px);
+            font-weight: 950;
+            line-height: 0.98;
+            letter-spacing: -2.5px;
+
+            text-transform: uppercase;
+        }
+
+        .shop-page .shop-hero h1 span {
+            display: block;
+            margin-top: 9px;
+            color: #ff6a00;
+        }
+
+        .shop-page .shop-hero-description {
+            max-width: 440px;
+            margin: 0 0 30px;
+
+            color: #e0e0e0;
+
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .shop-page .shop-primary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 52px;
+            padding: 14px 25px;
+
+            color: #ffffff;
+            background: linear-gradient(
+                135deg,
+                #fe4300,
+                #ff6a00
+            );
+
+            border: 0;
+            border-radius: 5px;
+
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            box-shadow: 0 8px 25px rgba(254, 67, 0, 0.22);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .shop-page .shop-primary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(254, 67, 0, 0.36);
+        }
+
+        .shop-page .shop-primary-button:focus-visible,
+        .shop-page .shop-secondary-button:focus-visible,
+        .shop-page .shop-product-add:focus-visible,
+        .shop-page .shop-nav-bag:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 4px;
+        }
+
+        /* The transparent cutout of the shirt, shorts and hoodie */
+
+        .shop-page .shop-hero-art {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 0;
+            min-height: 390px;
+        }
+
+        .shop-page .shop-hero-art img {
+            display: block;
+
+            width: 100%;
+            max-width: 780px;
+            max-height: 500px;
+
+            object-fit: contain;
+            object-position: center;
+
+            /*
+              This image should be a transparent PNG or WebP.
+              Its transparent areas allow background.jpg to show through.
+            */
+
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+
+            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.22));
+
+            animation: shopHeroFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes shopHeroFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+        }
+
+        .shop-page .shop-hero-art-fallback {
+            display: none;
+
+            max-width: 440px;
+            padding: 25px;
+
+            color: #cccccc;
+            background: rgba(0, 0, 0, 0.5);
+
+            border: 1px dashed rgba(255, 145, 77, 0.6);
+            border-radius: 8px;
+
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+           SHOP BENEFITS STRIP
+           ========================================================= */
+
+        .shop-page .shop-benefits {
+            position: relative;
+            z-index: 2;
+
+            background: rgba(10, 10, 10, 0.96);
+            border-top: 1px solid rgba(255, 145, 77, 0.15);
+            border-bottom: 1px solid rgba(255, 145, 77, 0.15);
+        }
+
+        .shop-page .shop-benefits-inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            padding: 24px 0;
+        }
+
+        .shop-page .shop-benefit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+        }
+
+        .shop-page .shop-benefit-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+
+            color: #ff914d;
+            background: rgba(254, 67, 0, 0.12);
+
+            border: 1px solid rgba(255, 145, 77, 0.22);
+            border-radius: 50%;
+
+            font-size: 19px;
+        }
+
+        .shop-page .shop-benefit strong {
+            display: block;
+            margin-bottom: 4px;
+
+            color: #ffffff;
+            font-size: 13px;
+        }
+
+        .shop-page .shop-benefit span {
+            display: block;
+
+            color: #aaaaaa;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           CATALOGUE
+           ========================================================= */
+
+        .shop-page .shop-catalogue {
+            padding: 75px 0 90px;
+
+            background:
+                linear-gradient(
+                    rgba(5, 5, 5, 0.93),
+                    rgba(5, 5, 5, 0.96)
+                ),
+                url("background.jpg") center / cover fixed;
+        }
+
+        .shop-page .shop-section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 25px;
+
+            margin-bottom: 35px;
+        }
+
+        .shop-page .shop-section-heading h2 {
+            margin: 0 0 10px;
+
+            color: #ffffff;
+            font-size: clamp(29px, 3vw, 43px);
+            font-weight: 950;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .shop-page .shop-section-heading h2 span {
+            color: #ff6a00;
+        }
+
+        .shop-page .shop-section-heading p {
+            max-width: 650px;
+            margin: 0;
+
+            color: #bdbdbd;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .shop-page .shop-search {
+            width: min(290px, 100%);
+            flex-shrink: 0;
+        }
+
+        .shop-page .shop-search input {
+            width: 100%;
+            min-height: 46px;
+            padding: 12px 15px;
+
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 4px;
+
+            outline: none;
+        }
+
+        .shop-page .shop-search input:focus {
+            border-color: #ff6a00;
+            box-shadow: 0 0 0 3px rgba(254, 67, 0, 0.13);
+        }
+
+        .shop-page .shop-search input::placeholder {
+            color: #999999;
+        }
+
+        .shop-page .shop-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-bottom: 35px;
+        }
+
+        .shop-page .shop-filter-button {
+            padding: 11px 18px;
+
+            color: #d0d0d0;
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 3px;
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+
+            transition:
+                color 0.2s ease,
                 background 0.2s ease,
                 border-color 0.2s ease;
         }
 
-        .shop-primary-button {
-            color: #fff;
-            border: 1px solid #ff914d;
-            background: linear-gradient(100deg, #ff914d, #fe4300);
-            box-shadow: 0 8px 22px rgba(254, 67, 0, 0.22);
+        .shop-page .shop-filter-button:hover,
+        .shop-page .shop-filter-button.active {
+            color: #ffffff;
+            background: #fe4300;
+            border-color: #fe4300;
         }
 
-        .shop-secondary-button {
-            color: #fff;
-            border: 1px solid rgba(255, 145, 77, 0.4);
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .shop-primary-button:hover,
-        .shop-secondary-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .shop-secondary-button:hover {
-            border-color: #ff914d;
-            background: rgba(254, 67, 0, 0.1);
-        }
-
-        /* QUICK BENEFITS */
-
-        .shop-benefits {
+        .shop-page .shop-product-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            margin-bottom: 32px;
+            gap: 24px;
         }
 
-        .shop-benefit {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            min-width: 0;
-            padding: 19px;
-            border: 1px solid var(--shop-border);
-            border-radius: 12px;
-            background: rgba(10, 10, 10, 0.91);
-        }
-
-        .shop-benefit-icon {
-            width: 43px;
-            height: 43px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 145, 77, 0.3);
-            border-radius: 10px;
-            background: rgba(254, 67, 0, 0.12);
-            color: #ffad78;
-            font-size: 21px;
-        }
-
-        .shop-benefit strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #fff;
-            font-size: 13px;
-        }
-
-        .shop-benefit span {
-            display: block;
-            color: #bdbdbd;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        /* SHOP CONTENT */
-
-        .shop-content {
-            width: 100%;
-            max-width: 1320px;
-            margin: 0 auto 65px;
-            padding: 0 25px;
-        }
-
-        .shop-panel {
-            margin-bottom: 28px;
-            padding: 32px;
-            border: 1px solid var(--shop-border);
-            border-radius: 18px;
-            background: linear-gradient(
-                135deg,
-                rgba(10, 10, 10, 0.96),
-                rgba(22, 14, 10, 0.94)
-            );
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-        }
-
-        .shop-section-heading {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .shop-section-heading h2 {
-            margin: 0;
-            color: #ff914d;
-            font-size: clamp(23px, 3vw, 31px);
-            line-height: 1.15;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .shop-section-heading p {
-            max-width: 650px;
-            margin: 9px 0 0;
-            color: #c7c7c7;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .shop-section-label {
-            display: inline-block;
-            margin-bottom: 9px;
-            padding-left: 10px;
-            border-left: 3px solid #fe4300;
-            color: #ffad78;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* CATEGORY NAVIGATION */
-
-        .shop-category-list {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .shop-category-button {
-            min-height: 88px;
+        .shop-page .shop-product-card {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px;
-            border: 1px solid rgba(255, 145, 77, 0.23);
-            border-radius: 12px;
-            background: linear-gradient(145deg, #171717, #090909);
-            color: #fff;
-            text-align: left;
-            cursor: pointer;
-            transition:
-                background 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
 
-        .shop-category-button:hover,
-        .shop-category-button.active {
-            border-color: rgba(255, 145, 77, 0.75);
-            background: linear-gradient(
-                135deg,
-                rgba(254, 67, 0, 0.22),
-                rgba(12, 12, 12, 0.98)
-            );
-        }
-
-        .shop-category-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .shop-category-icon {
-            color: #ff914d;
-            font-size: 23px;
-        }
-
-        .shop-category-button strong {
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        /* PRODUCT FILTERS */
-
-        .shop-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 22px;
-        }
-
-        .shop-search {
-            width: 100%;
-            max-width: 360px;
-            position: relative;
-        }
-
-        .shop-search input {
-            width: 100%;
-            min-height: 46px;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid rgba(255, 145, 77, 0.25);
-            border-radius: 9px;
-            background: #101010;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .shop-search input::placeholder {
-            color: #999;
-        }
-
-        .shop-search::before {
-            content: "⌕";
-            position: absolute;
-            top: 50%;
-            left: 14px;
-            transform: translateY(-53%);
-            color: #ff914d;
-            font-size: 25px;
-            pointer-events: none;
-        }
-
-        .shop-result-count {
-            color: #bdbdbd;
-            font-size: 12px;
-            text-align: right;
-        }
-
-        /* PRODUCT GRID */
-
-        .shop-product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px;
-        }
-
-        .shop-product-card {
             min-width: 0;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
-            border: 1px solid rgba(255, 145, 77, 0.2);
-            border-radius: 15px;
-            background: linear-gradient(145deg, #171717, #080808);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+
+            background: rgba(17, 17, 17, 0.96);
+
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 7px;
+
             transition:
                 transform 0.25s ease,
                 border-color 0.25s ease,
                 box-shadow 0.25s ease;
         }
 
-        .shop-product-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 145, 77, 0.6);
-            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.6);
+        .shop-page .shop-product-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(255, 106, 0, 0.65);
+
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
         }
 
-        .shop-product-image {
+        .shop-page .shop-product-card[hidden] {
+            display: none !important;
+        }
+
+        .shop-page .shop-product-image {
             position: relative;
+            overflow: hidden;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            aspect-ratio: 1 / 0.92;
-            overflow: hidden;
+
+            aspect-ratio: 1 / 0.86;
+
             background:
                 radial-gradient(
-                    ellipse at 50% 45%,
-                    rgba(254, 67, 0, 0.13),
+                    circle at 50% 35%,
+                    rgba(255, 106, 0, 0.13),
                     transparent 65%
                 ),
-                linear-gradient(145deg, #1a1a1a, #090909);
-            border-bottom: 1px solid rgba(255, 145, 77, 0.14);
+                #161616;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
-        .shop-product-image img {
+        .shop-page .shop-product-image img {
             display: block;
+
             width: 100%;
             height: 100%;
+
             object-fit: contain;
-            padding: 12px;
-            transition: transform 0.35s ease;
+            padding: 18px;
+
+            transition: transform 0.4s ease;
         }
 
-        .shop-product-card:hover .shop-product-image img {
-            transform: scale(1.04);
+        .shop-page .shop-product-card:hover .shop-product-image img {
+            transform: scale(1.045);
         }
 
-        .shop-product-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 25px;
-            text-align: center;
-        }
+        .shop-page .shop-product-image-fallback {
+            display: none;
 
-        .shop-placeholder-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 76px;
-            height: 76px;
-            border: 1px solid rgba(255, 145, 77, 0.28);
-            border-radius: 50%;
-            background: rgba(254, 67, 0, 0.08);
-            color: #ff914d;
-            font-size: 35px;
-        }
-
-        .shop-placeholder-label {
-            color: #8f8f8f;
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .shop-product-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            inset: 0;
+
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+
+            padding: 20px;
+
+            color: #aaaaaa;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .shop-page .shop-product-image-fallback-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 54px;
+            height: 54px;
+
+            color: #ff914d;
+            background: rgba(254, 67, 0, 0.1);
+
+            border: 1px solid rgba(255, 145, 77, 0.25);
+            border-radius: 50%;
+
+            font-size: 24px;
+        }
+
+        .shop-page .shop-product-badge {
+            position: absolute;
+            top: 13px;
+            left: 13px;
             z-index: 2;
-            padding: 7px 9px;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.82);
-            color: #ffb07a;
+
+            padding: 7px 10px;
+
+            color: #ffffff;
+            background: #fe4300;
+
+            border-radius: 3px;
+
             font-size: 9px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .shop-product-badge.purchase-only {
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.2);
-            background: #262626;
-        }
-
-        .shop-product-details {
+        .shop-page .shop-product-content {
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: 20px;
+
+            padding: 21px;
         }
 
-        .shop-product-category {
-            margin-bottom: 7px;
+        .shop-page .shop-product-category {
+            margin-bottom: 8px;
+
             color: #ff914d;
             font-size: 10px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        .shop-product-details h3 {
+        .shop-page .shop-product-content h3 {
             margin: 0 0 9px;
-            color: #fff;
+
+            color: #ffffff;
             font-size: 19px;
-            line-height: 1.3;
+            font-weight: 850;
+            line-height: 1.35;
         }
 
-        .shop-product-description {
-            flex: 1;
-            margin: 0 0 16px;
-            color: #bdbdbd;
-            font-size: 13px;
+        .shop-page .shop-product-description {
+            min-height: 42px;
+            margin: 0 0 18px;
+
+            color: #aaaaaa;
+            font-size: 12px;
             line-height: 1.7;
         }
 
-        .shop-product-price-row {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
+        .shop-page .shop-product-price {
+            margin: auto 0 18px;
+
+            color: #ffffff;
+            font-size: 25px;
+            font-weight: 950;
+            letter-spacing: -0.5px;
         }
 
-        .shop-product-price {
-            color: #fff;
-            font-size: 24px;
-            font-weight: 900;
+        .shop-page .shop-product-price small {
+            margin-left: 5px;
+
+            color: #999999;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0;
         }
 
-        .shop-product-price-note {
-            color: #aaa;
+        .shop-page .shop-product-options {
+            margin-bottom: 15px;
+        }
+
+        .shop-page .shop-product-options label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: #cccccc;
             font-size: 11px;
+            font-weight: 800;
         }
 
-        .shop-product-actions {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 9px;
-        }
-
-        .shop-product-button {
+        .shop-page .shop-size-select {
             width: 100%;
-            min-height: 45px;
+            min-height: 43px;
+            padding: 10px 12px;
+
+            color: #ffffff;
+            background: #202020;
+
+            border: 1px solid #393939;
+            border-radius: 3px;
+
+            outline: none;
+        }
+
+        .shop-page .shop-size-select:focus {
+            border-color: #ff6a00;
+        }
+
+        .shop-page .shop-size-select option {
+            color: #ffffff;
+            background: #202020;
+        }
+
+        .shop-page .shop-product-add {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-            padding: 11px 12px;
-            border: 1px solid #ff914d;
-            border-radius: 8px;
-            background: linear-gradient(100deg, #ff914d, #fe4300);
-            color: #fff;
+            gap: 9px;
+
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 15px;
+
+            color: #ffffff;
+            background: transparent;
+
+            border: 1px solid #fe4300;
+            border-radius: 3px;
+
             font-size: 12px;
-            font-weight: 800;
-            text-align: center;
-            cursor: pointer;
+            font-weight: 900;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+
             transition:
-                filter 0.2s ease,
+                color 0.2s ease,
+                background 0.2s ease,
                 transform 0.2s ease;
         }
 
-        .shop-product-button:hover {
-            filter: brightness(1.1);
+        .shop-page .shop-product-add:hover {
+            color: #ffffff;
+            background: #fe4300;
         }
 
-        .shop-product-button:active {
+        .shop-page .shop-product-add:active {
             transform: scale(0.98);
         }
 
-        .shop-product-button.secondary {
-            border-color: rgba(255, 145, 77, 0.4);
-            background: rgba(255, 255, 255, 0.04);
-            color: #ffb07a;
+        .shop-page .shop-product-add svg {
+            width: 18px;
+            height: 18px;
         }
 
-        /* HIRE AND PURCHASE */
+        .shop-page .shop-empty-results {
+            display: none;
 
-        .shop-kit-explainer {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
+            padding: 45px 20px;
 
-        .shop-kit-option {
-            padding: 24px;
-            border: 1px solid rgba(255, 145, 77, 0.25);
-            border-radius: 13px;
-            background: rgba(255, 255, 255, 0.025);
-        }
+            color: #aaaaaa;
+            background: rgba(255, 255, 255, 0.03);
 
-        .shop-kit-option h3 {
-            margin: 0 0 10px;
-            color: #ffb07a;
-            font-size: 19px;
-        }
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
 
-        .shop-kit-option p {
-            margin: 0;
-            color: #c7c7c7;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .shop-kit-option ul {
-            margin: 16px 0 0;
-            padding-left: 20px;
-            color: #ddd;
-            font-size: 13px;
-            line-height: 1.9;
-        }
-
-        .shop-kit-option li::marker {
-            color: #ff914d;
-        }
-
-        .shop-socks-notice {
-            margin-top: 18px;
-            padding: 16px 18px;
-            border: 1px solid rgba(255, 145, 77, 0.4);
-            border-left: 4px solid #fe4300;
-            border-radius: 8px;
-            background: rgba(254, 67, 0, 0.08);
-            color: #f0e1d8;
-            font-size: 13px;
-            line-height: 1.75;
-        }
-
-        .shop-socks-notice strong {
-            color: #ffb07a;
-        }
-
-        /* HOW IT WORKS */
-
-        .shop-process-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .shop-process-card {
-            padding: 22px;
-            border: 1px solid rgba(255, 145, 77, 0.2);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.025);
-        }
-
-        .shop-process-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 39px;
-            height: 39px;
-            margin-bottom: 16px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, #ff914d, #fe4300);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 900;
-        }
-
-        .shop-process-card h3 {
-            margin: 0 0 9px;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .shop-process-card p {
-            margin: 0;
-            color: #bdbdbd;
-            font-size: 13px;
-            line-height: 1.75;
-        }
-
-        /* SHOPPING BAG */
-
-        .shop-bag-panel {
-            position: relative;
-        }
-
-        .shop-bag-count {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 25px;
-            height: 25px;
-            margin-left: 8px;
-            padding: 0 6px;
-            border-radius: 20px;
-            background: #fe4300;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 900;
-            vertical-align: middle;
-        }
-
-        .shop-bag-empty {
-            padding: 30px 15px;
-            border: 1px dashed rgba(255, 145, 77, 0.25);
-            border-radius: 12px;
-            color: #aaa;
-            font-size: 14px;
             text-align: center;
-            line-height: 1.8;
         }
 
-        .shop-bag-empty strong {
+        .shop-page .shop-empty-results.visible {
             display: block;
-            margin-bottom: 5px;
-            color: #fff;
-            font-size: 17px;
         }
 
-        .shop-bag-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        /* =========================================================
+           SHOP INFORMATION
+           ========================================================= */
+
+        .shop-page .shop-information {
+            padding: 65px 0;
+
+            background: rgba(12, 12, 12, 0.97);
+
+            border-top: 1px solid rgba(255, 145, 77, 0.13);
         }
 
-        .shop-bag-item {
+        .shop-page .shop-information-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: 15px;
-            align-items: center;
-            padding: 17px;
-            border: 1px solid rgba(255, 145, 77, 0.18);
-            border-radius: 10px;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .shop-page .shop-information-card {
+            padding: 30px;
+
             background: rgba(255, 255, 255, 0.025);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
         }
 
-        .shop-bag-item h3 {
-            margin: 0 0 6px;
-            color: #fff;
-            font-size: 15px;
-        }
+        .shop-page .shop-information-card h3 {
+            margin: 0 0 12px;
 
-        .shop-bag-item p {
-            margin: 0;
-            color: #bdbdbd;
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        .shop-bag-item-price {
-            margin-top: 7px;
-            color: #ffb07a;
-            font-size: 14px;
-            font-weight: 800;
-        }
-
-        .shop-bag-controls {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 8px;
-        }
-
-        .shop-quantity-button,
-        .shop-remove-button {
-            min-width: 37px;
-            min-height: 37px;
-            padding: 7px;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 7px;
-            background: #111;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .shop-quantity {
-            min-width: 22px;
-            color: #fff;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        .shop-remove-button {
-            color: #ffad78;
-            font-size: 11px;
-        }
-
-        .shop-bag-summary {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 145, 77, 0.2);
-        }
-
-        .shop-summary-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 12px;
-            color: #c8c8c8;
-            font-size: 14px;
-        }
-
-        .shop-summary-line.total {
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 145, 77, 0.2);
-            color: #fff;
+            color: #ffffff;
             font-size: 20px;
             font-weight: 900;
         }
 
-        .shop-summary-line.total strong {
-            color: #ffb07a;
+        .shop-page .shop-information-card h3 span {
+            color: #ff6a00;
         }
 
-        .shop-bag-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 22px;
+        .shop-page .shop-information-card p {
+            margin: 0;
+
+            color: #b5b5b5;
+            font-size: 13px;
+            line-height: 1.9;
         }
 
-        .shop-bag-actions .shop-primary-button,
-        .shop-bag-actions .shop-secondary-button {
-            flex: 1;
+        .shop-page .shop-information-card a {
+            color: #ff914d;
+            text-decoration: none;
         }
 
-        .shop-prototype-disclaimer {
-            margin-top: 15px;
-            color: #999;
-            font-size: 11px;
-            line-height: 1.7;
+        .shop-page .shop-information-card a:hover {
+            text-decoration: underline;
         }
 
-        /* DEMONSTRATION CHECKOUT MODAL */
+        /* =========================================================
+           SHOPPING BAG DRAWER
+           ========================================================= */
 
-        .shop-modal {
+        .shop-page .shop-drawer-overlay {
             position: fixed;
             inset: 0;
-            z-index: 20000;
-            display: none;
+            z-index: 2000;
+
+            background: rgba(0, 0, 0, 0.74);
+            backdrop-filter: blur(4px);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .shop-page .shop-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .shop-page .shop-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 2001;
+
+            display: flex;
+            flex-direction: column;
+
+            width: min(460px, 100%);
+            height: 100dvh;
+            max-height: 100%;
+
+            color: #eeeeee;
+            background: #101010;
+
+            border-left: 1px solid rgba(255, 145, 77, 0.28);
+
+            box-shadow: -15px 0 60px rgba(0, 0, 0, 0.4);
+
+            transform: translateX(105%);
+            visibility: hidden;
+
+            transition:
+                transform 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+        .shop-page .shop-drawer.open {
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        .shop-page .shop-drawer-header {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .shop-modal.open {
-            display: flex;
-        }
-
-        .shop-modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.84);
-            backdrop-filter: blur(7px);
-        }
-
-        .shop-modal-window {
-            position: relative;
-            z-index: 2;
-            width: min(680px, 100%);
-            max-height: 92vh;
-            overflow-y: auto;
-            padding: 30px;
-            border: 1px solid rgba(255, 145, 77, 0.45);
-            border-radius: 17px;
-            background: linear-gradient(145deg, #181818, #080808);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
-        }
-
-        .shop-modal-header {
-            display: flex;
-            align-items: flex-start;
             justify-content: space-between;
             gap: 15px;
-            margin-bottom: 22px;
+
+            padding: 23px 24px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .shop-modal-header h2 {
+        .shop-page .shop-drawer-header h2 {
             margin: 0;
-            color: #ff914d;
-            font-size: 25px;
-            text-transform: uppercase;
-        }
 
-        .shop-modal-header p {
-            margin: 8px 0 0;
-            color: #bdbdbd;
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        .shop-modal-close {
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 50%;
-            background: #111;
-            color: #fff;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        .shop-product-form {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 17px;
-        }
-
-        .shop-form-field {
-            min-width: 0;
-        }
-
-        .shop-form-field.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .shop-form-field label {
-            display: block;
-            margin-bottom: 8px;
-            color: #ddd;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .shop-form-field input,
-        .shop-form-field select,
-        .shop-form-field textarea {
-            width: 100%;
-            min-height: 46px;
-            padding: 12px;
-            border: 1px solid rgba(255, 145, 77, 0.28);
-            border-radius: 8px;
-            background: #101010;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .shop-form-field textarea {
-            min-height: 85px;
-            resize: vertical;
-        }
-
-        .shop-form-field option {
-            background: #111;
-            color: #fff;
-        }
-
-        .shop-modal-product-price {
-            margin: 0;
-            color: #ffb07a;
+            color: #ffffff;
             font-size: 23px;
             font-weight: 900;
         }
 
-        .shop-modal-message {
-            display: none;
-            margin-top: 18px;
-            padding: 14px;
-            border: 1px solid rgba(255, 145, 77, 0.35);
-            border-radius: 8px;
-            background: rgba(254, 67, 0, 0.1);
-            color: #ffe0cc;
-            font-size: 13px;
-            line-height: 1.7;
+        .shop-page .shop-drawer-header h2 span {
+            color: #ff6a00;
         }
 
-        .shop-modal-message.visible {
-            display: block;
+        .shop-page .shop-icon-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+
+            font-size: 22px;
+            line-height: 1;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
         }
 
-        .shop-modal-submit {
-            grid-column: 1 / -1;
-            width: 100%;
-            min-height: 49px;
-            margin-top: 4px;
+        .shop-page .shop-icon-button:hover {
+            background: #fe4300;
+            border-color: #fe4300;
         }
 
-        .shop-checkout-summary {
-            padding: 17px;
-            border: 1px solid rgba(255, 145, 77, 0.22);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.025);
+        .shop-page .shop-drawer-items {
+            flex: 1;
+            overflow-y: auto;
+
+            padding: 20px 24px;
         }
 
-        .shop-checkout-summary p {
-            margin: 0 0 10px;
-            color: #ccc;
-            font-size: 13px;
-            line-height: 1.7;
-        }
+        .shop-page .shop-cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-        .shop-checkout-summary p:last-child {
-            margin-bottom: 0;
-        }
+            min-height: 300px;
+            padding: 20px;
 
-        .shop-checkout-summary strong {
-            color: #ffb07a;
-        }
-
-        /* NO SEARCH RESULTS */
-
-        .shop-no-results {
-            grid-column: 1 / -1;
-            padding: 35px 15px;
-            border: 1px dashed rgba(255, 145, 77, 0.25);
-            border-radius: 12px;
-            color: #bbb;
+            color: #aaaaaa;
             text-align: center;
+        }
+
+        .shop-page .shop-cart-empty-icon {
+            margin-bottom: 15px;
+            color: #ff6a00;
+            font-size: 42px;
+        }
+
+        .shop-page .shop-cart-empty h3 {
+            margin: 0 0 10px;
+
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .shop-page .shop-cart-empty p {
+            margin: 0;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .shop-page .shop-cart-item {
+            display: grid;
+            grid-template-columns: 82px minmax(0, 1fr);
+            gap: 14px;
+
+            padding: 17px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .shop-page .shop-cart-item-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 82px;
+            height: 95px;
+            overflow: hidden;
+
+            background: #1a1a1a;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+        }
+
+        .shop-page .shop-cart-item-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .shop-page .shop-cart-item h3 {
+            margin: 0 0 5px;
+
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .shop-page .shop-cart-item-meta {
+            margin-bottom: 8px;
+
+            color: #aaaaaa;
+            font-size: 11px;
+        }
+
+        .shop-page .shop-cart-item-price {
+            margin-bottom: 10px;
+
+            color: #ff914d;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .shop-page .shop-cart-item-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .shop-page .shop-quantity-control {
+            display: inline-flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid #393939;
+            border-radius: 3px;
+        }
+
+        .shop-page .shop-quantity-control button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 30px;
+            height: 29px;
+
+            color: #ffffff;
+            background: #202020;
+
+            border: 0;
+            font-size: 16px;
+        }
+
+        .shop-page .shop-quantity-control button:hover {
+            background: #fe4300;
+        }
+
+        .shop-page .shop-quantity-control span {
+            min-width: 28px;
+
+            color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .shop-page .shop-remove-item {
+            padding: 5px 0;
+
+            color: #ff8d72;
+            background: transparent;
+
+            border: 0;
+
+            font-size: 11px;
+            text-decoration: underline;
+        }
+
+        .shop-page .shop-drawer-footer {
+            padding: 22px 24px 25px;
+
+            background: #151515;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shop-page .shop-subtotal-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            margin-bottom: 9px;
+        }
+
+        .shop-page .shop-subtotal-row span:first-child {
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .shop-page .shop-subtotal-row strong {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 950;
+        }
+
+        .shop-page .shop-drawer-note {
+            margin: 0 0 18px;
+
+            color: #999999;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .shop-page .shop-checkout-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            width: 100%;
+            min-height: 51px;
+            padding: 13px 16px;
+
+            color: #ffffff;
+            background: linear-gradient(135deg, #fe4300, #ff6a00);
+
+            border: 0;
+            border-radius: 3px;
+
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .shop-page .shop-checkout-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .shop-page .shop-checkout-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.45;
+            transform: none;
+        }
+
+        .shop-page .shop-continue-shopping {
+            display: block;
+
+            width: 100%;
+            margin-top: 13px;
+            padding: 8px;
+
+            color: #bbbbbb;
+            background: transparent;
+
+            border: 0;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .shop-page .shop-continue-shopping:hover {
+            color: #ff914d;
+        }
+
+        /* =========================================================
+           CHECKOUT WORK-IN-PROGRESS MODAL
+           ========================================================= */
+
+        .shop-page .shop-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .shop-page .shop-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .shop-page .shop-modal {
+            position: relative;
+
+            width: min(480px, 100%);
+            max-height: 90dvh;
+            overflow-y: auto;
+
+            padding: 38px 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(29, 29, 29, 0.99),
+                    rgba(12, 12, 12, 0.99)
+                );
+
+            border: 1px solid rgba(255, 145, 77, 0.35);
+            border-radius: 7px;
+
+            text-align: center;
+
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+
+            transform: translateY(12px);
+            transition: transform 0.25s ease;
+        }
+
+        .shop-page .shop-modal-overlay.open .shop-modal {
+            transform: translateY(0);
+        }
+
+        .shop-page .shop-modal-close {
+            position: absolute;
+            top: 13px;
+            right: 13px;
+        }
+
+        .shop-page .shop-modal-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 22px;
+
+            color: #ff914d;
+            background: rgba(254, 67, 0, 0.12);
+
+            border: 1px solid rgba(255, 145, 77, 0.35);
+            border-radius: 50%;
+
+            font-size: 34px;
+        }
+
+        .shop-page .shop-modal h2 {
+            margin: 0 0 14px;
+
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 950;
+            line-height: 1.2;
+        }
+
+        .shop-page .shop-modal h2 span {
+            color: #ff6a00;
+        }
+
+        .shop-page .shop-modal p {
+            margin: 0 0 20px;
+
+            color: #bbbbbb;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .shop-page .shop-modal-highlight {
+            margin: 20px 0;
+            padding: 15px;
+
+            color: #ffd4bd;
+            background: rgba(254, 67, 0, 0.08);
+
+            border: 1px solid rgba(255, 145, 77, 0.2);
+            border-radius: 4px;
+
+            font-size: 12px;
             line-height: 1.8;
         }
 
-        /* FOOTER SPACE */
-
-        .page-shop footer {
-            margin-top: 0;
+        .shop-page .shop-modal .shop-primary-button {
+            width: 100%;
+            border: 0;
         }
 
-        /* TABLET */
+        /* =========================================================
+           TOAST MESSAGE
+           ========================================================= */
+
+        .shop-page .shop-toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 4000;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            max-width: calc(100% - 32px);
+            padding: 15px 19px;
+
+            color: #ffffff;
+            background: #191919;
+
+            border: 1px solid rgba(255, 145, 77, 0.45);
+            border-left: 4px solid #fe4300;
+            border-radius: 4px;
+
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease,
+                transform 0.25s ease;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .shop-page .shop-toast.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .shop-page .shop-toast-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+
+            color: #ffffff;
+            background: #fe4300;
+
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        /* =========================================================
+           ACCESSIBILITY
+           ========================================================= */
+
+        .shop-page .shop-sr-only {
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .shop-page button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* =========================================================
+           RESPONSIVE LAYOUT
+           ========================================================= */
 
         @media (max-width: 1000px) {
-            .shop-hero {
-                margin-right: 18px;
-                margin-left: 18px;
+            .shop-page .shop-hero {
+                min-height: 490px;
             }
 
-            .shop-content {
-                padding: 0 18px;
+            .shop-page .shop-hero-inner {
+                grid-template-columns: 0.9fr 1.1fr;
             }
 
-            .shop-product-grid {
+            .shop-page .shop-hero h1 {
+                font-size: clamp(40px, 5.3vw, 62px);
+            }
+
+            .shop-page .shop-hero-art {
+                min-height: 330px;
+            }
+
+            .shop-page .shop-product-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 17px;
             }
 
-            .shop-category-list {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .shop-benefit {
-                align-items: flex-start;
-                padding: 15px;
-            }
-
-            .shop-benefit-icon {
-                width: 37px;
-                height: 37px;
-                font-size: 18px;
+            .shop-page .shop-benefit {
+                justify-content: flex-start;
             }
         }
 
-        /* MOBILE */
+        @media (max-width: 700px) {
+            .shop-page .shop-hero {
+                min-height: auto;
+                padding: 38px 0 35px;
 
-        @media (max-width: 600px) {
-            .shop-demo-notice {
-                align-items: flex-start;
-                padding: 10px 14px;
-                font-size: 11px;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(5, 5, 5, 0.84),
+                        rgba(5, 5, 5, 0.7)
+                    ),
+                    url("background.jpg") center / cover no-repeat;
             }
 
-            .shop-hero {
-                min-height: 0;
-                margin: 20px 12px 20px;
-                padding: 38px 22px;
-                border-radius: 15px;
+            .shop-page .shop-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 0;
+                width: 90%;
             }
 
-            .shop-hero::before {
-                top: -75px;
-                right: -190px;
-                width: 320px;
-                height: 320px;
+            .shop-page .shop-hero-copy {
+                max-width: 100%;
+                padding: 10px 0 0;
+                text-align: center;
             }
 
-            .shop-hero h1 {
-                font-size: clamp(37px, 10vw, 52px);
+            .shop-page .shop-eyebrow {
+                justify-content: center;
+                margin-bottom: 15px;
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+
+            .shop-page .shop-hero h1 {
+                margin-bottom: 16px;
+
+                font-size: clamp(39px, 10vw, 58px);
                 letter-spacing: -1.5px;
-                line-height: 1;
             }
 
-            .shop-hero h1 span {
-                margin-top: 7px;
-            }
+            .shop-page .shop-hero-description {
+                max-width: 420px;
+                margin: 0 auto 22px;
 
-            .shop-eyebrow {
-                margin-bottom: 17px;
-                padding: 8px 11px;
-                font-size: 9px;
-                letter-spacing: 1.3px;
-            }
-
-            .shop-hero p {
-                margin-top: 18px;
                 font-size: 14px;
-                line-height: 1.8;
+                line-height: 1.75;
             }
 
-            .shop-hero-actions {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 10px;
-                margin-top: 23px;
-            }
-
-            .shop-primary-button,
-            .shop-secondary-button {
-                width: 100%;
+            .shop-page .shop-primary-button {
                 min-height: 48px;
-                padding: 13px 14px;
+                padding: 12px 20px;
                 font-size: 12px;
             }
 
-            .shop-content {
-                padding: 0 12px;
-                margin-bottom: 35px;
+            .shop-page .shop-hero-art {
+                min-height: 0;
+                margin-top: 8px;
             }
 
-            .shop-benefits {
+            .shop-page .shop-hero-art img {
+                width: 100%;
+                max-width: 470px;
+                max-height: 310px;
+            }
+
+            .shop-page .shop-benefits-inner {
                 grid-template-columns: 1fr;
-                gap: 10px;
-                margin-bottom: 22px;
+                gap: 17px;
+                padding: 22px 0;
             }
 
-            .shop-benefit {
-                align-items: center;
-                padding: 14px;
+            .shop-page .shop-benefit {
+                justify-content: flex-start;
+                max-width: 320px;
+                margin: 0 auto;
+                width: 100%;
             }
 
-            .shop-benefit span {
-                font-size: 12px;
+            .shop-page .shop-catalogue {
+                padding: 50px 0 60px;
+                background-attachment: scroll;
             }
 
-            .shop-panel {
-                margin-bottom: 19px;
-                padding: 22px 17px;
-                border-radius: 14px;
-            }
-
-            .shop-section-heading {
-                display: block;
-                margin-bottom: 20px;
-            }
-
-            .shop-section-heading h2 {
-                font-size: 24px;
-                line-height: 1.15;
-            }
-
-            .shop-section-heading p {
-                font-size: 13px;
-            }
-
-            .shop-category-list {
-                display: flex;
-                gap: 9px;
-                overflow-x: auto;
-                padding: 3px 2px 12px;
-                margin: 0 -2px;
-                scrollbar-width: thin;
-                scrollbar-color: #fe4300 #181818;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .shop-category-button {
-                flex: 0 0 132px;
-                min-height: 86px;
-                padding: 13px;
-            }
-
-            .shop-category-button strong {
-                font-size: 11px;
-            }
-
-            .shop-toolbar {
+            .shop-page .shop-section-heading {
                 align-items: stretch;
                 flex-direction: column;
-                gap: 12px;
+                gap: 22px;
+
+                margin-bottom: 25px;
             }
 
-            .shop-search {
-                max-width: none;
+            .shop-page .shop-section-heading h2 {
+                font-size: 31px;
             }
 
-            .shop-result-count {
-                text-align: left;
+            .shop-page .shop-search {
+                width: 100%;
             }
 
-            .shop-product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 11px;
+            .shop-page .shop-filters {
+                gap: 8px;
+                margin-bottom: 25px;
             }
 
-            .shop-product-card {
-                border-radius: 11px;
-            }
-
-            .shop-product-image {
-                aspect-ratio: 1 / 0.9;
-            }
-
-            .shop-product-image img {
-                padding: 5px;
-            }
-
-            .shop-placeholder-icon {
-                width: 53px;
-                height: 53px;
-                font-size: 25px;
-            }
-
-            .shop-product-placeholder {
-                gap: 9px;
-                padding: 10px 5px;
-            }
-
-            .shop-placeholder-label {
-                font-size: 8px;
-                letter-spacing: 0.8px;
-                line-height: 1.5;
-            }
-
-            .shop-product-badge {
-                top: 7px;
-                left: 7px;
-                padding: 5px 6px;
-                font-size: 7px;
-                letter-spacing: 0.5px;
-            }
-
-            .shop-product-details {
-                padding: 12px 10px;
-            }
-
-            .shop-product-category {
-                margin-bottom: 6px;
-                font-size: 8px;
-                letter-spacing: 0.9px;
-            }
-
-            .shop-product-details h3 {
-                margin-bottom: 7px;
-                font-size: 14px;
-                line-height: 1.3;
-            }
-
-            .shop-product-description {
-                margin-bottom: 11px;
+            .shop-page .shop-filter-button {
+                padding: 10px 12px;
                 font-size: 11px;
-                line-height: 1.6;
             }
 
-            .shop-product-price-row {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 3px;
-                margin-bottom: 12px;
-            }
-
-            .shop-product-price {
-                font-size: 20px;
-            }
-
-            .shop-product-price-note {
-                font-size: 10px;
-                line-height: 1.5;
-            }
-
-            .shop-product-actions {
-                gap: 7px;
-            }
-
-            .shop-product-button {
-                min-height: 42px;
-                padding: 9px 5px;
-                font-size: 10px;
-                line-height: 1.4;
-            }
-
-            .shop-kit-explainer,
-            .shop-process-grid {
-                grid-template-columns: 1fr;
+            .shop-page .shop-product-grid {
                 gap: 13px;
             }
 
-            .shop-kit-option {
-                padding: 19px;
-            }
-
-            .shop-kit-option h3 {
-                font-size: 17px;
-            }
-
-            .shop-kit-option p {
-                font-size: 13px;
-            }
-
-            .shop-process-card {
-                display: grid;
-                grid-template-columns: 40px minmax(0, 1fr);
-                column-gap: 13px;
-                padding: 17px;
-            }
-
-            .shop-process-number {
-                grid-row: 1 / span 2;
-                margin: 0;
-            }
-
-            .shop-process-card h3 {
-                align-self: center;
-                margin-bottom: 6px;
-                font-size: 15px;
-            }
-
-            .shop-process-card p {
-                grid-column: 2;
-                font-size: 12px;
-            }
-
-            .shop-bag-item {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .shop-page .shop-product-content {
                 padding: 14px;
             }
 
-            .shop-bag-controls {
-                justify-content: flex-start;
+            .shop-page .shop-product-content h3 {
+                font-size: 16px;
             }
 
-            .shop-bag-actions {
-                flex-direction: column;
+            .shop-page .shop-product-description {
+                min-height: 55px;
+                font-size: 11px;
             }
 
-            .shop-modal {
-                padding: 8px;
+            .shop-page .shop-product-price {
+                font-size: 22px;
             }
 
-            .shop-modal-window {
-                max-height: 94vh;
-                padding: 22px 17px;
-                border-radius: 13px;
+            .shop-page .shop-product-image {
+                aspect-ratio: 1 / 0.85;
             }
 
-            .shop-modal-header h2 {
-                font-size: 21px;
+            .shop-page .shop-product-image img {
+                padding: 9px;
             }
 
-            .shop-product-form {
+            .shop-page .shop-product-add {
+                min-height: 43px;
+                padding: 10px 7px;
+                font-size: 10px;
+                letter-spacing: 0.3px;
+            }
+
+            .shop-page .shop-product-add svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .shop-page .shop-information {
+                padding: 45px 0;
+            }
+
+            .shop-page .shop-information-grid {
                 grid-template-columns: 1fr;
-                gap: 14px;
+                gap: 17px;
             }
 
-            .shop-form-field.full-width,
-            .shop-modal-submit {
-                grid-column: auto;
+            .shop-page .shop-information-card {
+                padding: 23px;
+            }
+
+            .shop-page .shop-nav-actions {
+                gap: 6px;
+            }
+
+            .shop-page .shop-nav-bag {
+                min-height: 38px;
+                padding: 7px 10px;
+                gap: 6px;
+                font-size: 11px;
+            }
+
+            .shop-page .shop-bag-icon {
+                width: 19px;
+                height: 19px;
+            }
+
+            .shop-page .shop-bag-count {
+                min-width: 19px;
+                height: 19px;
+                font-size: 10px;
+            }
+
+            .shop-page .shop-drawer-header {
+                padding: 18px;
+            }
+
+            .shop-page .shop-drawer-items {
+                padding: 15px 18px;
+            }
+
+            .shop-page .shop-drawer-footer {
+                padding: 18px;
             }
         }
 
-        /* VERY SMALL PHONES */
-
-        @media (max-width: 360px) {
-            .shop-product-grid {
+        @media (max-width: 390px) {
+            .shop-page .shop-product-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .shop-product-image {
-                aspect-ratio: 1 / 0.8;
+            .shop-page .shop-product-image {
+                aspect-ratio: 1 / 0.75;
             }
 
-            .shop-product-details {
-                padding: 16px;
+            .shop-page .shop-product-content {
+                padding: 18px;
             }
 
-            .shop-product-details h3 {
-                font-size: 17px;
+            .shop-page .shop-product-description {
+                min-height: 0;
             }
 
-            .shop-product-description {
-                font-size: 12px;
-            }
-
-            .shop-product-button {
+            .shop-page .shop-product-add {
+                min-height: 47px;
                 font-size: 12px;
             }
         }
-
-        /* REDUCED MOTION */
 
         @media (prefers-reduced-motion: reduce) {
-            .page-shop *,
-            .page-shop *::before,
-            .page-shop *::after {
+            .shop-page *,
+            .shop-page *::before,
+            .shop-page *::after {
+                scroll-behavior: auto !important;
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 
+<body class="shop-page">
 
-<body class="page-shop">
-
-    <!-- =====================================================
+    <!-- =========================================================
          NAVIGATION
-         ===================================================== -->
+         Uses the existing shared style.css
+         ========================================================= -->
 
     <nav class="navbar" id="navbar">
 
-        <a href="index.html" class="navbar-logo" aria-label="Ngongotahā AFC home">
-            <img src="logo.png" alt="Ngongotahā Football Club Logo">
+        <a href="index.html" class="navbar-logo" aria-label="Ngongotāhā AFC home">
+            <img
+                src="logo.png"
+                alt="Ngongotāhā Football Club Logo"
+            >
         </a>
 
         <div class="nav-links">
@@ -1489,7 +1734,6 @@
                     <button
                         class="dropbtn"
                         type="button"
-                        aria-expanded="false"
                         aria-haspopup="true"
                     >
                         Ngongotahā Teams
@@ -1505,1740 +1749,1450 @@
 
         </div>
 
-    </nav>
+        <!-- The shopping bag only becomes visible after an item is added. -->
 
+        <div class="shop-nav-actions">
 
-    <!-- DEMONSTRATION NOTICE -->
+            <button
+                class="shop-nav-bag"
+                id="shopOpenBag"
+                type="button"
+                aria-label="Open shopping bag"
+                aria-controls="shopDrawer"
+                aria-expanded="false"
+            >
+                <svg
+                    class="shop-bag-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                </svg>
 
-    <div class="shop-demo-notice">
-        <span aria-hidden="true">●</span>
-        <span>
-            <strong>BOARD DEMONSTRATION</strong> —
-            Sample products and prices. Checkout is not connected to live payments.
-        </span>
-    </div>
+                <span class="shop-bag-label">Bag</span>
 
-
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-
-    <header class="shop-hero">
-
-        <div class="shop-hero-content">
-
-            <span class="shop-eyebrow">
-                <span class="shop-eyebrow-dot"></span>
-                Official Club Merchandise
-            </span>
-
-            <h1>
-                The Club
-                <span>Shop.</span>
-            </h1>
-
-            <p>
-                Everything Ngongotāhā. Browse club merchandise, organise
-                your playing kit, and find everything you need for the
-                season — all in one place.
-            </p>
-
-            <div class="shop-hero-actions">
-
-                <a href="#shop-products" class="shop-primary-button">
-                    Explore the Shop <span aria-hidden="true">→</span>
-                </a>
-
-                <a href="#shop-kit-information" class="shop-secondary-button">
-                    Kit Hire Information
-                </a>
-
-            </div>
+                <span
+                    class="shop-bag-count"
+                    id="shopBagCount"
+                    aria-live="polite"
+                >0</span>
+            </button>
 
         </div>
 
-    </header>
+    </nav>
 
 
-    <!-- =====================================================
-         QUICK BENEFITS
-         ===================================================== -->
+    <main>
 
-    <main class="shop-content">
+        <!-- =====================================================
+             HERO SECTION
+             Change shop-hero.png to your actual transparent image
+             filename if necessary.
+             ===================================================== -->
+
+        <section class="shop-hero">
+
+            <div class="shop-hero-inner">
+
+                <div class="shop-hero-copy">
+
+                    <div class="shop-eyebrow">
+                        Official Club Merchandise
+                    </div>
+
+                    <h1>
+                        Wear The
+                        <span>Orange.</span>
+                    </h1>
+
+                    <p class="shop-hero-description">
+                        Show your colours with official Ngongotāhā AFC
+                        gear. From matchday essentials to club merchandise,
+                        find something for every member of the whānau.
+                    </p>
+
+                    <a
+                        href="#shopProducts"
+                        class="shop-primary-button"
+                    >
+                        Shop The Collection
+
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </a>
+
+                </div>
+
+
+                <div class="shop-hero-art">
+
+                    <!--
+                        IMPORTANT:
+                        Replace shop-hero.png with the filename of your
+                        transparent shirt, shorts and hoodie image.
+
+                        PNG is recommended because it supports transparency.
+                        Keep the image background transparent so the
+                        existing background.jpg can show through.
+                    -->
+
+                    <img
+                        src="shop-hero.png"
+                        alt="Ngongotāhā AFC shirt, shorts and hoodie"
+                        id="shopHeroImage"
+                    >
+
+                    <div
+                        class="shop-hero-art-fallback"
+                        id="shopHeroFallback"
+                    >
+                        Add your transparent shirt, shorts and hoodie
+                        image to display it here.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BENEFITS STRIP
+             ===================================================== -->
 
         <section class="shop-benefits" aria-label="Shop information">
 
-            <article class="shop-benefit">
-                <div class="shop-benefit-icon" aria-hidden="true">⚽</div>
-                <div>
-                    <strong>Ready for the Season</strong>
-                    <span>Playing kit and essential football gear.</span>
+            <div class="shop-container shop-benefits-inner">
+
+                <div class="shop-benefit">
+
+                    <div class="shop-benefit-icon" aria-hidden="true">
+                        ★
+                    </div>
+
+                    <div>
+                        <strong>Official Club Gear</strong>
+                        <span>Represent Ngongotāhā AFC.</span>
+                    </div>
+
                 </div>
-            </article>
 
-            <article class="shop-benefit">
-                <div class="shop-benefit-icon" aria-hidden="true">↔</div>
-                <div>
-                    <strong>Hire or Purchase</strong>
-                    <span>Choose the right option for your playing kit.</span>
+
+                <div class="shop-benefit">
+
+                    <div class="shop-benefit-icon" aria-hidden="true">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Choose Your Size</strong>
+                        <span>Find the right fit for you.</span>
+                    </div>
+
                 </div>
-            </article>
 
-            <article class="shop-benefit">
-                <div class="shop-benefit-icon" aria-hidden="true">◆</div>
-                <div>
-                    <strong>Wear Your Colours</strong>
-                    <span>Club merchandise for players and supporters.</span>
+
+                <div class="shop-benefit">
+
+                    <div class="shop-benefit-icon" aria-hidden="true">
+                        🛍
+                    </div>
+
+                    <div>
+                        <strong>Shop The Collection</strong>
+                        <span>Browse the club's gear and merchandise.</span>
+                    </div>
+
                 </div>
-            </article>
-
-        </section>
-
-
-        <!-- =================================================
-             SHOP CATEGORIES
-             ================================================= -->
-
-        <section class="shop-panel" aria-labelledby="shop-categories-title">
-
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Find What You Need</span>
-                    <h2 id="shop-categories-title">Shop Categories</h2>
-                    <p>
-                        Browse playing kit, essential equipment and club
-                        merchandise. Select a category to filter the products.
-                    </p>
-                </div>
-            </div>
-
-            <div class="shop-category-list" id="shop-category-list">
-
-                <button class="shop-category-button active" type="button" data-category="all" aria-pressed="true">
-                    <span class="shop-category-icon" aria-hidden="true">▦</span>
-                    <strong>All Products</strong>
-                </button>
-
-                <button class="shop-category-button" type="button" data-category="kit" aria-pressed="false">
-                    <span class="shop-category-icon" aria-hidden="true">⚽</span>
-                    <strong>Playing Kit</strong>
-                </button>
-
-                <button class="shop-category-button" type="button" data-category="footwear" aria-pressed="false">
-                    <span class="shop-category-icon" aria-hidden="true">◈</span>
-                    <strong>Socks &amp; Essentials</strong>
-                </button>
-
-                <button class="shop-category-button" type="button" data-category="clothing" aria-pressed="false">
-                    <span class="shop-category-icon" aria-hidden="true">▤</span>
-                    <strong>Club Clothing</strong>
-                </button>
-
-                <button class="shop-category-button" type="button" data-category="merchandise" aria-pressed="false">
-                    <span class="shop-category-icon" aria-hidden="true">★</span>
-                    <strong>Supporter Gear</strong>
-                </button>
 
             </div>
 
         </section>
 
 
-        <!-- =================================================
+        <!-- =====================================================
              PRODUCTS
-             ================================================= -->
+             ===================================================== -->
 
-        <section class="shop-panel" id="shop-products" aria-labelledby="shop-products-title">
+        <section
+            class="shop-catalogue"
+            id="shopProducts"
+        >
 
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Ngongotāhā AFC</span>
-                    <h2 id="shop-products-title">Club Shop</h2>
-                    <p>
-                        Sample prices are displayed for demonstration.
-                        Product photos and final pricing can be added before launch.
-                    </p>
+            <div class="shop-container">
+
+                <div class="shop-section-heading">
+
+                    <div>
+                        <h2>
+                            The Club <span>Collection</span>
+                        </h2>
+
+                        <p>
+                            Get kitted out in Ngongotāhā colours.
+                            Browse our club gear and add your favourites
+                            to your shopping bag.
+                        </p>
+                    </div>
+
+                    <div class="shop-search">
+
+                        <label
+                            class="shop-sr-only"
+                            for="shopSearchInput"
+                        >
+                            Search club shop
+                        </label>
+
+                        <input
+                            type="search"
+                            id="shopSearchInput"
+                            placeholder="Search the shop..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
                 </div>
-            </div>
 
-            <div class="shop-toolbar">
 
-                <label class="shop-search">
-                    <input
-                        type="search"
-                        id="shop-search-input"
-                        placeholder="Search products..."
-                        aria-label="Search shop products"
-                        autocomplete="off"
+                <!-- Category filters -->
+
+                <div
+                    class="shop-filters"
+                    role="group"
+                    aria-label="Filter products"
+                >
+
+                    <button
+                        type="button"
+                        class="shop-filter-button active"
+                        data-filter="all"
+                        aria-pressed="true"
                     >
-                </label>
-
-                <div class="shop-result-count" id="shop-result-count" aria-live="polite">
-                    Loading products...
-                </div>
-
-            </div>
-
-            <div class="shop-product-grid" id="shop-product-grid">
-
-                <!-- PRODUCTS ARE GENERATED BY JAVASCRIPT -->
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             KIT HIRE INFORMATION
-             ================================================= -->
-
-        <section class="shop-panel" id="shop-kit-information">
-
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Important Information</span>
-                    <h2>Kit Hire &amp; Purchase</h2>
-                    <p>
-                        Playing kit can be hired or purchased, depending on
-                        the item. Socks are purchase-only.
-                    </p>
-                </div>
-            </div>
-
-            <div class="shop-kit-explainer">
-
-                <article class="shop-kit-option">
-
-                    <h3>Playing Shirts</h3>
-
-                    <p>
-                        Players can choose to hire a playing shirt for the
-                        season or purchase one, subject to club availability
-                        and the applicable club policy.
-                    </p>
-
-                    <ul>
-                        <li>Choose the required size.</li>
-                        <li>Select hire or purchase where offered.</li>
-                        <li>Hired shirts must be returned according to club instructions.</li>
-                        <li>Purchased shirts belong to the customer.</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="shop-kit-option">
-
-                    <h3>Playing Shorts</h3>
-
-                    <p>
-                        Playing shorts can also be hired or purchased.
-                        Select the appropriate size and option when adding
-                        the item to your bag.
-                    </p>
-
-                    <ul>
-                        <li>Available options are shown for each product.</li>
-                        <li>Hire availability will need to be confirmed by the club.</li>
-                        <li>Hired items must be returned as instructed.</li>
-                        <li>Purchase prices and hire terms will be confirmed before launch.</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="shop-kit-option">
-
-                    <h3>Club Socks</h3>
-
-                    <p>
-                        Club socks must be purchased. They are not available
-                        for hire because socks can wear out or break during
-                        the season.
-                    </p>
-
-                    <ul>
-                        <li>Purchase-only item.</li>
-                        <li>Choose the available size.</li>
-                        <li>Additional pairs can be purchased when needed.</li>
-                        <li>Stock and sizing will be confirmed by the club.</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="shop-kit-option">
-
-                    <h3>Hoodies &amp; Merchandise</h3>
-
-                    <p>
-                        Club hoodies and supporter merchandise are intended
-                        for purchase. These items are not part of the playing
-                        kit hire arrangement.
-                    </p>
-
-                    <ul>
-                        <li>Choose from the sizes offered.</li>
-                        <li>Product photos will be added as they become available.</li>
-                        <li>Limited releases and pre-orders could be introduced later.</li>
-                        <li>Final product details will be confirmed before launch.</li>
-                    </ul>
-
-                </article>
-
-            </div>
-
-            <div class="shop-socks-notice">
-                <strong>PLEASE NOTE:</strong>
-                Shirts and shorts may be hired or purchased where available.
-                <strong>Socks must always be purchased and cannot be hired.</strong>
-                All prices and hire arrangements on this demonstration page
-                are examples only and must be confirmed by Ngongotāhā AFC.
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             HOW IT WORKS
-             ================================================= -->
-
-        <section class="shop-panel">
-
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Simple &amp; Convenient</span>
-                    <h2>How the Shop Works</h2>
-                    <p>
-                        The proposed customer journey for the future live shop.
-                    </p>
-                </div>
-            </div>
-
-            <div class="shop-process-grid">
-
-                <article class="shop-process-card">
-                    <div class="shop-process-number">01</div>
-                    <h3>Choose Your Gear</h3>
-                    <p>
-                        Browse the catalogue, select your products,
-                        choose the correct sizes and select hire or
-                        purchase where available.
-                    </p>
-                </article>
-
-                <article class="shop-process-card">
-                    <div class="shop-process-number">02</div>
-                    <h3>Review Your Order</h3>
-                    <p>
-                        Check your selections, quantities and order total
-                        before proceeding to the future secure checkout.
-                    </p>
-                </article>
-
-                <article class="shop-process-card">
-                    <div class="shop-process-number">03</div>
-                    <h3>Collect or Receive</h3>
-                    <p>
-                        In the live version, customers will receive an order
-                        confirmation and instructions for collection or delivery.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             SHOPPING BAG
-             ================================================= -->
-
-        <section class="shop-panel shop-bag-panel" id="shop-bag">
-
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Your Selections</span>
-                    <h2>
-                        Shopping Bag
-                        <span class="shop-bag-count" id="shop-bag-count">0</span>
-                    </h2>
-                    <p>
-                        Review products and quantities. This demonstration
-                        bag works locally in your browser.
-                    </p>
-                </div>
-            </div>
-
-            <div id="shop-bag-content" aria-live="polite">
-
-                <div class="shop-bag-empty">
-                    <strong>Your bag is empty.</strong>
-                    Browse the club shop and add your first item.
-                </div>
-
-            </div>
-
-            <div class="shop-bag-summary" id="shop-bag-summary" hidden>
-
-                <div class="shop-summary-line">
-                    <span>Items</span>
-                    <span id="shop-summary-items">0</span>
-                </div>
-
-                <div class="shop-summary-line total">
-                    <span>Estimated total</span>
-                    <strong id="shop-summary-total">$0.00</strong>
-                </div>
-
-                <div class="shop-bag-actions">
-
-                    <button class="shop-secondary-button" type="button" id="shop-clear-bag">
-                        Clear Bag
+                        All Products
                     </button>
 
-                    <button class="shop-primary-button" type="button" id="shop-review-order">
-                        Review Order <span aria-hidden="true">→</span>
+                    <button
+                        type="button"
+                        class="shop-filter-button"
+                        data-filter="matchwear"
+                        aria-pressed="false"
+                    >
+                        Matchwear
+                    </button>
+
+                    <button
+                        type="button"
+                        class="shop-filter-button"
+                        data-filter="training"
+                        aria-pressed="false"
+                    >
+                        Training Gear
+                    </button>
+
+                    <button
+                        type="button"
+                        class="shop-filter-button"
+                        data-filter="merchandise"
+                        aria-pressed="false"
+                    >
+                        Merchandise
                     </button>
 
                 </div>
 
-                <p class="shop-prototype-disclaimer">
-                    Demonstration only. Prices are illustrative. No payment
-                    will be taken and no order will be submitted to the club.
-                </p>
 
-            </div>
+                <div
+                    class="shop-product-grid"
+                    id="shopProductGrid"
+                >
 
-        </section>
+                    <!--
+                        PRODUCT IMAGE FILES
+
+                        shirt.jpg
+                        shorts.jpg
+                        socks.jpg
+                        hoodie.jpg
+                        training-top.jpg
+                        jacket.jpg
+                        beanie.jpg
+                        scarf.jpg
+                        cap.jpg
+
+                        Prices are examples in NZD. Update them to the
+                        club's confirmed prices before launching sales.
+                    -->
 
 
-        <!-- =================================================
-             FUTURE CHECKOUT INFORMATION
-             ================================================= -->
+                    <!-- CLUB SHIRT -->
 
-        <section class="shop-panel">
+                    <article
+                        class="shop-product-card"
+                        data-category="matchwear"
+                        data-search="club playing shirt jersey match kit football"
+                    >
 
-            <div class="shop-section-heading">
-                <div>
-                    <span class="shop-section-label">Future Checkout</span>
-                    <h2>Designed for Easy Ordering</h2>
-                    <p>
-                        When the live shop is introduced, the checkout can
-                        be expanded to include the following features.
-                    </p>
+                        <div class="shop-product-image">
+
+                            <span class="shop-product-badge">
+                                Club Essential
+                            </span>
+
+                            <img
+                                src="shirt.jpg"
+                                alt="Ngongotāhā AFC playing shirt"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">👕</span>
+                                <span>shirt.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Matchwear
+                            </div>
+
+                            <h3>Club Playing Shirt</h3>
+
+                            <p class="shop-product-description">
+                                Show your club pride in the official
+                                Ngongotāhā AFC playing shirt.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $55.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-shirt">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-shirt"
+                                    data-size-for="shirt"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="4">Junior 4</option>
+                                    <option value="6">Junior 6</option>
+                                    <option value="8">Junior 8</option>
+                                    <option value="10">Junior 10</option>
+                                    <option value="12">Junior 12</option>
+                                    <option value="14">Junior 14</option>
+                                    <option value="16">Junior 16</option>
+                                    <option value="XS">Adult XS</option>
+                                    <option value="S">Adult S</option>
+                                    <option value="M">Adult M</option>
+                                    <option value="L">Adult L</option>
+                                    <option value="XL">Adult XL</option>
+                                    <option value="2XL">Adult 2XL</option>
+                                    <option value="3XL">Adult 3XL</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="shirt"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLUB SHORTS -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="matchwear"
+                        data-search="club playing shorts football match kit"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="shorts.jpg"
+                                alt="Ngongotāhā AFC playing shorts"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">◈</span>
+                                <span>shorts.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Matchwear
+                            </div>
+
+                            <h3>Club Playing Shorts</h3>
+
+                            <p class="shop-product-description">
+                                Complete your matchday kit with official
+                                club playing shorts.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $35.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-shorts">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-shorts"
+                                    data-size-for="shorts"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="4">Junior 4</option>
+                                    <option value="6">Junior 6</option>
+                                    <option value="8">Junior 8</option>
+                                    <option value="10">Junior 10</option>
+                                    <option value="12">Junior 12</option>
+                                    <option value="14">Junior 14</option>
+                                    <option value="16">Junior 16</option>
+                                    <option value="XS">Adult XS</option>
+                                    <option value="S">Adult S</option>
+                                    <option value="M">Adult M</option>
+                                    <option value="L">Adult L</option>
+                                    <option value="XL">Adult XL</option>
+                                    <option value="2XL">Adult 2XL</option>
+                                    <option value="3XL">Adult 3XL</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="shorts"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLUB SOCKS -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="matchwear"
+                        data-search="club football socks match kit"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <span class="shop-product-badge">
+                                Matchday Essential
+                            </span>
+
+                            <img
+                                src="socks.jpg"
+                                alt="Ngongotāhā AFC football socks"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">▤</span>
+                                <span>socks.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Matchwear
+                            </div>
+
+                            <h3>Club Football Socks</h3>
+
+                            <p class="shop-product-description">
+                                Matchday socks to complete your kit
+                                and support you throughout the season.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $18.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-socks">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-socks"
+                                    data-size-for="socks"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="Junior">Junior</option>
+                                    <option value="Youth">Youth</option>
+                                    <option value="Adult">Adult</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="socks"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLUB HOODIE -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="merchandise"
+                        data-search="club hoodie sweatshirt warm clothing supporter"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <span class="shop-product-badge">
+                                Club Favourite
+                            </span>
+
+                            <img
+                                src="hoodie.jpg"
+                                alt="Ngongotāhā AFC hoodie"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">♨</span>
+                                <span>hoodie.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Merchandise
+                            </div>
+
+                            <h3>Club Hoodie</h3>
+
+                            <p class="shop-product-description">
+                                Stay warm on the sideline and represent
+                                Ngongotāhā AFC wherever you go.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $65.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-hoodie">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-hoodie"
+                                    data-size-for="hoodie"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="4">Junior 4</option>
+                                    <option value="6">Junior 6</option>
+                                    <option value="8">Junior 8</option>
+                                    <option value="10">Junior 10</option>
+                                    <option value="12">Junior 12</option>
+                                    <option value="14">Junior 14</option>
+                                    <option value="16">Junior 16</option>
+                                    <option value="XS">Adult XS</option>
+                                    <option value="S">Adult S</option>
+                                    <option value="M">Adult M</option>
+                                    <option value="L">Adult L</option>
+                                    <option value="XL">Adult XL</option>
+                                    <option value="2XL">Adult 2XL</option>
+                                    <option value="3XL">Adult 3XL</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="hoodie"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- TRAINING TOP -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="training"
+                        data-search="training top football practice training shirt"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="training-top.jpg"
+                                alt="Ngongotāhā AFC training top"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">👕</span>
+                                <span>training-top.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Training Gear
+                            </div>
+
+                            <h3>Training Top</h3>
+
+                            <p class="shop-product-description">
+                                A club training essential for practice,
+                                warm-ups and football sessions.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $40.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-training-top">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-training-top"
+                                    data-size-for="training-top"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="4">Junior 4</option>
+                                    <option value="6">Junior 6</option>
+                                    <option value="8">Junior 8</option>
+                                    <option value="10">Junior 10</option>
+                                    <option value="12">Junior 12</option>
+                                    <option value="14">Junior 14</option>
+                                    <option value="16">Junior 16</option>
+                                    <option value="XS">Adult XS</option>
+                                    <option value="S">Adult S</option>
+                                    <option value="M">Adult M</option>
+                                    <option value="L">Adult L</option>
+                                    <option value="XL">Adult XL</option>
+                                    <option value="2XL">Adult 2XL</option>
+                                    <option value="3XL">Adult 3XL</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="training-top"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLUB JACKET -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="training"
+                        data-search="club training jacket warm up outerwear"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="jacket.jpg"
+                                alt="Ngongotāhā AFC training jacket"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">♨</span>
+                                <span>jacket.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Training Gear
+                            </div>
+
+                            <h3>Club Training Jacket</h3>
+
+                            <p class="shop-product-description">
+                                An extra layer for cold training nights,
+                                matchdays and travelling with the team.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $80.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-jacket">
+                                    Select Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-jacket"
+                                    data-size-for="jacket"
+                                >
+                                    <option value="">Choose a size</option>
+                                    <option value="4">Junior 4</option>
+                                    <option value="6">Junior 6</option>
+                                    <option value="8">Junior 8</option>
+                                    <option value="10">Junior 10</option>
+                                    <option value="12">Junior 12</option>
+                                    <option value="14">Junior 14</option>
+                                    <option value="16">Junior 16</option>
+                                    <option value="XS">Adult XS</option>
+                                    <option value="S">Adult S</option>
+                                    <option value="M">Adult M</option>
+                                    <option value="L">Adult L</option>
+                                    <option value="XL">Adult XL</option>
+                                    <option value="2XL">Adult 2XL</option>
+                                    <option value="3XL">Adult 3XL</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="jacket"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- BEANIE -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="merchandise"
+                        data-search="club beanie hat winter supporter merchandise"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="beanie.jpg"
+                                alt="Ngongotāhā AFC beanie"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">♨</span>
+                                <span>beanie.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Merchandise
+                            </div>
+
+                            <h3>Club Beanie</h3>
+
+                            <p class="shop-product-description">
+                                Keep warm during winter football and
+                                support your club in style.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $25.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-beanie">
+                                    Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-beanie"
+                                    data-size-for="beanie"
+                                >
+                                    <option value="One Size">One Size</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="beanie"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SUPPORTER SCARF -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="merchandise"
+                        data-search="club supporter scarf football merchandise"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="scarf.jpg"
+                                alt="Ngongotāhā AFC supporter scarf"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">≋</span>
+                                <span>scarf.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Merchandise
+                            </div>
+
+                            <h3>Supporter Scarf</h3>
+
+                            <p class="shop-product-description">
+                                Bring the orange army spirit to the
+                                sideline with club supporter gear.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $30.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-scarf">
+                                    Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-scarf"
+                                    data-size-for="scarf"
+                                >
+                                    <option value="One Size">One Size</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="scarf"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CLUB CAP -->
+
+                    <article
+                        class="shop-product-card"
+                        data-category="merchandise"
+                        data-search="club cap hat supporter merchandise"
+                    >
+
+                        <div class="shop-product-image">
+
+                            <img
+                                src="cap.jpg"
+                                alt="Ngongotāhā AFC cap"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="shop-product-image-fallback">
+                                <span class="shop-product-image-fallback-symbol">⌂</span>
+                                <span>cap.jpg</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="shop-product-content">
+
+                            <div class="shop-product-category">
+                                Merchandise
+                            </div>
+
+                            <h3>Club Cap</h3>
+
+                            <p class="shop-product-description">
+                                A simple way to represent Ngongotāhā
+                                AFC on matchday and beyond.
+                            </p>
+
+                            <div class="shop-product-price">
+                                $28.00 <small>NZD</small>
+                            </div>
+
+                            <div class="shop-product-options">
+
+                                <label for="size-cap">
+                                    Size
+                                </label>
+
+                                <select
+                                    class="shop-size-select"
+                                    id="size-cap"
+                                    data-size-for="cap"
+                                >
+                                    <option value="One Size">One Size</option>
+                                </select>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="shop-product-add"
+                                data-product-id="cap"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                                    <path d="M12 12v5"></path>
+                                    <path d="M9.5 14.5h5"></path>
+                                </svg>
+
+                                Add to Shopping Bag
+                            </button>
+
+                        </div>
+
+                    </article>
+
                 </div>
-            </div>
 
-            <div class="shop-process-grid">
 
-                <article class="shop-process-card">
-                    <div class="shop-process-number">✓</div>
-                    <h3>Secure Payments</h3>
+                <div
+                    class="shop-empty-results"
+                    id="shopEmptyResults"
+                    role="status"
+                >
+                    <h3>No products found</h3>
+
                     <p>
-                        Planned support for eligible Visa, Mastercard,
-                        American Express, Apple Pay, Google Pay and PayPal
-                        through suitable payment integrations.
+                        Try another search or select a different category.
                     </p>
-                </article>
 
-                <article class="shop-process-card">
-                    <div class="shop-process-number">✓</div>
-                    <h3>Order Confirmation</h3>
-                    <p>
-                        Each successful order will receive a unique order
-                        number, with confirmation emails for the customer
-                        and the club.
-                    </p>
-                </article>
-
-                <article class="shop-process-card">
-                    <div class="shop-process-number">✓</div>
-                    <h3>Collection or Delivery</h3>
-                    <p>
-                        The live version can support club collection,
-                        delivery options, order-status updates and
-                        notifications when merchandise is ready.
-                    </p>
-                </article>
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- =================================================
-             CALL TO ACTION
-             ================================================= -->
+        <!-- =====================================================
+             INFORMATION
+             ===================================================== -->
 
-        <section class="shop-panel registration-box">
+        <section class="shop-information">
 
-            <span class="home-section-label">Ngongotāhā Football Club</span>
+            <div class="shop-container shop-information-grid">
 
-            <h2>Wear the Orange</h2>
+                <div class="shop-information-card">
 
-            <p>
-                From match day to training day, represent Ngongotāhā AFC
-                with club kit and merchandise.
-            </p>
+                    <h3>
+                        Supporting <span>Our Club</span>
+                    </h3>
 
-            <a href="#shop-products" class="registration-button">
-                Explore Club Merchandise
-            </a>
+                    <p>
+                        Every item in the club shop helps our football
+                        community look the part. Whether you're a player,
+                        parent, supporter or part of the wider whānau,
+                        thank you for supporting Ngongotāhā AFC.
+                    </p>
+
+                </div>
+
+
+                <div class="shop-information-card">
+
+                    <h3>
+                        Need <span>Help?</span>
+                    </h3>
+
+                    <p>
+                        If you have a question about club merchandise,
+                        sizing or availability, contact the club and
+                        we'll help point you in the right direction.
+
+                        <br><br>
+
+                        <a href="mailto:info@ngongotahafootball.co.nz">
+                            info@ngongotahafootball.co.nz
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
 
         </section>
 
     </main>
 
 
-    <!-- =====================================================
-         PRODUCT SELECTION MODAL
-         ===================================================== -->
+    <!-- =========================================================
+         SHOPPING BAG DRAWER
+         ========================================================= -->
 
     <div
-        class="shop-modal"
-        id="shop-product-modal"
+        class="shop-drawer-overlay"
+        id="shopDrawerOverlay"
+        aria-hidden="true"
+    ></div>
+
+
+    <aside
+        class="shop-drawer"
+        id="shopDrawer"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="shop-modal-title"
+        aria-labelledby="shopDrawerTitle"
+        aria-hidden="true"
+        inert
+    >
+
+        <div class="shop-drawer-header">
+
+            <h2 id="shopDrawerTitle">
+                Your <span>Shopping Bag</span>
+            </h2>
+
+            <button
+                type="button"
+                class="shop-icon-button"
+                id="shopCloseBag"
+                aria-label="Close shopping bag"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <div
+            class="shop-drawer-items"
+            id="shopCartItems"
+            aria-live="polite"
+        >
+
+            <!-- JavaScript inserts the shopping bag contents here. -->
+
+        </div>
+
+
+        <div class="shop-drawer-footer">
+
+            <div class="shop-subtotal-row">
+                <span>Subtotal</span>
+
+                <strong id="shopCartSubtotal">
+                    $0.00
+                </strong>
+            </div>
+
+            <p class="shop-drawer-note">
+                Prices are shown in NZD. The total is an estimate and
+                excludes any delivery charges. Final checkout is not
+                available yet.
+            </p>
+
+            <button
+                type="button"
+                class="shop-checkout-button"
+                id="shopCheckoutButton"
+                disabled
+            >
+                Continue to Checkout
+            </button>
+
+            <button
+                type="button"
+                class="shop-continue-shopping"
+                id="shopContinueShopping"
+            >
+                Continue Shopping
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         CHECKOUT WORK-IN-PROGRESS MESSAGE
+         ========================================================= -->
+
+    <div
+        class="shop-modal-overlay"
+        id="shopCheckoutModal"
         aria-hidden="true"
     >
 
-        <div class="shop-modal-backdrop" data-close-modal></div>
+        <div
+            class="shop-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="shopCheckoutTitle"
+        >
 
-        <div class="shop-modal-window">
+            <button
+                type="button"
+                class="shop-icon-button shop-modal-close"
+                id="shopCloseCheckout"
+                aria-label="Close checkout message"
+            >
+                &times;
+            </button>
 
-            <div class="shop-modal-header">
 
-                <div>
-                    <span class="shop-section-label">Product Selection</span>
-                    <h2 id="shop-modal-title">Choose Your Item</h2>
-                    <p id="shop-modal-description">
-                        Select the appropriate options.
-                    </p>
-                </div>
-
-                <button
-                    class="shop-modal-close"
-                    type="button"
-                    aria-label="Close product selection"
-                    data-close-modal
+            <div class="shop-modal-icon" aria-hidden="true">
+                <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                 >
-                    &times;
-                </button>
-
+                    <path d="M5 8h14l1 13H4L5 8Z"></path>
+                    <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                </svg>
             </div>
 
-            <form class="shop-product-form" id="shop-product-form">
 
-                <input type="hidden" id="shop-modal-product-id">
+            <h2 id="shopCheckoutTitle">
+                Checkout <span>Coming Soon</span>
+            </h2>
 
-                <div class="shop-form-field full-width">
-                    <label>Product</label>
-                    <p class="shop-modal-product-price" id="shop-modal-product-price">$0.00</p>
-                </div>
 
-                <div class="shop-form-field" id="shop-size-field">
-                    <label for="shop-modal-size">Size</label>
-                    <select id="shop-modal-size" required>
-                        <option value="">Choose a size</option>
-                    </select>
-                </div>
+            <p>
+                Thanks for shopping with Ngongotāhā AFC.
+                We're working towards bringing you a complete online
+                club shop.
+            </p>
 
-                <div class="shop-form-field" id="shop-colour-field">
-                    <label for="shop-modal-colour">Colour</label>
-                    <select id="shop-modal-colour">
-                        <option value="">Choose a colour</option>
-                    </select>
-                </div>
 
-                <div class="shop-form-field" id="shop-type-field">
-                    <label for="shop-modal-type">Hire or purchase</label>
-                    <select id="shop-modal-type">
-                        <option value="purchase">Purchase</option>
-                        <option value="hire">Hire</option>
-                    </select>
-                </div>
+            <div class="shop-modal-highlight">
+                <strong>
+                    Demonstration only for now due to the website not
+                    being live yet.
+                </strong>
 
-                <div class="shop-form-field">
-                    <label for="shop-modal-quantity">Quantity</label>
-                    <select id="shop-modal-quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
+                <br><br>
 
-                <div class="shop-form-field full-width">
-                    <div class="shop-checkout-summary">
-                        <p>
-                            <strong>Item:</strong>
-                            <span id="shop-modal-summary-name">Not selected</span>
-                        </p>
-                        <p>
-                            <strong>Estimated item total:</strong>
-                            <span id="shop-modal-summary-total">$0.00</span>
-                        </p>
-                        <p>
-                            <strong>Important:</strong>
-                            Hire availability and final pricing would be
-                            confirmed by the club in the live version.
-                        </p>
-                    </div>
-                </div>
+                This prototype does not collect customer details,
+                create a real order number, accept payment or send
+                emails. These features will be added when the club is
+                ready to launch its live shop.
+            </div>
 
-                <button type="submit" class="shop-primary-button shop-modal-submit">
-                    Add to Shopping Bag
-                </button>
 
-            </form>
-
-            <div class="shop-modal-message" id="shop-modal-message" role="status"></div>
+            <button
+                type="button"
+                class="shop-primary-button"
+                id="shopReturnToBag"
+            >
+                Back to My Shopping Bag
+            </button>
 
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         ORDER REVIEW MODAL
-         ===================================================== -->
+    <!-- =========================================================
+         ADD-TO-BAG TOAST
+         ========================================================= -->
 
     <div
-        class="shop-modal"
-        id="shop-order-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="shop-order-modal-title"
-        aria-hidden="true"
+        class="shop-toast"
+        id="shopToast"
+        role="status"
+        aria-live="polite"
     >
 
-        <div class="shop-modal-backdrop" data-close-modal></div>
+        <span class="shop-toast-check" aria-hidden="true">
+            ✓
+        </span>
 
-        <div class="shop-modal-window">
-
-            <div class="shop-modal-header">
-
-                <div>
-                    <span class="shop-section-label">Order Preview</span>
-                    <h2 id="shop-order-modal-title">Review Your Order</h2>
-                    <p>
-                        Check your selections before the future checkout stage.
-                    </p>
-                </div>
-
-                <button
-                    class="shop-modal-close"
-                    type="button"
-                    aria-label="Close order review"
-                    data-close-modal
-                >
-                    &times;
-                </button>
-
-            </div>
-
-            <div id="shop-order-review-content"></div>
-
-            <div class="shop-modal-message visible">
-                <strong>Demonstration only.</strong>
-                This prototype does not collect customer details, create a
-                real order number, accept payment or send emails.
-                These features will be added when the club is ready to launch
-                its live shop.
-            </div>
-
-            <div style="margin-top:20px;">
-                <button
-                    type="button"
-                    class="shop-primary-button"
-                    id="shop-order-review-close"
-                    style="width:100%;"
-                >
-                    Return to Shop
-                </button>
-            </div>
-
-        </div>
+        <span id="shopToastMessage">
+            Added to your shopping bag.
+        </span>
 
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================================================
          FOOTER
-         ===================================================== -->
+         ========================================================= -->
 
-    <footer>
-        © 2026 Ngongotāhā Football Club |
-        <a href="mailto:info@ngongotahafootball.co.nz">Contact Us</a>
+    <footer class="footer">
+
+        <p>
+            &copy; 2026 Ngongotāhā Football Club.
+            All rights reserved.
+        </p>
+
+        <p>
+            <a href="mailto:info@ngongotahafootball.co.nz">
+                Contact Us
+            </a>
+        </p>
+
     </footer>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
+    <!-- External JavaScript file -->
 
-    <script>
-        "use strict";
-
-        /* =====================================================
-           NAVBAR SCROLL
-           ===================================================== */
-
-        const navbar = document.getElementById("navbar");
-
-        window.addEventListener("scroll", function () {
-            if (!navbar) return;
-
-            navbar.classList.toggle(
-                "scrolled",
-                window.scrollY > 30
-            );
-        });
-
-
-        /* =====================================================
-           NAVBAR TEAM DROPDOWN
-           ===================================================== */
-
-        (function initialiseDropdown() {
-            const dropdown = document.querySelector(".dropdown");
-            const dropButton = document.querySelector(".dropbtn");
-
-            if (!dropdown || !dropButton) return;
-
-            dropButton.addEventListener("click", function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const isOpen = dropdown.classList.toggle("mobile-open");
-
-                dropButton.setAttribute(
-                    "aria-expanded",
-                    isOpen ? "true" : "false"
-                );
-            });
-
-            document.addEventListener("click", function (event) {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove("mobile-open");
-                    dropButton.setAttribute("aria-expanded", "false");
-                }
-            });
-
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "Escape") {
-                    dropdown.classList.remove("mobile-open");
-                    dropButton.setAttribute("aria-expanded", "false");
-                }
-            });
-        })();
-
-
-        /* =====================================================
-           PRODUCT CATALOGUE
-
-           Replace image filenames with the club's real JPG
-           product photographs when they become available.
-
-           Missing product photos automatically use a placeholder.
-           Prices are examples only.
-           ===================================================== */
-
-        const shopProducts = [
-
-            {
-                id: "shirt",
-                name: "Club Playing Shirt",
-                category: "kit",
-                categoryLabel: "Playing Kit",
-                description: "Official playing shirt for the season.",
-                price: 55,
-                hirePrice: 20,
-                canHire: true,
-                badge: "Player Essential",
-                image: "shirt.jpg",
-                sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "2XL"],
-                colours: ["Orange", "Black"]
-            },
-
-            {
-                id: "shorts",
-                name: "Club Playing Shorts",
-                category: "kit",
-                categoryLabel: "Playing Kit",
-                description: "Comfortable playing shorts for match day.",
-                price: 35,
-                hirePrice: 15,
-                canHire: true,
-                badge: "Player Essential",
-                image: "shorts.jpg",
-                sizes: ["6", "8", "10", "12", "14", "S", "M", "L", "XL", "2XL"],
-                colours: ["Black", "Orange"]
-            },
-
-            {
-                id: "socks",
-                name: "Club Football Socks",
-                category: "footwear",
-                categoryLabel: "Socks & Essentials",
-                description: "Football socks for training and match day. Purchase only.",
-                price: 18,
-                canHire: false,
-                badge: "Purchase Only",
-                image: "socks.jpg",
-                sizes: ["Junior", "Small", "Medium", "Large"],
-                colours: ["Orange", "Black"]
-            },
-
-            {
-                id: "hoodie",
-                name: "Club Hoodie",
-                category: "clothing",
-                categoryLabel: "Club Clothing",
-                description: "Club-branded hoodie for cooler days.",
-                price: 65,
-                canHire: false,
-                badge: "Club Favourite",
-                image: "hoodie.jpg",
-                sizes: ["8", "10", "12", "14", "S", "M", "L", "XL", "2XL", "3XL"],
-                colours: ["Black", "Orange"]
-            },
-
-            {
-                id: "training-top",
-                name: "Training Top",
-                category: "clothing",
-                categoryLabel: "Club Clothing",
-                description: "Lightweight training gear for club sessions.",
-                price: 40,
-                canHire: false,
-                badge: "",
-                image: "training-top.jpg",
-                sizes: ["8", "10", "12", "14", "S", "M", "L", "XL", "2XL"],
-                colours: ["Black", "Orange"]
-            },
-
-            {
-                id: "jacket",
-                name: "Club Training Jacket",
-                category: "clothing",
-                categoryLabel: "Club Clothing",
-                description: "An extra layer for cold training nights and match days.",
-                price: 80,
-                canHire: false,
-                badge: "",
-                image: "jacket.jpg",
-                sizes: ["8", "10", "12", "14", "S", "M", "L", "XL", "2XL"],
-                colours: ["Black"]
-            },
-
-            {
-                id: "beanie",
-                name: "Club Beanie",
-                category: "merchandise",
-                categoryLabel: "Supporter Gear",
-                description: "Club merchandise for players, whānau and supporters.",
-                price: 25,
-                canHire: false,
-                badge: "",
-                image: "beanie.jpg",
-                sizes: ["One Size"],
-                colours: ["Black", "Orange"]
-            },
-
-            {
-                id: "scarf",
-                name: "Club Supporter Scarf",
-                category: "merchandise",
-                categoryLabel: "Supporter Gear",
-                description: "Show your support from the sidelines.",
-                price: 30,
-                canHire: false,
-                badge: "",
-                image: "scarf.jpg",
-                sizes: ["One Size"],
-                colours: ["Orange & Black"]
-            },
-
-            {
-                id: "cap",
-                name: "Club Cap",
-                category: "merchandise",
-                categoryLabel: "Supporter Gear",
-                description: "A casual club cap for everyday wear.",
-                price: 28,
-                canHire: false,
-                badge: "",
-                image: "cap.jpg",
-                sizes: ["One Size"],
-                colours: ["Black", "Orange"]
-            }
-
-        ];
-
-
-        /* =====================================================
-           SHOP STATE
-           ===================================================== */
-
-        let activeCategory = "all";
-        let searchTerm = "";
-        let currentProduct = null;
-
-        /*
-           This shopping bag exists only in the browser.
-           It is not connected to a database or real stock.
-        */
-
-        let shopBag = [];
-
-        try {
-            const savedBag = sessionStorage.getItem("ngafc-shop-demo-bag");
-
-            if (savedBag) {
-                const parsedBag = JSON.parse(savedBag);
-
-                if (Array.isArray(parsedBag)) {
-                    shopBag = parsedBag.filter(function (item) {
-                        return (
-                            item &&
-                            shopProducts.some(function (product) {
-                                return product.id === item.productId;
-                            }) &&
-                            Number.isInteger(item.quantity) &&
-                            item.quantity > 0 &&
-                            item.quantity <= 99
-                        );
-                    });
-                }
-            }
-        } catch (error) {
-            shopBag = [];
-        }
-
-
-        /* =====================================================
-           HELPERS
-           ===================================================== */
-
-        function formatMoney(amount) {
-            return new Intl.NumberFormat("en-NZ", {
-                style: "currency",
-                currency: "NZD"
-            }).format(amount);
-        }
-
-
-        function getProduct(productId) {
-            return shopProducts.find(function (product) {
-                return product.id === productId;
-            });
-        }
-
-
-        function getItemPrice(product, purchaseType) {
-            if (purchaseType === "hire" && product.canHire) {
-                return product.hirePrice;
-            }
-
-            return product.price;
-        }
-
-
-        function getBagItemCount() {
-            return shopBag.reduce(function (total, item) {
-                return total + item.quantity;
-            }, 0);
-        }
-
-
-        function getBagTotal() {
-            return shopBag.reduce(function (total, item) {
-                const product = getProduct(item.productId);
-
-                if (!product) return total;
-
-                return total +
-                    getItemPrice(product, item.purchaseType) *
-                    item.quantity;
-            }, 0);
-        }
-
-
-        function saveBag() {
-            try {
-                sessionStorage.setItem(
-                    "ngafc-shop-demo-bag",
-                    JSON.stringify(shopBag)
-                );
-            } catch (error) {
-                /*
-                   The demo still works if browser storage is disabled.
-                */
-            }
-        }
-
-
-        function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, function (character) {
-                const entities = {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#39;"
-                };
-
-                return entities[character];
-            });
-        }
-
-
-        /* =====================================================
-           PRODUCT PLACEHOLDERS
-           ===================================================== */
-
-        function getPlaceholderIcon(product) {
-            if (product.id === "shirt") return "◉";
-            if (product.id === "shorts") return "▤";
-            if (product.id === "socks") return "◈";
-            if (product.id === "hoodie") return "♧";
-            if (product.id === "training-top") return "▣";
-            if (product.id === "jacket") return "◇";
-            if (product.id === "beanie") return "♧";
-            if (product.id === "scarf") return "≋";
-            if (product.id === "cap") return "⌂";
-
-            return "⚽";
-        }
-
-
-        function renderProductImage(product) {
-            const placeholder = `
-                <div class="shop-product-placeholder">
-                    <div class="shop-placeholder-icon" aria-hidden="true">
-                        ${getPlaceholderIcon(product)}
-                    </div>
-                    <span class="shop-placeholder-label">
-                        Product photo coming soon
-                    </span>
-                </div>
-            `;
-
-            if (!product.image) {
-                return placeholder;
-            }
-
-            return `
-                <img
-                    src="${escapeHTML(product.image)}"
-                    alt="${escapeHTML(product.name)}"
-                    loading="lazy"
-                    onerror="this.outerHTML = this.dataset.placeholder"
-                    data-placeholder="${escapeHTML(placeholder)}"
-                >
-            `;
-        }
-
-
-        /* =====================================================
-           RENDER PRODUCTS
-           ===================================================== */
-
-        function renderProducts() {
-            const grid = document.getElementById("shop-product-grid");
-            const resultCount = document.getElementById("shop-result-count");
-
-            if (!grid || !resultCount) return;
-
-            const filteredProducts = shopProducts.filter(function (product) {
-                const matchesCategory =
-                    activeCategory === "all" ||
-                    product.category === activeCategory;
-
-                const combinedText = (
-                    product.name + " " +
-                    product.categoryLabel + " " +
-                    product.description
-                ).toLowerCase();
-
-                const matchesSearch = combinedText.includes(searchTerm);
-
-                return matchesCategory && matchesSearch;
-            });
-
-            resultCount.textContent =
-                filteredProducts.length +
-                (filteredProducts.length === 1 ? " product" : " products");
-
-            if (filteredProducts.length === 0) {
-                grid.innerHTML = `
-                    <div class="shop-no-results">
-                        <strong>No products found.</strong><br>
-                        Try another search or select a different category.
-                    </div>
-                `;
-
-                return;
-            }
-
-            grid.innerHTML = filteredProducts.map(function (product) {
-                const hireLabel = product.canHire
-                    ? `<span class="shop-product-price-note">
-                           Purchase ${formatMoney(product.price)} ·
-                           Hire ${formatMoney(product.hirePrice)}
-                       </span>`
-                    : `<span class="shop-product-price-note">
-                           Purchase only
-                       </span>`;
-
-                const badge = product.badge
-                    ? `
-                        <span class="shop-product-badge ${
-                            product.canHire ? "" : "purchase-only"
-                        }">
-                            ${escapeHTML(product.badge)}
-                        </span>
-                    `
-                    : "";
-
-                const primaryLabel = product.canHire
-                    ? "Choose Options"
-                    : "Choose Size & Add";
-
-                return `
-                    <article class="shop-product-card">
-
-                        <div class="shop-product-image">
-                            ${badge}
-                            ${renderProductImage(product)}
-                        </div>
-
-                        <div class="shop-product-details">
-
-                            <span class="shop-product-category">
-                                ${escapeHTML(product.categoryLabel)}
-                            </span>
-
-                            <h3>${escapeHTML(product.name)}</h3>
-
-                            <p class="shop-product-description">
-                                ${escapeHTML(product.description)}
-                            </p>
-
-                            <div class="shop-product-price-row">
-                                <span class="shop-product-price">
-                                    ${formatMoney(product.price)}
-                                </span>
-                                ${hireLabel}
-                            </div>
-
-                            <div class="shop-product-actions">
-
-                                <button
-                                    type="button"
-                                    class="shop-product-button"
-                                    data-add-product="${escapeHTML(product.id)}"
-                                >
-                                    ${primaryLabel}
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-                `;
-            }).join("");
-        }
-
-
-        /* =====================================================
-           CATEGORY FILTERS
-           ===================================================== */
-
-        document.querySelectorAll(".shop-category-button").forEach(function (button) {
-            button.addEventListener("click", function () {
-                activeCategory = button.dataset.category || "all";
-
-                document.querySelectorAll(".shop-category-button").forEach(function (otherButton) {
-                    const isActive = otherButton === button;
-
-                    otherButton.classList.toggle("active", isActive);
-                    otherButton.setAttribute(
-                        "aria-pressed",
-                        isActive ? "true" : "false"
-                    );
-                });
-
-                renderProducts();
-            });
-        });
-
-
-        /* =====================================================
-           PRODUCT SEARCH
-           ===================================================== */
-
-        document.getElementById("shop-search-input").addEventListener(
-            "input",
-            function (event) {
-                searchTerm = event.target.value.trim().toLowerCase();
-                renderProducts();
-            }
-        );
-
-
-        /* =====================================================
-           MODALS
-           ===================================================== */
-
-        function openModal(modal) {
-            if (!modal) return;
-
-            modal.classList.add("open");
-            modal.setAttribute("aria-hidden", "false");
-            document.body.style.overflow = "hidden";
-
-            const firstControl = modal.querySelector(
-                "button, input, select, textarea"
-            );
-
-            if (firstControl) {
-                setTimeout(function () {
-                    firstControl.focus();
-                }, 30);
-            }
-        }
-
-
-        function closeModal(modal) {
-            if (!modal) return;
-
-            modal.classList.remove("open");
-            modal.setAttribute("aria-hidden", "true");
-
-            const anotherModalIsOpen =
-                document.querySelector(".shop-modal.open");
-
-            if (!anotherModalIsOpen) {
-                document.body.style.overflow = "";
-            }
-        }
-
-
-        document.querySelectorAll("[data-close-modal]").forEach(function (element) {
-            element.addEventListener("click", function () {
-                closeModal(element.closest(".shop-modal"));
-            });
-        });
-
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-                document.querySelectorAll(".shop-modal.open").forEach(function (modal) {
-                    closeModal(modal);
-                });
-            }
-        });
-
-
-        /* =====================================================
-           PRODUCT SELECTION MODAL
-           ===================================================== */
-
-        const productModal = document.getElementById("shop-product-modal");
-        const productForm = document.getElementById("shop-product-form");
-
-        const sizeSelect = document.getElementById("shop-modal-size");
-        const colourSelect = document.getElementById("shop-modal-colour");
-        const typeSelect = document.getElementById("shop-modal-type");
-        const quantitySelect = document.getElementById("shop-modal-quantity");
-
-        const sizeField = document.getElementById("shop-size-field");
-        const colourField = document.getElementById("shop-colour-field");
-        const typeField = document.getElementById("shop-type-field");
-
-        const productModalMessage = document.getElementById("shop-modal-message");
-
-
-        function fillSelect(select, options, placeholder) {
-            select.innerHTML = "";
-
-            if (placeholder) {
-                const defaultOption = document.createElement("option");
-                defaultOption.value = "";
-                defaultOption.textContent = placeholder;
-                select.appendChild(defaultOption);
-            }
-
-            options.forEach(function (value) {
-                const option = document.createElement("option");
-                option.value = value;
-                option.textContent = value;
-                select.appendChild(option);
-            });
-        }
-
-
-        function updateProductModalSummary() {
-            if (!currentProduct) return;
-
-            const purchaseType = currentProduct.canHire
-                ? typeSelect.value
-                : "purchase";
-
-            const price = getItemPrice(currentProduct, purchaseType);
-            const quantity = Number(quantitySelect.value) || 1;
-
-            document.getElementById("shop-modal-product-price").textContent =
-                formatMoney(price);
-
-            document.getElementById("shop-modal-summary-name").textContent =
-                currentProduct.name +
-                (purchaseType === "hire" ? " — Hire" : " — Purchase");
-
-            document.getElementById("shop-modal-summary-total").textContent =
-                formatMoney(price * quantity);
-        }
-
-
-        function showProductModalMessage(message) {
-            productModalMessage.textContent = message;
-            productModalMessage.classList.add("visible");
-        }
-
-
-        function openProductModal(productId) {
-            const product = getProduct(productId);
-
-            if (!product) return;
-
-            currentProduct = product;
-
-            productForm.reset();
-
-            productModalMessage.textContent = "";
-            productModalMessage.classList.remove("visible");
-
-            document.getElementById("shop-modal-product-id").value =
-                product.id;
-
-            document.getElementById("shop-modal-title").textContent =
-                product.name;
-
-            document.getElementById("shop-modal-description").textContent =
-                product.description;
-
-            fillSelect(sizeSelect, product.sizes, "Choose a size");
-
-            fillSelect(
-                colourSelect,
-                product.colours,
-                "Choose a colour"
-            );
-
-            sizeField.style.display =
-                product.sizes.length > 0 ? "" : "none";
-
-            colourField.style.display =
-                product.colours.length > 0 ? "" : "none";
-
-            typeField.style.display =
-                product.canHire ? "" : "none";
-
-            typeSelect.value = "purchase";
-            quantitySelect.value = "1";
-
-            updateProductModalSummary();
-
-            openModal(productModal);
-        }
-
-
-        document.getElementById("shop-product-grid").addEventListener(
-            "click",
-            function (event) {
-                const button = event.target.closest("[data-add-product]");
-
-                if (!button) return;
-
-                openProductModal(button.dataset.addProduct);
-            }
-        );
-
-
-        typeSelect.addEventListener("change", updateProductModalSummary);
-        quantitySelect.addEventListener("change", updateProductModalSummary);
-
-
-        /* =====================================================
-           ADD ITEM TO BAG
-           ===================================================== */
-
-        productForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            if (!currentProduct) return;
-
-            const size = sizeSelect.value;
-            const colour = colourSelect.value;
-            const purchaseType = currentProduct.canHire
-                ? typeSelect.value
-                : "purchase";
-
-            const quantity = Number(quantitySelect.value) || 1;
-
-            if (currentProduct.sizes.length && !size) {
-                showProductModalMessage("Please select a size.");
-                sizeSelect.focus();
-                return;
-            }
-
-            if (currentProduct.colours.length && !colour) {
-                showProductModalMessage("Please select a colour.");
-                colourSelect.focus();
-                return;
-            }
-
-            if (
-                purchaseType === "hire" &&
-                !currentProduct.canHire
-            ) {
-                showProductModalMessage(
-                    "This item is purchase-only and cannot be hired."
-                );
-
-                return;
-            }
-
-            const existingItem = shopBag.find(function (item) {
-                return (
-                    item.productId === currentProduct.id &&
-                    item.size === size &&
-                    item.colour === colour &&
-                    item.purchaseType === purchaseType
-                );
-            });
-
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                shopBag.push({
-                    productId: currentProduct.id,
-                    size: size,
-                    colour: colour,
-                    purchaseType: purchaseType,
-                    quantity: quantity
-                });
-            }
-
-            saveBag();
-            renderBag();
-
-            closeModal(productModal);
-
-            document.getElementById("shop-bag-count").textContent =
-                getBagItemCount();
-
-            /*
-               Deliberately do not claim that stock is reserved.
-               This is a browser-only demonstration.
-            */
-        });
-
-
-        /* =====================================================
-           RENDER SHOPPING BAG
-           ===================================================== */
-
-        function renderBag() {
-            const bagContent = document.getElementById("shop-bag-content");
-            const bagSummary = document.getElementById("shop-bag-summary");
-            const bagCount = document.getElementById("shop-bag-count");
-
-            bagCount.textContent = getBagItemCount();
-
-            if (shopBag.length === 0) {
-                bagContent.innerHTML = `
-                    <div class="shop-bag-empty">
-                        <strong>Your bag is empty.</strong>
-                        Browse the club shop and add your first item.
-                    </div>
-                `;
-
-                bagSummary.hidden = true;
-                saveBag();
-
-                return;
-            }
-
-            bagSummary.hidden = false;
-
-            bagContent.innerHTML = `
-                <div class="shop-bag-list">
-                    ${shopBag.map(function (item, index) {
-                        const product = getProduct(item.productId);
-
-                        if (!product) return "";
-
-                        const itemPrice = getItemPrice(
-                            product,
-                            item.purchaseType
-                        );
-
-                        const optionLines = [];
-
-                        if (item.size) {
-                            optionLines.push(
-                                "Size: " + escapeHTML(item.size)
-                            );
-                        }
-
-                        if (item.colour) {
-                            optionLines.push(
-                                "Colour: " + escapeHTML(item.colour)
-                            );
-                        }
-
-                        optionLines.push(
-                            item.purchaseType === "hire"
-                                ? "Hire"
-                                : "Purchase"
-                        );
-
-                        return `
-                            <article class="shop-bag-item">
-
-                                <div>
-                                    <h3>${escapeHTML(product.name)}</h3>
-
-                                    <p>${optionLines.join(" · ")}</p>
-
-                                    <div class="shop-bag-item-price">
-                                        ${formatMoney(itemPrice * item.quantity)}
-                                    </div>
-                                </div>
-
-                                <div class="shop-bag-controls">
-
-                                    <button
-                                        type="button"
-                                        class="shop-quantity-button"
-                                        data-quantity-change="${index}"
-                                        data-direction="-1"
-                                        aria-label="Decrease quantity"
-                                    >−</button>
-
-                                    <span class="shop-quantity">
-                                        ${item.quantity}
-                                    </span>
-
-                                    <button
-                                        type="button"
-                                        class="shop-quantity-button"
-                                        data-quantity-change="${index}"
-                                        data-direction="1"
-                                        aria-label="Increase quantity"
-                                    >+</button>
-
-                                    <button
-                                        type="button"
-                                        class="shop-remove-button"
-                                        data-remove-item="${index}"
-                                    >
-                                        Remove
-                                    </button>
-
-                                </div>
-
-                            </article>
-                        `;
-                    }).join("")}
-                </div>
-            `;
-
-            document.getElementById("shop-summary-items").textContent =
-                getBagItemCount();
-
-            document.getElementById("shop-summary-total").textContent =
-                formatMoney(getBagTotal());
-
-            document.getElementById("shop-summary-total").setAttribute(
-                "aria-label",
-                "Estimated total " + formatMoney(getBagTotal())
-            );
-
-            saveBag();
-        }
-
-
-        /* =====================================================
-           BAG QUANTITY AND REMOVAL CONTROLS
-           ===================================================== */
-
-        document.getElementById("shop-bag-content").addEventListener(
-            "click",
-            function (event) {
-                const quantityButton = event.target.closest(
-                    "[data-quantity-change]"
-                );
-
-                const removeButton = event.target.closest(
-                    "[data-remove-item]"
-                );
-
-                if (quantityButton) {
-                    const index = Number(
-                        quantityButton.dataset.quantityChange
-                    );
-
-                    const direction = Number(
-                        quantityButton.dataset.direction
-                    );
-
-                    if (!shopBag[index]) return;
-
-                    shopBag[index].quantity += direction;
-
-                    if (shopBag[index].quantity <= 0) {
-                        shopBag.splice(index, 1);
-                    }
-
-                    if (shopBag[index] && shopBag[index].quantity > 99) {
-                        shopBag[index].quantity = 99;
-                    }
-
-                    renderBag();
-                    return;
-                }
-
-                if (removeButton) {
-                    const index = Number(
-                        removeButton.dataset.removeItem
-                    );
-
-                    if (!Number.isInteger(index)) return;
-
-                    shopBag.splice(index, 1);
-                    renderBag();
-                }
-            }
-        );
-
-
-        /* =====================================================
-           CLEAR BAG
-           ===================================================== */
-
-        document.getElementById("shop-clear-bag").addEventListener(
-            "click",
-            function () {
-                if (shopBag.length === 0) return;
-
-                shopBag = [];
-
-                saveBag();
-                renderBag();
-            }
-        );
-
-
-        /* =====================================================
-           ORDER REVIEW
-           ===================================================== */
-
-        const orderModal = document.getElementById("shop-order-modal");
-
-
-        function openOrderReview() {
-            if (shopBag.length === 0) {
-                return;
-            }
-
-            const reviewContent = document.getElementById(
-                "shop-order-review-content"
-            );
-
-            const itemLines = shopBag.map(function (item) {
-                const product = getProduct(item.productId);
-
-                if (!product) return "";
-
-                const unitPrice = getItemPrice(
-                    product,
-                    item.purchaseType
-                );
-
-                const options = [];
-
-                if (item.size) {
-                    options.push("Size " + escapeHTML(item.size));
-                }
-
-                if (item.colour) {
-                    options.push("Colour " + escapeHTML(item.colour));
-                }
-
-                options.push(
-                    item.purchaseType === "hire" ? "Hire" : "Purchase"
-                );
-
-                return `
-                    <div class="shop-summary-line">
-                        <span>
-                            ${escapeHTML(product.name)}
-                            × ${item.quantity}
-                            <br>
-                            <small>${options.join(" · ")}</small>
-                        </span>
-
-                        <strong>${formatMoney(unitPrice * item.quantity)}</strong>
-                    </div>
-                `;
-            }).join("");
-
-            reviewContent.innerHTML = `
-                <div class="shop-checkout-summary">
-                    ${itemLines}
-
-                    <div class="shop-summary-line total">
-                        <span>Estimated total</span>
-                        <strong>${formatMoney(getBagTotal())}</strong>
-                    </div>
-                </div>
-            `;
-
-            openModal(orderModal);
-        }
-
-
-        document.getElementById("shop-review-order").addEventListener(
-            "click",
-            openOrderReview
-        );
-
-
-        document.getElementById("shop-order-review-close").addEventListener(
-            "click",
-            function () {
-                closeModal(orderModal);
-            }
-        );
-
-
-        /* =====================================================
-           INITIALISE SHOP
-           ===================================================== */
-
-        renderProducts();
-        renderBag();
-
-    </script>
+    <script src="shop.js" defer></script>
 
 </body>
 </html>
-```
