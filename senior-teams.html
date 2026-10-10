@@ -123,99 +123,69 @@
 <body class="page-senior">
 
   <!-- =========================================================
-       NAVBAR
-       ========================================================= -->
+     NGONGOTĀHĀ AFC NAVIGATION BAR
+     Uses the existing shared style.css
+     ========================================================= -->
 
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
 
-    <a href="index.html" class="navbar-logo">
-
-      <img
-        src="logo.png"
-        alt="Ngongotahā AFC Logo"
-      >
-
+    <!-- Club Logo -->
+    <a href="index.html" class="navbar-logo" aria-label="Ngongotāhā AFC home">
+        <img
+            src="logo.png"
+            alt="Ngongotāhā Football Club Logo"
+        >
     </a>
 
-
+    <!-- Navigation Links -->
     <div class="nav-links">
 
+        <!-- Home and About Us -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+        </div>
 
-      <a href="index.html">
-        Home
-      </a>
+        <!-- Login and Registrations -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <a href="https://ngongotahaafc.friendlymanager.com">Login</a>
+            <a href="registrations.html">Registrations</a>
+        </div>
 
+        <!-- CR1 Project and Facilities -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <a href="cr1.html">CR1 Project</a>
+            <a href="hire.html">Hire &amp; Facilities</a>
+        </div>
 
-      <a href="registrations.html">
-        Registrations
-      </a>
+        <!-- Club Shop and Teams Dropdown -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
 
+            <a href="shop.html">Club Shop</a>
 
-      <a href="cr1.html">
-        CR1 Project
-      </a>
+            <div class="dropdown">
 
+                <button
+                    class="dropbtn"
+                    type="button"
+                    aria-haspopup="true"
+                >
+                    Ngongotahā Teams
+                </button>
 
-      <a href="hire.html">
-        Hire & Facilities
-      </a>
+                <div class="dropdown-content">
+                    <a href="senior-teams.html">Senior Teams</a>
+                    <a href="junior-teams.html">Junior Teams</a>
+                    <a href="womens-teams.html">Women's Teams</a>
+                </div>
 
-
-      <div class="dropdown">
-
-
-        <button
-          class="dropbtn"
-          type="button"
-          aria-expanded="false"
-          aria-haspopup="true"
-        >
-          Ngongotahā Teams
-        </button>
-
-
-        <div class="dropdown-content">
-
-
-          <a href="senior-teams.html">
-            Senior Teams
-          </a>
-
-
-          <a href="junior-teams.html">
-            Junior Teams
-          </a>
-
-
-          <a href="womens-teams.html">
-            Women's Teams
-          </a>
-
+            </div>
 
         </div>
 
-
-      </div>
-
-
-      <a href="calendar.html">
-        Calendar
-      </a>
-
-
-      <a href="aboutus.html">
-        About Us
-      </a>
-
-
-      <a href="academy.html">
-        Academy
-      </a>
-
-
     </div>
 
-  </nav>
+</nav>
 
 
   <!-- =========================================================
