@@ -415,9 +415,8 @@ REMOVE UNWANTED NAVIGATION TABS
 ========================================================= */
 
 .nav-links a[href="academy.html"],
-.nav-links a[href="calendar.html"],
-.nav-links a[href="aboutus.html"] {
-
+.nav-links a[href="calendar.html"], 
+{
   display:
     none !important;
 
