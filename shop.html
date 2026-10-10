@@ -1433,6 +1433,90 @@
            RESPONSIVE LAYOUT
            ========================================================= */
 
+        
+        /* Keep the three main products first in the initial collection view. */
+        #shopProduct-shirt { order: 1; }
+        #shopProduct-shorts { order: 2; }
+        #shopProduct-hoodie { order: 3; }
+        #shopProduct-socks { order: 4; }
+        #shopProduct-training-top { order: 5; }
+        #shopProduct-jacket { order: 6; }
+        #shopProduct-beanie { order: 7; }
+        #shopProduct-scarf { order: 8; }
+        #shopProduct-cap { order: 9; }
+
+        .shop-page .shop-size-guide-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin: -18px 0 28px;
+            color: #bdbdbd;
+            font-size: 12px;
+        }
+        .shop-page .shop-size-guide-row p { margin: 0; }
+        .shop-page .shop-size-guide-button {
+            padding: 9px 13px;
+            color: #ffad78;
+            background: transparent;
+            border: 1px solid rgba(255,145,77,.55);
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 800;
+            transition: background .2s ease, color .2s ease;
+        }
+        .shop-page .shop-size-guide-button:hover {
+            color: #fff;
+            background: #fe4300;
+        }
+        .shop-page .shop-size-guide-button:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .shop-page .shop-size-guide-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,.78);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .2s ease, visibility .2s ease;
+        }
+        .shop-page .shop-size-guide-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .shop-page .shop-size-guide-panel {
+            width: min(520px, 100%);
+            max-height: min(80vh, 700px);
+            overflow-y: auto;
+            padding: 28px;
+            color: #eee;
+            background: #151515;
+            border: 1px solid rgba(255,145,77,.4);
+            border-radius: 7px;
+            box-shadow: 0 20px 70px rgba(0,0,0,.5);
+        }
+        .shop-page .shop-size-guide-panel h2 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: 24px;
+        }
+        .shop-page .shop-size-guide-panel h2 span { color: #ff6a00; }
+        .shop-page .shop-size-guide-panel p,
+        .shop-page .shop-size-guide-panel li {
+            color: #bdbdbd;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .shop-page .shop-size-guide-panel ul { padding-left: 20px; }
+        .shop-page .shop-size-guide-panel .shop-primary-button { margin-top: 10px; }
+
         @media (max-width: 1000px) {
             .shop-page .shop-hero {
                 min-height: 490px;
@@ -1808,8 +1892,8 @@
                     </div>
 
                     <h1>
-                        Wear The
-                        <span>Orange.</span>
+                        Go The
+                        <span>Villagers.</span>
                     </h1>
 
                     <p class="shop-hero-description">
@@ -2005,23 +2089,29 @@
                     <button
                         type="button"
                         class="shop-filter-button"
-                        data-filter="training"
+                        data-filter="accessories"
                         aria-pressed="false"
                     >
-                        Training Gear
+                        Accessories
                     </button>
 
                     <button
                         type="button"
                         class="shop-filter-button"
-                        data-filter="merchandise"
+                        data-filter="supporter-gear"
                         aria-pressed="false"
                     >
-                        Merchandise
+                        Supporter Gear
                     </button>
 
                 </div>
 
+                <div class="shop-size-guide-row">
+                    <p>Not sure which size to choose?</p>
+                    <button type="button" class="shop-size-guide-button" id="shopOpenSizeGuide">
+                        View Size Guide
+                    </button>
+                </div>
 
                 <div
                     class="shop-product-grid"
@@ -2049,6 +2139,7 @@
                     <!-- CLUB SHIRT -->
 
                     <article
+                        id="shopProduct-shirt"
                         class="shop-product-card"
                         data-category="matchwear"
                         data-search="club playing shirt jersey match kit football"
@@ -2077,9 +2168,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Matchwear
-                            </div>
+                            <div class="shop-product-category">Matchwear</div>
 
                             <h3>Club Playing Shirt</h3>
 
@@ -2104,20 +2193,20 @@
                                     data-size-for="shirt"
                                 >
                                     <option value="">Choose a size</option>
-                                    <option value="4">Junior 4</option>
-                                    <option value="6">Junior 6</option>
-                                    <option value="8">Junior 8</option>
-                                    <option value="10">Junior 10</option>
-                                    <option value="12">Junior 12</option>
-                                    <option value="14">Junior 14</option>
-                                    <option value="16">Junior 16</option>
-                                    <option value="XS">Adult XS</option>
-                                    <option value="S">Adult S</option>
-                                    <option value="M">Adult M</option>
-                                    <option value="L">Adult L</option>
-                                    <option value="XL">Adult XL</option>
-                                    <option value="2XL">Adult 2XL</option>
-                                    <option value="3XL">Adult 3XL</option>
+                                    <option value="Junior 4">Junior 4</option>
+                                    <option value="Junior 6">Junior 6</option>
+                                    <option value="Junior 8">Junior 8</option>
+                                    <option value="Junior 10">Junior 10</option>
+                                    <option value="Junior 12">Junior 12</option>
+                                    <option value="Junior 14">Junior 14</option>
+                                    <option value="Junior 16">Junior 16</option>
+                                    <option value="Adult XS">Adult XS</option>
+                                    <option value="Adult S">Adult S</option>
+                                    <option value="Adult M">Adult M</option>
+                                    <option value="Adult L">Adult L</option>
+                                    <option value="Adult XL">Adult XL</option>
+                                    <option value="Adult 2XL">Adult 2XL</option>
+                                    <option value="Adult 3XL">Adult 3XL</option>
                                 </select>
 
                             </div>
@@ -2153,6 +2242,7 @@
                     <!-- CLUB SHORTS -->
 
                     <article
+                        id="shopProduct-shorts"
                         class="shop-product-card"
                         data-category="matchwear"
                         data-search="club playing shorts football match kit"
@@ -2177,9 +2267,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Matchwear
-                            </div>
+                            <div class="shop-product-category">Matchwear</div>
 
                             <h3>Club Playing Shorts</h3>
 
@@ -2204,20 +2292,20 @@
                                     data-size-for="shorts"
                                 >
                                     <option value="">Choose a size</option>
-                                    <option value="4">Junior 4</option>
-                                    <option value="6">Junior 6</option>
-                                    <option value="8">Junior 8</option>
-                                    <option value="10">Junior 10</option>
-                                    <option value="12">Junior 12</option>
-                                    <option value="14">Junior 14</option>
-                                    <option value="16">Junior 16</option>
-                                    <option value="XS">Adult XS</option>
-                                    <option value="S">Adult S</option>
-                                    <option value="M">Adult M</option>
-                                    <option value="L">Adult L</option>
-                                    <option value="XL">Adult XL</option>
-                                    <option value="2XL">Adult 2XL</option>
-                                    <option value="3XL">Adult 3XL</option>
+                                    <option value="Junior 4">Junior 4</option>
+                                    <option value="Junior 6">Junior 6</option>
+                                    <option value="Junior 8">Junior 8</option>
+                                    <option value="Junior 10">Junior 10</option>
+                                    <option value="Junior 12">Junior 12</option>
+                                    <option value="Junior 14">Junior 14</option>
+                                    <option value="Junior 16">Junior 16</option>
+                                    <option value="Adult XS">Adult XS</option>
+                                    <option value="Adult S">Adult S</option>
+                                    <option value="Adult M">Adult M</option>
+                                    <option value="Adult L">Adult L</option>
+                                    <option value="Adult XL">Adult XL</option>
+                                    <option value="Adult 2XL">Adult 2XL</option>
+                                    <option value="Adult 3XL">Adult 3XL</option>
                                 </select>
 
                             </div>
@@ -2253,8 +2341,9 @@
                     <!-- CLUB SOCKS -->
 
                     <article
+                        id="shopProduct-socks"
                         class="shop-product-card"
-                        data-category="matchwear"
+                        data-category="accessories"
                         data-search="club football socks match kit"
                     >
 
@@ -2281,9 +2370,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Matchwear
-                            </div>
+                            <div class="shop-product-category">Accessories</div>
 
                             <h3>Club Football Socks</h3>
 
@@ -2346,8 +2433,9 @@
                     <!-- CLUB HOODIE -->
 
                     <article
+                        id="shopProduct-hoodie"
                         class="shop-product-card"
-                        data-category="merchandise"
+                        data-category="supporter-gear"
                         data-search="club hoodie sweatshirt warm clothing supporter"
                     >
 
@@ -2374,9 +2462,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Merchandise
-                            </div>
+                            <div class="shop-product-category">Supporter Gear</div>
 
                             <h3>Club Hoodie</h3>
 
@@ -2401,20 +2487,20 @@
                                     data-size-for="hoodie"
                                 >
                                     <option value="">Choose a size</option>
-                                    <option value="4">Junior 4</option>
-                                    <option value="6">Junior 6</option>
-                                    <option value="8">Junior 8</option>
-                                    <option value="10">Junior 10</option>
-                                    <option value="12">Junior 12</option>
-                                    <option value="14">Junior 14</option>
-                                    <option value="16">Junior 16</option>
-                                    <option value="XS">Adult XS</option>
-                                    <option value="S">Adult S</option>
-                                    <option value="M">Adult M</option>
-                                    <option value="L">Adult L</option>
-                                    <option value="XL">Adult XL</option>
-                                    <option value="2XL">Adult 2XL</option>
-                                    <option value="3XL">Adult 3XL</option>
+                                    <option value="Junior 4">Junior 4</option>
+                                    <option value="Junior 6">Junior 6</option>
+                                    <option value="Junior 8">Junior 8</option>
+                                    <option value="Junior 10">Junior 10</option>
+                                    <option value="Junior 12">Junior 12</option>
+                                    <option value="Junior 14">Junior 14</option>
+                                    <option value="Junior 16">Junior 16</option>
+                                    <option value="Adult XS">Adult XS</option>
+                                    <option value="Adult S">Adult S</option>
+                                    <option value="Adult M">Adult M</option>
+                                    <option value="Adult L">Adult L</option>
+                                    <option value="Adult XL">Adult XL</option>
+                                    <option value="Adult 2XL">Adult 2XL</option>
+                                    <option value="Adult 3XL">Adult 3XL</option>
                                 </select>
 
                             </div>
@@ -2450,8 +2536,9 @@
                     <!-- TRAINING TOP -->
 
                     <article
+                        id="shopProduct-training-top"
                         class="shop-product-card"
-                        data-category="training"
+                        data-category="matchwear"
                         data-search="training top football practice training shirt"
                     >
 
@@ -2474,9 +2561,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Training Gear
-                            </div>
+                            <div class="shop-product-category">Matchwear</div>
 
                             <h3>Training Top</h3>
 
@@ -2501,20 +2586,20 @@
                                     data-size-for="training-top"
                                 >
                                     <option value="">Choose a size</option>
-                                    <option value="4">Junior 4</option>
-                                    <option value="6">Junior 6</option>
-                                    <option value="8">Junior 8</option>
-                                    <option value="10">Junior 10</option>
-                                    <option value="12">Junior 12</option>
-                                    <option value="14">Junior 14</option>
-                                    <option value="16">Junior 16</option>
-                                    <option value="XS">Adult XS</option>
-                                    <option value="S">Adult S</option>
-                                    <option value="M">Adult M</option>
-                                    <option value="L">Adult L</option>
-                                    <option value="XL">Adult XL</option>
-                                    <option value="2XL">Adult 2XL</option>
-                                    <option value="3XL">Adult 3XL</option>
+                                    <option value="Junior 4">Junior 4</option>
+                                    <option value="Junior 6">Junior 6</option>
+                                    <option value="Junior 8">Junior 8</option>
+                                    <option value="Junior 10">Junior 10</option>
+                                    <option value="Junior 12">Junior 12</option>
+                                    <option value="Junior 14">Junior 14</option>
+                                    <option value="Junior 16">Junior 16</option>
+                                    <option value="Adult XS">Adult XS</option>
+                                    <option value="Adult S">Adult S</option>
+                                    <option value="Adult M">Adult M</option>
+                                    <option value="Adult L">Adult L</option>
+                                    <option value="Adult XL">Adult XL</option>
+                                    <option value="Adult 2XL">Adult 2XL</option>
+                                    <option value="Adult 3XL">Adult 3XL</option>
                                 </select>
 
                             </div>
@@ -2550,8 +2635,9 @@
                     <!-- CLUB JACKET -->
 
                     <article
+                        id="shopProduct-jacket"
                         class="shop-product-card"
-                        data-category="training"
+                        data-category="supporter-gear"
                         data-search="club training jacket warm up outerwear"
                     >
 
@@ -2574,9 +2660,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Training Gear
-                            </div>
+                            <div class="shop-product-category">Supporter Gear</div>
 
                             <h3>Club Training Jacket</h3>
 
@@ -2601,20 +2685,20 @@
                                     data-size-for="jacket"
                                 >
                                     <option value="">Choose a size</option>
-                                    <option value="4">Junior 4</option>
-                                    <option value="6">Junior 6</option>
-                                    <option value="8">Junior 8</option>
-                                    <option value="10">Junior 10</option>
-                                    <option value="12">Junior 12</option>
-                                    <option value="14">Junior 14</option>
-                                    <option value="16">Junior 16</option>
-                                    <option value="XS">Adult XS</option>
-                                    <option value="S">Adult S</option>
-                                    <option value="M">Adult M</option>
-                                    <option value="L">Adult L</option>
-                                    <option value="XL">Adult XL</option>
-                                    <option value="2XL">Adult 2XL</option>
-                                    <option value="3XL">Adult 3XL</option>
+                                    <option value="Junior 4">Junior 4</option>
+                                    <option value="Junior 6">Junior 6</option>
+                                    <option value="Junior 8">Junior 8</option>
+                                    <option value="Junior 10">Junior 10</option>
+                                    <option value="Junior 12">Junior 12</option>
+                                    <option value="Junior 14">Junior 14</option>
+                                    <option value="Junior 16">Junior 16</option>
+                                    <option value="Adult XS">Adult XS</option>
+                                    <option value="Adult S">Adult S</option>
+                                    <option value="Adult M">Adult M</option>
+                                    <option value="Adult L">Adult L</option>
+                                    <option value="Adult XL">Adult XL</option>
+                                    <option value="Adult 2XL">Adult 2XL</option>
+                                    <option value="Adult 3XL">Adult 3XL</option>
                                 </select>
 
                             </div>
@@ -2650,8 +2734,9 @@
                     <!-- BEANIE -->
 
                     <article
+                        id="shopProduct-beanie"
                         class="shop-product-card"
-                        data-category="merchandise"
+                        data-category="supporter-gear"
                         data-search="club beanie hat winter supporter merchandise"
                     >
 
@@ -2674,9 +2759,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Merchandise
-                            </div>
+                            <div class="shop-product-category">Supporter Gear</div>
 
                             <h3>Club Beanie</h3>
 
@@ -2736,8 +2819,9 @@
                     <!-- SUPPORTER SCARF -->
 
                     <article
+                        id="shopProduct-scarf"
                         class="shop-product-card"
-                        data-category="merchandise"
+                        data-category="supporter-gear"
                         data-search="club supporter scarf football merchandise"
                     >
 
@@ -2760,9 +2844,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Merchandise
-                            </div>
+                            <div class="shop-product-category">Supporter Gear</div>
 
                             <h3>Supporter Scarf</h3>
 
@@ -2822,8 +2904,9 @@
                     <!-- CLUB CAP -->
 
                     <article
+                        id="shopProduct-cap"
                         class="shop-product-card"
-                        data-category="merchandise"
+                        data-category="supporter-gear"
                         data-search="club cap hat supporter merchandise"
                     >
 
@@ -2846,9 +2929,7 @@
 
                         <div class="shop-product-content">
 
-                            <div class="shop-product-category">
-                                Merchandise
-                            </div>
+                            <div class="shop-product-category">Supporter Gear</div>
 
                             <h3>Club Cap</h3>
 
@@ -2965,6 +3046,8 @@
                         <a href="mailto:info@ngongotahafootball.co.nz">
                             info@ngongotahafootball.co.nz
                         </a>
+                        <br><br>
+                        <strong>Collection &amp; delivery:</strong> options will be confirmed when the live shop launches.
                     </p>
 
                 </div>
@@ -2975,6 +3058,30 @@
 
     </main>
 
+
+    <!-- =========================================================
+         SIZE GUIDE
+         ========================================================= -->
+    <div
+        class="shop-size-guide-modal"
+        id="shopSizeGuideModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="shopSizeGuideTitle"
+        aria-hidden="true"
+    >
+        <div class="shop-size-guide-panel">
+            <h2 id="shopSizeGuideTitle">Club <span>Size Guide</span></h2>
+            <p>Choose the size range that matches the item you are buying. Junior and adult sizes are kept separate in your shopping bag, even when the labels look similar.</p>
+            <ul>
+                <li><strong>Playing shirts, shorts and hoodies:</strong> junior sizes 4–16 and adult sizes XS–3XL where listed on the product.</li>
+                <li><strong>Football socks:</strong> choose Junior, Youth or Adult.</li>
+                <li><strong>One-size items:</strong> caps, beanies and scarves are listed as One Size.</li>
+            </ul>
+            <p>Exact garment measurements have not been supplied for this prototype. If you are unsure, please contact <a href="mailto:info@ngongotahafootball.co.nz">info@ngongotahafootball.co.nz</a> before choosing.</p>
+            <button type="button" class="shop-primary-button" id="shopCloseSizeGuide">Got It</button>
+        </div>
+    </div>
 
     <!-- =========================================================
          SHOPPING BAG DRAWER
