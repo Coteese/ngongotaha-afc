@@ -1,250 +1,686 @@
-/* ================================================================
-   NGONGOTĀHĀ AFC — MASTER JAVASCRIPT
+/* =========================================================
+   NGONGOTĀHĀ AFC WEBSITE
+   SHARED JAVASCRIPT
    File: java.js
 
-   Website-wide functionality:
-   - Responsive navigation dropdown
-   - Desktop hover support
-   - Mobile tap support
-   - Close dropdown when clicking elsewhere
-   - Close dropdown with Escape
-   - Accessible dropdown state
-   - Safe to load on pages without every feature
+   Handles:
+   - Navbar scroll behaviour
+   - Mobile teams dropdown
+   - News article popups
+   - Gallery slideshow and keyboard controls
+   - Sponsor slider
 
-   The club shop remains separate in shop.js.
-   ================================================================ */
+   Safe to load on pages that do not contain these features.
+========================================================= */
 
-(function () {
-    "use strict";
+"use strict";
 
-    /* ============================================================
-       NAVIGATION DROPDOWN
-       ============================================================ */
 
-    function initialiseNavigation() {
-        const dropdowns = document.querySelectorAll(".dropdown");
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
 
-        if (!dropdowns.length) {
+function initialiseNavbar() {
+    const navbar = document.getElementById("navbar");
+
+    if (!navbar) {
+        return;
+    }
+
+    function updateNavbar() {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    }
+
+    window.addEventListener("scroll", updateNavbar, {
+        passive: true
+    });
+
+    updateNavbar();
+}
+
+
+/* =========================================================
+   TEAMS DROPDOWN
+========================================================= */
+
+function initialiseDropdown() {
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownButton = document.querySelector(".dropbtn");
+
+    if (!dropdown || !dropdownButton) {
+        return;
+    }
+
+    function closeDropdown() {
+        dropdown.classList.remove("mobile-open");
+        dropdownButton.setAttribute("aria-expanded", "false");
+    }
+
+    dropdownButton.setAttribute("aria-expanded", "false");
+
+    dropdownButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = dropdown.classList.toggle("mobile-open");
+
+        dropdownButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!dropdown.contains(event.target)) {
+            closeDropdown();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeDropdown();
+        }
+    });
+
+    dropdown.querySelectorAll(".dropdown-content a").forEach(function (link) {
+        link.addEventListener("click", closeDropdown);
+    });
+}
+
+
+/* =========================================================
+   NEWS ARTICLES
+========================================================= */
+
+const newsArticles = {
+
+    history: {
+        image: "drone.jpg",
+        kicker: "60 YEARS OF NGONGOTAHĀ AFC",
+        date: "1966 → 2026",
+        title: "A Club Built on Football, Community and Generations",
+
+        story: `
+            <p>
+                Ngongotahā AFC is celebrating its 60th year jubilee in
+                2026, and what a 60 years it has been.
+            </p>
+
+            <p>
+                Founded in 1966, Ngongotahā Football Club has grown
+                alongside the community it represents. What began as a
+                local football club has developed into one of Rotorua's
+                longstanding football institutions, providing a place
+                for generations of players to learn the game, make
+                friendships and pull on the Ngongotahā colours.
+            </p>
+
+            <p>
+                Over the decades, the club has competed across the
+                regional and national football landscape. Ngongotahā
+                spent many years competing in the Northern League era,
+                including football as high as the second division.
+                The club has also enjoyed memorable cup and championship
+                campaigns, with the 2011 season bringing a Federation
+                Championship title and promotion.
+            </p>
+
+            <p>
+                In 2014, Ngongotahā reached the round of 16 in the
+                Chatham Cup, creating another memorable chapter in the
+                club's history. Two years later came another milestone
+                when the club claimed its first Waikato-Bay of Plenty
+                Federation Premiership title, completing an unbeaten
+                championship campaign.
+            </p>
+
+            <p>
+                But the story of Ngongotahā AFC is about much more than
+                league tables and trophies. It is about the volunteers
+                preparing the grounds, coaches giving their time,
+                families standing on the sideline, juniors discovering
+                football for the first time, and players returning to
+                the club year after year.
+            </p>
+
+            <p>
+                As the club celebrates 60 years in 2026, the focus is
+                both on remembering the people and moments that built
+                Ngongotahā AFC and looking forward to the next generation.
+                From Little Dribblers and junior football through to
+                senior, women's and community football, the next chapter
+                is already being written.
+            </p>
+        `
+    },
+
+
+    walking: {
+        image: "cr2.jpg",
+        kicker: "COMMUNITY FOOTBALL",
+        date: "8 MAY",
+        title: "Walking Football Launches in Rotorua",
+
+        story: `
+            <p>
+                Ngongotahā AFC has helped launch Walking Football in
+                Rotorua, opening another pathway for people to enjoy
+                the game in a relaxed and welcoming environment.
+            </p>
+
+            <p>
+                The programme is designed for the over-55 community and
+                offers a slower-paced version of football without running
+                or contact.
+            </p>
+
+            <p>
+                It provides an accessible way to stay active, meet people
+                and continue enjoying the game regardless of previous
+                football experience or current fitness level.
+            </p>
+
+            <p>
+                The programme is being led by Head Coach Marvin Koeppen,
+                with sessions taking place in partnership with Parksyde
+                Community Centre.
+            </p>
+
+            <p>
+                It is another example of how football can provide a place
+                for people at different stages of life to stay connected
+                to the game and to their local community.
+            </p>
+        `
+    },
+
+
+    preseason: {
+        image: "mens.jpg",
+        kicker: "SENIOR FOOTBALL",
+        date: "9 JAN",
+        title: "Preseason 2026 Gets Underway",
+
+        story: `
+            <p>
+                The First Team and U23s began preparations for the
+                2026 season with preseason training at Stembridge Road.
+            </p>
+
+            <p>
+                With another season ahead and plenty to build towards,
+                the club welcomed new players to join the group and
+                become part of the Ngongotahā senior football pathway.
+            </p>
+
+            <p>
+                The first training session marked the beginning of the
+                work towards the new season, with players and coaches
+                getting back together and preparing for the challenges
+                ahead.
+            </p>
+
+            <p>
+                The session also included a club barbecue, bringing
+                players, coaches and the wider football community together
+                as the new season began.
+            </p>
+
+            <p>
+                With the senior pathway continuing to grow, preseason
+                provides another opportunity for players to put their
+                hands up, become part of the group and help shape the
+                2026 season.
+            </p>
+        `
+    },
+
+
+    whanau: {
+        image: "cr1.jpg",
+        kicker: "COMMUNITY",
+        date: "30 JAN",
+        title: "Football Meets the Community at Fun Whānau Days",
+
+        story: `
+            <p>
+                Ngongotahā AFC took football into the community during
+                a series of Fun Whānau Days across Rotorua.
+            </p>
+
+            <p>
+                The club brought football stations, small goals, cones
+                and plenty of footballs to local parks, giving tamariki
+                and whānau the chance to get involved in a fun and
+                informal setting.
+            </p>
+
+            <p>
+                The events included community sessions at Ngongotahā
+                Domain, Karenga Park in Te Koutu and Linton Park in
+                East Mangakakahi.
+            </p>
+
+            <p>
+                The focus was on making football accessible, welcoming
+                and enjoyable for everyone, with young players able to
+                get involved without the pressure of a formal training
+                environment.
+            </p>
+
+            <p>
+                The days are part of the club's continued commitment to
+                making football accessible throughout the Rotorua
+                community and helping more tamariki discover the game.
+            </p>
+        `
+    }
+
+};
+
+
+/* =========================================================
+   NEWS POPUP ELEMENTS
+========================================================= */
+
+let newsModal;
+let newsModalImage;
+let newsModalKicker;
+let newsModalDate;
+let newsModalTitle;
+let newsModalStory;
+
+let previouslyFocusedElement = null;
+
+
+/* =========================================================
+   OPEN NEWS POPUP
+
+   These functions are attached to window because the existing
+   index.html calls them using onclick attributes.
+========================================================= */
+
+function openNews(articleName) {
+    const article = newsArticles[articleName];
+
+    if (!article || !newsModal) {
+        return;
+    }
+
+    previouslyFocusedElement = document.activeElement;
+
+    newsModalImage.src = article.image;
+    newsModalImage.alt = article.title;
+
+    newsModalKicker.textContent = article.kicker;
+    newsModalDate.textContent = article.date;
+    newsModalTitle.textContent = article.title;
+
+    newsModalStory.innerHTML = article.story;
+
+    newsModal.classList.add("open");
+    newsModal.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("news-modal-open");
+
+    const closeButton = newsModal.querySelector(".news-modal-close");
+
+    if (closeButton) {
+        closeButton.focus();
+    }
+}
+
+
+/* =========================================================
+   CLOSE NEWS POPUP
+========================================================= */
+
+function closeNews() {
+    if (!newsModal) {
+        return;
+    }
+
+    newsModal.classList.remove("open");
+    newsModal.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("news-modal-open");
+
+    if (
+        previouslyFocusedElement &&
+        typeof previouslyFocusedElement.focus === "function"
+    ) {
+        previouslyFocusedElement.focus();
+    }
+}
+
+
+/* =========================================================
+   GALLERY SLIDESHOW
+========================================================= */
+
+let slideIndex = 0;
+let slideTimeout = null;
+let slides = [];
+
+
+function showSlide(index) {
+    if (!slides.length) {
+        return;
+    }
+
+    if (index >= slides.length) {
+        slideIndex = 0;
+    } else if (index < 0) {
+        slideIndex = slides.length - 1;
+    } else {
+        slideIndex = index;
+    }
+
+    slides.forEach(function (slide, indexNumber) {
+        slide.classList.toggle(
+            "active",
+            indexNumber === slideIndex
+        );
+    });
+
+    clearTimeout(slideTimeout);
+
+    slideTimeout = setTimeout(function () {
+        changeSlide(1);
+    }, 8000);
+}
+
+
+/* =========================================================
+   MANUAL GALLERY CONTROLS
+
+   Kept globally available for the existing HTML onclick
+   attributes: changeSlide(-1) and changeSlide(1).
+========================================================= */
+
+function changeSlide(amount) {
+    if (!slides.length) {
+        return;
+    }
+
+    showSlide(slideIndex + amount);
+}
+
+
+/* =========================================================
+   GALLERY KEYBOARD CONTROLS
+========================================================= */
+
+function initialiseGalleryKeyboard() {
+    document.addEventListener("keydown", function (event) {
+        if (
+            newsModal &&
+            newsModal.classList.contains("open")
+        ) {
             return;
         }
 
-        const mobileQuery = window.matchMedia("(max-width: 768px)");
+        if (event.key === "ArrowLeft") {
+            changeSlide(-1);
+        }
 
-        /*
-         * Find the dropdown trigger.
-         *
-         * Supports common navigation markup using:
-         * - A button
-         * - An anchor
-         * - A direct child with the "dropbtn" class
-         *
-         * The dropdown menu should use the "dropdown-content" class.
-         */
+        if (event.key === "ArrowRight") {
+            changeSlide(1);
+        }
+    });
+}
 
-        dropdowns.forEach(function (dropdown) {
-            const trigger =
-                dropdown.querySelector(".dropbtn") ||
-                dropdown.querySelector(
-                    ":scope > button, :scope > a"
-                );
 
-            const menu = dropdown.querySelector(".dropdown-content");
+/* =========================================================
+   SPONSOR SLIDER
 
-            if (!trigger || !menu) {
-                return;
+   Moves through the sponsor cards and reverses direction at
+   the end, rather than relying on conflicting CSS animations.
+========================================================= */
+
+function initialiseSponsorSlider() {
+    const sponsorBoard = document.querySelector(".sponsors-board");
+    const sponsorTrack = document.querySelector(".sponsors-track");
+    const sponsorGroup = document.querySelector(".sponsors-group");
+
+    if (!sponsorBoard || !sponsorTrack || !sponsorGroup) {
+        return;
+    }
+
+    const sponsors = Array.from(
+        sponsorGroup.querySelectorAll(".sponsor-item")
+    );
+
+    if (sponsors.length < 2) {
+        return;
+    }
+
+    let sponsorIndex = 0;
+    let sponsorDirection = 1;
+    let sponsorTimer = null;
+    let resizeTimer = null;
+
+    function getSponsorPositions() {
+        const boardWidth = sponsorBoard.clientWidth;
+        const groupWidth = sponsorGroup.scrollWidth;
+
+        const maxMovement = Math.max(
+            0,
+            groupWidth - boardWidth
+        );
+
+        return sponsors.map(function (sponsor) {
+            let position = sponsor.offsetLeft;
+
+            const sponsorWidth = sponsor.offsetWidth;
+
+            if (position + sponsorWidth > boardWidth) {
+                position = position + sponsorWidth - boardWidth;
             }
 
-            /*
-             * Give the trigger and menu accessible attributes.
-             */
-
-            if (!trigger.hasAttribute("aria-expanded")) {
-                trigger.setAttribute("aria-expanded", "false");
-            }
-
-            if (!menu.id) {
-                menu.id =
-                    "nav-dropdown-" +
-                    Math.random().toString(36).slice(2, 10);
-            }
-
-            trigger.setAttribute("aria-controls", menu.id);
-
-            /*
-             * Track whether this dropdown has been opened by a tap.
-             */
-
-            let isOpen = false;
-
-            function openDropdown() {
-                isOpen = true;
-
-                dropdown.classList.add("dropdown-open");
-
-                trigger.setAttribute("aria-expanded", "true");
-
-                menu.setAttribute("aria-hidden", "false");
-            }
-
-            function closeDropdown() {
-                isOpen = false;
-
-                dropdown.classList.remove("dropdown-open");
-
-                trigger.setAttribute("aria-expanded", "false");
-
-                menu.setAttribute("aria-hidden", "true");
-            }
-
-            function toggleDropdown() {
-                if (isOpen) {
-                    closeDropdown();
-                } else {
-                    openDropdown();
-                }
-            }
-
-            /*
-             * Initial state.
-             */
-
-            menu.setAttribute("aria-hidden", "true");
-
-            /*
-             * MOBILE:
-             * Tap the trigger to open or close the dropdown.
-             *
-             * DESKTOP:
-             * Allow the existing CSS hover behaviour to work.
-             */
-
-            trigger.addEventListener("click", function (event) {
-                if (mobileQuery.matches) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    toggleDropdown();
-                }
-            });
-
-            /*
-             * Close the dropdown when tapping outside it.
-             */
-
-            document.addEventListener("click", function (event) {
-                if (!dropdown.contains(event.target)) {
-                    closeDropdown();
-                }
-            });
-
-            /*
-             * Close the dropdown using Escape.
-             */
-
-            dropdown.addEventListener("keydown", function (event) {
-                if (event.key === "Escape" && isOpen) {
-                    closeDropdown();
-                    trigger.focus();
-                }
-            });
-
-            /*
-             * Close the dropdown after selecting a team link.
-             */
-
-            menu.querySelectorAll("a").forEach(function (link) {
-                link.addEventListener("click", function () {
-                    closeDropdown();
-                });
-            });
-
-            /*
-             * If the screen changes from phone to desktop or vice versa,
-             * clear the mobile open state.
-             */
-
-            function handleScreenChange() {
-                closeDropdown();
-            }
-
-            if (typeof mobileQuery.addEventListener === "function") {
-                mobileQuery.addEventListener(
-                    "change",
-                    handleScreenChange
-                );
-            } else if (typeof mobileQuery.addListener === "function") {
-                /* Compatibility with older browsers. */
-                mobileQuery.addListener(handleScreenChange);
-            }
+            return Math.max(
+                0,
+                Math.min(position, maxMovement)
+            );
         });
     }
 
+    function moveSponsor() {
+        const positions = getSponsorPositions();
 
-    /* ============================================================
-       MOBILE NAVIGATION SAFETY
-       ============================================================ */
+        if (!positions.length) {
+            return;
+        }
 
-    function initialiseMobileNavigation() {
-        /*
-         * This function deliberately avoids changing the layout
-         * of the navigation bar.
-         *
-         * Dropdown positioning and visual styling belong in CSS.
-         * JavaScript controls only the interaction.
-         */
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key !== "Escape") {
-                return;
-            }
-
-            document.querySelectorAll(
-                ".dropdown.dropdown-open"
-            ).forEach(function (dropdown) {
-                dropdown.classList.remove("dropdown-open");
-
-                const trigger =
-                    dropdown.querySelector(".dropbtn") ||
-                    dropdown.querySelector(
-                        ":scope > button, :scope > a"
-                    );
-
-                const menu = dropdown.querySelector(
-                    ".dropdown-content"
-                );
-
-                if (trigger) {
-                    trigger.setAttribute("aria-expanded", "false");
-                }
-
-                if (menu) {
-                    menu.setAttribute("aria-hidden", "true");
-                }
-            });
-        });
+        sponsorTrack.style.transform =
+            "translateX(-" + positions[sponsorIndex] + "px)";
     }
 
+    function nextSponsor() {
+        if (sponsorDirection === 1) {
+            if (sponsorIndex >= sponsors.length - 1) {
+                sponsorDirection = -1;
+                sponsorIndex = Math.max(0, sponsorIndex - 1);
+            } else {
+                sponsorIndex++;
+            }
+        } else {
+            if (sponsorIndex <= 0) {
+                sponsorDirection = 1;
+                sponsorIndex = Math.min(
+                    sponsors.length - 1,
+                    sponsorIndex + 1
+                );
+            } else {
+                sponsorIndex--;
+            }
+        }
 
-    /* ============================================================
-       INITIALISE WEBSITE
-       ============================================================ */
+        moveSponsor();
+    }
 
-    function initialiseWebsite() {
-        initialiseNavigation();
-        initialiseMobileNavigation();
+    function startSponsorSlider() {
+        clearInterval(sponsorTimer);
+
+        sponsorTimer = setInterval(function () {
+            nextSponsor();
+        }, 3000);
+    }
+
+    function updateSponsorPositions() {
+        const positions = getSponsorPositions();
+
+        if (sponsorIndex >= positions.length) {
+            sponsorIndex = Math.max(0, positions.length - 1);
+        }
+
+        moveSponsor();
     }
 
     /*
-     * Run after the HTML has been parsed.
-     */
+       Initialise the sponsor slider.
+    */
 
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            initialiseWebsite
-        );
-    } else {
-        initialiseWebsite();
+    sponsorTrack.style.animation = "none";
+    sponsorTrack.style.webkitAnimation = "none";
+
+    sponsorTrack.style.transform = "translateX(0)";
+    sponsorTrack.style.webkitTransform = "translateX(0)";
+
+    sponsorIndex = 0;
+    sponsorDirection = 1;
+
+    moveSponsor();
+    startSponsorSlider();
+
+    /*
+       Recalculate when the screen changes size.
+    */
+
+    window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(function () {
+            updateSponsorPositions();
+        }, 150);
+    });
+
+    /*
+       Pause the sponsor movement while the user hovers over
+       the board on desktop. Touch devices continue moving.
+    */
+
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        sponsorBoard.addEventListener("mouseenter", function () {
+            clearInterval(sponsorTimer);
+        });
+
+        sponsorBoard.addEventListener("mouseleave", function () {
+            startSponsorSlider();
+        });
+    }
+}
+
+
+/* =========================================================
+   INITIALISE WEBSITE
+========================================================= */
+
+function initialiseWebsite() {
+
+    /*
+       Navbar.
+    */
+
+    initialiseNavbar();
+
+
+    /*
+       Dropdown.
+    */
+
+    initialiseDropdown();
+
+
+    /*
+       News popup elements.
+    */
+
+    newsModal = document.getElementById("newsModal");
+    newsModalImage = document.getElementById("newsModalImage");
+    newsModalKicker = document.getElementById("newsModalKicker");
+    newsModalDate = document.getElementById("newsModalDate");
+    newsModalTitle = document.getElementById("newsModalTitle");
+    newsModalStory = document.getElementById("newsModalStory");
+
+
+    /*
+       Close the news popup with Escape.
+    */
+
+    document.addEventListener("keydown", function (event) {
+        if (
+            event.key === "Escape" &&
+            newsModal &&
+            newsModal.classList.contains("open")
+        ) {
+            closeNews();
+        }
+    });
+
+
+    /*
+       Close the popup when its backdrop is clicked.
+       The existing HTML also has an onclick handler, so this
+       listener is deliberately not added again.
+    */
+
+
+    /*
+       Gallery.
+    */
+
+    slides = Array.from(
+        document.querySelectorAll(".gallery-slide")
+    );
+
+    if (slides.length) {
+        showSlide(0);
     }
 
-})();
+    initialiseGalleryKeyboard();
+
+
+    /*
+       Sponsors.
+    */
+
+    initialiseSponsorSlider();
+}
+
+
+/* =========================================================
+   START WHEN HTML IS READY
+========================================================= */
+
+if (document.readyState === "loading") {
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialiseWebsite
+    );
+} else {
+    initialiseWebsite();
+}
+
+
+/* =========================================================
+   EXPOSE FUNCTIONS FOR EXISTING HTML ONCLICK ATTRIBUTES
+========================================================= */
+
+window.openNews = openNews;
+window.closeNews = closeNews;
+window.changeSlide = changeSlide;
