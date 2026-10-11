@@ -802,64 +802,6 @@
 
 
     /* =========================================================
-       PHONE NAVIGATION DROPDOWN
-       IMPORTANT:
-       This overrides the desktop dropdown only on phones.
-       It is fixed to the viewport so it cannot create a gap
-       inside the navbar.
-       ========================================================= */
-
-    @media (max-width: 900px) {
-
-      .dropdown {
-        position: static !important;
-      }
-
-      .dropdown-content {
-        position: fixed !important;
-
-        top: 82px !important;
-        left: 50% !important;
-        right: auto !important;
-
-        transform: translateX(-50%) !important;
-
-        width: 190px !important;
-        min-width: 190px !important;
-        max-width: calc(100vw - 20px) !important;
-
-        margin: 0 !important;
-
-        z-index: 999999 !important;
-
-        display: none;
-      }
-
-      .dropdown.mobile-open .dropdown-content {
-        display: block !important;
-      }
-
-      .dropdown-content a {
-        display: block !important;
-      }
-
-    }
-
-
-    @media (max-width: 600px) {
-
-      .dropdown-content {
-        top: 108px !important;
-
-        width: 185px !important;
-        min-width: 185px !important;
-        max-width: calc(100vw - 20px) !important;
-      }
-
-    }
-
-
-    /* =========================================================
        EXTRA PHONE FLIP-CARD STABILITY
        ========================================================= */
 
@@ -882,10 +824,6 @@
 </head>
 
 <body class="page-juniors">
-
-  <!-- =========================================================
-       NAVIGATION
-       ========================================================= -->
 
   <!-- =========================================================
      NGONGOTĀHĀ AFC NAVIGATION BAR
@@ -2268,8 +2206,10 @@
 
 
     /* =========================================================
-       NGONGOTAHĀ TEAMS DROPDOWN
-       PHONE / TOUCH / REFRESH SAFE
+       TEAMS DROPDOWN
+       Positions the menu just below the button on phones so it
+       never covers the button. Desktop uses the CSS, so hover
+       still opens flush under the button.
        ========================================================= */
 
     (function () {
@@ -2279,115 +2219,207 @@
         const dropdown =
           document.querySelector(".dropdown");
 
-        const dropdownButton =
-          document.getElementById(
-            "teamsDropdownButton"
-          );
+        const dropButton =
+          document.querySelector(".dropbtn");
+
+        const dropMenu =
+          document.querySelector(".dropdown-content");
+
+        const navBarElement =
+          document.getElementById("navbar");
+
+        const navLinks =
+          document.querySelector(".nav-links");
 
 
-        if (
-          !dropdown ||
-          !dropdownButton ||
-          dropdown.dataset.initialised === "true"
-        ) {
-
+        if (!dropdown || !dropButton || !dropMenu) {
           return;
-
         }
 
 
-        dropdown.dataset.initialised =
-          "true";
+        const mobileQuery =
+          window.matchMedia("(max-width: 900px)");
+
+        /* Space between the button and the menu on phones */
+        const GAP = 6;
 
 
-        function toggleDropdown(event) {
+        function positionDropdown() {
 
-          event.preventDefault();
-          event.stopPropagation();
+          /* Desktop: let the CSS handle it */
 
-          const isOpen =
-            dropdown.classList.toggle(
-              "mobile-open"
+          if (!mobileQuery.matches) {
+
+            dropMenu.style.top = "";
+            dropMenu.style.left = "";
+            dropMenu.style.transform = "";
+
+            return;
+
+          }
+
+
+          const buttonRect =
+            dropButton.getBoundingClientRect();
+
+          const navRect =
+            navBarElement
+              ? navBarElement.getBoundingClientRect()
+              : buttonRect;
+
+          const menuWidth =
+            dropMenu.offsetWidth || 190;
+
+
+          /* Always below the button and the navbar edge */
+
+          const top =
+            Math.max(buttonRect.bottom, navRect.bottom) + GAP;
+
+
+          /* Centre under the button, but keep on screen */
+
+          let left =
+            buttonRect.left +
+            buttonRect.width / 2 -
+            menuWidth / 2;
+
+          left =
+            Math.max(
+              10,
+              Math.min(
+                left,
+                window.innerWidth - menuWidth - 10
+              )
             );
 
-          dropdownButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
+
+          dropMenu.style.top = top + "px";
+          dropMenu.style.left = left + "px";
+          dropMenu.style.transform = "none";
 
         }
 
 
-        /*
-         * pointerup works on phones, tablets and
-         * desktop without relying on a separate
-         * touch event.
-         */
+        function openDropdown() {
 
-        dropdownButton.addEventListener(
-          "pointerup",
-          toggleDropdown,
-          false
+          dropdown.classList.add("mobile-open");
+
+          dropButton.setAttribute("aria-expanded", "true");
+
+          positionDropdown();
+
+        }
+
+
+        function closeDropdown() {
+
+          dropdown.classList.remove("mobile-open");
+
+          dropButton.setAttribute("aria-expanded", "false");
+
+        }
+
+
+        dropButton.setAttribute("aria-expanded", "false");
+
+
+        dropButton.addEventListener(
+          "click",
+          function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if (dropdown.classList.contains("mobile-open")) {
+
+              closeDropdown();
+
+            } else {
+
+              openDropdown();
+
+            }
+
+          }
         );
 
 
-        /*
-         * Prevent the normal click event from
-         * toggling the dropdown a second time
-         * after pointerup on a phone.
-         */
+        /* Desktop hover: keep the position correct */
 
-        dropdownButton.addEventListener(
-          "click",
-          function(event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-          },
-          false
+        dropdown.addEventListener(
+          "mouseenter",
+          positionDropdown
         );
 
 
         document.addEventListener(
-          "pointerup",
-          function(event) {
+          "click",
+          function (event) {
 
-            if (
-              !dropdown.contains(
-                event.target
-              )
-            ) {
+            if (!dropdown.contains(event.target)) {
 
-              dropdown.classList.remove(
-                "mobile-open"
-              );
-
-              dropdownButton.setAttribute(
-                "aria-expanded",
-                "false"
-              );
+              closeDropdown();
 
             }
 
-          },
-          false
+          }
         );
+
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (event.key === "Escape") {
+
+              closeDropdown();
+
+            }
+
+          }
+        );
+
+
+        dropMenu.querySelectorAll("a").forEach(
+          function (link) {
+
+            link.addEventListener("click", closeDropdown);
+
+          }
+        );
+
+
+        /* Re-position if the phone rotates or resizes */
+
+        window.addEventListener(
+          "resize",
+          positionDropdown
+        );
+
+
+        /* If the nav bar is swiped sideways, close the menu */
+
+        if (navLinks) {
+
+          navLinks.addEventListener(
+            "scroll",
+            closeDropdown,
+            { passive: true }
+          );
+
+        }
 
       }
 
 
-      if (
-        document.readyState ===
-        "loading"
-      ) {
+      if (document.readyState === "loading") {
 
         document.addEventListener(
           "DOMContentLoaded",
-          initialiseDropdown,
-          {
-            once: true
-          }
+          initialiseDropdown
         );
 
       } else {
