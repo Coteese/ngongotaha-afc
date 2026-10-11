@@ -5,7 +5,7 @@
 
    Handles:
    - Navbar scroll behaviour
-   - Mobile teams dropdown
+   - Teams dropdown (positioned under the button on phones)
    - News article popups
    - Gallery slideshow and keyboard controls
    - Sponsor slider
@@ -50,9 +50,46 @@ function initialiseNavbar() {
 function initialiseDropdown() {
     const dropdown = document.querySelector(".dropdown");
     const dropdownButton = document.querySelector(".dropbtn");
+    const dropdownMenu = document.querySelector(".dropdown-content");
+    const navbar = document.getElementById("navbar");
+    const navLinks = document.querySelector(".nav-links");
 
-    if (!dropdown || !dropdownButton) {
+    if (!dropdown || !dropdownButton || !dropdownMenu) {
         return;
+    }
+
+    const mobileQuery = window.matchMedia("(max-width: 900px)");
+    const GAP = 6; // space between the button and the menu on phones
+
+    function positionDropdown() {
+        // Desktop: let the CSS handle it (opens flush under the button)
+        if (!mobileQuery.matches) {
+            dropdownMenu.style.top = "";
+            dropdownMenu.style.left = "";
+            dropdownMenu.style.transform = "";
+            return;
+        }
+
+        const buttonRect = dropdownButton.getBoundingClientRect();
+        const navRect = navbar ? navbar.getBoundingClientRect() : buttonRect;
+        const menuWidth = dropdownMenu.offsetWidth || 190;
+
+        // Always below the button (and below the navbar edge)
+        const top = Math.max(buttonRect.bottom, navRect.bottom) + GAP;
+
+        // Centre under the button, but keep on screen
+        let left = buttonRect.left + buttonRect.width / 2 - menuWidth / 2;
+        left = Math.max(10, Math.min(left, window.innerWidth - menuWidth - 10));
+
+        dropdownMenu.style.top = top + "px";
+        dropdownMenu.style.left = left + "px";
+        dropdownMenu.style.transform = "none";
+    }
+
+    function openDropdown() {
+        dropdown.classList.add("mobile-open");
+        dropdownButton.setAttribute("aria-expanded", "true");
+        positionDropdown();
     }
 
     function closeDropdown() {
@@ -66,13 +103,15 @@ function initialiseDropdown() {
         event.preventDefault();
         event.stopPropagation();
 
-        const isOpen = dropdown.classList.toggle("mobile-open");
-
-        dropdownButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
+        if (dropdown.classList.contains("mobile-open")) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
     });
+
+    // Desktop hover: make sure the position is reset/correct
+    dropdown.addEventListener("mouseenter", positionDropdown);
 
     document.addEventListener("click", function (event) {
         if (!dropdown.contains(event.target)) {
@@ -89,6 +128,14 @@ function initialiseDropdown() {
     dropdown.querySelectorAll(".dropdown-content a").forEach(function (link) {
         link.addEventListener("click", closeDropdown);
     });
+
+    // Keep it in the right place if the phone rotates / resizes
+    window.addEventListener("resize", positionDropdown);
+
+    // If the nav bar is swiped sideways, the button moves, so close the menu
+    if (navLinks) {
+        navLinks.addEventListener("scroll", closeDropdown, { passive: true });
+    }
 }
 
 
@@ -300,8 +347,8 @@ let previouslyFocusedElement = null;
 /* =========================================================
    OPEN NEWS POPUP
 
-   These functions are attached to window because the existing
-   index.html calls them using onclick attributes.
+   Attached to window because index.html calls these using
+   onclick attributes.
 ========================================================= */
 
 function openNews(articleName) {
@@ -397,9 +444,6 @@ function showSlide(index) {
 
 /* =========================================================
    MANUAL GALLERY CONTROLS
-
-   Kept globally available for the existing HTML onclick
-   attributes: changeSlide(-1) and changeSlide(1).
 ========================================================= */
 
 function changeSlide(amount) {
@@ -541,9 +585,7 @@ function initialiseSponsorSlider() {
         moveSponsor();
     }
 
-    /*
-       Initialise the sponsor slider.
-    */
+    /* Initialise the sponsor slider. */
 
     sponsorTrack.style.animation = "none";
     sponsorTrack.style.webkitAnimation = "none";
@@ -557,9 +599,7 @@ function initialiseSponsorSlider() {
     moveSponsor();
     startSponsorSlider();
 
-    /*
-       Recalculate when the screen changes size.
-    */
+    /* Recalculate when the screen changes size. */
 
     window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
@@ -569,10 +609,7 @@ function initialiseSponsorSlider() {
         }, 150);
     });
 
-    /*
-       Pause the sponsor movement while the user hovers over
-       the board on desktop. Touch devices continue moving.
-    */
+    /* Pause on hover for desktop mice; touch devices keep moving. */
 
     if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
         sponsorBoard.addEventListener("mouseenter", function () {
@@ -592,23 +629,10 @@ function initialiseSponsorSlider() {
 
 function initialiseWebsite() {
 
-    /*
-       Navbar.
-    */
-
     initialiseNavbar();
-
-
-    /*
-       Dropdown.
-    */
-
     initialiseDropdown();
 
-
-    /*
-       News popup elements.
-    */
+    /* News popup elements. */
 
     newsModal = document.getElementById("newsModal");
     newsModalImage = document.getElementById("newsModalImage");
@@ -617,10 +641,7 @@ function initialiseWebsite() {
     newsModalTitle = document.getElementById("newsModalTitle");
     newsModalStory = document.getElementById("newsModalStory");
 
-
-    /*
-       Close the news popup with Escape.
-    */
+    /* Close the news popup with Escape. */
 
     document.addEventListener("keydown", function (event) {
         if (
@@ -632,17 +653,7 @@ function initialiseWebsite() {
         }
     });
 
-
-    /*
-       Close the popup when its backdrop is clicked.
-       The existing HTML also has an onclick handler, so this
-       listener is deliberately not added again.
-    */
-
-
-    /*
-       Gallery.
-    */
+    /* Gallery. */
 
     slides = Array.from(
         document.querySelectorAll(".gallery-slide")
@@ -654,10 +665,7 @@ function initialiseWebsite() {
 
     initialiseGalleryKeyboard();
 
-
-    /*
-       Sponsors.
-    */
+    /* Sponsors. */
 
     initialiseSponsorSlider();
 }
@@ -678,7 +686,7 @@ if (document.readyState === "loading") {
 
 
 /* =========================================================
-   EXPOSE FUNCTIONS FOR EXISTING HTML ONCLICK ATTRIBUTES
+   EXPOSE FUNCTIONS FOR HTML ONCLICK ATTRIBUTES
 ========================================================= */
 
 window.openNews = openNews;
