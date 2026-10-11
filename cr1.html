@@ -294,17 +294,17 @@
     <div class="nav-links">
 
         <!-- Home and About Us -->
-<div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: center;">
 
-    <a href="index.html">
-        Home
-    </a>
+            <a href="index.html">
+                Home
+            </a>
 
-    <a href="aboutus.html">
-        About Us
-    </a>
+            <a href="aboutus.html">
+                About Us
+            </a>
 
-</div>
+        </div>
 
         <!-- Registrations and Login -->
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -313,7 +313,7 @@
                 Login
             </a>
 
-          <a href="registrations.html">
+            <a href="registrations.html">
                 Registrations
             </a>
 
@@ -327,7 +327,7 @@
             </a>
 
             <a href="hire.html">
-                Hire & Facilities
+                Hire &amp; Facilities
             </a>
 
         </div>
@@ -375,7 +375,7 @@
 </nav>
 
 
-  
+
   <!-- =========================================================
        HERO
        ========================================================= -->
@@ -899,12 +899,15 @@
 
       }
 
-    });
+    }, { passive: true });
 
 
 
     /* =========================================================
-       MOBILE TEAM DROPDOWN
+       TEAMS DROPDOWN
+       Positions the menu just below the button on phones so it
+       never covers the button. Desktop uses the CSS (opens flush
+       under the button, so hover never loses the menu).
        ========================================================= */
 
     (function () {
@@ -917,9 +920,102 @@
         const dropButton =
           document.querySelector(".dropbtn");
 
+        const dropMenu =
+          document.querySelector(".dropdown-content");
 
-        if (!dropdown || !dropButton) {
+        const navbar =
+          document.getElementById("navbar");
+
+        const navLinks =
+          document.querySelector(".nav-links");
+
+
+        if (!dropdown || !dropButton || !dropMenu) {
           return;
+        }
+
+
+        const mobileQuery =
+          window.matchMedia("(max-width: 900px)");
+
+        /* Space between the button and the menu on phones */
+        const GAP = 6;
+
+
+        function positionDropdown() {
+
+          /* Desktop: let the CSS handle it */
+
+          if (!mobileQuery.matches) {
+
+            dropMenu.style.top = "";
+            dropMenu.style.left = "";
+            dropMenu.style.transform = "";
+
+            return;
+
+          }
+
+
+          const buttonRect =
+            dropButton.getBoundingClientRect();
+
+          const navRect =
+            navbar
+              ? navbar.getBoundingClientRect()
+              : buttonRect;
+
+          const menuWidth =
+            dropMenu.offsetWidth || 190;
+
+
+          /* Always below the button and the navbar edge */
+
+          const top =
+            Math.max(buttonRect.bottom, navRect.bottom) + GAP;
+
+
+          /* Centre under the button, but keep on screen */
+
+          let left =
+            buttonRect.left +
+            buttonRect.width / 2 -
+            menuWidth / 2;
+
+          left =
+            Math.max(
+              10,
+              Math.min(
+                left,
+                window.innerWidth - menuWidth - 10
+              )
+            );
+
+
+          dropMenu.style.top = top + "px";
+          dropMenu.style.left = left + "px";
+          dropMenu.style.transform = "none";
+
+        }
+
+
+        function openDropdown() {
+
+          dropdown.classList.add("mobile-open");
+
+          dropButton.setAttribute("aria-expanded", "true");
+
+          positionDropdown();
+
+        }
+
+
+        function closeDropdown() {
+
+          dropdown.classList.remove("mobile-open");
+
+          dropButton.setAttribute("aria-expanded", "false");
+
         }
 
 
@@ -932,16 +1028,25 @@
             event.stopPropagation();
 
 
-            const isOpen =
-              dropdown.classList.toggle("mobile-open");
+            if (dropdown.classList.contains("mobile-open")) {
 
+              closeDropdown();
 
-            dropButton.setAttribute(
-              "aria-expanded",
-              isOpen ? "true" : "false"
-            );
+            } else {
+
+              openDropdown();
+
+            }
 
           }
+        );
+
+
+        /* Desktop hover: keep the position correct */
+
+        dropdown.addEventListener(
+          "mouseenter",
+          positionDropdown
         );
 
 
@@ -951,27 +1056,61 @@
 
             if (!dropdown.contains(event.target)) {
 
-              dropdown.classList.remove(
-                "mobile-open"
-              );
-
-              dropButton.setAttribute(
-                "aria-expanded",
-                "false"
-              );
+              closeDropdown();
 
             }
 
           }
         );
 
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (event.key === "Escape") {
+
+              closeDropdown();
+
+            }
+
+          }
+        );
+
+
+        dropMenu.querySelectorAll("a").forEach(
+          function (link) {
+
+            link.addEventListener("click", closeDropdown);
+
+          }
+        );
+
+
+        /* Re-position if the phone rotates or resizes */
+
+        window.addEventListener(
+          "resize",
+          positionDropdown
+        );
+
+
+        /* If the nav bar is swiped sideways, close the menu */
+
+        if (navLinks) {
+
+          navLinks.addEventListener(
+            "scroll",
+            closeDropdown,
+            { passive: true }
+          );
+
+        }
+
       }
 
 
-      if (
-        document.readyState ===
-        "loading"
-      ) {
+      if (document.readyState === "loading") {
 
         document.addEventListener(
           "DOMContentLoaded",
@@ -1009,13 +1148,14 @@
 
         cr1SlideIndex = 0;
 
-      }
-
-
-      if (index < 0) {
+      } else if (index < 0) {
 
         cr1SlideIndex =
           cr1Slides.length - 1;
+
+      } else {
+
+        cr1SlideIndex = index;
 
       }
 
@@ -1036,9 +1176,7 @@
 
     function changeCR1Slide(direction) {
 
-      cr1SlideIndex += direction;
-
-      showCR1Slide(cr1SlideIndex);
+      showCR1Slide(cr1SlideIndex + direction);
 
       resetCR1AutoSlide();
 
@@ -1054,9 +1192,7 @@
       cr1AutoSlideTimer =
         setInterval(function () {
 
-          cr1SlideIndex++;
-
-          showCR1Slide(cr1SlideIndex);
+          showCR1Slide(cr1SlideIndex + 1);
 
         }, 8000);
 
