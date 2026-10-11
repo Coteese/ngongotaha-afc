@@ -1,0 +1,1614 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Discover the history, values and community behind Ngongotahā AFC. Proudly connecting generations through football since 1966."
+    >
+
+    <meta name="theme-color" content="#fe4300">
+
+    <title>About Us | Ngongotahā AFC</title>
+
+    <!-- SHARED MASTER STYLESHEET -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- =====================================================
+         ABOUT US PAGE-SPECIFIC STYLING
+
+         The main website styling remains in style.css.
+         These rules only style sections unique to this page.
+         ===================================================== -->
+
+    <style>
+
+        /* =====================================================
+           ABOUT PAGE HERO
+           ===================================================== */
+
+        .about-hero {
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(5, 5, 5, 0.97),
+                    rgba(35, 15, 7, 0.94),
+                    rgba(5, 5, 5, 0.97)
+                );
+
+            margin-top: 45px;
+        }
+
+
+        /* =====================================================
+           SECTION INTRODUCTION
+           ===================================================== */
+
+        .about-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            gap: 35px;
+            align-items: center;
+        }
+
+        .about-intro-text {
+            min-width: 0;
+        }
+
+        .about-intro-image {
+            width: 100%;
+            min-height: 300px;
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 145, 77, 0.35);
+            background: #080808;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+        }
+
+        .about-intro-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-intro-image:hover img {
+            transform: scale(1.04);
+        }
+
+
+        /* =====================================================
+           CLUB STATISTICS
+           ===================================================== */
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-stat {
+            padding: 27px 18px;
+            text-align: center;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(254, 67, 0, 0.14),
+                    rgba(10, 10, 10, 0.92)
+                );
+            border: 1px solid rgba(255, 145, 77, 0.25);
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .about-stat-number {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff914d;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .about-stat-label {
+            display: block;
+            color: #eeeeee;
+            font-size: 13px;
+            line-height: 1.6;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           CLUB VALUES
+           ===================================================== */
+
+        .about-values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 28px;
+        }
+
+        .about-value-card {
+            position: relative;
+            overflow: hidden;
+            padding: 28px 24px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #171717,
+                    #090909
+                );
+            border: 1px solid rgba(255, 145, 77, 0.22);
+            border-radius: 15px;
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .about-value-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #fe4300,
+                    #ff914d,
+                    transparent
+                );
+        }
+
+        .about-value-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 145, 77, 0.65);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-value-number {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #ff914d;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .about-value-card h3 {
+            margin: 0 0 14px;
+            color: #ffffff;
+            font-size: 21px;
+            text-transform: uppercase;
+        }
+
+        .about-value-card p {
+            margin: 0;
+            color: #cccccc;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           CLUB HISTORY TIMELINE
+           ===================================================== */
+
+        .about-timeline {
+            position: relative;
+            margin-top: 32px;
+            padding-left: 35px;
+        }
+
+        .about-timeline::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            left: 8px;
+            width: 2px;
+            background:
+                linear-gradient(
+                    180deg,
+                    #ff914d,
+                    #fe4300,
+                    rgba(254, 67, 0, 0.1)
+                );
+        }
+
+        .about-timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 23px 25px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 145, 77, 0.18);
+            border-radius: 12px;
+        }
+
+        .about-timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 29px;
+            left: -34px;
+            width: 12px;
+            height: 12px;
+            background: #fe4300;
+            border: 3px solid #ffb07a;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(254, 67, 0, 0.5);
+        }
+
+        .about-timeline-year {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff914d;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .about-timeline-item h3 {
+            margin: 0 0 10px;
+            color: #ffffff;
+            font-size: 21px;
+        }
+
+        .about-timeline-item p {
+            margin: 0;
+            color: #cccccc;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           FOOTBALL PATHWAYS
+           ===================================================== */
+
+        .about-pathways-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .about-pathway-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 27px 23px;
+            min-width: 0;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24, 24, 24, 0.98),
+                    rgba(7, 7, 7, 0.98)
+                );
+            border: 1px solid rgba(255, 145, 77, 0.25);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #ffffff;
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .about-pathway-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff914d;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-pathway-label {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #ff914d;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-pathway-card h3 {
+            margin: 0 0 14px;
+            color: #ffffff;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        .about-pathway-card p {
+            flex-grow: 1;
+            margin: 0 0 20px;
+            color: #cccccc;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .about-pathway-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 145, 77, 0.22);
+            color: #ff914d;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .about-pathway-arrow {
+            font-size: 22px;
+        }
+
+
+        /* =====================================================
+           60 YEAR FEATURE
+           ===================================================== */
+
+        .about-anniversary {
+            position: relative;
+            overflow: hidden;
+            padding: 45px 35px;
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(254, 67, 0, 0.18),
+                    rgba(10, 10, 10, 0.97),
+                    rgba(255, 145, 77, 0.08)
+                );
+            border: 1px solid rgba(255, 145, 77, 0.4);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-anniversary-label {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #ffb07a;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .about-anniversary h2 {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(48px, 8vw, 92px);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .about-anniversary h3 {
+            margin: 15px 0 22px;
+            color: #ff914d;
+            font-size: clamp(19px, 3vw, 29px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .about-anniversary p {
+            max-width: 780px;
+            margin: 0 auto 25px;
+            color: #dddddd;
+            font-size: 16px;
+            line-height: 1.85;
+        }
+
+
+        /* =====================================================
+           COMMUNITY MESSAGE
+           ===================================================== */
+
+        .about-community {
+            text-align: center;
+        }
+
+        .about-community h2 {
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-community p {
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-community-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .about-community-buttons .registration-button,
+        .about-community-buttons .orange-button {
+            display: inline-block;
+            text-align: center;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .about-community-buttons .registration-button:hover,
+        .about-community-buttons .orange-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(254, 67, 0, 0.3);
+        }
+
+        .about-secondary-button {
+            padding: 14px 28px;
+            border: 1px solid rgba(255, 145, 77, 0.5);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition:
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .about-secondary-button:hover {
+            background: rgba(254, 67, 0, 0.2);
+            border-color: #ff914d;
+        }
+
+
+        /* =====================================================
+           ACCESSIBILITY
+           ===================================================== */
+
+        .about-page a:focus-visible {
+            outline: 3px solid #ffb07a;
+            outline-offset: 4px;
+        }
+
+
+        /* =====================================================
+           TABLET
+           ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .about-intro {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .about-intro-image {
+                min-height: 250px;
+            }
+
+            .about-intro-image img {
+                min-height: 250px;
+                max-height: 400px;
+            }
+
+            .about-values-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-pathways-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .about-pathway-card {
+                padding: 25px;
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .about-hero {
+                margin-top: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .about-stat {
+                padding: 22px 15px;
+            }
+
+            .about-stat-number {
+                font-size: 35px;
+            }
+
+            .about-values-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .about-value-card {
+                padding: 24px 20px;
+            }
+
+            .about-timeline {
+                padding-left: 27px;
+            }
+
+            .about-timeline::before {
+                left: 5px;
+            }
+
+            .about-timeline-item {
+                padding: 20px 17px;
+            }
+
+            .about-timeline-item::before {
+                left: -28px;
+                width: 10px;
+                height: 10px;
+            }
+
+            .about-timeline-item h3 {
+                font-size: 19px;
+            }
+
+            .about-anniversary {
+                padding: 35px 18px;
+            }
+
+            .about-anniversary h2 {
+                letter-spacing: -1px;
+            }
+
+            .about-anniversary h3 {
+                letter-spacing: 1px;
+            }
+
+            .about-anniversary p {
+                font-size: 15px;
+            }
+
+            .about-community-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .about-community-buttons a {
+                width: 100%;
+            }
+
+        }
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+           ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .about-intro-image,
+            .about-intro-image img {
+                min-height: 200px;
+            }
+
+            .about-value-card h3,
+            .about-pathway-card h3 {
+                font-size: 19px;
+            }
+
+            .about-anniversary {
+                padding: 30px 14px;
+            }
+
+            .about-anniversary h2 {
+                font-size: 44px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="about-page">
+
+
+    <!-- =====================================================
+         SHARED NAVIGATION BAR
+
+         Kept consistent with index.html.
+         All pages use style.css and java.js.
+         ===================================================== -->
+
+    <nav class="navbar" id="navbar">
+
+        <!-- CLUB LOGO -->
+
+        <a
+            href="index.html"
+            class="navbar-logo"
+            aria-label="Ngongotahā AFC home"
+        >
+
+            <img
+                src="logo.png"
+                alt="Ngongotahā Football Club Logo"
+            >
+
+        </a>
+
+
+        <!-- NAVIGATION LINKS -->
+
+        <div class="nav-links">
+
+
+            <!-- HOME AND ABOUT US -->
+
+            <div style="display:flex;flex-direction:column;align-items:center;">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    href="aboutus.html"
+                    aria-current="page"
+                >
+                    About Us
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN AND REGISTRATIONS -->
+
+            <div style="display:flex;flex-direction:column;align-items:center;">
+
+                <a
+                    href="https://ngongotahaafc.friendlymanager.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Login
+                </a>
+
+                <a href="registrations.html">
+                    Registrations
+                </a>
+
+            </div>
+
+
+            <!-- CR1 PROJECT AND FACILITIES -->
+
+            <div style="display:flex;flex-direction:column;align-items:center;">
+
+                <a href="cr1.html">
+                    CR1 Project
+                </a>
+
+                <a href="hire.html">
+                    Hire &amp; Facilities
+                </a>
+
+            </div>
+
+
+            <!-- CLUB SHOP AND TEAMS -->
+
+            <div style="display:flex;flex-direction:column;align-items:center;">
+
+                <a href="shop.html">
+                    Club Shop
+                </a>
+
+
+                <!-- TEAMS DROPDOWN -->
+
+                <div class="dropdown">
+
+                    <button
+                        class="dropbtn"
+                        type="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-controls="teamsDropdown"
+                    >
+                        Ngongotahā Teams
+                    </button>
+
+
+                    <div
+                        class="dropdown-content"
+                        id="teamsDropdown"
+                    >
+
+                        <a href="senior-teams.html">
+                            Senior Teams
+                        </a>
+
+                        <a href="junior-teams.html">
+                            Junior Teams
+                        </a>
+
+                        <a href="womens-teams.html">
+                            Women's Teams
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <header class="hero about-hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                EST. 1966
+            </div>
+
+            <h1>
+                About Us
+            </h1>
+
+            <h2>
+                More Than a Football Club
+            </h2>
+
+            <p>
+                Built on football, strengthened by community and
+                connected by generations. Ngongotahā AFC is proud
+                to provide a place for people across Rotorua to
+                play, develop, compete and belong.
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="content">
+
+
+
+        <!-- =================================================
+             WHO WE ARE
+             ================================================= -->
+
+        <section
+            class="section"
+            id="who-we-are"
+        >
+
+            <div class="home-section-label">
+                WHO WE ARE
+            </div>
+
+
+            <div class="about-intro">
+
+                <div class="about-intro-text">
+
+                    <h2>
+                        Welcome to Ngongotahā AFC
+                    </h2>
+
+                    <p>
+                        Ngongotahā Association Football Club is a
+                        community-focused football club based in
+                        Rotorua, New Zealand. Since 1966, our club
+                        has provided opportunities for people to
+                        enjoy football, build friendships and become
+                        part of something bigger than the game.
+                    </p>
+
+                    <p>
+                        We believe football should be accessible to
+                        everyone. From children kicking a ball for
+                        the first time to experienced players
+                        competing at senior level, our club brings
+                        people together through a shared love of
+                        the game.
+                    </p>
+
+                    <p>
+                        Our identity is built around our people:
+                        our players, coaches, volunteers, supporters,
+                        sponsors and whānau. Their time, commitment
+                        and passion help make Ngongotahā AFC what
+                        it is today.
+                    </p>
+
+                </div>
+
+
+                <div class="about-intro-image">
+
+                    <img
+                        src="drone.jpg"
+                        alt="Aerial view of Ngongotahā Football Club"
+                        loading="eager"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CLUB STATISTICS -->
+
+            <div class="about-stats">
+
+                <div class="about-stat">
+
+                    <span class="about-stat-number">
+                        1966
+                    </span>
+
+                    <span class="about-stat-label">
+                        Founded
+                    </span>
+
+                </div>
+
+
+                <div class="about-stat">
+
+                    <span class="about-stat-number">
+                        60 Years
+                    </span>
+
+                    <span class="about-stat-label">
+                        Celebrating Our Club in 2026
+                    </span>
+
+                </div>
+
+
+                <div class="about-stat">
+
+                    <span class="about-stat-number">
+                        All Ages
+                    </span>
+
+                    <span class="about-stat-label">
+                        Football for Our Community
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OUR STORY
+             ================================================= -->
+
+        <section
+            class="section"
+            id="our-story"
+        >
+
+            <div class="home-section-label">
+                OUR STORY
+            </div>
+
+            <h2>
+                A Club Built Across Generations
+            </h2>
+
+            <p>
+                Every football club has a story. Ours has been
+                shaped by decades of players, coaches, volunteers
+                and families who have worn the orange and black
+                and helped build the Ngongotahā AFC community.
+            </p>
+
+            <p>
+                From local football beginnings to memorable
+                championship campaigns and cup runs, the club
+                has continued to evolve while remaining connected
+                to its community roots.
+            </p>
+
+
+            <!-- HISTORY TIMELINE -->
+
+            <div class="about-timeline">
+
+
+                <!-- 1966 -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        1966
+                    </span>
+
+                    <h3>
+                        The Beginning
+                    </h3>
+
+                    <p>
+                        Ngongotahā Football Club was established,
+                        beginning a journey that would see generations
+                        of local players and families become part
+                        of the club.
+                    </p>
+
+                </article>
+
+
+                <!-- GROWTH -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        THROUGH THE DECADES
+                    </span>
+
+                    <h3>
+                        Growing Through Football
+                    </h3>
+
+                    <p>
+                        The club developed through regional
+                        competitions, building its reputation
+                        through the dedication of players,
+                        coaches and volunteers. Ngongotahā
+                        also competed in the Northern League era,
+                        including at second-division level.
+                    </p>
+
+                </article>
+
+
+                <!-- 2011 -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        2011
+                    </span>
+
+                    <h3>
+                        Federation Championship Success
+                    </h3>
+
+                    <p>
+                        A memorable season brought the club a
+                        Federation Championship title and promotion,
+                        marking an important achievement in its
+                        competitive history.
+                    </p>
+
+                </article>
+
+
+                <!-- 2014 -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        2014
+                    </span>
+
+                    <h3>
+                        A Memorable Chatham Cup Run
+                    </h3>
+
+                    <p>
+                        Ngongotahā reached the round of 16 in
+                        the Chatham Cup, creating another
+                        significant chapter in the club's story.
+                    </p>
+
+                </article>
+
+
+                <!-- 2016 -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        2016
+                    </span>
+
+                    <h3>
+                        An Unbeaten Premiership Campaign
+                    </h3>
+
+                    <p>
+                        The club claimed its first Waikato-Bay
+                        of Plenty Federation Premiership title
+                        after completing an unbeaten championship
+                        campaign.
+                    </p>
+
+                </article>
+
+
+                <!-- 2026 -->
+
+                <article class="about-timeline-item">
+
+                    <span class="about-timeline-year">
+                        2026
+                    </span>
+
+                    <h3>
+                        Sixty Years and Looking Forward
+                    </h3>
+
+                    <p>
+                        As Ngongotahā AFC celebrates 60 years,
+                        we honour the people and achievements
+                        that shaped our past while continuing
+                        to develop football opportunities for
+                        future generations.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OUR VALUES
+             ================================================= -->
+
+        <section
+            class="section"
+            id="our-values"
+        >
+
+            <div class="home-section-label">
+                WHAT WE STAND FOR
+            </div>
+
+            <h2>
+                Our Club Values
+            </h2>
+
+            <p>
+                Football is about more than the result on the
+                scoreboard. The way we treat people, support
+                one another and represent our community matters
+                just as much as what happens on the pitch.
+            </p>
+
+
+            <div class="about-values-grid">
+
+
+                <!-- COMMUNITY -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        01 / COMMUNITY
+                    </span>
+
+                    <h3>
+                        A Place to Belong
+                    </h3>
+
+                    <p>
+                        We bring people together through football.
+                        Players, whānau, volunteers and supporters
+                        all contribute to a club where people can
+                        build friendships and feel welcome.
+                    </p>
+
+                </article>
+
+
+                <!-- DEVELOPMENT -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        02 / DEVELOPMENT
+                    </span>
+
+                    <h3>
+                        Better Every Day
+                    </h3>
+
+                    <p>
+                        We want players to improve their skills,
+                        confidence and understanding of the game.
+                        We value learning, hard work and creating
+                        opportunities for players to progress.
+                    </p>
+
+                </article>
+
+
+                <!-- INCLUSION -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        03 / INCLUSION
+                    </span>
+
+                    <h3>
+                        Football for Everyone
+                    </h3>
+
+                    <p>
+                        We want football to be an opportunity
+                        for people of different ages, abilities
+                        and backgrounds to participate and enjoy
+                        being part of a team.
+                    </p>
+
+                </article>
+
+
+                <!-- TEAMWORK -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        04 / TEAMWORK
+                    </span>
+
+                    <h3>
+                        Together We Achieve
+                    </h3>
+
+                    <p>
+                        Football relies on people working
+                        together. We encourage respect,
+                        communication, commitment and support
+                        for teammates both on and off the pitch.
+                    </p>
+
+                </article>
+
+
+                <!-- PRIDE -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        05 / CLUB PRIDE
+                    </span>
+
+                    <h3>
+                        Proud to Wear Orange
+                    </h3>
+
+                    <p>
+                        We take pride in representing Ngongotahā,
+                        respecting our opponents and officials,
+                        and contributing positively to the
+                        reputation of our club.
+                    </p>
+
+                </article>
+
+
+                <!-- COMMUNITY IMPACT -->
+
+                <article class="about-value-card">
+
+                    <span class="about-value-number">
+                        06 / THE FUTURE
+                    </span>
+
+                    <h3>
+                        Building What's Next
+                    </h3>
+
+                    <p>
+                        We want to keep developing the club,
+                        strengthening our pathways and creating
+                        positive football experiences for the
+                        next generation.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTBALL FOR EVERYONE
+             ================================================= -->
+
+        <section
+            class="section"
+            id="football-pathways"
+        >
+
+            <div class="home-section-label">
+                FIND YOUR PLACE
+            </div>
+
+            <h2>
+                Football for Every Stage
+            </h2>
+
+            <p>
+                Ngongotahā AFC provides different ways to get
+                involved in football. Whether you are starting
+                out, developing your game, competing at senior
+                level or looking for a community connection,
+                there is a place for football in your life.
+            </p>
+
+
+            <div class="about-pathways-grid">
+
+
+                <!-- JUNIOR FOOTBALL -->
+
+                <a
+                    href="junior-teams.html"
+                    class="about-pathway-card"
+                >
+
+                    <span class="about-pathway-label">
+                        START YOUR JOURNEY
+                    </span>
+
+                    <h3>
+                        Junior Football
+                    </h3>
+
+                    <p>
+                        From the first kick to youth football,
+                        we want young players to enjoy the game,
+                        build confidence, learn new skills and
+                        develop alongside their teammates.
+                    </p>
+
+                    <span class="about-pathway-link">
+
+                        Explore Junior Football
+
+                        <span class="about-pathway-arrow">
+                            →
+                        </span>
+
+                    </span>
+
+                </a>
+
+
+                <!-- SENIOR FOOTBALL -->
+
+                <a
+                    href="senior-teams.html"
+                    class="about-pathway-card"
+                >
+
+                    <span class="about-pathway-label">
+                        COMPETE TOGETHER
+                    </span>
+
+                    <h3>
+                        Senior Football
+                    </h3>
+
+                    <p>
+                        Our senior teams provide opportunities
+                        for players to compete, challenge
+                        themselves and represent Ngongotahā
+                        in adult football.
+                    </p>
+
+                    <span class="about-pathway-link">
+
+                        Explore Senior Football
+
+                        <span class="about-pathway-arrow">
+                            →
+                        </span>
+
+                    </span>
+
+                </a>
+
+
+                <!-- WOMEN'S FOOTBALL -->
+
+                <a
+                    href="womens-teams.html"
+                    class="about-pathway-card"
+                >
+
+                    <span class="about-pathway-label">
+                        BE PART OF THE TEAM
+                    </span>
+
+                    <h3>
+                        Women's Football
+                    </h3>
+
+                    <p>
+                        We support opportunities for women
+                        and girls to participate, develop
+                        their football and enjoy being part
+                        of the Ngongotahā community.
+                    </p>
+
+                    <span class="about-pathway-link">
+
+                        Explore Women's Football
+
+                        <span class="about-pathway-arrow">
+                            →
+                        </span>
+
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OUR COMMUNITY
+             ================================================= -->
+
+        <section
+            class="section"
+            id="our-community"
+        >
+
+            <div class="home-section-label">
+                BEYOND THE PITCH
+            </div>
+
+            <h2>
+                Football Is About People
+            </h2>
+
+            <p>
+                A football club cannot run on players alone.
+                Behind every training session, match day and
+                community event are people giving their time,
+                energy and support.
+            </p>
+
+            <p>
+                Our volunteers help keep the club moving.
+                Coaches support player development. Families
+                encourage their tamariki. Sponsors help make
+                opportunities possible. Supporters bring
+                atmosphere and pride to the sidelines.
+            </p>
+
+            <p>
+                We also believe football can make a positive
+                difference beyond organised competition.
+                Community initiatives, accessible football
+                programmes and opportunities for people to
+                reconnect with the game all help strengthen
+                the relationship between our club and Rotorua.
+            </p>
+
+            <p>
+                Whether someone has played for decades or
+                has never kicked a ball before, we want
+                Ngongotahā AFC to remain a club that people
+                can connect with and be proud of.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             60 YEAR ANNIVERSARY
+             ================================================= -->
+
+        <section
+            class="about-anniversary"
+            id="60-years"
+        >
+
+            <span class="about-anniversary-label">
+                A MILESTONE WORTH CELEBRATING
+            </span>
+
+            <h2>
+                1966 – 2026
+            </h2>
+
+            <h3>
+                60 Years of Ngongotahā AFC
+            </h3>
+
+            <p>
+                Six decades of football. Generations of players.
+                Countless memories, friendships and moments
+                that have helped shape our club.
+            </p>
+
+            <p>
+                Our 60th year is an opportunity to recognise
+                everyone who has contributed to Ngongotahā AFC
+                over the years and celebrate the community
+                that continues to carry the club forward.
+            </p>
+
+            <p>
+                The story does not stop here. The next
+                generation of Ngongotahā football starts now.
+            </p>
+
+            <a
+                href="index.html"
+                class="registration-button"
+            >
+                Explore Our Club
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+             JOIN OUR CLUB
+             ================================================= -->
+
+        <section
+            class="section about-community"
+            id="join-us"
+        >
+
+            <div class="home-section-label">
+                YOUR CLUB. YOUR COMMUNITY.
+            </div>
+
+            <h2>
+                Become Part of Ngongotahā AFC
+            </h2>
+
+            <p>
+                Whether you are a player, parent, volunteer,
+                supporter or local business, there are plenty
+                of ways to become involved with Ngongotahā
+                Football Club.
+            </p>
+
+            <p>
+                Come and be part of a club that values
+                community, encourages development and
+                continues to build its future through football.
+            </p>
+
+
+            <div class="about-community-buttons">
+
+                <a
+                    href="registrations.html"
+                    class="registration-button"
+                >
+                    Registration Information
+                </a>
+
+                <a
+                    href="junior-teams.html"
+                    class="about-secondary-button"
+                >
+                    Explore Our Teams
+                </a>
+
+                <a
+                    href="mailto:info@ngongotahafootball.co.nz"
+                    class="about-secondary-button"
+                >
+                    Contact the Club
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SHARED FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        © 2026 Ngongotahā Football Club |
+
+        <a href="mailto:info@ngongotahafootball.co.nz">
+            Contact Us
+        </a>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         SHARED JAVASCRIPT
+
+         Uses the existing java.js file.
+         No separate About Us JavaScript is required.
+         ===================================================== -->
+
+    <script src="java.js"></script>
+
+
+</body>
+
+</html>
+```
