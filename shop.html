@@ -3301,5 +3301,137 @@
 
     <script src="shop.js" defer></script>
 
+
+    <!-- =========================================================
+         TEAMS DROPDOWN
+         Positions the menu just below the button on phones so it
+         never covers the button. Desktop uses the CSS, so hover
+         still opens flush under the button.
+         ========================================================= -->
+
+    <script>
+        (function () {
+
+            function initialiseDropdown() {
+
+                var dropdown = document.querySelector(".dropdown");
+                var dropButton = document.querySelector(".dropbtn");
+                var dropMenu = document.querySelector(".dropdown-content");
+                var navBarElement = document.getElementById("navbar");
+                var navLinks = document.querySelector(".nav-links");
+
+                if (!dropdown || !dropButton || !dropMenu) {
+                    return;
+                }
+
+                var mobileQuery = window.matchMedia("(max-width: 900px)");
+
+                /* Space between the button and the menu on phones */
+                var GAP = 6;
+
+                function positionDropdown() {
+
+                    /* Desktop: let the CSS handle it */
+
+                    if (!mobileQuery.matches) {
+                        dropMenu.style.top = "";
+                        dropMenu.style.left = "";
+                        dropMenu.style.transform = "";
+                        return;
+                    }
+
+                    var buttonRect = dropButton.getBoundingClientRect();
+
+                    var navRect = navBarElement
+                        ? navBarElement.getBoundingClientRect()
+                        : buttonRect;
+
+                    var menuWidth = dropMenu.offsetWidth || 190;
+
+                    /* Always below the button and the navbar edge */
+
+                    var top = Math.max(buttonRect.bottom, navRect.bottom) + GAP;
+
+                    /* Centre under the button, but keep on screen */
+
+                    var left =
+                        buttonRect.left +
+                        buttonRect.width / 2 -
+                        menuWidth / 2;
+
+                    left = Math.max(
+                        10,
+                        Math.min(left, window.innerWidth - menuWidth - 10)
+                    );
+
+                    dropMenu.style.top = top + "px";
+                    dropMenu.style.left = left + "px";
+                    dropMenu.style.transform = "none";
+                }
+
+                function openDropdown() {
+                    dropdown.classList.add("mobile-open");
+                    dropButton.setAttribute("aria-expanded", "true");
+                    positionDropdown();
+                }
+
+                function closeDropdown() {
+                    dropdown.classList.remove("mobile-open");
+                    dropButton.setAttribute("aria-expanded", "false");
+                }
+
+                dropButton.setAttribute("aria-expanded", "false");
+
+                dropButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (dropdown.classList.contains("mobile-open")) {
+                        closeDropdown();
+                    } else {
+                        openDropdown();
+                    }
+                });
+
+                /* Desktop hover: keep the position correct */
+
+                dropdown.addEventListener("mouseenter", positionDropdown);
+
+                document.addEventListener("click", function (event) {
+                    if (!dropdown.contains(event.target)) {
+                        closeDropdown();
+                    }
+                });
+
+                document.addEventListener("keydown", function (event) {
+                    if (event.key === "Escape") {
+                        closeDropdown();
+                    }
+                });
+
+                dropMenu.querySelectorAll("a").forEach(function (link) {
+                    link.addEventListener("click", closeDropdown);
+                });
+
+                /* Re-position if the phone rotates or resizes */
+
+                window.addEventListener("resize", positionDropdown);
+
+                /* If the nav bar is swiped sideways, close the menu */
+
+                if (navLinks) {
+                    navLinks.addEventListener("scroll", closeDropdown, { passive: true });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initialiseDropdown);
+            } else {
+                initialiseDropdown();
+            }
+
+        })();
+    </script>
+
 </body>
 </html>
