@@ -402,24 +402,14 @@ DROPDOWN
 
 /* PC - hover OR click */
 
-.dropdown:hover .dropdown-content,
 .dropdown.mobile-open .dropdown-content {
-
-  display:
-    block;
-
+  display: block;
 }
 
-/* =========================================================
-REMOVE UNWANTED NAVIGATION TABS
-========================================================= */
-
-.nav-links a[href="academy.html"],
-.nav-links a[href="calendar.html"], 
-{
-  display:
-    none !important;
-
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 }
 
 /* =========================================================
