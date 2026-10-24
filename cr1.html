@@ -727,21 +727,16 @@
 
 
 
+     <!-- ==========================================================================
+         This is where to edit the calandar, follow Settings below for next year
+         =========================================================================== -->
+
    <section class="section">
 
-  <span class="home-section-label">What's Coming Up</span>
-  <h2>Next CR1 Session</h2>
+  <span class="home-section-label">What’s Coming Up</span>
+  <h2>Upcoming CR1 Sessions</h2>
 
-  <div class="latest-news-grid">
-    <article class="latest-news-card">
-      <div class="latest-news-content">
-        <span class="latest-news-kicker" id="cr1-kicker">CR1 Programme</span>
-        <h3 id="cr1-title">Loading...</h3>
-        <p id="cr1-text"></p>
-        <span class="read-story" id="cr1-date"></span>
-      </div>
-    </article>
-  </div>
+  <div class="latest-news-grid" id="cr1-grid"></div>
 
 </section>
 
@@ -750,12 +745,14 @@
   // ===== SETTINGS: only edit this bit =====
   const FIRST_SESSION = "2026-10-31";   // first Saturday
   const LAST_SESSION  = "2026-12-05";   // final Saturday
-  const SESSION_END_HOUR = 12;          // 24hr time the session finishes (12 = 12pm), then it moves to the next one
+  const SESSION_END_HOUR = 12;          // 24hr time the session finishes (12 = 12pm)
   const SKIP_DATES = [];                // cancelled dates, e.g. ["2026-11-14"]
   const TIME_TEXT = "";                 // optional, e.g. "10am – 12pm at Mitre 10 Park"
+  const HOW_MANY = 2;                   // number of sessions to show
   // ========================================
 
   const TZ = "Pacific/Auckland";
+  const grid = document.getElementById("cr1-grid");
 
   // Build the list of Saturdays
   const sessions = [];
@@ -775,32 +772,68 @@
   );
 
   // A session is still "upcoming" until it has finished
-  const upcoming = sessions.filter(s => s > today || (s === today && hour < SESSION_END_HOUR));
+  const upcoming = sessions
+    .filter(s => s > today || (s === today && hour < SESSION_END_HOUR))
+    .slice(0, HOW_MANY);
 
   const pretty = iso => new Date(iso + "T00:00:00Z").toLocaleDateString("en-NZ", {
     weekday: "long", day: "numeric", month: "long", timeZone: "UTC"
   });
 
-  const kicker = document.getElementById("cr1-kicker");
-  const title  = document.getElementById("cr1-title");
-  const text   = document.getElementById("cr1-text");
-  const date   = document.getElementById("cr1-date");
+  function makeCard(kickerText, titleText, bodyText, dateText) {
+    const article = document.createElement("article");
+    article.className = "latest-news-card";
+
+    const content = document.createElement("div");
+    content.className = "latest-news-content";
+
+    const k = document.createElement("span");
+    k.className = "latest-news-kicker";
+    k.textContent = kickerText;
+
+    const h = document.createElement("h3");
+    h.textContent = titleText;
+
+    const p = document.createElement("p");
+    p.textContent = bodyText;
+
+    content.append(k, h, p);
+
+    if (dateText) {
+      const s = document.createElement("span");
+      s.className = "read-story";
+      s.textContent = dateText;
+      content.append(s);
+    }
+
+    article.append(content);
+    grid.append(article);
+  }
 
   if (upcoming.length === 0) {
-    kicker.textContent = "CR1 Programme";
-    title.textContent  = "Season Complete";
-    text.textContent   = "Thanks to everyone who took part. Keep an eye here for future CR1 updates.";
-    date.textContent   = "";
+    makeCard(
+      "CR1 Programme",
+      "Season Complete",
+      "Thanks to everyone who took part. Keep an eye here for future CR1 updates.",
+      ""
+    );
     return;
   }
 
-  const next = upcoming[0];
-  const number = sessions.indexOf(next) + 1;
+  upcoming.forEach((iso, i) => {
+    const number = sessions.indexOf(iso) + 1;
+    const isToday = iso === today;
 
-  kicker.textContent = next === today ? "Today" : "CR1 Programme";
-  title.textContent  = number === 1 ? "CR1 Project Start Date" : "CR1 Session " + number + " of " + sessions.length;
-  text.textContent   = TIME_TEXT || (number === 1 ? "Our first CR1 session starts here." : "Join us for our next CR1 session.");
-  date.textContent   = next === today ? "Today" : pretty(next);
+    const kicker = isToday ? "Today" : (i === 0 ? "Next Session" : "Following Session");
+    const title = number === 1
+      ? "CR1 Project Start Date"
+      : "CR1 Session " + number + " of " + sessions.length;
+    const body = TIME_TEXT || (number === 1
+      ? "Our first CR1 session starts here."
+      : "Join us for our next CR1 session.");
+
+    makeCard(kicker, title, body, isToday ? "Today" : pretty(iso));
+  });
 })();
 </script>
 
