@@ -727,112 +727,82 @@
 
 
 
-    <!-- =======================================================
-         UPCOMING EVENTS
-         ======================================================= -->
+   <section class="section">
 
-    <section class="section">
+  <span class="home-section-label">What's Coming Up</span>
+  <h2>Next CR1 Session</h2>
 
-      <span class="home-section-label">
-        What's Coming Up
-      </span>
-
-      <h2>
-        Upcoming CR1 Events
-      </h2>
-
-      <p>
-        Keep an eye on this section for upcoming CR1 football
-        sessions, community days and project events.
-      </p>
-
-
-      <div class="latest-news-grid">
-
-
-        <article class="latest-news-card">
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              CR1 Programme
-            </span>
-
-            <h3>
-              CR1 Project Training Session
-            </h3>
-
-            <p>
-              Upcoming CR1 football sessions will be added here
-              as dates are confirmed.
-            </p>
-
-            <span class="read-story">
-              Date To Be Confirmed
-            </span>
-
-          </div>
-
-        </article>
-
-
-
-        <article class="latest-news-card">
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              Community Event
-            </span>
-
-            <h3>
-              Community Football Day
-            </h3>
-
-            <p>
-              Community football opportunities and special CR1
-              events will be listed here.
-            </p>
-
-            <span class="read-story">
-              Date To Be Confirmed
-            </span>
-
-          </div>
-
-        </article>
-
-
-
-        <article class="latest-news-card">
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              CR1 Showcase
-            </span>
-
-            <h3>
-              CR1 Tournament &amp; Showcase
-            </h3>
-
-            <p>
-              Future CR1 tournaments and showcase events will be
-              announced here once confirmed.
-            </p>
-
-            <span class="read-story">
-              Date To Be Confirmed
-            </span>
-
-          </div>
-
-        </article>
-
-
+  <div class="latest-news-grid">
+    <article class="latest-news-card">
+      <div class="latest-news-content">
+        <span class="latest-news-kicker" id="cr1-kicker">CR1 Programme</span>
+        <h3 id="cr1-title">Loading...</h3>
+        <p id="cr1-text"></p>
+        <span class="read-story" id="cr1-date"></span>
       </div>
+    </article>
+  </div>
 
-    </section>
+</section>
+
+<script>
+(function () {
+  // ===== SETTINGS: only edit this bit =====
+  const FIRST_SESSION = "2026-10-31";   // first Saturday
+  const LAST_SESSION  = "2026-12-05";   // final Saturday
+  const SESSION_END_HOUR = 12;          // 24hr time the session finishes (12 = 12pm), then it moves to the next one
+  const SKIP_DATES = [];                // cancelled dates, e.g. ["2026-11-14"]
+  const TIME_TEXT = "";                 // optional, e.g. "10am – 12pm at Mitre 10 Park"
+  // ========================================
+
+  const TZ = "Pacific/Auckland";
+
+  // Build the list of Saturdays
+  const sessions = [];
+  let d = new Date(FIRST_SESSION + "T00:00:00Z");
+  const last = new Date(LAST_SESSION + "T00:00:00Z");
+  while (d <= last) {
+    const iso = d.toISOString().slice(0, 10);
+    if (!SKIP_DATES.includes(iso)) sessions.push(iso);
+    d = new Date(d.getTime() + 7 * 24 * 60 * 60 * 1000);
+  }
+
+  // Current NZ date and hour
+  const now = new Date();
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(now);
+  const hour = parseInt(
+    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", hour12: false }).format(now), 10
+  );
+
+  // A session is still "upcoming" until it has finished
+  const upcoming = sessions.filter(s => s > today || (s === today && hour < SESSION_END_HOUR));
+
+  const pretty = iso => new Date(iso + "T00:00:00Z").toLocaleDateString("en-NZ", {
+    weekday: "long", day: "numeric", month: "long", timeZone: "UTC"
+  });
+
+  const kicker = document.getElementById("cr1-kicker");
+  const title  = document.getElementById("cr1-title");
+  const text   = document.getElementById("cr1-text");
+  const date   = document.getElementById("cr1-date");
+
+  if (upcoming.length === 0) {
+    kicker.textContent = "CR1 Programme";
+    title.textContent  = "Season Complete";
+    text.textContent   = "Thanks to everyone who took part. Keep an eye here for future CR1 updates.";
+    date.textContent   = "";
+    return;
+  }
+
+  const next = upcoming[0];
+  const number = sessions.indexOf(next) + 1;
+
+  kicker.textContent = next === today ? "Today" : "CR1 Programme";
+  title.textContent  = number === 1 ? "CR1 Project Start Date" : "CR1 Session " + number + " of " + sessions.length;
+  text.textContent   = TIME_TEXT || (number === 1 ? "Our first CR1 session starts here." : "Join us for our next CR1 session.");
+  date.textContent   = next === today ? "Today" : pretty(next);
+})();
+</script>
 
 
 
