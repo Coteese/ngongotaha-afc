@@ -325,7 +325,65 @@ const newsArticles = {
                 community and helping more tamariki discover the game.
             </p>
         `
-    }
+    },
+
+
+       CR1: {
+        image: "cr8.jpg",
+        kicker: "CR1 Returns for Its Third Year at Ngongotahā AFC",
+        date: "31st OCT",
+        title: "Walking Football Launches in Rotorua",
+
+        story: `
+            <p>
+               Ngongotahā AFC’s Children First (CR1) programme 
+                is returning for its third consecutive year, with 
+                the new programme kicking off on Saturday, 31 October 2026.
+            </p>
+
+            <p>
+                Built around the belief that every child deserves the opportunity 
+                to play football, CR1 continues to break down barriers and 
+                make the game accessible to tamariki across Rotorua. Open to children 
+                aged 3–13, the programme provides a fun, welcoming environment where 
+                young players can develop their skills, build confidence and make new friends.
+            </p>
+
+            <p>
+                Club president Aaron Lawrence says the programme is about empowering young 
+                people to play football and have fun, while co-founder and ex-first team coach 
+                Trevor Johnston recognises the financial challenges football can place on families.
+            </p>
+
+            <p>
+                CR1 helps remove these barriers by providing a free football programme, food for 
+                children on Saturday mornings and a free bus service to help with transport. 
+                There are no eligibility criteria, and all children in Rotorua are welcome to get involved.
+            </p>
+
+            <p>
+               Following the success of previous years, the programme continues to build on Ngongotahā AFC’s 
+               commitment to making football accessible to everyone. Support from the New Zealand Community 
+               Trust, which awarded the club a $21,060 grant, has helped support the programme and its ongoing mission.
+            </p>
+
+            <p>
+            As CR1 enters its third year, the goal remains the same: to give more local tamariki the chance to 
+            experience football, enjoy being active and feel part of their community.
+            </p>
+
+            <p>
+            CR1 kicks off on Saturday, 31 October and will continue to run all the way through to christmas. Every 
+            child is welcome!
+            </p>
+
+            <p>
+            Massive thanks to all of our coaches and sponsors for making this happen each year!
+            </p>
+            
+        `
+    },
+
 
 };
 
