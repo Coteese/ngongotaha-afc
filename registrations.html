@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Registrations - Ngongotahā Football Club</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================================================
+       REGISTRATIONS PAGE
+       Only small additions that are specific to this page.
+       Everything else comes from style.css
+       ========================================================= */
+
+    /* Registration cards are links, so remove link styling
+       and make the whole card clickable */
+
+    .page-registrations a.latest-news-card {
+      text-decoration: none;
+    }
+
+    .page-registrations .latest-news-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .page-registrations .latest-news-content p {
+      margin-bottom: 0;
+    }
+
+    /* Keep the "Register Now" text at the bottom of each card */
+
+    .page-registrations .read-story {
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+
+      .page-registrations .content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+      }
+
+      .page-registrations .hero {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .page-registrations .content {
+        padding: 0 12px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="page-registrations">
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<nav class="navbar" id="navbar">
+
+    <a href="index.html" class="navbar-logo">
+        <img src="logo.png" alt="Ngongotahā Football Club Logo">
+    </a>
+
+    <div class="nav-links">
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <a href="https://ngongotahaafc.friendlymanager.com">Login</a>
+            <a href="registrations.html">Registrations</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <a href="cr1.html">CR1 Project</a>
+            <a href="hire.html">Hire &amp; Facilities</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+
+            <a href="shop.html">Club Shop</a>
+
+            <div class="dropdown">
+
+                <button
+                    class="dropbtn"
+                    type="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                >
+                    Ngongotahā Teams
+                </button>
+
+                <div class="dropdown-content">
+                    <a href="senior-teams.html">Senior Teams</a>
+                    <a href="junior-teams.html">Junior Teams</a>
+                    <a href="womens-teams.html">Women's Teams</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+      <span class="hero-small">
+        Join The Club
+      </span>
+
+      <h1>
+        Registrations
+      </h1>
+
+      <h2>
+        Ngongotahā Football Club
+      </h2>
+
+      <p>
+        Choose the registration form that suits you below and
+        you will be taken straight to our online registration
+        system.
+      </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main class="content">
+
+
+    <!-- =======================================================
+         REGISTRATION LINKS
+         To change a link, edit the href="" on that card.
+         ======================================================= -->
+
+    <section class="section">
+
+      <span class="home-section-label">
+        Register Online
+      </span>
+
+      <h2>
+        Choose Your Registration
+      </h2>
+
+      <p>
+        Select the option below to register. You will be
+        redirected to our registration system to complete
+        your details.
+      </p>
+
+
+      <div class="latest-news-grid">
+
+
+        <!-- Senior Men's -->
+        <a
+          class="latest-news-card"
+          href="https://ngongotahaafc.friendlymanager.com/public/register?form=4&pre="
+        >
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Seniors
+            </span>
+
+            <h3>
+              Senior Men's
+            </h3>
+
+            <p>
+              Register to play for one of our senior men's teams
+              this season.
+            </p>
+
+            <span class="read-story">
+              Register Now &rarr;
+            </span>
+
+          </div>
+        </a>
+
+
+        <!-- Women's -->
+        <a
+          class="latest-news-card"
+          href="https://ngongotahaafc.friendlymanager.com/public/register?form=9&pre="
+        >
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Women's
+            </span>
+
+            <h3>
+              Women's
+            </h3>
+
+            <p>
+              Register to play for one of our women's teams
+              this season.
+            </p>
+
+            <span class="read-story">
+              Register Now &rarr;
+            </span>
+
+          </div>
+        </a>
+
+
+        <!-- Junior and Youth -->
+        <a
+          class="latest-news-card"
+          href="https://ngongotahaafc.friendlymanager.com/public/register?form=5&pre="
+        >
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Juniors
+            </span>
+
+            <h3>
+              Junior &amp; Youth
+            </h3>
+
+            <p>
+              Register your child to play football with our
+              junior and youth teams.
+            </p>
+
+            <span class="read-story">
+              Register Now &rarr;
+            </span>
+
+          </div>
+        </a>
+
+
+        <!-- Non Playing Members -->
+        <a
+          class="latest-news-card"
+          href="https://ngongotahaafc.friendlymanager.com/public/register?form=7&pre="
+        >
+          <div class="latest-news-content">
+
+            <span class="latest-news-kicker">
+              Club Members
+            </span>
+
+            <h3>
+              Non Playing Members
+            </h3>
+
+            <p>
+              Coaches, managers, volunteers and supporters can
+              register as a non playing member of the club.
+            </p>
+
+            <span class="read-story">
+              Register Now &rarr;
+            </span>
+
+          </div>
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         HELP / CONTACT
+         ======================================================= -->
+
+    <section class="section registration-box">
+
+      <span class="home-section-label">
+        Need A Hand?
+      </span>
+
+      <h2>
+        Questions About Registering?
+      </h2>
+
+      <p>
+        If you are unsure which form to use or need help with
+        your registration, get in touch and we will be happy
+        to help.
+      </p>
+
+      <a
+        href="contact.html"
+        class="registration-button"
+      >
+        Contact Us
+      </a>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    © 2026 Ngongotahā Football Club |
+
+    <a href="mailto:info@ngongotahafootball.co.nz">
+      Contact Us
+    </a>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+    /* NAVBAR SCROLL */
+
+    window.addEventListener("scroll", function () {
+
+      const navbar = document.getElementById("navbar");
+
+      if (window.scrollY > 30) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+    }, { passive: true });
+
+
+    /* TEAMS DROPDOWN */
+
+    (function () {
+
+      function initialiseDropdown() {
+
+        const dropdown   = document.querySelector(".dropdown");
+        const dropButton = document.querySelector(".dropbtn");
+        const dropMenu   = document.querySelector(".dropdown-content");
+        const navbar     = document.getElementById("navbar");
+        const navLinks   = document.querySelector(".nav-links");
+
+        if (!dropdown || !dropButton || !dropMenu) {
+          return;
+        }
+
+        const mobileQuery = window.matchMedia("(max-width: 900px)");
+        const GAP = 6;
+
+        function positionDropdown() {
+
+          if (!mobileQuery.matches) {
+            dropMenu.style.top = "";
+            dropMenu.style.left = "";
+            dropMenu.style.transform = "";
+            return;
+          }
+
+          const buttonRect = dropButton.getBoundingClientRect();
+          const navRect = navbar ? navbar.getBoundingClientRect() : buttonRect;
+          const menuWidth = dropMenu.offsetWidth || 190;
+
+          const top = Math.max(buttonRect.bottom, navRect.bottom) + GAP;
+
+          let left = buttonRect.left + buttonRect.width / 2 - menuWidth / 2;
+
+          left = Math.max(
+            10,
+            Math.min(left, window.innerWidth - menuWidth - 10)
+          );
+
+          dropMenu.style.top = top + "px";
+          dropMenu.style.left = left + "px";
+          dropMenu.style.transform = "none";
+
+        }
+
+        function openDropdown() {
+          dropdown.classList.add("mobile-open");
+          dropButton.setAttribute("aria-expanded", "true");
+          positionDropdown();
+        }
+
+        function closeDropdown() {
+          dropdown.classList.remove("mobile-open");
+          dropButton.setAttribute("aria-expanded", "false");
+        }
+
+        dropButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (dropdown.classList.contains("mobile-open")) {
+            closeDropdown();
+          } else {
+            openDropdown();
+          }
+        });
+
+        dropdown.addEventListener("mouseenter", positionDropdown);
+
+        document.addEventListener("click", function (event) {
+          if (!dropdown.contains(event.target)) {
+            closeDropdown();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeDropdown();
+          }
+        });
+
+        dropMenu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", closeDropdown);
+        });
+
+        window.addEventListener("resize", positionDropdown);
+
+        if (navLinks) {
+          navLinks.addEventListener("scroll", closeDropdown, { passive: true });
+        }
+
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialiseDropdown);
+      } else {
+        initialiseDropdown();
+      }
+
+    })();
+
+</script>
+
+
+</body>
+
+</html>
