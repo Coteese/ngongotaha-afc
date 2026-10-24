@@ -8,7 +8,7 @@
    - Teams dropdown (positioned under the button on phones)
    - News article popups
    - Gallery slideshow and keyboard controls
-   - Sponsor slider
+   - Sponsor slider (continuous glide, drag/swipe, clickable)
 
    Safe to load on pages that do not contain these features.
 ========================================================= */
@@ -328,7 +328,7 @@ const newsArticles = {
     },
 
 
-       CR1: {
+    CR1: {
         image: "cr8.jpg",
         kicker: "CR1 Returns for Its Third Year at Ngongotahā AFC",
         date: "31st OCT",
@@ -336,51 +336,50 @@ const newsArticles = {
 
         story: `
             <p>
-               Ngongotahā AFC’s Children First (CR1) programme 
-                is returning for its third consecutive year, with 
+               Ngongotahā AFC’s Children First (CR1) programme
+                is returning for its third consecutive year, with
                 the new programme kicking off on Saturday, 31 October 2026.
             </p>
 
             <p>
-                Built around the belief that every child deserves the opportunity 
-                to play football, CR1 continues to break down barriers and 
-                make the game accessible to tamariki across Rotorua. Open to children 
-                aged 3–13, the programme provides a fun, welcoming environment where 
+                Built around the belief that every child deserves the opportunity
+                to play football, CR1 continues to break down barriers and
+                make the game accessible to tamariki across Rotorua. Open to children
+                aged 3–13, the programme provides a fun, welcoming environment where
                 young players can develop their skills, build confidence and make new friends.
             </p>
 
             <p>
-                Club president Aaron Lawrence says the programme is about empowering young 
-                people to play football and have fun, while co-founder and ex-first team coach 
+                Club president Aaron Lawrence says the programme is about empowering young
+                people to play football and have fun, while co-founder and ex-first team coach
                 Trevor Johnston recognises the financial challenges football can place on families.
             </p>
 
             <p>
-                CR1 helps remove these barriers by providing a free football programme, food for 
-                children on Saturday mornings and a free bus service to help with transport. 
+                CR1 helps remove these barriers by providing a free football programme, food for
+                children on Saturday mornings and a free bus service to help with transport.
                 There are no eligibility criteria, and all children in Rotorua are welcome to get involved.
             </p>
 
             <p>
-               Following the success of previous years, the programme continues to build on Ngongotahā AFC’s 
-               commitment to making football accessible to everyone. Support from the New Zealand Community 
+               Following the success of previous years, the programme continues to build on Ngongotahā AFC’s
+               commitment to making football accessible to everyone. Support from the New Zealand Community
                Trust, which awarded the club a $21,060 grant, has helped support the programme and its ongoing mission.
             </p>
 
             <p>
-            As CR1 enters its third year, the goal remains the same: to give more local tamariki the chance to 
-            experience football, enjoy being active and feel part of their community.
+                As CR1 enters its third year, the goal remains the same: to give more local tamariki the chance to
+                experience football, enjoy being active and feel part of their community.
             </p>
 
             <p>
-            CR1 kicks off on Saturday, 31 October and will continue to run all the way through to christmas. Every 
-            child is welcome!
+                CR1 kicks off on Saturday, 31 October and will continue to run all the way through to Christmas. Every
+                child is welcome!
             </p>
 
             <p>
-            Massive thanks to all of our coaches and sponsors for making this happen each year!
+                Massive thanks to all of our coaches and sponsors for making this happen each year!
             </p>
-            
         `
     },
 
@@ -540,144 +539,185 @@ function initialiseGalleryKeyboard() {
 /* =========================================================
    SPONSOR SLIDER
 
-   Moves through the sponsor cards and reverses direction at
-   the end, rather than relying on conflicting CSS animations.
+   Glides continuously and loops seamlessly by cloning the
+   sponsor group. Can be dragged or swiped on phone and PC,
+   and sponsors stay clickable.
 ========================================================= */
 
 function initialiseSponsorSlider() {
-    const sponsorBoard = document.querySelector(".sponsors-board");
-    const sponsorTrack = document.querySelector(".sponsors-track");
-    const sponsorGroup = document.querySelector(".sponsors-group");
+    const board = document.querySelector(".sponsors-board");
+    const track = document.querySelector(".sponsors-track");
+    const group = document.querySelector(".sponsors-group");
 
-    if (!sponsorBoard || !sponsorTrack || !sponsorGroup) {
+    if (!board || !track || !group) {
         return;
     }
 
-    const sponsors = Array.from(
-        sponsorGroup.querySelectorAll(".sponsor-item")
-    );
+    const SPEED = 40; // pixels per second - raise for faster, lower for slower
 
-    if (sponsors.length < 2) {
-        return;
-    }
-
-    let sponsorIndex = 0;
-    let sponsorDirection = 1;
-    let sponsorTimer = null;
+    let offset = 0;
+    let loopWidth = 0;
+    let hoverPaused = false;
+    let focusPaused = false;
+    let dragging = false;
+    let moved = false;
+    let startX = 0;
+    let startOffset = 0;
+    let lastTime = null;
     let resizeTimer = null;
 
-    function getSponsorPositions() {
-        const boardWidth = sponsorBoard.clientWidth;
-        const groupWidth = sponsorGroup.scrollWidth;
+    /* Build enough copies of the sponsor group to fill any screen. */
 
-        const maxMovement = Math.max(
-            0,
-            groupWidth - boardWidth
-        );
-
-        return sponsors.map(function (sponsor) {
-            let position = sponsor.offsetLeft;
-
-            const sponsorWidth = sponsor.offsetWidth;
-
-            if (position + sponsorWidth > boardWidth) {
-                position = position + sponsorWidth - boardWidth;
-            }
-
-            return Math.max(
-                0,
-                Math.min(position, maxMovement)
-            );
+    function build() {
+        track.querySelectorAll(".sponsors-clone").forEach(function (clone) {
+            clone.remove();
         });
-    }
 
-    function moveSponsor() {
-        const positions = getSponsorPositions();
+        function addClone() {
+            const clone = group.cloneNode(true);
+            clone.classList.add("sponsors-clone");
+            clone.setAttribute("aria-hidden", "true");
+            clone.querySelectorAll("a").forEach(function (link) {
+                link.tabIndex = -1;
+            });
+            track.appendChild(clone);
+            return clone;
+        }
 
-        if (!positions.length) {
+        const firstClone = addClone();
+
+        // Distance from one group to the next (includes any gap)
+        loopWidth = firstClone.offsetLeft - group.offsetLeft;
+
+        if (loopWidth <= 0) {
             return;
         }
 
-        sponsorTrack.style.transform =
-            "translateX(-" + positions[sponsorIndex] + "px)";
+        const copiesNeeded = Math.ceil(board.clientWidth / loopWidth);
+
+        for (let i = 0; i < copiesNeeded; i++) {
+            addClone();
+        }
     }
 
-    function nextSponsor() {
-        if (sponsorDirection === 1) {
-            if (sponsorIndex >= sponsors.length - 1) {
-                sponsorDirection = -1;
-                sponsorIndex = Math.max(0, sponsorIndex - 1);
-            } else {
-                sponsorIndex++;
-            }
-        } else {
-            if (sponsorIndex <= 0) {
-                sponsorDirection = 1;
-                sponsorIndex = Math.min(
-                    sponsors.length - 1,
-                    sponsorIndex + 1
-                );
-            } else {
-                sponsorIndex--;
-            }
+    function render() {
+        if (loopWidth > 0) {
+            offset = ((offset % loopWidth) + loopWidth) % loopWidth;
+        }
+        track.style.transform = "translate3d(" + (-offset) + "px, 0, 0)";
+    }
+
+    function frame(time) {
+        if (lastTime === null) {
+            lastTime = time;
         }
 
-        moveSponsor();
-    }
+        const delta = Math.min(time - lastTime, 100);
+        lastTime = time;
 
-    function startSponsorSlider() {
-        clearInterval(sponsorTimer);
-
-        sponsorTimer = setInterval(function () {
-            nextSponsor();
-        }, 3000);
-    }
-
-    function updateSponsorPositions() {
-        const positions = getSponsorPositions();
-
-        if (sponsorIndex >= positions.length) {
-            sponsorIndex = Math.max(0, positions.length - 1);
+        if (!hoverPaused && !focusPaused && !dragging) {
+            offset += SPEED * delta / 1000;
+            render();
         }
 
-        moveSponsor();
+        requestAnimationFrame(frame);
     }
 
-    /* Initialise the sponsor slider. */
+    /* Drag / swipe (mouse, touch and pen). */
 
-    sponsorTrack.style.animation = "none";
-    sponsorTrack.style.webkitAnimation = "none";
-
-    sponsorTrack.style.transform = "translateX(0)";
-    sponsorTrack.style.webkitTransform = "translateX(0)";
-
-    sponsorIndex = 0;
-    sponsorDirection = 1;
-
-    moveSponsor();
-    startSponsorSlider();
-
-    /* Recalculate when the screen changes size. */
-
-    window.addEventListener("resize", function () {
-        clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(function () {
-            updateSponsorPositions();
-        }, 150);
+    board.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+            return;
+        }
+        dragging = true;
+        moved = false;
+        startX = event.clientX;
+        startOffset = offset;
     });
 
-    /* Pause on hover for desktop mice; touch devices keep moving. */
+    board.addEventListener("pointermove", function (event) {
+        if (!dragging) {
+            return;
+        }
 
-    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-        sponsorBoard.addEventListener("mouseenter", function () {
-            clearInterval(sponsorTimer);
-        });
+        const dx = event.clientX - startX;
 
-        sponsorBoard.addEventListener("mouseleave", function () {
-            startSponsorSlider();
-        });
+        if (!moved && Math.abs(dx) > 6) {
+            moved = true;
+            try {
+                board.setPointerCapture(event.pointerId);
+            } catch (e) { /* ignore */ }
+        }
+
+        if (moved) {
+            offset = startOffset - dx;
+            render();
+        }
+    });
+
+    function endDrag() {
+        dragging = false;
     }
+
+    board.addEventListener("pointerup", endDrag);
+    board.addEventListener("pointercancel", endDrag);
+
+    /* If the user dragged, don't treat the release as a click on a sponsor. */
+
+    board.addEventListener("click", function (event) {
+        if (moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            moved = false;
+        }
+    }, true);
+
+    /* Stop the browser's own image/link dragging getting in the way. */
+
+    board.addEventListener("dragstart", function (event) {
+        event.preventDefault();
+    });
+
+    /* Pause on desktop hover and on keyboard focus. */
+
+    board.addEventListener("pointerenter", function (event) {
+        if (event.pointerType === "mouse") {
+            hoverPaused = true;
+        }
+    });
+
+    board.addEventListener("pointerleave", function () {
+        hoverPaused = false;
+    });
+
+    board.addEventListener("focusin", function () {
+        focusPaused = true;
+    });
+
+    board.addEventListener("focusout", function () {
+        focusPaused = false;
+    });
+
+    /* Rebuild when the window changes size or images finish loading. */
+
+    function rebuild() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            build();
+            render();
+        }, 150);
+    }
+
+    window.addEventListener("resize", rebuild);
+    window.addEventListener("load", rebuild);
+
+    if ("ResizeObserver" in window) {
+        new ResizeObserver(rebuild).observe(group);
+    }
+
+    build();
+    render();
+    requestAnimationFrame(frame);
 }
 
 
