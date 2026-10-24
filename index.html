@@ -15,36 +15,40 @@
        SPONSOR BOARD - JAVASCRIPT CONTROLLED SLIDER
        ===================================================== */
 
-    .sponsors-track {
-
-      animation:
-        none !important;
-
-      -webkit-animation:
-        none !important;
-
-      transform:
-        translateX(0);
-
-      -webkit-transform:
-        translateX(0);
-
-      transition:
-        transform 0.8s ease-in-out;
-
-      -webkit-transition:
-        -webkit-transform 0.8s ease-in-out;
-
-      will-change:
-        transform;
-
+    .sponsors-board {
+      overflow: hidden;
+      touch-action: pan-y;      /* swipe sideways = slide, swipe up/down = scroll page */
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .sponsors-track .sponsors-group {
+    .sponsors-board:active {
+      cursor: grabbing;
+    }
 
-      flex-shrink:
-        0;
+    .sponsors-track {
+      display: flex;
+      width: max-content;
+      animation: none !important;
+      -webkit-animation: none !important;
+      transition: none !important;
+      will-change: transform;
+    }
 
+    .sponsors-group {
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .sponsor-item {
+      flex-shrink: 0;
+    }
+
+    .sponsor-item img {
+      -webkit-user-drag: none;
+      user-select: none;
+      pointer-events: none;     /* so the link/card gets the tap, not the image */
     }
 
   </style>
@@ -140,10 +144,10 @@
       </h2>
 
       <p>
-        Ngongotahā Football Club is the oldest and most established club
-        in the a community-focused football club providing opportunities for
-        players of all ages and abilities. From our youngest Little Dribblers 
-        through to our junior, and senior teams, football starts here.
+        Ngongotahā Football Club is a community-focused football club
+        providing opportunities for players of all ages and abilities.
+        From our youngest Little Dribblers through to our junior and
+        senior teams, football starts here.
       </p>
 
     </div>
@@ -519,7 +523,8 @@
 
         </button>
 
-                <!-- CR1 gets back underway -->
+
+        <!-- CR1 GETS BACK UNDERWAY -->
 
         <button
           type="button"
@@ -552,8 +557,8 @@
             </h3>
 
             <p>
-              Ngongotahā AFC has offically entered its 3rd year of
-              CR1 helping the community every week 
+              Ngongotahā AFC has officially entered its 3rd year of
+              CR1 helping the community every week
             </p>
 
             <span class="read-story">
@@ -843,7 +848,7 @@
 
 
   <!-- =====================================================
-       JAVASCRIPT (all site scripts now live in java.js)
+       JAVASCRIPT (all site scripts live in java.js)
        ===================================================== -->
 
   <script src="java.js"></script>
