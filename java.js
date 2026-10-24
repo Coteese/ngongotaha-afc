@@ -207,7 +207,7 @@ const newsArticles = {
 
 
     walking: {
-        image: "cr2.jpg",
+        image: "walkingfootball.jpg",
         kicker: "COMMUNITY FOOTBALL",
         date: "8 MAY",
         title: "Walking Football Launches in Rotorua",
