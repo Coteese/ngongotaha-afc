@@ -332,7 +332,7 @@ const newsArticles = {
         image: "cr8.jpg",
         kicker: "CR1 Returns for Its Third Year at Ngongotahā AFC",
         date: "31st OCT",
-        title: "Walking Football Launches in Rotorua",
+        title: "CR1 IS BACK UNDERWAY!",
 
         story: `
             <p>
