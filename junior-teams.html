@@ -16,19 +16,10 @@
        JUNIOR TEAM DIRECTORY
        ========================================================= */
 
-    .junior-teams-section {
-      margin-top: 20px;
-    }
+    .junior-teams-section { margin-top: 20px; }
 
-    .teams-intro {
-      max-width: 850px;
-      margin: 0 auto 35px;
-      text-align: center;
-    }
-
-    .teams-intro p {
-      margin-bottom: 0;
-    }
+    .teams-intro { max-width: 850px; margin: 0 auto 35px; text-align: center; }
+    .teams-intro p { margin-bottom: 0; }
 
     .team-list {
       display: grid;
@@ -44,17 +35,11 @@
       justify-content: space-between;
       gap: 20px;
       padding: 22px 24px;
-
       background: rgba(0, 0, 0, 0.72);
       border: 1px solid rgba(255, 145, 77, 0.28);
       border-radius: 12px;
-
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
 
     .team-row:hover {
@@ -63,68 +48,41 @@
       background: rgba(15, 15, 15, 0.9);
     }
 
-    .team-information {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 0;
-    }
+    .team-information { display: flex; align-items: center; gap: 18px; min-width: 0; }
 
     .team-number {
       min-width: 48px;
       height: 48px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 50%;
-
       background: rgba(255, 145, 77, 0.12);
       border: 1px solid rgba(255, 145, 77, 0.45);
-
       color: #ff914d;
       font-weight: 700;
       font-size: 15px;
     }
 
-    .team-information h3 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
-
-    .team-information p {
-      margin: 0;
-      font-size: 14px;
-      opacity: 0.72;
-    }
+    .team-information h3 { margin: 0 0 5px; font-size: 20px; }
+    .team-information p { margin: 0; font-size: 14px; opacity: 0.72; }
 
     .team-profile-button {
       border: none;
       background: #ff914d;
       color: #111;
-
       padding: 11px 17px;
-
       border-radius: 7px;
-
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.6px;
-
       cursor: pointer;
       white-space: nowrap;
       touch-action: manipulation;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
-    .team-profile-button:hover {
-      background: #ffb07a;
-      transform: scale(1.04);
-    }
+    .team-profile-button:hover { background: #ffb07a; transform: scale(1.04); }
 
 
     /* =========================================================
@@ -133,228 +91,134 @@
 
     .team-modal {
       display: none;
-
       position: fixed;
       z-index: 9999;
-
       inset: 0;
-
       background: rgba(0, 0, 0, 0.78);
-
       align-items: center;
       justify-content: center;
-
       padding: 20px;
     }
 
-    .team-modal.active {
-      display: flex;
-    }
+    .team-modal.active { display: flex; }
 
     .team-modal-box {
       position: relative;
-
       width: 100%;
       max-width: 520px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(28, 28, 28, 0.98),
-          rgba(5, 5, 5, 0.98)
-        );
-
+      background: linear-gradient(145deg, rgba(28, 28, 28, 0.98), rgba(5, 5, 5, 0.98));
       border: 1px solid rgba(255, 145, 77, 0.45);
       border-radius: 16px;
-
       padding: 32px;
-
       box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
-
       animation: teamModalOpen 0.25s ease;
     }
 
     @keyframes teamModalOpen {
-
-      from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.97);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
+      from { opacity: 0; transform: translateY(15px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .team-modal-close {
       position: absolute;
-
       top: 12px;
       right: 15px;
-
       width: 35px;
       height: 35px;
-
       border: none;
       border-radius: 50%;
-
       background: rgba(255, 255, 255, 0.08);
       color: white;
-
       font-size: 22px;
-
       cursor: pointer;
-
       transition: background 0.2s ease;
     }
 
-    .team-modal-close:hover {
-      background: rgba(255, 145, 77, 0.25);
-    }
+    .team-modal-close:hover { background: rgba(255, 145, 77, 0.25); }
 
     .team-modal-label {
       color: #ff914d;
-
       font-size: 12px;
       font-weight: 700;
-
       letter-spacing: 1.5px;
       text-transform: uppercase;
-
       margin-bottom: 8px;
     }
 
-    .team-modal-box h2 {
-      margin: 0 0 25px;
-      font-size: 30px;
-    }
+    .team-modal-box h2 { margin: 0 0 25px; font-size: 30px; }
 
     .team-detail {
       display: flex;
       gap: 14px;
-
       padding: 15px 0;
-
       border-bottom: 1px solid rgba(255, 255, 255, 0.09);
     }
 
-    .team-detail:last-child {
-      border-bottom: none;
-    }
+    .team-detail:last-child { border-bottom: none; }
 
-    .team-detail-icon {
-      width: 30px;
-      flex-shrink: 0;
-
-      font-size: 19px;
-    }
+    .team-detail-icon { width: 30px; flex-shrink: 0; font-size: 19px; }
 
     .team-detail-content strong {
       display: block;
-
       margin-bottom: 4px;
-
       font-size: 13px;
       color: #ff914d;
     }
 
     .team-detail-content span,
-    .team-detail-content a {
-      font-size: 15px;
-      color: #fff;
+    .team-detail-content a { font-size: 15px; color: #fff; text-decoration: none; }
 
-      text-decoration: none;
-    }
-
-    .team-detail-content a:hover {
-      color: #ff914d;
-      text-decoration: underline;
-    }
+    .team-detail-content a:hover { color: #ff914d; text-decoration: underline; }
 
 
     /* =========================================================
        FIND YOUR TEAM
        ========================================================= */
 
-    .find-team-section {
-      margin-top: 20px;
-    }
+    .find-team-section { margin-top: 20px; }
 
     .find-team-box {
       max-width: 900px;
       margin: 0 auto;
-
       padding: 35px;
-
       text-align: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(25, 25, 25, 0.95),
-          rgba(0, 0, 0, 0.88)
-        );
-
+      background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(0, 0, 0, 0.88));
       border: 1px solid rgba(255, 145, 77, 0.35);
       border-radius: 16px;
-
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
     }
 
     .find-team-label {
       color: #ff914d;
-
       font-size: 13px;
       font-weight: 700;
-
       letter-spacing: 1.5px;
-
       margin-bottom: 8px;
     }
 
-    .find-team-box h2 {
-      margin-bottom: 12px;
-    }
-
-    .find-team-box > p {
-      max-width: 650px;
-      margin: 0 auto 28px;
-    }
+    .find-team-box h2 { margin-bottom: 12px; }
+    .find-team-box > p { max-width: 650px; margin: 0 auto 28px; }
 
     .age-selector {
       display: flex;
-
       flex-wrap: wrap;
       justify-content: center;
-
       gap: 10px;
-
       margin: 25px auto;
     }
 
     .age-button {
       width: 52px;
       height: 52px;
-
       border-radius: 50%;
-
       border: 1px solid rgba(255, 145, 77, 0.4);
-
       background: rgba(255, 255, 255, 0.04);
       color: white;
-
       font-size: 16px;
       font-weight: 700;
-
       cursor: pointer;
       touch-action: manipulation;
-
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
     .age-button:hover {
@@ -363,81 +227,41 @@
       transform: translateY(-2px);
     }
 
-    .age-button.selected {
-      background: #ff914d;
-      color: #111;
-      border-color: #ff914d;
-    }
+    .age-button.selected { background: #ff914d; color: #111; border-color: #ff914d; }
 
     .finder-result {
       display: none;
-
       margin: 25px auto 0;
-
       padding: 22px;
-
       max-width: 500px;
-
       border-radius: 10px;
-
       background: rgba(255, 145, 77, 0.1);
       border: 1px solid rgba(255, 145, 77, 0.35);
     }
 
-    .finder-result.active {
-      display: block;
-    }
+    .finder-result.active { display: block; }
+    .finder-result small { display: block; margin-bottom: 6px; opacity: 0.7; }
+    .finder-result strong { display: block; font-size: 27px; color: #ff914d; }
+    .finder-result p { margin: 8px 0 0; font-size: 14px; }
 
-    .finder-result small {
-      display: block;
-
-      margin-bottom: 6px;
-
-      opacity: 0.7;
-    }
-
-    .finder-result strong {
-      display: block;
-
-      font-size: 27px;
-
-      color: #ff914d;
-    }
-
-    .finder-result p {
-      margin: 8px 0 0;
-      font-size: 14px;
-    }
-
-    .finder-teams {
-      margin-top: 18px;
-    }
+    .finder-teams { margin-top: 18px; }
 
     .finder-teams-label {
       display: block;
-
       margin-bottom: 8px;
-
       font-size: 13px;
       font-weight: 700;
-
       color: #ff914d;
     }
 
     .finder-team-name {
       display: inline-block;
-
       margin: 4px;
-
       padding: 7px 12px;
-
       border-radius: 20px;
-
       background: rgba(255, 145, 77, 0.14);
       border: 1px solid rgba(255, 145, 77, 0.35);
-
       color: #fff;
-
       font-size: 14px;
       font-weight: 700;
     }
@@ -449,16 +273,10 @@
 
     .development-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, minmax(0, 330px));
-
+      grid-template-columns: repeat(3, minmax(0, 330px));
       justify-content: center;
-
       align-items: stretch;
-
       gap: 22px;
-
       width: 100%;
       margin: 25px auto 0;
     }
@@ -467,35 +285,23 @@
       height: 330px;
       width: 100%;
       max-width: 330px;
-
       perspective: 1200px;
       -webkit-perspective: 1200px;
-
       cursor: pointer;
-
       position: relative;
-
       margin: 0 auto;
-
       touch-action: manipulation;
-
       -webkit-tap-highlight-color: transparent;
     }
 
     .flip-card-inner {
       position: relative;
-
       width: 100%;
       height: 100%;
-
       text-align: center;
-
-      transition:
-        transform 0.75s cubic-bezier(.2,.7,.2,1);
-
+      transition: transform 0.75s cubic-bezier(.2,.7,.2,1);
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
-
       will-change: transform;
     }
 
@@ -507,223 +313,107 @@
     .flip-card-front,
     .flip-card-back {
       position: absolute;
-
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       border-radius: 16px;
-
       overflow: hidden;
-
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-
-      border:
-        1px solid rgba(255,145,77,0.3);
-
-      box-shadow:
-        0 12px 35px rgba(0,0,0,0.5);
-
+      border: 1px solid rgba(255,145,77,0.3);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
     }
 
     .flip-card-front {
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
-
       align-items: center;
-
       padding: 30px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #181818,
-          #0b0b0b
-        );
-
+      background: linear-gradient(145deg, #181818, #0b0b0b);
       transform: rotateY(0deg);
       -webkit-transform: rotateY(0deg);
-
       z-index: 2;
     }
 
-    .flip-card.flipped .flip-card-front {
-      z-index: 0;
-    }
+    .flip-card.flipped .flip-card-front { z-index: 0; }
 
     .flip-card-front::before {
       content: "";
-
       position: absolute;
-
       width: 150px;
       height: 150px;
-
       border-radius: 50%;
-
-      background:
-        rgba(254,67,0,0.08);
-
-      box-shadow:
-        0 0 80px rgba(254,67,0,0.12);
+      background: rgba(254,67,0,0.08);
+      box-shadow: 0 0 80px rgba(254,67,0,0.12);
     }
 
     .flip-card-front h3 {
       position: relative;
-
-      margin:
-        0 0 15px;
-
-      color:
-        #ff914d;
-
+      margin: 0 0 15px;
+      color: #ff914d;
       font-size: 23px;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        1px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .flip-card-front p {
       position: relative;
-
       margin: 0;
-
-      color:
-        #dddddd;
-
-      line-height:
-        1.6;
-
-      font-size:
-        15px;
+      color: #dddddd;
+      line-height: 1.6;
+      font-size: 15px;
     }
 
     .flip-icon {
       position: relative;
-
       margin-bottom: 20px;
-
       width: 58px;
       height: 58px;
-
       display: flex;
-
       justify-content: center;
       align-items: center;
-
       border-radius: 50%;
-
-      border:
-        2px solid #fe4300;
-
-      color:
-        #ff914d;
-
-      font-size:
-        25px;
-
-      box-shadow:
-        0 0 20px rgba(254,67,0,0.25);
+      border: 2px solid #fe4300;
+      color: #ff914d;
+      font-size: 25px;
+      box-shadow: 0 0 20px rgba(254,67,0,0.25);
     }
 
     .flip-card-back {
       transform: rotateY(180deg);
       -webkit-transform: rotateY(180deg);
-
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
       display: flex;
-
       align-items: flex-end;
-
       z-index: 1;
     }
 
-    .flip-card.flipped .flip-card-back {
-      z-index: 2;
-    }
+    .flip-card.flipped .flip-card-back { z-index: 2; }
 
     .flip-card-back::before {
       content: "";
-
       position: absolute;
-
       inset: 0;
-
-      background:
-        linear-gradient(
-          transparent 25%,
-          rgba(0,0,0,0.92) 100%
-        );
+      background: linear-gradient(transparent 25%, rgba(0,0,0,0.92) 100%);
     }
 
-    .back-content {
-      position: relative;
-
-      z-index: 2;
-
-      padding: 25px;
-
-      text-align: left;
-
-      width: 100%;
-    }
-
-    .back-content h3 {
-      margin:
-        0 0 8px;
-
-      color:
-        #ff914d;
-
-      font-size:
-        23px;
-    }
-
-    .back-content p {
-      margin: 0;
-
-      color:
-        white;
-
-      line-height:
-        1.55;
-
-      font-size:
-        14px;
-    }
+    .back-content { position: relative; z-index: 2; padding: 25px; text-align: left; width: 100%; }
+    .back-content h3 { margin: 0 0 8px; color: #ff914d; font-size: 23px; }
+    .back-content p { margin: 0; color: white; line-height: 1.55; font-size: 14px; }
 
 
     /* =========================================================
        JUNIOR CARD IMAGES
        ========================================================= */
 
-    .page-juniors .player-development {
-      background-image:
-        url("cr2.jpg");
-    }
-
-    .page-juniors .quality-environment {
-      background-image:
-        url("drone.jpg");
-    }
-
-    .page-juniors .future-pathway {
-      background-image:
-        url("mens.jpg");
-    }
+    .page-juniors .player-development { background-image: url("cr2.jpg"); }
+    .page-juniors .quality-environment { background-image: url("drone.jpg"); }
+    .page-juniors .future-pathway { background-image: url("mens.jpg"); }
 
 
     /* =========================================================
@@ -732,40 +422,14 @@
 
     @media (max-width: 700px) {
 
-      .team-list {
-        grid-template-columns: 1fr;
-      }
-
-      .team-row {
-        padding: 18px;
-      }
-
-      .team-information {
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .team-number {
-        min-width: 42px;
-        height: 42px;
-      }
-
-      .team-information h3 {
-        font-size: 17px;
-      }
-
-      .team-information p {
-        font-size: 13px;
-      }
-
-      .team-profile-button {
-        padding: 9px 11px;
-        font-size: 11px;
-      }
-
-      .team-modal {
-        padding: 14px;
-      }
+      .team-list { grid-template-columns: 1fr; }
+      .team-row { padding: 18px; }
+      .team-information { gap: 12px; min-width: 0; }
+      .team-number { min-width: 42px; height: 42px; }
+      .team-information h3 { font-size: 17px; }
+      .team-information p { font-size: 13px; }
+      .team-profile-button { padding: 9px 11px; font-size: 11px; }
+      .team-modal { padding: 14px; }
 
       .team-modal-box {
         padding: 27px 22px;
@@ -774,13 +438,8 @@
         -webkit-overflow-scrolling: touch;
       }
 
-      .team-modal-box h2 {
-        font-size: 25px;
-      }
-
-      .find-team-box {
-        padding: 28px 18px;
-      }
+      .team-modal-box h2 { font-size: 25px; }
+      .find-team-box { padding: 28px 18px; }
 
       .development-grid {
         display: grid;
@@ -791,12 +450,7 @@
         width: 100%;
       }
 
-      .flip-card {
-        width: 330px;
-        max-width: 100%;
-        height: 330px;
-        margin: 0 auto;
-      }
+      .flip-card { width: 330px; max-width: 100%; height: 330px; margin: 0 auto; }
 
     }
 
@@ -807,9 +461,7 @@
 
     @media (hover: none) and (pointer: coarse) {
 
-      .flip-card:hover {
-        transform: none;
-      }
+      .flip-card:hover { transform: none; }
 
       .flip-card-front,
       .flip-card-back {
@@ -1115,6 +767,8 @@
 
     <!-- =========================================================
          JUNIOR TEAMS
+         The team rows are built by the script at the bottom of
+         this page from the club admin data (season file).
          ========================================================= -->
 
     <section class="section junior-teams-section">
@@ -1134,458 +788,7 @@
       </div>
 
 
-      <div class="team-list">
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              01
-            </div>
-
-            <div>
-              <h3>Breeze</h3>
-              <p>6th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Breeze',
-              '6th Grade',
-              '',
-              '',
-              '3v3 • No goalkeeper • 3 × 8 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              02
-            </div>
-
-            <div>
-              <h3>Mermaids</h3>
-              <p>7th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Mermaids',
-              '7th Grade',
-              'Maryanne Gibbs',
-              '',
-              '3v3 • No goalkeeper • 3 × 8 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              03
-            </div>
-
-            <div>
-              <h3>Frost</h3>
-              <p>7th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Frost',
-              '7th Grade',
-              'Aaron Lawrence',
-              '',
-              '3v3 • No goalkeeper • 3 × 8 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              04
-            </div>
-
-            <div>
-              <h3>Stars</h3>
-              <p>7th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Stars',
-              '7th Grade',
-              'Aaron Lawrence',
-              '',
-              '3v3 • No goalkeeper • 3 × 8 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              05
-            </div>
-
-            <div>
-              <h3>Warriors</h3>
-              <p>7th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Warriors',
-              '7th Grade',
-              'Harlem Simiona',
-              '',
-              '3v3 • No goalkeeper • 3 × 8 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              06
-            </div>
-
-            <div>
-              <h3>Thunder</h3>
-              <p>8th Grade • Coach: Kyle Hetherington</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Thunder',
-              '8th Grade',
-              'Kyle Hetherington',
-              '',
-              '5v5 • Goalkeeper • 2 x 20 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              07
-            </div>
-
-            <div>
-              <h3>Earthquake</h3>
-              <p>8th Grade • Coach: Kyle Hetherington</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Earthquake',
-              '8th Grade',
-              'Kyle Hetherington',
-              '',
-              '5v5 • Goalkeeper • 2 x 20 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              08
-            </div>
-
-            <div>
-              <h3>Tornado</h3>
-              <p>9th Grade • Coach: Shaun Kaupa</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Tornado',
-              '9th Grade',
-              'Shaun Kaupa',
-              '',
-              '5v5 • Goalkeeper • 2 × 20 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              09
-            </div>
-
-            <div>
-              <h3>Lightning</h3>
-              <p>9th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Lightning',
-              '9th Grade',
-              '',
-              '',
-              '5v5 • Goalkeeper • 2 × 20 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              10
-            </div>
-
-            <div>
-              <h3>Storm</h3>
-              <p>10th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Storm',
-              '10th Grade',
-              '',
-              '',
-              '7v7 • Goalkeeper • 2 × 25 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              11
-            </div>
-
-            <div>
-              <h3>Avalanche</h3>
-              <p>10th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Avalanche',
-              '10th Grade',
-              '',
-              '',
-              '7v7 • Goalkeeper • 2 × 25 minute games'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              12
-            </div>
-
-            <div>
-              <h3>Monsoon</h3>
-              <p>11th Grade • Coach: Kyle Hetherington</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Monsoon',
-              '11th Grade',
-              'Kyle Hetherington',
-              '',
-              '7v7 • Goalkeeper • 2 x 25 minute halves'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              13
-            </div>
-
-            <div>
-              <h3>Typhoon</h3>
-              <p>11th Grade</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Typhoon',
-              '11th Grade',
-              'Curtis',
-              '',
-              '7v7 • Goalkeeper • 2 x 25 minute halves'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-        <div class="team-row">
-
-          <div class="team-information">
-
-            <div class="team-number">
-              14
-            </div>
-
-            <div>
-              <h3>Blizzard</h3>
-              <p>12th Grade • Coach: Te Wehi</p>
-            </div>
-
-          </div>
-
-          <button
-            class="team-profile-button"
-            type="button"
-            onclick="openTeamProfile(
-              'Blizzard',
-              '12th Grade',
-              'Te Wehi',
-              '',
-              '9v9 • Goalkeeper • 2 × 30 minute halves'
-            )"
-          >
-            VIEW TEAM
-          </button>
-
-        </div>
-
-
-      </div>
+      <div class="team-list" id="teamList"></div>
 
     </section>
 
@@ -1738,8 +941,8 @@
             Training
           </strong>
 
-          <span>
-            Tuesday &amp; Thursday
+          <span id="teamTraining">
+            -
           </span>
 
         </div>
@@ -1759,8 +962,8 @@
             Location
           </strong>
 
-          <span>
-            Ngongotahā Domain
+          <span id="teamLocation">
+            -
           </span>
 
         </div>
@@ -1802,6 +1005,30 @@
           </strong>
 
           <span id="teamCoach">
+            -
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="team-detail"
+        id="teamManagerDetail"
+      >
+
+        <div class="team-detail-icon">
+          📋
+        </div>
+
+        <div class="team-detail-content">
+
+          <strong>
+            Manager
+          </strong>
+
+          <span id="teamManager">
             -
           </span>
 
@@ -1865,6 +1092,169 @@
 
 
     /* =========================================================
+       TEAM DATA
+       Teams, coaches, managers, formats, training and location
+       come from the club admin page, saved in the season file.
+
+       SETTINGS: change the year here when a new season starts.
+       ========================================================= */
+
+    const TEAMS_DATA_URL =
+      "https://coteese.github.io/ngongotaha-data/season-2026.json";
+
+    const DEFAULT_TRAINING = "Tuesday & Thursday";
+    const DEFAULT_LOCATION = "Ngongotahā Domain";
+
+
+    /* Shown only if the data above cannot be loaded
+       (or has no teams saved yet). */
+
+    const FALLBACK_TEAMS = [
+      ["Breeze",     "6th Grade",  "",                  "3v3 • No goalkeeper • 3 × 8 minute games"],
+      ["Mermaids",   "7th Grade",  "Maryanne Gibbs",    "3v3 • No goalkeeper • 3 × 8 minute games"],
+      ["Frost",      "7th Grade",  "Aaron Lawrence",    "3v3 • No goalkeeper • 3 × 8 minute games"],
+      ["Stars",      "7th Grade",  "Aaron Lawrence",    "3v3 • No goalkeeper • 3 × 8 minute games"],
+      ["Warriors",   "7th Grade",  "Harlem Simiona",    "3v3 • No goalkeeper • 3 × 8 minute games"],
+      ["Thunder",    "8th Grade",  "Kyle Hetherington", "5v5 • Goalkeeper • 2 x 20 minute games"],
+      ["Earthquake", "8th Grade",  "Kyle Hetherington", "5v5 • Goalkeeper • 2 x 20 minute games"],
+      ["Tornado",    "9th Grade",  "Shaun Kaupa",       "5v5 • Goalkeeper • 2 × 20 minute games"],
+      ["Lightning",  "9th Grade",  "",                  "5v5 • Goalkeeper • 2 × 20 minute games"],
+      ["Storm",      "10th Grade", "",                  "7v7 • Goalkeeper • 2 × 25 minute games"],
+      ["Avalanche",  "10th Grade", "",                  "7v7 • Goalkeeper • 2 × 25 minute games"],
+      ["Monsoon",    "11th Grade", "Kyle Hetherington", "7v7 • Goalkeeper • 2 x 25 minute halves"],
+      ["Typhoon",    "11th Grade", "Curtis",            "7v7 • Goalkeeper • 2 x 25 minute halves"],
+      ["Blizzard",   "12th Grade", "Te Wehi",           "9v9 • Goalkeeper • 2 × 30 minute halves"]
+    ].map(function (row) {
+
+      return {
+        name: row[0],
+        grade: row[1],
+        coach: row[2],
+        manager: "",
+        email: "",
+        format: row[3],
+        training: DEFAULT_TRAINING,
+        location: DEFAULT_LOCATION
+      };
+
+    });
+
+
+    let teams = FALLBACK_TEAMS.slice();
+
+
+    function text(value) {
+
+      return typeof value === "string" ? value.trim() : "";
+
+    }
+
+
+    function gradeNumber(grade) {
+
+      return parseInt(String(grade), 10) || 99;
+
+    }
+
+
+    function cleanTeams(list) {
+
+      return list
+
+        .filter(function (t) {
+          return t && text(t.name) !== "";
+        })
+
+        .map(function (t) {
+
+          return {
+            name: text(t.name),
+            grade: text(t.grade),
+            coach: text(t.coach),
+            manager: text(t.manager),
+            email: text(t.email),
+            format: text(t.format),
+            training: text(t.training),
+            location: text(t.location)
+          };
+
+        })
+
+        .sort(function (a, b) {
+
+          return gradeNumber(a.grade) - gradeNumber(b.grade) ||
+                 a.name.localeCompare(b.name);
+
+        });
+
+    }
+
+
+    /* =========================================================
+       TEAM LIST
+       ========================================================= */
+
+    function renderTeams() {
+
+      const list =
+        document.getElementById("teamList");
+
+      list.textContent = "";
+
+
+      teams.forEach(function (team, index) {
+
+        const row = document.createElement("div");
+        row.className = "team-row";
+
+
+        const info = document.createElement("div");
+        info.className = "team-information";
+
+
+        const number = document.createElement("div");
+        number.className = "team-number";
+        number.textContent = String(index + 1).padStart(2, "0");
+
+
+        const words = document.createElement("div");
+
+        const heading = document.createElement("h3");
+        heading.textContent = team.name;
+
+        const sub = document.createElement("p");
+        sub.textContent =
+          team.grade + (team.coach ? " • Coach: " + team.coach : "");
+
+        words.appendChild(heading);
+        words.appendChild(sub);
+
+
+        info.appendChild(number);
+        info.appendChild(words);
+
+
+        const button = document.createElement("button");
+        button.className = "team-profile-button";
+        button.type = "button";
+        button.textContent = "VIEW TEAM";
+
+        button.addEventListener("click", function () {
+          openTeamProfile(team);
+        });
+
+
+        row.appendChild(info);
+        row.appendChild(button);
+
+        list.appendChild(row);
+
+      });
+
+    }
+
+
+    /* =========================================================
        TEAM PROFILE POPUP
        ========================================================= */
 
@@ -1874,8 +1264,23 @@
     const teamModalTitle =
       document.getElementById("teamModalTitle");
 
+    const teamTraining =
+      document.getElementById("teamTraining");
+
+    const teamLocation =
+      document.getElementById("teamLocation");
+
+    const teamFormat =
+      document.getElementById("teamFormat");
+
     const teamCoach =
       document.getElementById("teamCoach");
+
+    const teamManager =
+      document.getElementById("teamManager");
+
+    const teamManagerDetail =
+      document.getElementById("teamManagerDetail");
 
     const teamContact =
       document.getElementById("teamContact");
@@ -1883,64 +1288,51 @@
     const teamContactDetail =
       document.getElementById("teamContactDetail");
 
-    const teamFormat =
-      document.getElementById("teamFormat");
+
+    function openTeamProfile(team) {
+
+      teamModalTitle.textContent =
+        team.name || (team.grade + " Team");
+
+      teamTraining.textContent =
+        team.training || "To be confirmed";
+
+      teamLocation.textContent =
+        team.location || "To be confirmed";
+
+      teamFormat.textContent =
+        team.format || "To be confirmed";
+
+      teamCoach.textContent =
+        team.coach || "To be confirmed";
 
 
-    function openTeamProfile(
-      teamName,
-      grade,
-      coach,
-      email,
-      format
-    ) {
+      if (team.manager) {
 
-      if (teamName && teamName.trim() !== "") {
+        teamManager.textContent =
+          team.manager;
 
-        teamModalTitle.textContent =
-          teamName;
-
-      } else {
-
-        teamModalTitle.textContent =
-          grade + " Team";
-
-      }
-
-
-      if (format && format.trim() !== "") {
-
-        teamFormat.textContent =
-          format;
+        teamManagerDetail.style.display =
+          "flex";
 
       } else {
 
-        teamFormat.textContent =
+        teamManager.textContent =
           "";
 
-      }
-
-
-      if (coach && coach.trim() !== "") {
-
-        teamCoach.textContent =
-          coach;
-
-      } else {
-
-        teamCoach.textContent =
-          "";
+        teamManagerDetail.style.display =
+          "none";
 
       }
 
 
-      if (email && email.trim() !== "") {
+      if (team.email) {
 
         teamContact.textContent =
-          email;
+          team.email;
 
         teamContact.href =
-          "mailto:" + email;
+          "mailto:" + team.email;
 
         teamContactDetail.style.display =
           "flex";
@@ -2009,6 +1401,7 @@
 
     /* =========================================================
        FIND YOUR TEAM
+       Uses the same team list, so it is always up to date.
        ========================================================= */
 
     function findTeam(age, button) {
@@ -2038,89 +1431,24 @@
       button.classList.add("selected");
 
 
-      let grade;
-      let teams = [];
+      const older = age >= 12;
 
+      const grade =
+        older ? "12/13th Grade" : age + "th Grade";
 
-      if (age === 5) {
+      const names = teams
 
-        grade = "5th Grade";
-        teams = [];
+        .filter(function (team) {
 
-      }
+          const number = gradeNumber(team.grade);
 
-      else if (age === 6) {
+          return older ? number >= 12 : number === age;
 
-        grade = "6th Grade";
-        teams = ["Breeze"];
+        })
 
-      }
-
-      else if (age === 7) {
-
-        grade = "7th Grade";
-        teams = [
-          "Mermaids",
-          "Frost",
-          "Stars",
-          "Warriors"
-        ];
-
-      }
-
-      else if (age === 8) {
-
-        grade = "8th Grade";
-        teams = [
-          "Thunder",
-          "Earthquake"
-        ];
-
-      }
-
-      else if (age === 9) {
-
-        grade = "9th Grade";
-        teams = [
-          "Tornado",
-          "Lightning"
-        ];
-
-      }
-
-      else if (age === 10) {
-
-        grade = "10th Grade";
-        teams = [
-          "Storm",
-          "Avalanche"
-        ];
-
-      }
-
-      else if (age === 11) {
-
-        grade = "11th Grade";
-        teams = [
-          "Monsoon",
-          "Typhoon"
-        ];
-
-      }
-
-      else if (age === 12) {
-
-        grade = "12/13th Grade";
-        teams = ["Blizzard"];
-
-      }
-
-      else if (age === 13) {
-
-        grade = "12/13th Grade";
-        teams = ["Blizzard"];
-
-      }
+        .map(function (team) {
+          return team.name;
+        });
 
 
       finderGrade.textContent =
@@ -2135,13 +1463,13 @@
         ".";
 
 
-      finderTeams.innerHTML =
+      finderTeams.textContent =
         "";
 
 
-      if (teams.length > 0) {
+      if (names.length > 0) {
 
-        teams.forEach(function(team) {
+        names.forEach(function(name) {
 
           const teamElement =
             document.createElement("span");
@@ -2150,7 +1478,7 @@
             "finder-team-name";
 
           teamElement.textContent =
-            team;
+            name;
 
           finderTeams.appendChild(
             teamElement
@@ -2169,6 +1497,55 @@
       finderResult.classList.add("active");
 
     }
+
+
+    /* =========================================================
+       LOAD LIVE TEAMS
+       Shows the built-in list straight away, then swaps in the
+       saved teams as soon as they arrive.
+       ========================================================= */
+
+    renderTeams();
+
+
+    fetch(TEAMS_DATA_URL + "?t=" + Date.now(), { cache: "no-store" })
+
+      .then(function (response) {
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+
+        return response.json();
+
+      })
+
+      .then(function (data) {
+
+        if (!data || !Array.isArray(data.teams)) {
+          return;
+        }
+
+        const live = cleanTeams(data.teams);
+
+        if (live.length === 0) {
+          return;
+        }
+
+        teams = live;
+
+        renderTeams();
+
+      })
+
+      .catch(function (error) {
+
+        console.warn(
+          "Junior teams: showing the built-in list.",
+          error
+        );
+
+      });
 
 
     /* =========================================================
