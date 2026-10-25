@@ -116,6 +116,120 @@
 
     }
 
+
+    /* =========================================================
+       LIVE SCORERS + RESULTS
+       Used by the "First Team Top Scorers" section.
+       ========================================================= */
+
+    .page-senior .scorer-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .page-senior .scorer-row:last-child {
+      border-bottom: none;
+    }
+
+    .page-senior .scorer-rank {
+      width: 26px;
+      flex-shrink: 0;
+      color: var(--orange-light);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .page-senior .scorer-name {
+      flex: 1;
+      min-width: 0;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .page-senior .scorer-goals {
+      flex-shrink: 0;
+      padding: 5px 11px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, var(--orange-light), var(--orange));
+      border-radius: 20px;
+    }
+
+    .page-senior .result-date {
+      width: 52px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .page-senior .result-score {
+      flex-shrink: 0;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .page-senior .result-badge {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 6px;
+    }
+
+    .page-senior .result-w { background: #2e9e57; }
+    .page-senior .result-d { background: #8a8a8a; }
+    .page-senior .result-l { background: #c43b2f; }
+
+    .page-senior .scorers-toggle {
+      margin-top: 14px;
+      padding: 9px 14px;
+      color: var(--orange-light);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid rgba(255,145,77,0.5);
+      border-radius: 8px;
+    }
+
+    .page-senior .scorers-note {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .page-senior .scorers-updated {
+      margin-top: 18px;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .page-senior .scorers-updated:empty {
+      display: none;
+    }
+
+    .page-senior [hidden] {
+      display: none !important;
+    }
+
   </style>
 
 </head>
@@ -547,7 +661,7 @@
 
               <img
                 src="assistant1.jpg"
-                alt="George Oake, First Team Assistant Coach"
+                alt="Ciaran, First Team Assistant Coach"
                 loading="lazy"
               >
 
@@ -563,7 +677,7 @@
 
 
               <h3>
-                Ciaran 
+                Ciaran
               </h3>
 
 
@@ -621,7 +735,6 @@
               <p>
                 Focuses on player development and supporting
                 our young players development from youth into mens football.
-                #UPDATE THIS BEFORE MAKING THE WEBSITE LIVE MAYBE A RESERVES MAYBE A 23S LEAGUE???#
               </p>
 
 
@@ -641,10 +754,12 @@
 
 
     <!-- =======================================================
-         PLAYER STATISTICS
+         PLAYER STATISTICS (LIVE)
+         Filled in automatically from the club data repo by the
+         script at the bottom of this page. Nothing to edit here.
          ======================================================= -->
 
-    <section class="section">
+    <section class="section" id="scorersSection">
 
 
       <span class="home-section-label">
@@ -658,54 +773,20 @@
 
 
       <p>
-        Leading goal scorers for the Ngongotahā Men's First Team.
+        Leading goal scorers and latest results for the
+        Ngongotahā Men's First Team.
       </p>
 
 
-      <div class="latest-news-grid">
+      <p class="scorers-note" id="scorersNote">
+        Loading the latest stats…
+      </p>
 
 
-        <article class="latest-news-card">
+      <div class="latest-news-grid" id="scorersGrid"></div>
 
 
-          <div class="latest-news-content">
-
-
-            <span class="latest-news-kicker">
-              2026 Season
-            </span>
-
-
-            <h3>
-              Leading Scorers
-            </h3>
-
-
-            <p>
-              <strong>Arno Greyling</strong><br>
-              5 goals
-            </p>
-
-
-            <p>
-              <strong>Olly Atkinson</strong><br>
-              3 goals
-            </p>
-
-
-            <p>
-              <strong>Harshay Kumar</strong><br>
-              3 goals
-            </p>
-
-
-          </div>
-
-
-        </article>
-
-
-      </div>
+      <p class="scorers-updated" id="scorersUpdated"></p>
 
 
     </section>
@@ -835,7 +916,7 @@
        TEAMS DROPDOWN
        Positions the menu just below the button on phones so it
        never covers the button. Desktop uses the CSS, so hover
-       still opens flush under the button. 
+       still opens flush under the button.
        ========================================================= */
 
     (function () {
@@ -1056,6 +1137,222 @@
 
     })();
 
+
+  </script>
+
+
+  <!-- =========================================================
+       LIVE SCORERS + RESULTS
+       Reads the season file from the club data repo on GitHub.
+       Scores are added with add-match.html in that repo.
+       ========================================================= -->
+
+  <script>
+
+    /* ===========================================================
+       ============================================================
+
+       >>>  NEW SEASON? CHANGE THIS ONE LINE, THEN YOU'RE DONE  <<<
+
+       Change  season-2026.json  to  season-2027.json  below.
+       Nothing else on this page needs to change.
+
+         2026 season:  .../ngongotaha-data/season-2026.json
+         2027 season:  .../ngongotaha-data/season-2027.json
+
+       (In add-match.html, use "Switch season" to match, so new
+       results are saved into the same file.)
+
+       ============================================================
+       =========================================================== */
+
+    const SCORERS_DATA_URL =
+      "https://coteese.github.io/ngongotaha-data/season-2026.json";
+
+
+    /* ===========================================================
+       Everything below runs automatically. No need to edit.
+       =========================================================== */
+
+    (function () {
+
+      "use strict";
+
+      var TOP_N = 5;        /* scorers shown before "Show full table" */
+      var RESULTS_N = 5;    /* latest results shown */
+
+      var grid = document.getElementById("scorersGrid");
+      var note = document.getElementById("scorersNote");
+      var updatedEl = document.getElementById("scorersUpdated");
+
+      if (!grid) {
+        return;
+      }
+
+
+      function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) { node.className = className; }
+        if (text !== undefined) { node.textContent = text; }
+        return node;
+      }
+
+
+      function showNote(text) {
+        if (note) {
+          note.textContent = text;
+          note.hidden = false;
+        }
+      }
+
+
+      function formatDate(iso) {
+        var d = new Date(iso + "T00:00:00");
+        if (isNaN(d.getTime())) { return iso; }
+        return d.toLocaleDateString("en-NZ", { day: "numeric", month: "short" });
+      }
+
+
+      /* ---------- Card: leading scorers ---------- */
+
+      function buildScorersCard(data) {
+
+        var card = el("article", "latest-news-card");
+        var content = el("div", "latest-news-content");
+
+        content.appendChild(el("span", "latest-news-kicker", data.season + " Season"));
+        content.appendChild(el("h3", "", "Leading Scorers"));
+
+        var list = el("div", "scorer-list");
+        var rank = 0;
+        var prevGoals = null;
+
+        data.scorers.forEach(function (p, i) {
+
+          /* Players on equal goals share the same rank */
+          if (p.goals !== prevGoals) {
+            rank = i + 1;
+            prevGoals = p.goals;
+          }
+
+          var row = el("div", "scorer-row");
+          row.appendChild(el("span", "scorer-rank", String(rank)));
+          row.appendChild(el("span", "scorer-name", p.name));
+          row.appendChild(el("span", "scorer-goals",
+            p.goals + (p.goals === 1 ? " goal" : " goals")));
+
+          if (i >= TOP_N) {
+            row.hidden = true;
+            row.className += " scorer-extra";
+          }
+
+          list.appendChild(row);
+        });
+
+        content.appendChild(list);
+
+        if (data.scorers.length > TOP_N) {
+
+          var btn = el("button", "scorers-toggle",
+            "Show full table (" + data.scorers.length + ")");
+          btn.type = "button";
+
+          var open = false;
+
+          btn.addEventListener("click", function () {
+            open = !open;
+
+            list.querySelectorAll(".scorer-extra").forEach(function (r) {
+              r.hidden = !open;
+            });
+
+            btn.textContent = open
+              ? "Show top " + TOP_N
+              : "Show full table (" + data.scorers.length + ")";
+          });
+
+          content.appendChild(btn);
+        }
+
+        card.appendChild(content);
+        return card;
+      }
+
+
+      /* ---------- Card: latest results ---------- */
+
+      function buildResultsCard(data) {
+
+        var card = el("article", "latest-news-card");
+        var content = el("div", "latest-news-content");
+
+        content.appendChild(el("span", "latest-news-kicker", "First Team"));
+        content.appendChild(el("h3", "", "Latest Results"));
+
+        var list = el("div", "scorer-list");
+
+        data.matches.slice(0, RESULTS_N).forEach(function (m) {
+
+          var outcome = m.for > m.against ? "w" : (m.for < m.against ? "l" : "d");
+
+          var row = el("div", "scorer-row");
+          row.appendChild(el("span", "result-date", formatDate(m.date)));
+          row.appendChild(el("span", "scorer-name",
+            (m.venue === "Away" ? "@ " : "v ") + m.opponent));
+          row.appendChild(el("span", "result-score", m.for + " – " + m.against));
+          row.appendChild(el("span", "result-badge result-" + outcome,
+            outcome.toUpperCase()));
+
+          list.appendChild(row);
+        });
+
+        content.appendChild(list);
+        card.appendChild(content);
+        return card;
+      }
+
+
+      /* ---------- Load and draw ---------- */
+
+      /* The number changes every 5 minutes, so visitors get fresh data
+         without hitting GitHub on every single page view. */
+      var bust = Math.floor(Date.now() / 300000);
+
+      fetch(SCORERS_DATA_URL + "?v=" + bust)
+        .then(function (res) {
+          if (!res.ok) { throw new Error("HTTP " + res.status); }
+          return res.json();
+        })
+        .then(function (data) {
+
+          var hasScorers = data && Array.isArray(data.scorers) && data.scorers.length > 0;
+          var hasMatches = data && Array.isArray(data.matches) && data.matches.length > 0;
+
+          if (!hasScorers && !hasMatches) {
+            showNote("No stats yet this season. Check back after the next game.");
+            return;
+          }
+
+          grid.textContent = "";
+          if (note) { note.hidden = true; }
+
+          if (hasScorers) { grid.appendChild(buildScorersCard(data)); }
+          if (hasMatches) { grid.appendChild(buildResultsCard(data)); }
+
+          if (updatedEl && data.updated) {
+            var u = new Date(data.updated);
+            if (!isNaN(u.getTime())) {
+              updatedEl.textContent = "Updated " + u.toLocaleDateString("en-NZ",
+                { day: "numeric", month: "short", year: "numeric" });
+            }
+          }
+        })
+        .catch(function (err) {
+          showNote("Stats are unavailable right now. Please check back soon.");
+          if (window.console) { console.warn("Live scorers unavailable:", err); }
+        });
+
+    })();
 
   </script>
 
