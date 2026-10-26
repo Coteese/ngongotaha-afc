@@ -728,7 +728,10 @@
 
 
      <!-- ==========================================================================
-         This is where to edit the calandar, follow Settings below for next year
+         UPCOMING SESSIONS
+         The dates are no longer edited in this file.
+         They are managed from the Club Admin page (CR1 tab) and read from:
+         https://coteese.github.io/ngongotaha-data/season-YYYY.json
          =========================================================================== -->
 
    <section class="section">
@@ -742,43 +745,10 @@
 
 <script>
 (function () {
-  // ===== SETTINGS: only edit this bit =====
-  const FIRST_SESSION = "2026-10-31";   // first Saturday
-  const LAST_SESSION  = "2026-12-05";   // final Saturday
-  const SESSION_END_HOUR = 12;          // 24hr time the session finishes (12 = 12pm)
-  const SKIP_DATES = [];                // cancelled dates, e.g. ["2026-11-14"]
-  const TIME_TEXT = "";                 // optional, e.g. "10am – 12pm at Mitre 10 Park"
-  const HOW_MANY = 2;                   // number of sessions to show
-  // ========================================
-
+  const DATA_BASE = "https://coteese.github.io/ngongotaha-data/season-";
   const TZ = "Pacific/Auckland";
+  const HOW_MANY = 2;   // number of sessions to show
   const grid = document.getElementById("cr1-grid");
-
-  // Build the list of Saturdays
-  const sessions = [];
-  let d = new Date(FIRST_SESSION + "T00:00:00Z");
-  const last = new Date(LAST_SESSION + "T00:00:00Z");
-  while (d <= last) {
-    const iso = d.toISOString().slice(0, 10);
-    if (!SKIP_DATES.includes(iso)) sessions.push(iso);
-    d = new Date(d.getTime() + 7 * 24 * 60 * 60 * 1000);
-  }
-
-  // Current NZ date and hour
-  const now = new Date();
-  const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(now);
-  const hour = parseInt(
-    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", hour12: false }).format(now), 10
-  );
-
-  // A session is still "upcoming" until it has finished
-  const upcoming = sessions
-    .filter(s => s > today || (s === today && hour < SESSION_END_HOUR))
-    .slice(0, HOW_MANY);
-
-  const pretty = iso => new Date(iso + "T00:00:00Z").toLocaleDateString("en-NZ", {
-    weekday: "long", day: "numeric", month: "long", timeZone: "UTC"
-  });
 
   function makeCard(kickerText, titleText, bodyText, dateText) {
     const article = document.createElement("article");
@@ -810,29 +780,88 @@
     grid.append(article);
   }
 
-  if (upcoming.length === 0) {
-    makeCard(
-      "CR1 Programme",
-      "Season Complete",
-      "Thanks to everyone who took part. Keep an eye here for future CR1 updates.",
-      ""
+  // Looks for this year's file first, then last year's
+  async function loadCR1() {
+    const year = parseInt(
+      new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric" }).format(new Date()), 10
     );
-    return;
+
+    for (const y of [year, year - 1]) {
+      try {
+        const res = await fetch(DATA_BASE + y + ".json?t=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) { continue; }
+        const data = await res.json();
+        if (data && data.cr1 && data.cr1.start && data.cr1.end) { return data.cr1; }
+      } catch (e) { /* try next */ }
+    }
+    return null;
   }
 
-  upcoming.forEach((iso, i) => {
-    const number = sessions.indexOf(iso) + 1;
-    const isToday = iso === today;
+  // Every Saturday between start and end, minus cancelled dates
+  function buildSessions(cfg) {
+    const skip = Array.isArray(cfg.skip) ? cfg.skip : [];
+    const sessions = [];
+    let d = new Date(cfg.start + "T00:00:00Z");
+    const last = new Date(cfg.end + "T00:00:00Z");
 
-    const kicker = isToday ? "Today" : (i === 0 ? "Next Session" : "Following Session");
-    const title = number === 1
-      ? "CR1 Project Start Date"
-      : "CR1 Session " + number + " of " + sessions.length;
-    const body = TIME_TEXT || (number === 1
-      ? "Our first CR1 session starts here."
-      : "Join us for our next CR1 session.");
+    while (d <= last && d.getUTCDay() !== 6) {
+      d = new Date(d.getTime() + 24 * 60 * 60 * 1000);
+    }
+    while (d <= last) {
+      const iso = d.toISOString().slice(0, 10);
+      if (!skip.includes(iso)) { sessions.push(iso); }
+      d = new Date(d.getTime() + 7 * 24 * 60 * 60 * 1000);
+    }
+    return sessions;
+  }
 
-    makeCard(kicker, title, body, isToday ? "Today" : pretty(iso));
+  const pretty = iso => new Date(iso + "T00:00:00Z").toLocaleDateString("en-NZ", {
+    weekday: "long", day: "numeric", month: "long", timeZone: "UTC"
+  });
+
+  loadCR1().then(function (cfg) {
+
+    if (!cfg) {
+      makeCard("CR1 Programme", "Dates Coming Soon",
+        "Our next CR1 session dates will be announced here shortly.", "");
+      return;
+    }
+
+    const endHour = Number(cfg.endHour) || 12;
+    const sessions = buildSessions(cfg);
+
+    // Current NZ date and hour
+    const now = new Date();
+    const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(now);
+    const hour = parseInt(
+      new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", hour12: false }).format(now), 10
+    );
+
+    // A session is still "upcoming" until it has finished
+    const upcoming = sessions
+      .filter(s => s > today || (s === today && hour < endHour))
+      .slice(0, HOW_MANY);
+
+    if (upcoming.length === 0) {
+      makeCard("CR1 Programme", "Season Complete",
+        "Thanks to everyone who took part. Keep an eye here for future CR1 updates.", "");
+      return;
+    }
+
+    upcoming.forEach(function (iso, i) {
+      const number = sessions.indexOf(iso) + 1;
+      const isToday = iso === today;
+
+      const kicker = isToday ? "Today" : (i === 0 ? "Next Session" : "Following Session");
+      const title = number === 1
+        ? "CR1 Project Start Date"
+        : "CR1 Session " + number + " of " + sessions.length;
+      const body = cfg.timeText || (number === 1
+        ? "Our first CR1 session starts here."
+        : "Join us for our next CR1 session.");
+
+      makeCard(kicker, title, body, isToday ? "Today" : pretty(iso));
+    });
   });
 })();
 </script>
