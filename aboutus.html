@@ -650,6 +650,9 @@
 
          Kept consistent with index.html.
          All pages use style.css and java.js.
+         The links below are the built-in fallback; once the
+         editor is connected, content.js replaces them with the
+         links you set in the Top Bar tab.
          ===================================================== -->
 
     <nav class="navbar" id="navbar">
@@ -1600,11 +1603,13 @@
     <!-- =====================================================
          SHARED JAVASCRIPT
 
-         Uses the existing java.js file.
-         No separate About Us JavaScript is required.
+         java.js  = existing shared site script
+         content.js = pulls the top bar (and other content)
+                      from the editor / data repo
          ===================================================== -->
 
     <script src="java.js"></script>
+    <script src="content.js"></script>
 
 
 </body>
