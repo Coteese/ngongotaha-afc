@@ -58,8 +58,9 @@
 <body class="page-home">
 
   <!-- =========================================================
-     NGONGOTĀHĀ AFC NAVIGATION BAR
-     Uses the existing shared style.css
+     NAVIGATION BAR
+     The links are filled in by content.js from the club admin
+     (Top Bar tab). Nothing is written here on purpose.
      ========================================================= -->
 
 <nav class="navbar" id="navbar">
@@ -72,53 +73,8 @@
         >
     </a>
 
-    <!-- Navigation Links -->
-    <div class="nav-links">
-
-        <!-- Home and About Us -->
-        <div style="display:flex;flex-direction:column;align-items:center;">
-            <a href="index.html">Home</a>
-            <a href="aboutus.html">About Us</a>
-        </div>
-
-        <!-- Login and Registrations -->
-        <div style="display:flex;flex-direction:column;align-items:center;">
-            <a href="https://ngongotahaafc.friendlymanager.com">Login</a>
-            <a href="registrations.html">Registrations</a>
-        </div>
-
-        <!-- CR1 Project and Facilities -->
-        <div style="display:flex;flex-direction:column;align-items:center;">
-            <a href="cr1.html">CR1 Project</a>
-            <a href="hire.html">Hire &amp; Facilities</a>
-        </div>
-
-        <!-- Club Shop and Teams Dropdown -->
-        <div style="display:flex;flex-direction:column;align-items:center;">
-
-            <a href="shop.html">Club Shop</a>
-
-            <div class="dropdown">
-
-                <button
-                    class="dropbtn"
-                    type="button"
-                    aria-haspopup="true"
-                >
-                    Ngongotahā Teams
-                </button>
-
-                <div class="dropdown-content">
-                    <a href="senior-teams.html">Senior Teams</a>
-                    <a href="junior-teams.html">Junior Teams</a>
-                    <a href="womens-teams.html">Women's Teams</a>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+    <!-- Navigation Links (filled in by content.js) -->
+    <div class="nav-links"></div>
 
 </nav>
 
@@ -318,6 +274,8 @@
 
     <!-- ===================================================
          LATEST FROM THE CLUB
+         The cards are filled in by content.js from the club
+         admin (Home Page > Latest from the club).
          =================================================== -->
 
     <section class="section latest-news-section">
@@ -335,242 +293,7 @@
         Click any story to read the full article.
       </p>
 
-
-      <div class="latest-news-grid">
-
-
-        <!-- 60 YEAR HISTORY -->
-
-        <button
-          type="button"
-          class="latest-news-card latest-history"
-          onclick="openNews('history')"
-        >
-
-          <div class="latest-news-image">
-
-            <img
-              src="drone.jpg"
-              alt="Ngongotahā Football Club"
-              loading="lazy"
-            >
-
-            <div class="latest-news-date">
-              1966 → 2026
-            </div>
-
-          </div>
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              60 YEARS OF NGONGOTAHĀ AFC
-            </span>
-
-            <h3>
-              A Club Built on Football, Community and Generations
-            </h3>
-
-            <p>
-              Ngongotahā AFC is celebrating its 60th year jubilee in
-              2026, and what a 60 years it has been.
-            </p>
-
-            <span class="read-story">
-              Read full story →
-            </span>
-
-          </div>
-
-        </button>
-
-
-        <!-- WALKING FOOTBALL -->
-
-        <button
-          type="button"
-          class="latest-news-card"
-          onclick="openNews('walking')"
-        >
-
-          <div class="latest-news-image">
-
-            <img
-              src="walkingfootball.jpg"
-              alt="Ngongotahā Football Club community football"
-              loading="lazy"
-            >
-
-            <div class="latest-news-date">
-              8 MAY
-            </div>
-
-          </div>
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              COMMUNITY FOOTBALL
-            </span>
-
-            <h3>
-              Walking Football Launches in Rotorua
-            </h3>
-
-            <p>
-              Ngongotahā AFC has helped launch Walking Football in
-              Rotorua, opening another pathway for people to enjoy
-              the game in a relaxed and welcoming environment.
-            </p>
-
-            <span class="read-story">
-              Read full story →
-            </span>
-
-          </div>
-
-        </button>
-
-
-        <!-- PRESEASON -->
-
-        <button
-          type="button"
-          class="latest-news-card"
-          onclick="openNews('preseason')"
-        >
-
-          <div class="latest-news-image">
-
-            <img
-              src="mens.jpg"
-              alt="Ngongotahā senior football"
-              loading="lazy"
-            >
-
-            <div class="latest-news-date">
-              9 JAN
-            </div>
-
-          </div>
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              SENIOR FOOTBALL
-            </span>
-
-            <h3>
-              Preseason 2026 Gets Underway
-            </h3>
-
-            <p>
-              The First Team and U23s began preparations for the
-              2026 season with preseason training at Stembridge Road.
-            </p>
-
-            <span class="read-story">
-              Read full story →
-            </span>
-
-          </div>
-
-        </button>
-
-
-        <!-- WHĀNAU DAYS -->
-
-        <button
-          type="button"
-          class="latest-news-card"
-          onclick="openNews('whanau')"
-        >
-
-          <div class="latest-news-image">
-
-            <img
-              src="cr1.jpg"
-              alt="Ngongotahā AFC community football"
-              loading="lazy"
-            >
-
-            <div class="latest-news-date">
-              30 JAN
-            </div>
-
-          </div>
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              COMMUNITY
-            </span>
-
-            <h3>
-              Football Meets the Community at Fun Whānau Days
-            </h3>
-
-            <p>
-              Ngongotahā AFC took football into the community during
-              a series of Fun Whānau Days across Rotorua.
-            </p>
-
-            <span class="read-story">
-              Read full story →
-            </span>
-
-          </div>
-
-        </button>
-
-
-        <!-- CR1 GETS BACK UNDERWAY -->
-
-        <button
-          type="button"
-          class="latest-news-card"
-          onclick="openNews('CR1')"
-        >
-
-          <div class="latest-news-image">
-
-            <img
-              src="cr8.jpg"
-              alt="Ngongotahā Football Club community football"
-              loading="lazy"
-            >
-
-            <div class="latest-news-date">
-              31 OCT
-            </div>
-
-          </div>
-
-          <div class="latest-news-content">
-
-            <span class="latest-news-kicker">
-              Junior Community football
-            </span>
-
-            <h3>
-              CR1 IS BACK UNDERWAY
-            </h3>
-
-            <p>
-              Ngongotahā AFC has officially entered its 3rd year of
-              CR1 helping the community every week
-            </p>
-
-            <span class="read-story">
-              Read full story →
-            </span>
-
-          </div>
-
-        </button>
-
-
-      </div>
+      <div class="latest-news-grid"></div>
 
     </section>
 
@@ -657,6 +380,8 @@
 
     <!-- ===================================================
          SPONSORS
+         The sponsor images are filled in by content.js from the
+         club admin (Home Page > Sponsors).
          =================================================== -->
 
     <section class="section sponsors-section">
@@ -679,94 +404,7 @@
 
         <div class="sponsors-track">
 
-          <div class="sponsors-group">
-
-
-            <!-- BEV & JASON WALLER -->
-
-            <a
-              href="https://www.arizto.co.nz/our-people/profile/bev-and-jason-waller/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-            >
-
-              <img
-                src="sponsor1.jpg"
-                alt="Bev and Jason Waller - Arizto"
-              >
-
-            </a>
-
-
-            <!-- MCDONALD'S -->
-
-            <a
-              href="https://www.mcdonalds.com/nz/en-nz.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-            >
-
-              <img
-                src="sponsor2.jpg"
-                alt="McDonald's New Zealand"
-              >
-
-            </a>
-
-
-            <!-- VIP PLUMBING AND GASFITTINGS -->
-
-            <a
-              href="https://vipplumbing.co.nz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-            >
-
-              <img
-                src="sponsor3.jpg"
-                alt="VIP Plumbing and Gasfittings"
-              >
-
-            </a>
-
-
-            <!-- SPONSOR 4 -->
-
-            <a
-              href="https://www.douglasautomotive.net/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-            >
-
-              <img
-                src="sponsor4.jpg"
-                alt="Douglas Automotive"
-              >
-
-            </a>
-
-
-            <!-- SPONSOR 5 -->
-
-            <a
-              href="https://www.friendlymanager.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sponsor-item"
-            >
-
-              <img
-                src="sponsor5.jpg"
-                alt="Friendly Manager"
-              >
-
-            </a>
-
-          </div>
+          <div class="sponsors-group"></div>
 
         </div>
 
@@ -858,10 +496,14 @@
 
 
   <!-- =====================================================
-       JAVASCRIPT (all site scripts live in java.js)
+       JAVASCRIPT
+       java.js    = shared site script (gallery, popup, slider)
+       content.js = loads the top bar, news and sponsors from the
+                    club admin (site-content.json)
        ===================================================== -->
 
   <script src="java.js"></script>
+  <script src="content.js"></script>
 
 </body>
 </html>
